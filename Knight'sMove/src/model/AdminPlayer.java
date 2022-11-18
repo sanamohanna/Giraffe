@@ -12,10 +12,6 @@ public AdminPlayer(String nickname, int points, Knight knight, ArrayList<Game> g
 	this.password = password;
 }
 
-public String getPassword() {
-	return password;
-}
-
 public void setPassword(String password) {
 	this.password = password;
 }

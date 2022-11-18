@@ -15,9 +15,6 @@ public class SysData {
 		return instance;
 	}
 
-	
-	
-
 
 	public ArrayList<Game> getGamesHistory() {
 		return gamesHistory;
@@ -49,12 +46,6 @@ public class SysData {
 		this.questions.addAll(questions);
 	}
 
-	public void	loadData() {
-		
-	}
-	public void	writeData(){
-		
-	}
 	
 	public void	updateQuestion(int id , Question updated_question ) {
 		for (Question q : this.getQuestions()) {
