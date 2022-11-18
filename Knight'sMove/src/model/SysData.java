@@ -1,62 +1,112 @@
 package model;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
 
-import org.json.JSONObject;
+import java.util.ArrayList;
 
 public class SysData {
- 
-	private HashMap<Integer, Game> games;
-	private HashMap<Integer, Question> questions;
-	
-	public void Initiate() {
-		
+	private static SysData instance = null;
+	private ArrayList<Game> gamesHistory;
+	private ArrayList<Question> questions;
+	public static SysData getInstance() {
+		if (instance == null) 
+		{ 
+			instance = new SysData(); 
+		}
+		return instance;
 	}
+
+	
+	
+
+
+	public ArrayList<Game> getGamesHistory() {
+		return gamesHistory;
+	}
+
+
+
+
+
+	public void setGames(ArrayList<Game> games) {
+		this.gamesHistory.clear();
+		this.gamesHistory = games;
+	}
+
+
+
+
+
+	public ArrayList<Question> getQuestions() {
+		return questions;
+	}
+
+
+
+
+
+	public void setQuestions(ArrayList<Question> questions) {
+		this.questions.clear();
+		this.questions.addAll(questions);
+	}
+
 	public void	loadData() {
 		
 	}
 	public void	writeData(){
 		
 	}
-	public void	loadQuestions(){
-		
-	}
-	public void	writeQuestions(Question ques)  {
-		JSONObject questionDetails = new JSONObject();
-		  
-	        questionDetails.put("question", ques.getContext());
-	        questionDetails.put("answers", ques.getAnswers());
-	        questionDetails.put("correct_ans", ques.getCorrectAnswer());
-	        questionDetails.put("level", ques.getCorrectAnswer());
-	        questionDetails.put("team", ques.getTeam());
-	        
-	        JSONObject questionObject = new JSONObject(); 
-	        questionObject.put("question", questionDetails);
-	     
-	        //Write JSON file
-	        try (FileWriter file = new FileWriter("QuestionsAndAnswers.json")) {
-	            //We can write any JSONArray or JSONObject instance to the file
-	            file.write(questionObject.toString()); 
-	            file.flush();
-	 
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	   }
-		
 	
-	public void	updateQuesthion() {
-		
+	public void	updateQuestion(int id , Question updated_question ) {
+		for (Question q : this.getQuestions()) {
+
+			if (q.getId() == id) {
+				q.setId(id);
+				q.setContext(updated_question.getContext());
+				q.setDifficultyLevel(updated_question.getDifficultyLevel());
+				q.setTeam(updated_question.getTeam());
+				q.updateAnswers(updated_question.getAnswers());
+			}
+		}
+
 	}
-	public void	addQuestion() {
-		
+	public void addQuestion(Question q) {
+
+		if (q != null) {
+			this.getQuestions().add(q);
+		}
+
 	}
-	public void	removeQuestion () {
-		
+	public void	removeQuestion (int id) {
+		int i = -1;
+		int iterator = 0;
+
+		for (Question q : this.getQuestions()) {
+
+			if (q.getId() == id) {
+
+				i = iterator;
+				break;
+			}
+
+			iterator++;
+		}
+
+		if(i == -1) {
+			return;
+		}
+		for(int c = i + 1 ; c <  this.getQuestions().size(); c++) {
+			this.getQuestions().get(c).setId(id);
+			id++;
+
+		}
+		if (i != -1) {
+			this.questions.remove(i);
+		}
+
 	}
-	public void addGame(){
-		
+	public void addGameHistory(Game game){
+		if(game!= null) {
+			this.getGamesHistory().add(game);
+		}
 	}
 }

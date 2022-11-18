@@ -7,14 +7,14 @@ public class Question {
 	private int id;
 	private String Context;
 	private ArrayList<Answer> answers;
-	private int level;
+	private int DifficultyLevel;
 	private String team;
 	public Question(int id, String context, ArrayList<Answer> answers, int level, String team) {
 		super();
 		this.id = id;
 		Context = context;
 		this.answers = answers;
-		this.level = level;
+		this.DifficultyLevel = level;
 		this.team = team;
 	}
 	public int getId() {
@@ -35,11 +35,11 @@ public class Question {
 	public void setAnswers(ArrayList<Answer> answers) {
 		this.answers = answers;
 	}
-	public int getLevel() {
-		return level;
+	public int getDifficultyLevel() {
+		return DifficultyLevel;
 	}
-	public void setLevel(int level) {
-		this.level = level;
+	public void setDifficultyLevel(int level) {
+		this.DifficultyLevel = level;
 	}
 	public String getTeam() {
 		return team;
@@ -47,7 +47,14 @@ public class Question {
 	public void setTeam(String team) {
 		this.team = team;
 	}
-	
+	public void updateAnswers(ArrayList<Answer> updatedAnswers) {
+		this.answers = new ArrayList<Answer>();
+
+		for(Answer a : updatedAnswers) {
+			this.addAnswer(a);
+		}
+	}
+
 	public int getCorrectAnswer() {
 		for(int i= 0; i< answers.size();i++) {
 			if(answers.get(i).isTrue()) {
