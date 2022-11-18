@@ -1,22 +1,48 @@
 package model;
 
 import java.util.ArrayList;
-
+import java.util.Objects;
+import Enum.DifficultyLevel;
 public class Question {
 
 	private int id;
 	private String Context;
 	private ArrayList<Answer> answers;
-	private int DifficultyLevel;
+	private DifficultyLevel difficultyLevel;
 	private String team;
-	public Question(int id, String context, ArrayList<Answer> answers, int level, String team) {
+	public Question(int id, String context, ArrayList<Answer> answers, DifficultyLevel level, String team) {
 		super();
 		this.id = id;
 		Context = context;
 		this.answers = answers;
-		this.DifficultyLevel = level;
+		this.difficultyLevel = level;
 		this.team = team;
 	}
+	
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(Context, answers, difficultyLevel, id, team);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Question other = (Question) obj;
+		return Objects.equals(Context, other.Context) && Objects.equals(answers, other.answers)
+				&& difficultyLevel == other.difficultyLevel && id == other.id && Objects.equals(team, other.team);
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -35,11 +61,11 @@ public class Question {
 	public void setAnswers(ArrayList<Answer> answers) {
 		this.answers = answers;
 	}
-	public int getDifficultyLevel() {
-		return DifficultyLevel;
+	public DifficultyLevel getDifficultyLevel() {
+		return difficultyLevel;
 	}
-	public void setDifficultyLevel(int level) {
-		this.DifficultyLevel = level;
+	public void setDifficultyLevel(DifficultyLevel level) {
+		this.difficultyLevel = level;
 	}
 	public String getTeam() {
 		return team;
