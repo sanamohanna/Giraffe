@@ -1,34 +1,49 @@
 package Control;
 
 import java.io.FileNotFoundException;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
+
+
+import org.json.*;
+
+import org.json.simple.*;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import com.jn.easyjson.core.tree.JsonIOException;
 
 import Enum.DifficultyLevel;
 import model.Answer;
 import model.Question;
 import model.SysData;
-import java.util.jar.JarException;
+
 
 public class QuestionMngController {
 	private SysData sysData;
 	private static QuestionMngController instance;
+	
+	public QuestionMngController() {
+		
+		//this.questionScreen = new ManageQuestions();
+		this.sysData = SysData.getInstance();
+		
+		
+	}
+	
+
 	/**
 	 * Instance Getter Of QuestionMgmtController
 	 * @return instance
@@ -111,24 +126,64 @@ public class QuestionMngController {
 		}
 
 	}
-
+	public void LoadQuestions() {
+		System.out.println("1");
+		JSONParser parser = new JSONParser();
+	      try {
+	    	
+	    	  
+	         Object obj = parser.parse(new FileReader("src/QuestionsAndAnswers.json"));
+	         System.out.println("2");
+	         JSONObject jsonObject = (JSONObject)obj;
+	         System.out.println("2");
+	         String question = (String) jsonObject.get("question");
+	         System.out.println("Question is: "+ question);
+	         ArrayList<Answer> answers = (ArrayList<Answer>) jsonObject.get("answers");
+	         int correct_ans = (int) jsonObject.get("correct_ans");
+	         System.out.println("3");
+	         int Level = (int) jsonObject.get("Level");
+	         String team = (String) jsonObject.get("team");
+	         
+	         
+	         JSONArray questionsArray=(JSONArray) jsonObject.get("questions");
+	         Iterator<String> iterator = questionsArray.iterator();
+	         while(iterator.hasNext()) {
+	        	 sysData.getQuestions().add((Question) iterator);
+	        	System.out.println(iterator.hasNext()); 
+	         }
+	         
+	         
+	      }catch(FileNotFoundException e) {
+	    	  e.printStackTrace();
+	      }
+	      catch(IOException e) {
+	    	  e.printStackTrace();
+	      }
+	      catch(ParseException e) {
+	    	  e.printStackTrace();
+	      }
+	      catch(Exception e) {
+	    	  e.printStackTrace();
+	      }
+	   }
 
 		/**
 		 * Load Trivia Questions From JSON File
 		 */
-		public void LoadQuestions() {
+	/*	public void LoadQuestions() {
 
 			ArrayList<Question> questions = new ArrayList<Question>();
-			this.getSysData().getQuestions().clear();
+			if(this.getSysData().getQuestions()!= null)
+				this.getSysData().getQuestions().clear();
 			
 			Gson gson = new Gson();
 			JsonReader reader = null;
 			try {
-				reader = new JsonReader(new FileReader("question_data.json"));
+				reader = new JsonReader(new FileReader("QuestionsAndAnswers.json"));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-
+			System.out.println("1234567");
 			JsonObject jsonObject = new JsonParser().parse(reader).getAsJsonObject();
 			final JsonArray data = jsonObject.getAsJsonArray("questions");
 			
@@ -226,7 +281,7 @@ public class QuestionMngController {
 			
 			
 
-		}
+		}*/
 		
 		/**
 		 * Get Questions

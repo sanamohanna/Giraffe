@@ -8,6 +8,7 @@ public class Question {
 	private int id;
 	private String Context;
 	private ArrayList<Answer> answers;
+	private int corect_ans;
 	private DifficultyLevel difficultyLevel;
 	private String team;
 	public Question(int id, String context, ArrayList<Answer> answers, DifficultyLevel level, String team) {
@@ -15,10 +16,23 @@ public class Question {
 		this.id = id;
 		Context = context;
 		this.answers = answers;
+		this.corect_ans=this.getCorrectAnswer();
 		this.difficultyLevel = level;
 		this.team = team;
 	}
 	
+
+
+	public int getCorect_ans() {
+		return this.getCorrectAnswer();
+	}
+
+
+
+	public void setCorect_ans(int corect_ans) {
+		this.corect_ans = corect_ans;
+	}
+
 
 
 	@Override
