@@ -137,7 +137,7 @@ public class QuestionMngController {
 
 				Question q;
 
-				String content = ((JsonObject) element).get("question").getAsString();
+				String context = ((JsonObject) element).get("question").getAsString();
 
 				// question answers
 				JsonArray answersArray = (((JsonObject) element).getAsJsonArray("answers"));
@@ -152,11 +152,10 @@ public class QuestionMngController {
 				String team = ((JsonObject) element).get("team").getAsString();
 				
 				if (!this.sysData.getQuestions().isEmpty()) {
-					q = new Question(this.sysData.getQuestions().size(), content, null,
-							new ArrayList<Answer>(), team);
+					q = new Question(this.sysData.getQuestions().size(), context,new ArrayList<Answer>(), null, team);
 					this.sysData.getQuestions().add(q);
 				} else {
-					q = new Question(0, content, null, new ArrayList<Answer>(), team);
+					q = new Question(0, context,  new ArrayList<Answer>(), null, team);
 					this.sysData.getQuestions().add(q);
 				}
 				DifficultyLevel diff_level;
