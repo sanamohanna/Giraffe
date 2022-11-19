@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class SysData {
 	private static SysData instance = null;
-	private ArrayList<Game> gamesHistory;
-	private ArrayList<Question> questions;
+	private ArrayList<Game> gamesHistory= new ArrayList<Game>();;
+	private ArrayList<Question> questions =new ArrayList<Question>();
 	public static SysData getInstance() {
 		if (instance == null) 
 		{ 

@@ -28,6 +28,10 @@ public class Answer {
 	public void setTrue(boolean isTrue) {
 		this.isTrue = isTrue;
 	}
+	@Override
+	public String toString() {
+		return "Answer [id=" + id + ", answerContext=" + answerContext + ", isTrue=" + isTrue + "]";
+	}
 	
 	
 }

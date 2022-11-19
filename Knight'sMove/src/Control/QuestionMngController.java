@@ -21,6 +21,7 @@ import org.json.*;
 import org.json.simple.*;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -147,6 +148,7 @@ public class QuestionMngController {
 				e.printStackTrace();
 			}
 			
+			@SuppressWarnings("deprecation")
 			JsonObject jsonObject = new JsonParser().parse(reader).getAsJsonObject();
 			
 			final JsonArray data = jsonObject.getAsJsonArray("questions");
@@ -162,26 +164,29 @@ public class QuestionMngController {
 				JsonArray answersArray = (((JsonObject) element).getAsJsonArray("answers"));
 				
 				
+				@SuppressWarnings("unchecked")
 				ArrayList<String> answers = gson.fromJson(answersArray, ArrayList.class);
 				for(String ans :answers ) {
 					System.out.println(ans);
 				}
-				int difficulty = ((JsonObject) element).get("level").getAsInt();
-				System.out.println(difficulty);
 				int correct = ((JsonObject) element).get("correct_ans").getAsInt();
 				System.out.println(correct);
+				int difficulty = ((JsonObject) element).get("level").getAsInt();
+				System.out.println(difficulty);
 				String team = ((JsonObject) element).get("team").getAsString();
 				System.out.println(team);
-				if(this.sysData.getQuestions()!=null) {
-					System.out.println("x");
-				if (  !this.sysData.getQuestions().isEmpty()) {
-					System.out.println("y");
+			
+				if ( !this.sysData.getQuestions().isEmpty()) {
 					q = new Question(this.sysData.getQuestions().size(), context,new ArrayList<Answer>(), null, team);
 					this.sysData.getQuestions().add(q);
-					System.out.println(q);	
-					} else {
+						
+					}
+				else
+					{
+					System.out.println("y");
 					q = new Question(0, context,  new ArrayList<Answer>(), null, team);
 					this.sysData.getQuestions().add(q);
+					
 				}
 				
 				DifficultyLevel diff_level;
@@ -194,6 +199,7 @@ public class QuestionMngController {
 				}
 
 				q.setDifficultyLevel(diff_level);
+				
 
 				int correctAnswer_Checker = 0;
 				
@@ -247,9 +253,12 @@ public class QuestionMngController {
 				questions.add(q);
 
 			}
-			}
 			
 			this.getSysData().setQuestions(questions);
+			for(int i=0;i<this.getSysData().getQuestions().size();i++) {
+				System.out.println(this.getSysData().getQuestions().get(i));
+				
+			}
 			
 			
 

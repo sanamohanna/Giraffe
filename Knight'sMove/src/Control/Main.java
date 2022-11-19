@@ -23,8 +23,9 @@ public class Main {
 	public static void main(String[] args) {		
 		QuestionMngController Q = new QuestionMngController();
 		Q.LoadQuestions();
-		System.out.print(Q.getSysData().getQuestions());
+		
         Application.launch(MainScreen.class, args);
 	}
+	
 }
   

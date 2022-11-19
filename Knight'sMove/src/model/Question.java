@@ -123,8 +123,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", Context=" + Context + ", answers=" + answers + ", corect_ans=" + corect_ans
-				+ ", difficultyLevel=" + difficultyLevel + ", team=" + team + "]";
+		return "Question [id=" + id + ", Context=" + Context + ", answers=" + answers +  ", difficultyLevel=" + difficultyLevel + ", team=" + team + "]";
 	}
 	
 }
