@@ -9,8 +9,8 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.json.JSONObject;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -19,10 +19,13 @@ import org.json.simple.parser.ParseException;
 import org.json.*;
 
 import org.json.simple.*;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 import com.jn.easyjson.core.tree.JsonIOException;
 
 import Enum.DifficultyLevel;
@@ -68,11 +71,11 @@ public class QuestionMngController {
 	 */
 	public void WriteQuestions() {
 
-		JsonArray questions = new JsonArray();
+		JSONArray questions = new JSONArray();
 
 		for (Question q : this.sysData.getQuestions()) {
 
-			JsonObject question = new JsonObject();
+			JSONObject question = new JSONObject();
 
 			JsonArray answerArray = new JsonArray();
 
@@ -126,51 +129,11 @@ public class QuestionMngController {
 		}
 
 	}
-	public void LoadQuestions() {
-		System.out.println("1");
-		JSONParser parser = new JSONParser();
-	      try {
-	    	
-	    	  
-	         Object obj = parser.parse(new FileReader("src/QuestionsAndAnswers.json"));
-	         System.out.println("2");
-	         JSONObject jsonObject = (JSONObject)obj;
-	         System.out.println("2");
-	         String question = (String) jsonObject.get("question");
-	         System.out.println("Question is: "+ question);
-	         ArrayList<Answer> answers = (ArrayList<Answer>) jsonObject.get("answers");
-	         int correct_ans = (int) jsonObject.get("correct_ans");
-	         System.out.println("3");
-	         int Level = (int) jsonObject.get("Level");
-	         String team = (String) jsonObject.get("team");
-	         
-	         
-	         JSONArray questionsArray=(JSONArray) jsonObject.get("questions");
-	         Iterator<String> iterator = questionsArray.iterator();
-	         while(iterator.hasNext()) {
-	        	 sysData.getQuestions().add((Question) iterator);
-	        	System.out.println(iterator.hasNext()); 
-	         }
-	         
-	         
-	      }catch(FileNotFoundException e) {
-	    	  e.printStackTrace();
-	      }
-	      catch(IOException e) {
-	    	  e.printStackTrace();
-	      }
-	      catch(ParseException e) {
-	    	  e.printStackTrace();
-	      }
-	      catch(Exception e) {
-	    	  e.printStackTrace();
-	      }
-	   }
-
+	
 		/**
 		 * Load Trivia Questions From JSON File
 		 */
-	/*	public void LoadQuestions() {
+		public void LoadQuestions() {
 
 			ArrayList<Question> questions = new ArrayList<Question>();
 			if(this.getSysData().getQuestions()!= null)
@@ -179,12 +142,13 @@ public class QuestionMngController {
 			Gson gson = new Gson();
 			JsonReader reader = null;
 			try {
-				reader = new JsonReader(new FileReader("QuestionsAndAnswers.json"));
+				reader = new JsonReader(new FileReader("src/QuestionsAndAnswers.json"));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-			System.out.println("1234567");
+			
 			JsonObject jsonObject = new JsonParser().parse(reader).getAsJsonObject();
+			
 			final JsonArray data = jsonObject.getAsJsonArray("questions");
 			
 
@@ -194,25 +158,32 @@ public class QuestionMngController {
 
 				String context = ((JsonObject) element).get("question").getAsString();
 
-				// question answers
+				System.out.println(context);
 				JsonArray answersArray = (((JsonObject) element).getAsJsonArray("answers"));
-
-				@SuppressWarnings("unchecked")
-				ArrayList<String> answers = gson.fromJson(answersArray, ArrayList.class);
-
-				int difficulty = ((JsonObject) element).get("level").getAsInt();
-
-				int correct = ((JsonObject) element).get("correct_ans").getAsInt();
-
-				String team = ((JsonObject) element).get("team").getAsString();
 				
-				if (!this.sysData.getQuestions().isEmpty()) {
+				
+				ArrayList<String> answers = gson.fromJson(answersArray, ArrayList.class);
+				for(String ans :answers ) {
+					System.out.println(ans);
+				}
+				int difficulty = ((JsonObject) element).get("level").getAsInt();
+				System.out.println(difficulty);
+				int correct = ((JsonObject) element).get("correct_ans").getAsInt();
+				System.out.println(correct);
+				String team = ((JsonObject) element).get("team").getAsString();
+				System.out.println(team);
+				if(this.sysData.getQuestions()!=null) {
+					System.out.println("x");
+				if (  !this.sysData.getQuestions().isEmpty()) {
+					System.out.println("y");
 					q = new Question(this.sysData.getQuestions().size(), context,new ArrayList<Answer>(), null, team);
 					this.sysData.getQuestions().add(q);
-				} else {
+					System.out.println(q);	
+					} else {
 					q = new Question(0, context,  new ArrayList<Answer>(), null, team);
 					this.sysData.getQuestions().add(q);
 				}
+				
 				DifficultyLevel diff_level;
 				if (difficulty == 1) {
 					diff_level = DifficultyLevel.EASY;
@@ -276,12 +247,13 @@ public class QuestionMngController {
 				questions.add(q);
 
 			}
+			}
 			
 			this.getSysData().setQuestions(questions);
 			
 			
 
-		}*/
+		}
 		
 		/**
 		 * Get Questions

@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="C:/Users/USER/Downloads/jar_files (2)/easyjson-core-4.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/USER/Downloads/jar_files (2)/langx-java-5.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/USER/Downloads/jar_files (2)/simplejson-to-easyjson-4.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Downloads/gson-2.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

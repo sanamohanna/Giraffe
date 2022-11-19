@@ -118,4 +118,13 @@ public class Question {
 		return false;
 
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", Context=" + Context + ", answers=" + answers + ", corect_ans=" + corect_ans
+				+ ", difficultyLevel=" + difficultyLevel + ", team=" + team + "]";
+	}
+	
 }
