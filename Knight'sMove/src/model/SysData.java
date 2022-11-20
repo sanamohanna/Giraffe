@@ -1,54 +1,40 @@
 package model;
 
-
 import java.util.ArrayList;
 
 public class SysData {
 	private static SysData instance = null;
-	private ArrayList<Game> gamesHistory= new ArrayList<Game>();;
-	private ArrayList<Question> questions =new ArrayList<Question>();
+	private ArrayList<Game> gamesHistory = new ArrayList<Game>();;
+	private ArrayList<Question> questions = new ArrayList<Question>();
+
 	public static SysData getInstance() {
-		if (instance == null) 
-		{ 
-			instance = new SysData(); 
+		if (instance == null) {
+			instance = new SysData();
 		}
 		return instance;
 	}
 
-
 	public ArrayList<Game> getGamesHistory() {
 		return gamesHistory;
 	}
-
-
-
-
 
 	public void setGames(ArrayList<Game> games) {
 		this.gamesHistory.clear();
 		this.gamesHistory = games;
 	}
 
-
-
-
-
 	public ArrayList<Question> getQuestions() {
 		return questions;
 	}
 
-
-
-
-
 	public void setQuestions(ArrayList<Question> questions) {
-		if(this.questions!= null) {
-		this.questions.clear();
-		this.questions.addAll(questions);
-	}}
+		if (this.questions != null) {
+			this.questions.clear();
+			this.questions.addAll(questions);
+		}
+	}
 
-	
-	public void	updateQuestion(int id , Question updated_question ) {
+	public void updateQuestion(int id, Question updated_question) {
 		for (Question q : this.getQuestions()) {
 
 			if (q.getId() == id) {
@@ -61,6 +47,7 @@ public class SysData {
 		}
 
 	}
+
 	public void addQuestion(Question q) {
 
 		if (q != null) {
@@ -68,7 +55,8 @@ public class SysData {
 		}
 
 	}
-	public void	removeQuestion (int id) {
+
+	public void removeQuestion(int id) {
 		int i = -1;
 		int iterator = 0;
 
@@ -83,10 +71,10 @@ public class SysData {
 			iterator++;
 		}
 
-		if(i == -1) {
+		if (i == -1) {
 			return;
 		}
-		for(int c = i + 1 ; c <  this.getQuestions().size(); c++) {
+		for (int c = i + 1; c < this.getQuestions().size(); c++) {
 			this.getQuestions().get(c).setId(id);
 			id++;
 
@@ -96,8 +84,9 @@ public class SysData {
 		}
 
 	}
-	public void addGameHistory(Game game){
-		if(game!= null) {
+
+	public void addGameHistory(Game game) {
+		if (game != null) {
 			this.getGamesHistory().add(game);
 		}
 	}
