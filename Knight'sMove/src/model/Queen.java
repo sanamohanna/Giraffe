@@ -18,10 +18,9 @@ public class Queen extends Piece {
 	public void setInitialPlaceQueen(ArrayList<Integer> initialPlaceQueen) {
 		this.initialPlaceQueen = initialPlaceQueen;
 	}
-    
-public void  DiagonallyMove() {
-		
+
+	public void DiagonallyMove() {
+
 	}
-	
-	
+
 }
