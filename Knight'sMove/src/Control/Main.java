@@ -19,13 +19,11 @@ import model.Question;
 
 public class Main {
 
-	
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
 		QuestionMngController Q = new QuestionMngController();
 		Q.LoadQuestions();
-		
-        Application.launch(MainScreen.class, args);
+
+		Application.launch(MainScreen.class, args);
 	}
-	
+
 }
-  
