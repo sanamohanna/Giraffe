@@ -9,13 +9,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class MainScreen extends Application{
+public class MainScreen extends Application {
 	private AnchorPane mainBorder;
 
-
-
 	public void start(Stage primaryStage) {
-		//DisplayController.mainscreen = this;
+		// DisplayController.mainscreen = this;
+
 		try {
 			mainBorder = FXMLLoader.load(getClass().getResource("/View/mainscreen.fxml"));
 		} catch (IOException e) {
@@ -25,14 +24,13 @@ public class MainScreen extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Knight's Move");
 		primaryStage.setResizable(false);
-		//primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/View/pictures/logo.png")));
+		// primaryStage.getIcons().add(new
+		// Image(getClass().getResourceAsStream("/View/pictures/logo.png")));
 		primaryStage.show();
-		//primary = primaryStage;
+		// primary = primaryStage;
 
-
-
-	//	loadesign(1);
-		//SoundController.getInstance().playIntro();
+		// loadesign(1);
+		// SoundController.getInstance().playIntro();
 
 	}
 }
