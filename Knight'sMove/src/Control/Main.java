@@ -7,10 +7,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 //import org.json.JSONObject;
-import org.json.simple.*;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import View.MainScreen;
 import javafx.application.Application;
@@ -21,9 +17,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		QuestionMngController Q = new QuestionMngController();
-		Q.LoadQuestions();
+		//Q.LoadQuestions();
+		Q.WriteQuestions();
 
-		Application.launch(MainScreen.class, args);
+		//Application.launch(MainScreen.class, args);
 	}
 
 }

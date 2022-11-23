@@ -67,11 +67,11 @@ public class QuestionMngController {
 	 */
 	public void WriteQuestions() {
 
-		JSONArray questions = new JSONArray();
+		JsonArray questions = new JsonArray();
 
 		for (Question q : this.sysData.getQuestions()) {
 
-			JSONObject question = new JSONObject();
+			JsonObject question = new JsonObject();
 
 			JsonArray answerArray = new JsonArray();
 
@@ -241,11 +241,11 @@ public class QuestionMngController {
 
 		}
 
-		this.getSysData().setQuestions(questions);
+		/*this.getSysData().setQuestions(questions);
 		for (int i = 0; i < this.getSysData().getQuestions().size(); i++) {
 			System.out.println(this.getSysData().getQuestions().get(i));
 
-		}
+		}*/
 
 	}
 

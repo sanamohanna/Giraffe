@@ -28,10 +28,9 @@ public class SysData {
 	}
 
 	public void setQuestions(ArrayList<Question> questions) {
-		if (this.questions != null) {
 			this.questions.clear();
 			this.questions.addAll(questions);
-		}
+		
 	}
 
 	public void updateQuestion(int id, Question updated_question) {
