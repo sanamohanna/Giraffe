@@ -23,18 +23,6 @@
       "correct_ans": "1",
       "level": "2",
       "team": "animal"
-    },
-    {
-      "question": "what is the ? ",
-      "answers": [
-        "1234",
-        "1234",
-        "1234",
-        "1234"
-      ],
-      "correct_ans": "2",
-      "level": "3",
-      "team": "animal"
     }
   ]
 }

@@ -9,15 +9,6 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import org.json.*;
-
-import org.json.simple.*;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -68,9 +59,10 @@ public class QuestionMngController {
 	public void WriteQuestions() {
 
 		JsonArray questions = new JsonArray();
-
+		int i =0;
 		for (Question q : this.sysData.getQuestions()) {
-
+			System.out.println(i);
+			i++;
 			JsonObject question = new JsonObject();
 
 			JsonArray answerArray = new JsonArray();
@@ -112,7 +104,7 @@ public class QuestionMngController {
 		// write to file
 
 		try {
-			Writer w = new FileWriter("question_data.json");
+			Writer w = new FileWriter("src/QuestionsAndAnswers.json");
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			gson.toJson(root, w);
 			w.flush();
@@ -132,8 +124,7 @@ public class QuestionMngController {
 	public void LoadQuestions() {
 
 		ArrayList<Question> questions = new ArrayList<Question>();
-		if (this.getSysData().getQuestions() != null)
-			this.getSysData().getQuestions().clear();
+		this.getSysData().getQuestions().clear();
 
 		Gson gson = new Gson();
 		JsonReader reader = null;
@@ -154,27 +145,20 @@ public class QuestionMngController {
 
 			String context = ((JsonObject) element).get("question").getAsString();
 
-			System.out.println(context);
 			JsonArray answersArray = (((JsonObject) element).getAsJsonArray("answers"));
 
 			@SuppressWarnings("unchecked")
 			ArrayList<String> answers = gson.fromJson(answersArray, ArrayList.class);
-			for (String ans : answers) {
-				System.out.println(ans);
-			}
+		
 			int correct = ((JsonObject) element).get("correct_ans").getAsInt();
-			System.out.println(correct);
 			int difficulty = ((JsonObject) element).get("level").getAsInt();
-			System.out.println(difficulty);
 			String team = ((JsonObject) element).get("team").getAsString();
-			System.out.println(team);
 
 			if (!this.sysData.getQuestions().isEmpty()) {
 				q = new Question(this.sysData.getQuestions().size(), context, new ArrayList<Answer>(), null, team);
 				this.sysData.getQuestions().add(q);
 
 			} else {
-				System.out.println("y");
 				q = new Question(0, context, new ArrayList<Answer>(), null, team);
 				this.sysData.getQuestions().add(q);
 
@@ -241,12 +225,8 @@ public class QuestionMngController {
 
 		}
 
-		/*this.getSysData().setQuestions(questions);
-		for (int i = 0; i < this.getSysData().getQuestions().size(); i++) {
-			System.out.println(this.getSysData().getQuestions().get(i));
-
-		}*/
-
+		this.getSysData().setQuestions(questions);
+	
 	}
 
 	/**
