@@ -20,8 +20,6 @@ public class Queen extends Piece {
 		this.initialPlaceQueen = initialPlaceQueen;
 	}
 
-	public void DiagonallyMove() {
 
-	}
 
 }

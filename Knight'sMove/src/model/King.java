@@ -31,8 +31,6 @@ public class King extends Piece {
 		this.speed = speed;
 	}
 
-	public void DiagonallyMove() {
-		
-	}
+
 
 }

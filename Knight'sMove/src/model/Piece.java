@@ -85,5 +85,9 @@ public class Piece {
 			this.getLocation().setY(currentY-1);
 		}
 	}
+	
+	public void DiagonallyMove() {
+
+	}
 
 }
