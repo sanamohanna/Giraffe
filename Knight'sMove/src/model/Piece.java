@@ -44,7 +44,7 @@ public class Piece {
 	}
 
 
-	public void LeftMove() {
+	public void leftMove() {
 		int currentX=this.location.getX();
 		if(this.getLocation().getX()==0) {
 			this.getLocation().setX(7);
@@ -55,7 +55,7 @@ public class Piece {
 		}
 	}
 
-	public void RightMove() {
+	public void rightMove() {
 		int currentX=this.location.getX();
 		if(this.getLocation().getX()==7) {
 			this.getLocation().setX(0);
