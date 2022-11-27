@@ -3,24 +3,23 @@ package model;
 import java.util.ArrayList;
 
 public class Knight extends Piece {
-	public Knight(Location location, ArrayList<Integer> initialPlaceKnight, boolean isKilled) {
+	private Location initialLocation;
+	private boolean isKilled;
+	
+	public Knight(Location location, Location initialLocation, boolean isKilled) {
 		super(location);
-		this.initialPlaceKnight = initialPlaceKnight;
+		this.initialLocation = new Location(0,0);
 		this.isKilled = isKilled;
 	}
 
-	private ArrayList<Integer> initialPlaceKnight;
-	private boolean isKilled;
+	
 
 
 
-	public ArrayList<Integer> getInitialPlaceKnight() {
-		return initialPlaceKnight;
+	public Location getInitialLocation() {
+		return initialLocation;
 	}
 
-	public void setInitialPlaceKnight(ArrayList<Integer> initialPlaceKnight) {
-		this.initialPlaceKnight = initialPlaceKnight;
-	}
 
 	public boolean isKilled() {
 		return isKilled;
@@ -29,5 +28,16 @@ public class Knight extends Piece {
 	public void setKilled(boolean isKilled) {
 		this.isKilled = isKilled;
 	}
-
+	public void level1Move(){
+		
+	}
+	public void level2Move() {
+		
+	}
+    public void level3Move(){
+		
+	}
+	public void level4Move() {
+		
+	}
 }
