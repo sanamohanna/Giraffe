@@ -30,7 +30,9 @@ public class King extends Piece {
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
-
+	public void kingMove() {
+		
+	}
 
 
 }
