@@ -37,7 +37,7 @@ public class Main {
 
 		}
 
-		//Application.launch(MainScreen.class, args);
+		Application.launch(MainScreen.class, args);
 	}
 
 	
