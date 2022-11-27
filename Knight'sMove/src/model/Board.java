@@ -1,7 +1,7 @@
 package model;
 
 public class Board {
-	private char[][] boxes;
+	private char[][] gameBoard;
 
 	public Board(char[][] boxes) {
 		super();
