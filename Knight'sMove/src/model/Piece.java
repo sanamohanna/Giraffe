@@ -22,8 +22,20 @@ public class Piece {
 		this.location = location;
 	}
 
+	public void LeftMove() {
 
-	public void straightMove() {
+	}
+
+	public void RightMove() {
+
+	}
+	
+	public void downMove() {
+		
+	}
+	
+	public void upMove() {
+		
 	}
 
 }

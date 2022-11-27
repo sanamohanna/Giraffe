@@ -33,11 +33,4 @@ public class Knight extends Piece {
 		this.isKilled = isKilled;
 	}
 
-	public void LeftMove() {
-
-	}
-
-	public void RightMove() {
-
-	}
 }
