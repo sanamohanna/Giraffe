@@ -66,7 +66,7 @@ public class Knight extends Piece {
 		
 	}
 	/*NOT SURE !!!!!!!!*/
-	/*WE WILL USE THIS METHOS JUST IN CASE THE KNIGHT CAN MOVE DIANOGALLY !!!! WE NEED TO ASK NAREED*/
+	/*WE WILL USE THIS METHOD JUST IN CASE THE KNIGHT CAN MOVE DIANOGALLY !!!! WE NEED TO ASK NAREED*/
 	public void level1Move( Directions direction1 , Directions direction2 ,  Directions direction3){
 		if(direction3 == null) {
 		if(direction1 ==  Directions.LEFT && direction2 ==  Directions.UP) {
