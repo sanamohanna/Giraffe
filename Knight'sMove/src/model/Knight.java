@@ -3,9 +3,6 @@ package model;
 import java.util.ArrayList;
 
 public class Knight extends Piece {
-
-	
-
 	public Knight(Location location, ArrayList<Integer> initialPlaceKnight, boolean isKilled) {
 		super(location);
 		this.initialPlaceKnight = initialPlaceKnight;
