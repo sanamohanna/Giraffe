@@ -25,7 +25,6 @@ public class MainScreen extends Application {
 		Image icon = new Image("6808582.png");
 		primaryStage.getIcons().add(icon);
 		primaryStage.setTitle("Knight's Move Game");
-		 
 		primaryStage.setScene(scene);
 		primaryStage.show();
 

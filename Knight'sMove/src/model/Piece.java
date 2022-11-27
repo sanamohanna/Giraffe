@@ -4,20 +4,24 @@ import java.util.ArrayList;
 
 public class Piece {
 
-	private ArrayList<Integer> place;
+	private Location location;
 
-	public Piece(ArrayList<Integer> place) {
+	
+	public Piece(Location location) {
 		super();
-		this.place = place;
+		this.location = location;
+	}
+	
+
+	public Location getLocation() {
+		return location;
 	}
 
-	public ArrayList<Integer> getPlace() {
-		return place;
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
-	public void setPlace(ArrayList<Integer> place) {
-		this.place = place;
-	}
 
 	public void straightMove() {
 	}

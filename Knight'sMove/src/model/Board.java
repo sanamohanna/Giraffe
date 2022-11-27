@@ -1,19 +1,21 @@
 package model;
 
 public class Board {
-	private char[][] gameBoard;
+	private Squares[][] boxes;
 
-	public Board(char[][] boxes) {
+	public Board(Squares[][] boxes) {
 		super();
 		this.boxes = boxes;
 	}
 
-	public char[][] getBoxes() {
+	public Squares[][] getBoxes() {
 		return boxes;
 	}
 
-	public void setBoxes(char[][] boxes) {
+	public void setBoxes(Squares[][] boxes) {
 		this.boxes = boxes;
 	}
+
+
 
 }

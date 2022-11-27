@@ -4,12 +4,13 @@ import Enum.Color;
 
 public class RandomJump extends Squares {
 
-	public RandomJump(Piece peice, Integer x, Integer y, Color color) {
-		super(peice, x, y, color);
-		}
 	
-	
- public void changePlaceToEmptuSquare() {
+ public RandomJump(Piece peice, Location location, Color color) {
+		super(peice, location, color);
+		// TODO Auto-generated constructor stub
+	}
+
+public void changePlaceToEmptuSquare() {
 	 
  }
 }
