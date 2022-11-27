@@ -30,36 +30,36 @@ public class Knight extends Piece {
 	}
 	public void level1Move( String direction1 , String direction2){
 		if(direction1 == "left" && direction2 == "up") {
-			this.LeftMove();
+			this.leftMove();
 			this.upMove();
 		}
 		if(direction1 == "left" && direction2 == "down") {
-			this.LeftMove();
+			this.leftMove();
 			this.downMove();
 		}
         if(direction1 == "right" && direction2 == "up" ) {
-			this.RightMove();
+			this.rightMove();
 			this.upMove();
 		}
         if(direction1 == "right" && direction2 == "down" ) {
-			this.RightMove();
+			this.rightMove();
 			this.downMove();
 		}
         if(direction1 == "up" && direction2 == "left") {
 			this.upMove();
-			this.LeftMove();
+			this.leftMove();
 		}
         if(direction1 == "up" && direction2 == "right") {
 			this.upMove();
-			this.RightMove();
+			this.rightMove();
 		}
         if(direction1 == "down" && direction2 == "left") {
 			this.downMove();
-			this.LeftMove();
+			this.leftMove();
 		} 
         if(direction1 == "down" && direction2 == "right") {
 			this.downMove();
-			this.RightMove();
+			this.rightMove();
 		} 
 		
 	}

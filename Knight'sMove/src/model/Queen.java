@@ -37,18 +37,21 @@ public class Queen extends Piece {
 				this.leftMove();
 				 moveNumber--;
 			}
+			break;
 		}
 		case RIGHT:{
 			while(moveNumber !=0 ) {
 				this.rightMove();
 				 moveNumber--;
 			}
+			break;
 		}
 		case UP_LEFT,UP_RIGHT , DOWN_LEFT,DOWN_RIGHT:{
 			while(moveNumber !=0 ) {
 				this.DiagonallyMove(dir);
 				 moveNumber--;
 			}
+			break;
 		}
 			
 		}
