@@ -6,8 +6,9 @@ public class Queen extends Piece {
 
 	private ArrayList<Integer> initialPlaceQueen;
 
-	public Queen(ArrayList<Integer> place, ArrayList<Integer> initialPlaceQueen) {
-		super(place);
+	
+	public Queen(Location location, ArrayList<Integer> initialPlaceQueen) {
+		super(location);
 		this.initialPlaceQueen = initialPlaceQueen;
 	}
 

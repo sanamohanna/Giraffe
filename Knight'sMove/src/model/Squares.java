@@ -18,17 +18,12 @@ public class Squares {
 	public void setPeice(Piece peice) {
 		this.peice = peice;
 	}
-	public Integer getX() {
-		return x;
+	
+	public Location getLocation() {
+		return location;
 	}
-	public void setX(Integer x) {
-		this.x = x;
-	}
-	public Integer getY() {
-		return y;
-	}
-	public void setY(Integer y) {
-		this.y = y;
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 	public Color getColor() {
 		return color;

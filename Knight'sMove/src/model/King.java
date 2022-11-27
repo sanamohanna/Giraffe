@@ -7,8 +7,10 @@ public class King extends Piece {
 	private ArrayList<Integer> initialPlaceKing;
 	private int speed;
 
-	public King(ArrayList<Integer> place, ArrayList<Integer> initialPlaceKing, int speed) {
-		super(place);
+	
+
+	public King(Location location, ArrayList<Integer> initialPlaceKing, int speed) {
+		super(location);
 		this.initialPlaceKing = initialPlaceKing;
 		this.speed = speed;
 	}
