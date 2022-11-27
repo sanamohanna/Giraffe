@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import Enum.Directions;
+
 public class Piece {
 
 	private Location location;
@@ -86,8 +88,70 @@ public class Piece {
 		}
 	}
 	
-	public void DiagonallyMove() {
+	public void DiagonallyMove(Directions dir) {
+		switch(dir) {
+		case UP_LEFT: {
+			if(this.location.getX()==0 && this.location.getY()>0) {
+				this.location.setX(7);
+				this.location.setY((this.location.getY())-1);
+			}
+			else if( this.location.getY()==0) {
+				throw new IllegalArgumentException("illegal Move");
+			}
+			else {
+				this.location.setX(this.location.getX()-1);
+				this.location.setY((this.location.getY())-1);
+			}
+			break;
 
+		}
+		case UP_RIGHT:{
+			if(this.location.getX()==7 && this.location.getY()>0) {
+				this.location.setX(0);
+				this.location.setY((this.location.getY())-1);
+			}
+			else if( this.location.getY()==0) {
+				throw new IllegalArgumentException("illegal Move");
+			}
+			else {
+				this.location.setX(this.location.getX()+1);
+				this.location.setY((this.location.getY())-1);
+			}
+			break;
+		}
+		//?????
+		case DOWN_LEFT:{
+			if(this.location.getX()==0 && this.location.getY()<7) {
+				this.location.setX(7);
+				this.location.setY((this.location.getY())+1);
+			}
+			else if( this.location.getY()==7) {
+				throw new IllegalArgumentException("illegal Move");
+			}
+			else {
+				this.location.setX(this.location.getX()-1);
+				this.location.setY((this.location.getY())+1);
+			}
+			break;
+		}
+		case DOWN_RIGHT:{
+			if(this.location.getX()==7 && this.location.getY()<7) {
+				this.location.setX(0);
+				this.location.setY((this.location.getY())+1);
+			}
+			else if( this.location.getY()==7) {
+				throw new IllegalArgumentException("illegal Move");
+			}
+			else {
+				this.location.setX(this.location.getX()+1);
+				this.location.setY((this.location.getY())+1);
+			}
+			break;
+		}
+		default:
+			
+ 
+		}
 	}
 
 }
