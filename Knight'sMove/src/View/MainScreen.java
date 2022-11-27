@@ -7,30 +7,27 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MainScreen extends Application {
 	private AnchorPane mainBorder;
 
 	public void start(Stage primaryStage) {
-		// DisplayController.mainscreen = this;
 
 		try {
 			mainBorder = FXMLLoader.load(getClass().getResource("/View/mainscreen.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Scene scene = new Scene(mainBorder);
+	
+		Scene scene = new Scene(mainBorder,Color.GOLD);
+		Image icon = new Image("6808582.png");
+		primaryStage.getIcons().add(icon);
+		primaryStage.setTitle("Knight's Move Game");
+		 
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Knight's Move");
-		primaryStage.setResizable(false);
-		// primaryStage.getIcons().add(new
-		// Image(getClass().getResourceAsStream("/View/pictures/logo.png")));
 		primaryStage.show();
-		// primary = primaryStage;
-
-		// loadesign(1);
-		// SoundController.getInstance().playIntro();
 
 	}
 }
