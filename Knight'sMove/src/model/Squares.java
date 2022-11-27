@@ -4,14 +4,12 @@ import Enum.Color;
 
 public class Squares {
 	private Piece peice;
-	private Integer x ;
-	private Integer y ;
+	private Location location ;
     private Color color;
-	public Squares(Piece peice, Integer x, Integer y, Color color) {
+	public Squares(Piece peice, Location location, Color color) {
 		super();
 		this.peice = peice;
-		this.x = x;
-		this.y = y;
+		this.location= location;
 		this.color = color;
 	}
 	public Piece getPeice() {
