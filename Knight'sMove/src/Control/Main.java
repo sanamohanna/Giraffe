@@ -21,7 +21,7 @@ public class Main {
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		QuestionMngController Q = new QuestionMngController();
 		Answer answer1 =new Answer(1,"1234",false);
-		Answer answer2 =new Answer(2,"1234",true);
+		Answer answer2 =new Answer(2,"134",true);
 		Answer answer3 =new Answer(3,"1234",false);
 		Answer answer4 =new Answer(4,"1234",false);
 		answers.add(answer1);
@@ -37,7 +37,7 @@ public class Main {
 
 		}
 
-		//Application.launch(MainScreen.class, args);
+		Application.launch(MainScreen.class, args);
 	}
 
 	
