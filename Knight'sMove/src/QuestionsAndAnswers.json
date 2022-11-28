@@ -13,18 +13,6 @@
       "team": "animal"
     },
     {
-      "question": "q2",
-      "answers": [
-        "answer1",
-        "answer2",
-        "answer3",
-        "answer4"
-      ],
-      "correct_ans": "1",
-      "level": "2",
-      "team": "animal"
-    },
-    {
       "question": "what is the ???",
       "answers": [
         "1",
@@ -49,15 +37,39 @@
       "team": "animal"
     },
     {
-      "question": "sdf",
+      "question": "what is the of the teacher ?",
       "answers": [
-        "ds",
-        "d",
-        "df",
-        "fd"
+        "klara",
+        "nada",
+        "sana",
+        "tsveka"
       ],
       "correct_ans": "2",
-      "level": "1",
+      "level": "3",
+      "team": "animal"
+    },
+    {
+      "question": "ahcfydschuds\\",
+      "answers": [
+        "avsvhsahc",
+        "dxhxhh",
+        "xhgg",
+        "xg"
+      ],
+      "correct_ans": "2",
+      "level": "3",
+      "team": "animal"
+    },
+    {
+      "question": "what is",
+      "answers": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correct_ans": "2",
+      "level": "2",
       "team": "animal"
     },
     {

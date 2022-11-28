@@ -6,14 +6,14 @@ import Enum.DifficultyLevel;
 
 public class Question {
 
-	private int id;
+	private Integer id;
 	private String Context;
 	private ArrayList<Answer> answers;
 	private int corect_ans;
 	private DifficultyLevel difficultyLevel;
 	private String team;
 
-	public Question(int id, String context, ArrayList<Answer> answers, DifficultyLevel level, String team) {
+	public Question(Integer id, String context, ArrayList<Answer> answers, DifficultyLevel level, String team) {
 		super();
 		this.id = id;
 		Context = context;
@@ -33,7 +33,7 @@ public class Question {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Context, answers, difficultyLevel, id, team);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -45,15 +45,14 @@ public class Question {
 		if (getClass() != obj.getClass())
 			return false;
 		Question other = (Question) obj;
-		return Objects.equals(Context, other.Context) && Objects.equals(answers, other.answers)
-				&& difficultyLevel == other.difficultyLevel && id == other.id && Objects.equals(team, other.team);
+		return id == other.id;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

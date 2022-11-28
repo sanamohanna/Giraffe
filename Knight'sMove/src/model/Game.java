@@ -13,7 +13,7 @@ public class Game {
 	private Queen queen;
 	private King king;
 	private GameStatus gameStatus;
-	private Timer time;
+	private TimerDemo time;
 	private ArrayList<Question> availableQuestions;
 	private ArrayList<Question> unavailableQuestions;
 
@@ -26,7 +26,7 @@ public class Game {
 		this.queen = queen;
 		this.king = king;
 		this.gameStatus = gameStatus;
-		this.time = new Timer();
+		this.time = new TimerDemo();
 		availableQuestions = new ArrayList<>();
 		availableQuestions.addAll(SysData.getInstance().getQuestions());
 		unavailableQuestions=new ArrayList<Question>();
@@ -88,11 +88,11 @@ public class Game {
 		this.gameStatus = gameStatus;
 	}
 
-	public Timer getTime() {
+	public TimerDemo getTime() {
 		return time;
 	}
 
-	public void setTime(Timer time) {
+	public void setTime(TimerDemo time) {
 		this.time = time;
 	}
 

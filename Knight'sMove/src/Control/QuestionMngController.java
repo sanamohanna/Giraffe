@@ -119,7 +119,7 @@ public class QuestionMngController {
 	}
 
 	/**
-	 * Load Trivia Questions From JSON File
+	 * Load  Questions From JSON File
 	 */
 	public void LoadQuestions() {
 
@@ -181,7 +181,8 @@ public class QuestionMngController {
 				continue;
 			}
 
-			boolean foundMatching = false;
+			boolean MatchingAnswers = false;
+			// check if there is two matching answers 
 			for (int i = 0; i < answers.size(); i++) {
 
 				for (int j = 0; j < answers.size(); j++) {
@@ -189,7 +190,7 @@ public class QuestionMngController {
 
 						if (answers.get(i).equals(answers.get(j))) {
 
-							foundMatching = true;
+							MatchingAnswers = true;
 							break;
 
 						}
@@ -198,16 +199,16 @@ public class QuestionMngController {
 
 				}
 
-				if (foundMatching == true) {
+				if (MatchingAnswers == true) {
 					break;
 				}
 
 			}
 
-			if (foundMatching == true) {
+			if (MatchingAnswers == true) {
 				continue;
 			}
-
+			//construct all the answers and indicate the true answers
 			for (String s : answers) {
 				correctAnswer_Checker++;
 				Answer a = null;

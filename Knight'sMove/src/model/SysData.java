@@ -32,7 +32,7 @@ public class SysData {
 			this.questions.addAll(questions);
 		
 	}
-
+	//update question from questions arrayList 
 	public void updateQuestion(int id, Question updated_question) {
 		for (Question q : this.getQuestions()) {
 
@@ -46,7 +46,7 @@ public class SysData {
 		}
 
 	}
-
+	//add question from questions arrayList 
 	public void addQuestion(Question q) {
 
 		if (q != null) {
@@ -54,7 +54,7 @@ public class SysData {
 		}
 
 	}
-
+    // remove question from questions arrayList 
 	public void removeQuestion(int id) {
 		int i = -1;
 		int iterator = 0;
@@ -83,7 +83,7 @@ public class SysData {
 		}
 
 	}
-
+	//add game to dame history
 	public void addGameHistory(Game game) {
 		if (game != null) {
 			this.getGamesHistory().add(game);
