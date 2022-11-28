@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Board {
 	private Squares[][] boxes;
 	private ArrayList<Piece> pieces;
-	private ArrayList<Squares> squaresThatVisited;
 	private static Board instance=null;
 	public Board(Squares[][] boxes) {
 		super();
