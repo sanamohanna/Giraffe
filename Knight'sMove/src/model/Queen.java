@@ -21,7 +21,9 @@ public class Queen extends Piece {
 	public void setInitialLocation(Location initialLocation) {
 		this.initialLocation = initialLocation;
 	}
-
+    /*this method receiving two parameters , one of the direction of the queen move , 
+     and another Integer parameter which it is a number of the square that the queen need to move 
+     to catch the knight*/
 	public void queenMove(int moveNumber , Directions dir) {
 		switch(dir) {
 		case UP , DOWN , RIGHT , LEFT:{
