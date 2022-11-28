@@ -42,9 +42,12 @@ public class Piece {
 		Piece other = (Piece) obj;
 		return Objects.equals(location, other.location);
 	}
-
+    /*stright method make the pieces move straightly , UP , DOWN , LEFT OR RIGHT */
+	/* the location of the piece will change according to the move type */
 	public void StrightMove(Directions dir) {
 		switch(dir) {
+		/*here is the location changes in case the piece moved up*/
+		/*in case the piece is on the last square of the board sides , it goes to the first square in the same line*/
 		case UP:{
 			if(this.getLocation().getY()==0) {
 				this.getLocation().setY(7);
@@ -55,6 +58,7 @@ public class Piece {
 			}
 			break;
 		}
+		/*here is the location changes in case the piece moved down*/
         case DOWN:{
 
     		if(this.getLocation().getY()==7) {
@@ -66,6 +70,7 @@ public class Piece {
     		}
 			break;
 		}
+        /*here is the location changes in case the piece moved right*/
         case RIGHT:{
         	if(this.getLocation().getX()==7) {
     			this.getLocation().setX(0);
@@ -76,6 +81,7 @@ public class Piece {
     		}
 			break;
 		}
+        /*here is the location changes in case the piece moved left*/
         case LEFT:{
         	if(this.getLocation().getX()==0) {
     			this.getLocation().setX(7);
@@ -90,7 +96,10 @@ public class Piece {
 			break;
 		}
 	}
+	/*the pieces can move diagonally , so here is the method that do this*/
 	public void DiagonallyMove(Directions dir) {
+		/*the diffrent cases it's about the direction that the slant goes*/
+		/*in case the piece is on the last square of the board sides , it goes to the first square in the same line*/
 		switch(dir) {
 		case UP_LEFT: {
 			if(this.location.getX()==0 && this.location.getY()>0) {

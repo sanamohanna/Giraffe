@@ -111,6 +111,9 @@ public class Knight extends Piece {
 		}
 		
 	}
+	/*in this two levels the knight move how ever it wants , so
+	  we check if the move is a straight move or a diagonally move
+	  then we use the right method*/
     public void level3and4Move(Directions dir){
     	switch(dir) {
     	case UP , DOWN , RIGHT , LEFT:{
