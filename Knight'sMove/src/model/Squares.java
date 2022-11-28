@@ -32,6 +32,13 @@ public class Squares {
 	public void setColor(Color color) {
 		this.color = color;
 	}
+	
+	public boolean isVisited() {
+		return isVisited;
+	}
+	public void setVisited(boolean isVisited) {
+		this.isVisited = isVisited;
+	}
 	public boolean isvisited() {
 		return (piece==null );
 	}

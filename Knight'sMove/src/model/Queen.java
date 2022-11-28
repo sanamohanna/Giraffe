@@ -16,6 +16,12 @@ public class Queen extends Piece {
 	public Location getInitialLocation() {
 		return initialLocation;
 	}
+	
+	
+	public void setInitialLocation(Location initialLocation) {
+		this.initialLocation = initialLocation;
+	}
+
 	public void queenMove(int moveNumber , Directions dir) {
 		switch(dir) {
 		case UP:{
