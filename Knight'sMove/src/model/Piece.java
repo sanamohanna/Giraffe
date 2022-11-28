@@ -86,6 +86,8 @@ public class Piece {
     		}
 	        break;
         }
+		default:
+			break;
 		}
 	}
 	public void DiagonallyMove(Directions dir) {
@@ -149,7 +151,7 @@ public class Piece {
 			break;
 		}
 		default:
-			
+			break;
  
 		}
 	}

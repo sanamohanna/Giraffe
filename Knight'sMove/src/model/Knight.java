@@ -31,7 +31,7 @@ public class Knight extends Piece {
 		// checking if the knight's move is correct .
 		if(direction1 == Directions.UP) {
 			if(direction2 != Directions.UP || (direction3 == Directions.DOWN || direction3 == Directions.UP)) {
-				System.out.println("somthing wrong!");
+				throw new IllegalArgumentException("illegal Move");
 			}
 			else {
 				this.StrightMove(direction1);
@@ -41,7 +41,7 @@ public class Knight extends Piece {
 		}
 		if(direction1 == Directions.DOWN) {
 			if(direction2 != Directions.DOWN || (direction3 == Directions.DOWN || direction3 == Directions.UP)) {
-				System.out.println("somthing wrong!");
+				throw new IllegalArgumentException("illegal Move");
 			}
 			else {
 				this.StrightMove(direction1);
@@ -51,7 +51,7 @@ public class Knight extends Piece {
 		}
 		if(direction1 == Directions.LEFT) {
 			if(direction2 != Directions.LEFT || (direction3 == Directions.LEFT || direction3 == Directions.RIGHT)) {
-				System.out.println("somthing wrong!");
+				throw new IllegalArgumentException("illegal Move");
 			}
 			else {
 				this.StrightMove(direction1);
@@ -61,7 +61,7 @@ public class Knight extends Piece {
 		}
 		if(direction1 == Directions.RIGHT) {
 			if(direction2 != Directions.RIGHT || (direction3 == Directions.LEFT || direction3 == Directions.RIGHT)) {
-				System.out.println("somthing wrong!");
+				throw new IllegalArgumentException("illegal Move");
 			}
 			else {
 				this.StrightMove(direction1);
@@ -82,11 +82,11 @@ public class Knight extends Piece {
 				|| direction1 == Directions.RIGHT || direction1 == Directions.LEFT ) {
 			if((direction2 !=  Directions.DOWN && direction2 != Directions.UP 
 					&& direction2 != Directions.RIGHT && direction2 != Directions.LEFT)) {
-				System.out.println("something wrong!!!");
+				throw new IllegalArgumentException("illegal Move");
 			}
 			else if((direction3 == Directions.DOWN || direction3 == Directions.UP 
 					|| direction3 == Directions.RIGHT || direction3 == Directions.LEFT)) {
-				System.out.println("somthing wrong!!!");
+				throw new IllegalArgumentException("illegal Move");
 			} else {
 				this.StrightMove(direction1);
 				this.StrightMove(direction2);
@@ -98,11 +98,11 @@ public class Knight extends Piece {
 				|| direction1 == Directions.UP_LEFT || direction1 == Directions.UP_RIGHT) {
 			if((direction2 !=  Directions.DOWN_LEFT && direction2 != Directions.DOWN_RIGHT 
 					&& direction2 != Directions.UP_LEFT && direction2 != Directions.UP_RIGHT)) {
-				System.out.println("something wrong!!!");
+				throw new IllegalArgumentException("illegal Move");
 			}
 			else if((direction3 == Directions.DOWN_LEFT || direction3 == Directions.DOWN_RIGHT 
 					|| direction3 == Directions.UP_LEFT|| direction3 == Directions.UP_RIGHT)) {
-				System.out.println("somthing wrong!!!");
+				throw new IllegalArgumentException("illegal Move");
 			} else {
 				this.DiagonallyMove(direction1);
 				this.DiagonallyMove(direction2);
