@@ -18,6 +18,7 @@ public class Main {
 	public static void main(String[] args) {
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		QuestionMngController Q = new QuestionMngController();
+		Application.launch(MainScreen.class, args);
 		Scanner s_name = new Scanner(System.in);
 		System.out.println("please enter the question: ");
 		String context = s_name.nextLine();
@@ -60,7 +61,6 @@ public class Main {
 
 		}
 
-		Application.launch(MainScreen.class, args);
 	}
 
 	
