@@ -4,23 +4,25 @@ import java.util.ArrayList;
 
 public class King extends Piece {
 
-	private ArrayList<Integer> initialPlaceKing;
+	private Location initialLocation;
 	private int speed;
 
 	
 
-	public King(Location location, ArrayList<Integer> initialPlaceKing, int speed) {
+	
+
+	public King(Location location, Location initialLocation, int speed) {
 		super(location);
-		this.initialPlaceKing = initialPlaceKing;
+		this.initialLocation = initialLocation;
 		this.speed = speed;
 	}
 
-	public ArrayList<Integer> getInitialPlaceKing() {
-		return initialPlaceKing;
+	public Location getInitialLocation() {
+		return initialLocation;
 	}
 
-	public void setInitialPlaceKing(ArrayList<Integer> initialPlaceKing) {
-		this.initialPlaceKing = initialPlaceKing;
+	public void setInitialLocation(Location initialLocation) {
+		this.initialLocation = initialLocation;
 	}
 
 	public int getSpeed() {

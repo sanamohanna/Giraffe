@@ -6,6 +6,7 @@ public class Blocked extends Squares{
 
 	public Blocked(Piece peice, Location location, Color color) {
 		super(peice, location, color);
+	    color = Color.Red;
 		// TODO Auto-generated constructor stub
 	}
 

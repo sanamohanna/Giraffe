@@ -65,47 +65,6 @@ public class Knight extends Piece {
 		} 
 		
 	}
-	/*NOT SURE !!!!!!!!*/
-	/*WE WILL USE THIS METHOD JUST IN CASE THE KNIGHT CAN MOVE DIANOGALLY !!!! WE NEED TO ASK NAREED*/
-	public void level1Move( Directions direction1 , Directions direction2 ,  Directions direction3){
-		if(direction3 == null) {
-		if(direction1 ==  Directions.LEFT && direction2 ==  Directions.UP) {
-			this.leftMove();
-			this.upMove();
-		}
-		if(direction1 == Directions.LEFT && direction2 ==  Directions.DOWN) {
-			this.leftMove();
-			this.downMove();
-		}
-        if(direction1 ==  Directions.RIGHT && direction2 ==  Directions.UP) {
-			this.rightMove();
-			this.upMove();
-		}
-        if(direction1 == Directions.RIGHT && direction2 ==  Directions.DOWN ) {
-			this.rightMove();
-			this.downMove();
-		}
-        if(direction1 == Directions.UP && direction2 ==  Directions.LEFT) {
-			this.upMove();
-			this.leftMove();
-		}
-        if(direction1 ==  Directions.UP && direction2 ==  Directions.RIGHT) {
-			this.upMove();
-			this.rightMove();
-		}
-        if(direction1 ==  Directions.DOWN && direction2 ==  Directions.LEFT) {
-			this.downMove();
-			this.leftMove();
-		} 
-        if(direction1 == Directions.DOWN && direction2 ==  Directions.RIGHT) {
-			this.downMove();
-			this.rightMove();
-		} 
-		}else {
-			this.DiagonallyMove(direction3);
-		}
-		
-	}
 	
 	
 	public void level2Move() {
