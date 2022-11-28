@@ -131,6 +131,10 @@ public class Main {
 		Q.LoadQuestions();
 		Q.getSysData().addQuestion(q);
 		Q.WriteQuestions();
+		for (int i = 0; i < Q.getSysData().getQuestions().size(); i++) {
+			System.out.println(Q.getSysData().getQuestions().get(i));
+
+		}
 	}
 
 	

@@ -24,30 +24,9 @@ public class Queen extends Piece {
 
 	public void queenMove(int moveNumber , Directions dir) {
 		switch(dir) {
-		case UP:{
+		case UP , DOWN , RIGHT , LEFT:{
 			while(moveNumber !=0 ) {
-				this.upMove();
-				 moveNumber--;
-			}
-			break;
-		}
-		case DOWN:{
-			while(moveNumber !=0 ) {
-				this.downMove();
-				moveNumber--;
-			}
-			break;
-		}
-		case LEFT:{
-			while(moveNumber !=0 ) {
-				this.leftMove();
-				 moveNumber--;
-			}
-			break;
-		}
-		case RIGHT:{
-			while(moveNumber !=0 ) {
-				this.rightMove();
+				this.StrightMove(dir);
 				 moveNumber--;
 			}
 			break;

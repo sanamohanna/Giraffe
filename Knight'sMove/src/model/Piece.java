@@ -43,51 +43,51 @@ public class Piece {
 		return Objects.equals(location, other.location);
 	}
 
+	public void StrightMove(Directions dir) {
+		switch(dir) {
+		case UP:{
+			if(this.getLocation().getY()==0) {
+				this.getLocation().setY(7);
+			}
+			else
+			{
+				this.getLocation().setY(this.location.getY()-1);
+			}
+			break;
+		}
+        case DOWN:{
 
-	public void leftMove() {
-		int currentX=this.location.getX();
-		if(this.getLocation().getX()==0) {
-			this.getLocation().setX(7);
+    		if(this.getLocation().getY()==7) {
+    			this.getLocation().setY(0);
+    		}
+    		else
+    		{
+    			this.getLocation().setY(this.location.getY()+1);
+    		}
+			break;
 		}
-		else
-		{
-			this.getLocation().setX(currentX-1);
+        case RIGHT:{
+        	if(this.getLocation().getX()==7) {
+    			this.getLocation().setX(0);
+    		}
+    		else
+    		{
+    			this.getLocation().setY(this.location.getX()+1);
+    		}
+			break;
 		}
-	}
-
-	public void rightMove() {
-		int currentX=this.location.getX();
-		if(this.getLocation().getX()==7) {
-			this.getLocation().setX(0);
-		}
-		else
-		{
-			this.getLocation().setY(currentX+1);
-		}
-	}
-	
-	public void downMove() {
-		int currentY=this.location.getY();
-		if(this.getLocation().getY()==7) {
-			this.getLocation().setY(0);
-		}
-		else
-		{
-			this.getLocation().setY(currentY+1);
-		}
-	}
-	
-	public void upMove() {
-		int currentY=this.location.getY();
-		if(this.getLocation().getY()==0) {
-			this.getLocation().setY(7);
-		}
-		else
-		{
-			this.getLocation().setY(currentY-1);
+        case LEFT:{
+        	if(this.getLocation().getX()==0) {
+    			this.getLocation().setX(7);
+    		}
+    		else
+    		{
+    			this.getLocation().setX(this.location.getX()-1);
+    		}
+	        break;
+        }
 		}
 	}
-	
 	public void DiagonallyMove(Directions dir) {
 		switch(dir) {
 		case UP_LEFT: {
