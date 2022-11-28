@@ -73,28 +73,41 @@ public class Knight extends Piece {
 		
 	}
 	
-	
+
 	public void level2Move(Directions direction1 , Directions direction2 ,  Directions direction3 ) {
-		if(direction1 == Directions.DOWN || direction1 == Directions.LEFT
-		    || direction1 == Directions.RIGHT || direction1 == Directions.UP ) {
-			if(direction2 == Directions.DOWN_LEFT|| direction2 == Directions.DOWN_RIGHT
-		       || direction2 == Directions.UP_LEFT || direction2 == Directions.UP_RIGHT) {
-				 System.out.println("somthing wromg!!");
+		/*in this level the knight can move two squares straight and one diagonally or two diagonally and one straight*/
+		/*if the knight start with a straight square we check if the 
+		 next square is straight and the last one is diagonally*/
+		if(direction1 ==  Directions.DOWN || direction1 == Directions.UP 
+				|| direction1 == Directions.RIGHT || direction1 == Directions.LEFT ) {
+			if((direction2 !=  Directions.DOWN && direction2 != Directions.UP 
+					&& direction2 != Directions.RIGHT && direction2 != Directions.LEFT)) {
+				System.out.println("something wrong!!!");
 			}
-			if((direction2 == Directions.DOWN || direction2 == Directions.LEFT
-		    || direction2 == Directions.RIGHT || direction2 == Directions.UP)
-					&& (direction3 == Directions.DOWN_LEFT|| direction3 == Directions.DOWN_RIGHT
-		       || direction3 == Directions.UP_LEFT || direction3 == Directions.UP_RIGHT)) {
-				
+			else if((direction3 == Directions.DOWN || direction3 == Directions.UP 
+					|| direction3 == Directions.RIGHT || direction3 == Directions.LEFT)) {
+				System.out.println("somthing wrong!!!");
+			} else {
+				this.StrightMove(direction1);
+				this.StrightMove(direction2);
+				this.DiagonallyMove(direction3);
 			}
 		}
-		if(direction1 == Directions.DOWN_LEFT|| direction1 == Directions.DOWN_RIGHT
-			       || direction1 == Directions.UP_LEFT || direction1 == Directions.UP_RIGHT) {
-	     	if(direction2 == Directions.DOWN || direction2 == Directions.LEFT
-			    || direction2 == Directions.RIGHT || direction2 == Directions.UP ) {
-				 
-					 System.out.println("somthing wromg!!");
-				}
+		/*and the same checking but if it start with diagonally*/
+		if(direction1 == Directions.DOWN_LEFT || direction1 == Directions.DOWN_RIGHT 
+				|| direction1 == Directions.UP_LEFT || direction1 == Directions.UP_RIGHT) {
+			if((direction2 !=  Directions.DOWN_LEFT && direction2 != Directions.DOWN_RIGHT 
+					&& direction2 != Directions.UP_LEFT && direction2 != Directions.UP_RIGHT)) {
+				System.out.println("something wrong!!!");
+			}
+			else if((direction3 == Directions.DOWN_LEFT || direction3 == Directions.DOWN_RIGHT 
+					|| direction3 == Directions.UP_LEFT|| direction3 == Directions.UP_RIGHT)) {
+				System.out.println("somthing wrong!!!");
+			} else {
+				this.DiagonallyMove(direction1);
+				this.DiagonallyMove(direction2);
+				this.StrightMove(direction3);
+			}
 		}
 		
 	}
