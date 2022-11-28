@@ -17,7 +17,7 @@ public class Game {
 	private ArrayList<Question> availableQuestions;
 	private ArrayList<Question> unavailableQuestions;
 
-
+	//constructor
 	public Game(Board board, Player player, Queen queen, King king, GameStatus gameStatus, Time time) {
 		super();
 		this.board = Board.getInstance();
@@ -36,10 +36,8 @@ public class Game {
 		super();
 		
 	}
-	/**
-	 * 
-	 * @return Game Singleton Instance
-	 */
+	// Game Singleton Instance
+	 
 	public static Game getInstance() 
 	{ 
 		if (instance == null) 
@@ -48,6 +46,7 @@ public class Game {
 		} 
 		return instance; 
 	}
+	//getters setters
 	public Board getBoard() {
 		return board;
 	}

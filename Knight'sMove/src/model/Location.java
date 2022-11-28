@@ -5,13 +5,13 @@ import java.util.Objects;
 public class Location {
 	private int x ;
 	private int y ;
-	
+	//constructor
 	public Location(int x, int y) {
 		super();
 		this.x = x;
 		this.y = y;
 	}
-	
+	// getters setters
 	public int getX() {
 		return x;
 	}

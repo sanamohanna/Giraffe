@@ -7,6 +7,8 @@ public class SysData {
 	private ArrayList<Game> gamesHistory = new ArrayList<Game>();;
 	private ArrayList<Question> questions = new ArrayList<Question>();
 
+	
+	// SysData Singleton Instance
 	public static SysData getInstance() {
 		if (instance == null) {
 			instance = new SysData();
@@ -73,6 +75,7 @@ public class SysData {
 		if (i == -1) {
 			return;
 		}
+		//change the id for all the question after the removed one
 		for (int c = i + 1; c < this.getQuestions().size(); c++) {
 			this.getQuestions().get(c).setId(id);
 			id++;

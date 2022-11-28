@@ -8,7 +8,7 @@ public class Player {
 	private int points;
 	private Knight knight;
 	private ArrayList<Game> gamesHistory;
-
+	//constructor
 	public Player(String nickname, int points, Knight knight, ArrayList<Game> gamesHistory) {
 		super();
 		this.nickname = nickname;
@@ -16,7 +16,7 @@ public class Player {
 		this.knight = knight;
 		this.gamesHistory = gamesHistory;
 	}
-
+	//getters setters
 	public String getNickname() {
 		return nickname;
 	}

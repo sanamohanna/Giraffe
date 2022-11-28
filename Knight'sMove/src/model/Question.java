@@ -87,7 +87,7 @@ public class Question {
 	public void setTeam(String team) {
 		this.team = team;
 	}
-
+	// update the answers
 	public void updateAnswers(ArrayList<Answer> updatedAnswers) {
 		this.answers = new ArrayList<Answer>();
 
@@ -95,7 +95,7 @@ public class Question {
 			this.addAnswer(a);
 		}
 	}
-
+	// return the true answer
 	public int getCorrectAnswer() {
 		for (int i = 0; i < answers.size(); i++) {
 			if (answers.get(i).isTrue()) {
@@ -104,14 +104,14 @@ public class Question {
 		}
 		return -1;
 	}
-
+	// add answer
 	public Boolean addAnswer(Answer answer) {
 		if (answer != null) {
 			return this.answers.add(answer);
 		}
 		return false;
 	}
-
+	// delete answer
 	public Boolean removeAnswer(Answer answer) {
 		if (answer != null) {
 			return this.answers.remove(answer);

@@ -26,7 +26,7 @@ import model.SysData;
 public class QuestionMngController {
 	private SysData sysData;
 	private static QuestionMngController instance;
-
+	//constructor
 	public QuestionMngController() {
 
 		// this.questionScreen = new ManageQuestions();
@@ -34,11 +34,7 @@ public class QuestionMngController {
 
 	}
 
-	/**
-	 * Instance Getter Of QuestionMgmtController
-	 * 
-	 * @return instance
-	 */
+	// QuestionMngController Singleton Instance
 	public static QuestionMngController getInstance() {
 		if (instance == null) {
 			instance = new QuestionMngController();
@@ -46,27 +42,20 @@ public class QuestionMngController {
 		return instance;
 	}
 
-	/**
-	 * SysData Instance Getter
-	 */
+	//SysData Instance Getter
+	 
 	public SysData getSysData() {
 		return sysData;
 	}
 
-	/**
-	 * Write Questions To File Including Updated Questions
-	 */
+	// Write Questions To File Including Updated Questions
+	
 	public void WriteQuestions() {
 
 		JsonArray questions = new JsonArray();
-		int i =0;
 		for (Question q : this.sysData.getQuestions()) {
-			System.out.println(i);
-			i++;
 			JsonObject question = new JsonObject();
-
 			JsonArray answerArray = new JsonArray();
-
 			int correct = 0;
 
 			for (Answer a : q.getAnswers()) {
@@ -118,9 +107,8 @@ public class QuestionMngController {
 
 	}
 
-	/**
-	 * Load  Questions From JSON File
-	 */
+	// Load  Questions From JSON File
+	 
 	public void LoadQuestions() {
 
 		ArrayList<Question> questions = new ArrayList<Question>();
@@ -230,32 +218,18 @@ public class QuestionMngController {
 	
 	}
 
-	/**
-	 * Get Questions
-	 * 
-	 * @return - Questions From Model
-	 */
+	//Get Questions
 
 	public ArrayList<Question> getQuestions() {
 		return this.sysData.getQuestions();
 	}
 
-	/**
-	 * removes question that had give id
-	 * 
-	 * @param id - question id
-	 */
-
-	public void removeQuestions(int id) {
+	// removes question that had give id
+		public void removeQuestions(int id) {
 		this.sysData.removeQuestion(id);
 	}
 
-	/**
-	 * Checks if question already exists
-	 * 
-	 * @param content - question's content
-	 * @return true/false
-	 */
+	//Checks if question already exists
 
 	public boolean quesAlreadyExists(String content) {
 

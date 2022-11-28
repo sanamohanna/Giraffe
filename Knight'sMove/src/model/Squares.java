@@ -7,12 +7,14 @@ public class Squares {
 	private Location location;
     private Color color;
     private boolean isVisited;
+    //constructor
 	public Squares(Piece peice, Location location, Color color) {
 		super();
 		this.piece = peice;
 		this.location= location;
 		this.color = color;
 	}
+	// getters setters
 	public Piece getPeice() {
 		return piece;
 	}

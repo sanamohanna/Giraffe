@@ -4,14 +4,14 @@ public class Answer {
 	private int id;
 	private String answerContext;
 	private boolean isTrue;
-
+	//costructor
 	public Answer(int id, String answerContext, boolean isTrue) {
 		super();
 		this.id = id;
 		this.answerContext = answerContext;
 		this.isTrue = isTrue;
 	}
-
+	//getters setters
 	public int getId() {
 		return id;
 	}
