@@ -1,27 +1,53 @@
 package model;
 
 import java.sql.Time;
+import java.util.ArrayList;
 
 import Enum.GameStatus;
 
 public class Game {
+	private static Game instance;
+	
 	private Board board;
 	private Player player;
 	private Queen queen;
 	private King king;
 	private GameStatus gameStatus;
-	private Time time;
+	private Timer time;
+	private ArrayList<Question> availableQuestions;
+	private ArrayList<Question> unavailableQuestions;
+
 
 	public Game(Board board, Player player, Queen queen, King king, GameStatus gameStatus, Time time) {
 		super();
-		this.board = board;
+		this.board = Board.getInstance();
+		//we have to start the board
 		this.player = player;
 		this.queen = queen;
 		this.king = king;
 		this.gameStatus = gameStatus;
-		this.time = time;
-	}
+		this.time = new Timer();
+		availableQuestions = new ArrayList<>();
+		availableQuestions.addAll(SysData.getInstance().getQuestions());
+		unavailableQuestions=new ArrayList<Question>();
 
+	}
+	public Game() {
+		super();
+		
+	}
+	/**
+	 * 
+	 * @return Game Singleton Instance
+	 */
+	public static Game getInstance() 
+	{ 
+		if (instance == null) 
+		{ 
+			instance = new Game(); 
+		} 
+		return instance; 
+	}
 	public Board getBoard() {
 		return board;
 	}
@@ -62,11 +88,11 @@ public class Game {
 		this.gameStatus = gameStatus;
 	}
 
-	public Time getTime() {
+	public Timer getTime() {
 		return time;
 	}
 
-	public void setTime(Time time) {
+	public void setTime(Timer time) {
 		this.time = time;
 	}
 

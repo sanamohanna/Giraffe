@@ -111,10 +111,29 @@ public class Knight extends Piece {
 	public void level2Move() {
 		
 	}
-    public void level3Move(){
-		
+    public void level3and4Move(Directions dir){
+    	switch(dir) {
+		case UP:{
+			this.upMove();
+			break;
+		}
+		case DOWN:{
+			this.downMove();
+			break;
+		}
+		case LEFT:{
+			this.leftMove();
+			break;
+		}
+		case RIGHT:{
+			this.rightMove();
+			break;
+		}
+		case UP_LEFT,UP_RIGHT , DOWN_LEFT,DOWN_RIGHT:{
+			this.DiagonallyMove(dir);
+			break;
+		}
+			
+		}
 	}
-	public void level4Move() {
-		
 	}
-}

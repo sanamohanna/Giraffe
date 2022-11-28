@@ -4,8 +4,9 @@ import Enum.Color;
 
 public class Squares {
 	private Piece piece;
-	private Location location ;
+	private Location location;
     private Color color;
+    private boolean isVisited;
 	public Squares(Piece peice, Location location, Color color) {
 		super();
 		this.piece = peice;
