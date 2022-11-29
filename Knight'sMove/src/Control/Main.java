@@ -17,7 +17,7 @@ public class Main {
 	public static void main(String[] args) {
 		QuestionMngController Q = new QuestionMngController();
 		Application.launch(View.MainScreen.class, args);
-		System.out.println("please choose what do you whant to do:"
+		System.out.println("please choose what do you want to do:"
 				+ "\n1) delete question"
 				+ "\n2) update question"
 				+ "\n3) add question");
