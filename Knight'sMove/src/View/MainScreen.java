@@ -16,6 +16,7 @@ public class MainScreen extends Application {
 	public void start(Stage primaryStage) throws  IOException{
 		
 		try {
+<<<<<<< HEAD
 			Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("mainScreen.css").toExternalForm());
@@ -26,6 +27,10 @@ public class MainScreen extends Application {
 			primaryStage.show();
 		}
 		catch (IOException e) {
+=======
+			mainBorder = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+		} catch (IOException e) {
+>>>>>>> 87bd42ad1be40877ef11f0240206e7e0c1e4ab4d
 			e.printStackTrace();
 		}
 	}
