@@ -1,7 +1,7 @@
 package model;
 
 public class Answer {
-	private int id;
+	private Integer id;
 	private String answerContext;
 	private boolean isTrue;
 	//costructor
@@ -12,11 +12,11 @@ public class Answer {
 		this.isTrue = isTrue;
 	}
 	//getters setters
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

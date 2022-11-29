@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Player {
 
 	private String nickname;
-	private int points;
+	private Integer points;
 	private Knight knight;
 	private ArrayList<Game> gamesHistory;
 	//constructor
-	public Player(String nickname, int points, Knight knight, ArrayList<Game> gamesHistory) {
+	public Player(String nickname, Integer points, Knight knight, ArrayList<Game> gamesHistory) {
 		super();
 		this.nickname = nickname;
 		this.points = points;
@@ -25,11 +25,11 @@ public class Player {
 		this.nickname = nickname;
 	}
 
-	public int getPoints() {
+	public Integer getPoints() {
 		return points;
 	}
 
-	public void setPoints(int points) {
+	public void setPoints(Integer points) {
 		this.points = points;
 	}
 

@@ -56,7 +56,7 @@ public class QuestionMngController {
 		for (Question q : this.sysData.getQuestions()) {
 			JsonObject question = new JsonObject();
 			JsonArray answerArray = new JsonArray();
-			int correct = 0;
+			Integer correct = 0;
 
 			for (Answer a : q.getAnswers()) {
 
@@ -67,7 +67,7 @@ public class QuestionMngController {
 
 			}
 
-			int difficulty = 0;
+			Integer difficulty = 0;
 			if (q.getDifficultyLevel().equals(DifficultyLevel.EASY)) {
 				difficulty = 1;
 			} else if (q.getDifficultyLevel().equals(DifficultyLevel.MEDIOCRE)) {
@@ -138,8 +138,8 @@ public class QuestionMngController {
 			@SuppressWarnings("unchecked")
 			ArrayList<String> answers = gson.fromJson(answersArray, ArrayList.class);
 		
-			int correct = ((JsonObject) element).get("correct_ans").getAsInt();
-			int difficulty = ((JsonObject) element).get("level").getAsInt();
+			Integer correct = ((JsonObject) element).get("correct_ans").getAsInt();
+			Integer difficulty = ((JsonObject) element).get("level").getAsInt();
 			String team = ((JsonObject) element).get("team").getAsString();
 
 			if (!this.sysData.getQuestions().isEmpty()) {
@@ -163,7 +163,7 @@ public class QuestionMngController {
 
 			q.setDifficultyLevel(diff_level);
 
-			int correctAnswer_Checker = 0;
+			Integer correctAnswer_Checker = 0;
 
 			if (answers.size() < 2) {
 				continue;
@@ -225,7 +225,7 @@ public class QuestionMngController {
 	}
 
 	// removes question that had give id
-		public void removeQuestions(int id) {
+		public void removeQuestions(Integer id) {
 		this.sysData.removeQuestion(id);
 	}
 

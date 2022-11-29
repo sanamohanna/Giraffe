@@ -11,7 +11,7 @@ public class TimerDemo {
 		setStartTime(-1);
 	}
 	  
-	TimerDemo(int seconds)   
+	TimerDemo(Integer seconds)   
 	{  
 	//schedule the task  
 		timer.schedule(new RemindTask(), seconds*1000);   
