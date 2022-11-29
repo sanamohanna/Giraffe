@@ -9,7 +9,7 @@ public class Question {
 	private Integer id;
 	private String Context;
 	private ArrayList<Answer> answers;
-	private int corect_ans;
+	private Integer corect_ans;
 	private DifficultyLevel difficultyLevel;
 	private String team;
 
@@ -23,11 +23,11 @@ public class Question {
 		this.team = team;
 	}
 
-	public int getCorect_ans() {
+	public Integer getCorect_ans() {
 		return this.getCorrectAnswer();
 	}
 
-	public void setCorect_ans(int corect_ans) {
+	public void setCorect_ans(Integer corect_ans) {
 		this.corect_ans = corect_ans;
 	}
 
@@ -96,7 +96,7 @@ public class Question {
 		}
 	}
 	// return the true answer
-	public int getCorrectAnswer() {
+	public Integer getCorrectAnswer() {
 		for (int i = 0; i < answers.size(); i++) {
 			if (answers.get(i).isTrue()) {
 				return answers.get(i).getId();

@@ -23,7 +23,7 @@ public class Main {
 				+ "\n2) update question"
 				+ "\n3) add question");
 		Scanner num = new Scanner(System.in);
-		int number = num.nextInt();
+		Integer number = num.nextInt();
 		if(number==1) {
 			deleteQuestionFromUser(Q);
 		}
@@ -43,7 +43,7 @@ public class Main {
 	public static void deleteQuestionFromUser(QuestionMngController Q ) {
 		System.out.println("please enter question's number");
 		Scanner num = new Scanner(System.in);
-		int id = num.nextInt();
+		Integer id = num.nextInt();
 		Q.LoadQuestions();
 		Q.getSysData().removeQuestion(id);
 		Q.WriteQuestions();
@@ -51,7 +51,7 @@ public class Main {
 	public static void updateQustionFromUser(QuestionMngController Q ) {
 		System.out.println("please enter question's number");
 		Scanner num = new Scanner(System.in);
-		int id = num.nextInt();
+		Integer id = num.nextInt();
 		
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		Scanner s_name = new Scanner(System.in);
@@ -74,7 +74,7 @@ public class Main {
 		Answer answer4 =new Answer(4,answer_4,false);
 		answers.add(answer4);
 		System.out.print("please enter the DifficultyLevel");
-		int difficultyLevel = s_name.nextInt();
+		Integer difficultyLevel = s_name.nextInt();
 		DifficultyLevel dif = null;
 		if(difficultyLevel== 3) {
 			 dif = DifficultyLevel.HARD;
@@ -114,7 +114,7 @@ public class Main {
 		Answer answer4 =new Answer(4,answer_4,false);
 		answers.add(answer4);
 		System.out.print("please enter the DifficultyLevel");
-		int difficultyLevel = s_name.nextInt();
+		Integer difficultyLevel = s_name.nextInt();
 		DifficultyLevel dif = null;
 		if(difficultyLevel== 3) {
 			 dif = DifficultyLevel.HARD;

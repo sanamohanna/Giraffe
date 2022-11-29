@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class King extends Piece {
 
 	private Location initialLocation;
-	private int speed;
+	private Integer speed;
 
 	
 
 	
 
-	public King(Location location, Location initialLocation, int speed) {
+	public King(Location location, Location initialLocation, Integer speed) {
 		super(location);
 		this.initialLocation = initialLocation;
 		this.speed = speed;
@@ -25,11 +25,11 @@ public class King extends Piece {
 		this.initialLocation = initialLocation;
 	}
 
-	public int getSpeed() {
+	public Integer getSpeed() {
 		return speed;
 	}
 
-	public void setSpeed(int speed) {
+	public void setSpeed(Integer speed) {
 		this.speed = speed;
 	}
 	public void kingMove() {

@@ -35,7 +35,7 @@ public class SysData {
 		
 	}
 	//update question from questions arrayList 
-	public void updateQuestion(int id, Question updated_question) {
+	public void updateQuestion(Integer id, Question updated_question) {
 		for (Question q : this.getQuestions()) {
 
 			if (q.getId() == id) {
@@ -57,9 +57,9 @@ public class SysData {
 
 	}
     // remove question from questions arrayList 
-	public void removeQuestion(int id) {
-		int i = -1;
-		int iterator = 0;
+	public void removeQuestion(Integer id) {
+		Integer i = -1;
+		Integer iterator = 0;
 
 		for (Question q : this.getQuestions()) {
 
