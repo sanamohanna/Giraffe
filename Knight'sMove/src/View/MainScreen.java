@@ -15,7 +15,7 @@ public class MainScreen extends Application {
 	public void start(Stage primaryStage) {
 		
 		try {
-			mainBorder = FXMLLoader.load(getClass().getResource("/View/mainscreen.fxml"));
+			mainBorder = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
