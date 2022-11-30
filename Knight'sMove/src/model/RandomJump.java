@@ -2,15 +2,16 @@ package model;
 
 import Enum.Color;
 
+//to add the method
 public class RandomJump extends Squares {
 
-	//constructor
+	// constructor
 	public RandomJump(Piece peice, Location location, Color color) {
 		super(peice, location, color);
 		// TODO Auto-generated constructor stub
 	}
 
 	public void changePlaceToEmptuSquare() {
-	 
+
 	}
 }
