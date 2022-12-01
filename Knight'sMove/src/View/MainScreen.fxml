@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="View.MainScreen">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.MainScreenController">
    <children>
       <Pane prefHeight="467.0" prefWidth="560.0">
          <children>
@@ -21,7 +20,7 @@
                   <Font name="Berlin Sans FB" size="24.0" />
                </font>
             </Button>
-            <Button layoutX="173.0" layoutY="207.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="223.0" text="Instructures">
+            <Button layoutX="173.0" layoutY="207.0" mnemonicParsing="false" onAction="#Instructures" prefHeight="53.0" prefWidth="223.0" text="Instructures">
                <font>
                   <Font name="Berlin Sans FB" size="24.0" />
                </font>

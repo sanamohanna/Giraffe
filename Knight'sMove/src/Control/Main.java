@@ -8,11 +8,12 @@ import View.MainScreen;
 import javafx.application.Application;
 import model.Answer;
 import model.Question;
+import model.SysData;
 
 public class Main {
 
 	public static void main(String[] args) {
-		QuestionMngController Q = new QuestionMngController();
+		SysData Q = new SysData();
 		Application.launch(MainScreen.class, args);
 	
 		System.out.println("please choose what do you want to do:"
@@ -30,24 +31,20 @@ public class Main {
 			else if(number==3) {
 				addQustionFromUser( Q );
 			}
-//		for (int i = 0; i < Q.getSysData().getQuestions().size(); i++) {
-//			System.out.println(Q.getSysData().getQuestions().get(i));
-//
-//		}
 		}
 
 		
 	}
-	public static void deleteQuestionFromUser(QuestionMngController Q ) {
+	public static void deleteQuestionFromUser(SysData sys ) {
 		System.out.println("please enter question's number");
 		try (Scanner num = new Scanner(System.in)) {
 			Integer id = num.nextInt();
-			Q.LoadQuestions();
-			Q.getSysData().removeQuestion(id);
+			sys.LoadQuestions();
+			sys.removeQuestion(id);
 		}
-		Q.WriteQuestions();
+		sys.WriteQuestions();
 	}
-	public static void updateQustionFromUser(QuestionMngController Q ) {
+	public static void updateQustionFromUser(SysData sys ) {
 		System.out.println("please enter question's number");
 		try (Scanner num = new Scanner(System.in)) {
 			Integer id = num.nextInt();
@@ -86,14 +83,14 @@ public class Main {
 					 dif = DifficultyLevel.MEDIOCRE;
 					
 				}
-				Question qUpdated = new Question(Q.getQuestions().size(), context, answers, dif, "animal");
-				Q.LoadQuestions();
-				Q.getSysData().updateQuestion(id, qUpdated);
+				Question qUpdated = new Question(sys.getQuestions().size(), context, answers, dif, "animal");
+				sys.LoadQuestions();
+				sys.updateQuestion(id, qUpdated);
 			}
 		}
-		Q.WriteQuestions();
+		sys.WriteQuestions();
 	}
-	public static void addQustionFromUser(QuestionMngController Q ) {
+	public static void addQustionFromUser(SysData sys ) {
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		Scanner s_name = new Scanner(System.in);
 		System.out.println("please enter the question: ");
@@ -128,12 +125,12 @@ public class Main {
 			 dif = DifficultyLevel.MEDIOCRE;
 			
 		}
-		Question q = new Question(Q.getQuestions().size(), context, answers, dif, "animal");
-		Q.LoadQuestions();
-		Q.getSysData().addQuestion(q);
-		Q.WriteQuestions();
-		for (int i = 0; i < Q.getSysData().getQuestions().size(); i++) {
-			System.out.println(Q.getSysData().getQuestions().get(i));
+		Question q = new Question(sys.getQuestions().size(), context, answers, dif, "animal");
+		sys.LoadQuestions();
+		sys.addQuestion(q);
+		sys.WriteQuestions();
+		for (int i = 0; i < sys.getQuestions().size(); i++) {
+			System.out.println(sys.getQuestions().get(i));
 
 		}
 	}
