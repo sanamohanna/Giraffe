@@ -13,7 +13,8 @@ import javafx.stage.Stage;
 
 public class MainScreenController {
 
-
+	
+	
 	
 	
 	public void Instructures(ActionEvent event) throws Exception {
@@ -28,6 +29,33 @@ public class MainScreenController {
 		
 		
 	}
+	public void EditQuestions(ActionEvent event) throws Exception {
+		
+		Parent root = FXMLLoader.load(getClass().getResource("/View/EditQuestions.fxml"));
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Scene scene = new Scene(root);
+		stage.setResizable(false);
+		scene.getStylesheets().add(getClass().getResource("/View/Instructures.css").toExternalForm());
+		stage.setScene(scene);
+		stage.show();
+		
+		
+	}
+	public void StartGame(ActionEvent event) throws Exception {
+		
+		Parent root = FXMLLoader.load(getClass().getResource("/View/UserName.fxml"));
+		//Parent root = FXMLLoader.load(getClass().getResource("/View/StartGame.fxml"));
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Scene scene = new Scene(root);
+		stage.setResizable(false);
+		//scene.getStylesheets().add(getClass().getResource("/View/.css").toExternalForm());
+		stage.setScene(scene);
+		
+		stage.show();
+		
+		
+	}
 
+	
 
 }
