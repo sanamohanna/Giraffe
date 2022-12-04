@@ -1,0 +1,14 @@
+.root{
+	-fx-background-color:"LIGHTBLUE";
+	
+}
+.label{
+	-fx-font-size:15;
+	-fx-font-family:"Lucida Console"
+}
+#labal1{
+	
+}
+#arrow{
+	-fx-background-color:"RED";
+}
