@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.InstructuresController">
@@ -13,10 +15,17 @@
             <Text fontSmoothingType="LCD" layoutX="23.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <Label fx:id="opject" layoutX="27.0" layoutY="59.0" text="OPJECT" />
             <Label fx:id="label1" layoutX="27.0" layoutY="91.0" text="to end the game with the largest possible points" />
-            <Button layoutX="25.0" layoutY="14.0" mnemonicParsing="false" onAction="#backArrow">
+            <Button layoutX="25.0" layoutY="14.0" mnemonicParsing="false" onAction="#backArrow" textFill="#020202" textOverrun="LEADING_ELLIPSIS">
                <graphic>
-                  <SVGPath fx:id="arrow" content="M40,60 C42,48 44,30 25,32" />
+                  <ImageView fitHeight="20.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/340.png" />
+                     </image>
+                  </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="S_RESIZE" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>

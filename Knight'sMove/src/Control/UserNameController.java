@@ -22,6 +22,7 @@ public class UserNameController {
 	public void letsPlay(ActionEvent event) throws Exception {
 		String UserName =nameTextField.getText();
 		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/StartGame.fxml"));
+		
 		Parent root = loader.load();
 		StartGameController sgc1 = loader.getController();
 		StartGameController sgc2 = loader.getController();
@@ -29,6 +30,7 @@ public class UserNameController {
 		sgc1.displayName(UserName);
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
 		stage.setResizable(false);
 		//scene.getStylesheets().add(getClass().getResource("/View/.css").toExternalForm());
 		stage.setScene(scene);
