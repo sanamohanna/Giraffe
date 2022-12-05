@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class MainScreenController {
 
-	
+	QuestionMngController q;
 	
 	
 	
@@ -30,19 +30,19 @@ public class MainScreenController {
 		
 	}
 	public void EditQuestions(ActionEvent event) throws Exception {
-		
-		Parent root = FXMLLoader.load(getClass().getResource("/View/EditQuestions.fxml"));
+
+		Parent root = FXMLLoader.load(getClass().getResource("/View/SetPassword.fxml"));
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setResizable(false);
-		scene.getStylesheets().add(getClass().getResource("/View/Instructures.css").toExternalForm());
+		//scene.getStylesheets().add(getClass().getResource("/View/SetPassword.css").toExternalForm());
 		stage.setScene(scene);
 		stage.show();
 		
 		
 	}
 	public void StartGame(ActionEvent event) throws Exception {
-		
+		q.getWarning().setVisible(false);
 		Parent root = FXMLLoader.load(getClass().getResource("/View/UserName.fxml"));
 		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

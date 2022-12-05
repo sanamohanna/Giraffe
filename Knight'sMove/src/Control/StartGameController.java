@@ -46,7 +46,7 @@ public class StartGameController {
 		};   
 		timer.schedule(timerTask, 0, 1000);
 	}
-	public  void convertTime() {
+	private  void convertTime() {
 		min = TimeUnit.SECONDS.toMinutes(totalSec);
 		sec = totalSec  - (min * 60);
 		//hr = TimeUnit.MINUTES.toHours(min);
