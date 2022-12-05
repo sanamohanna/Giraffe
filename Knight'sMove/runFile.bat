@@ -1,0 +1,1 @@
+java --module-path "C:\Program Files\javafx-sdk-19\lib" --add-modules javafx.controls,javafx.fxml -jar "C:\Users\USER\Documents\GitHub\Giraffe\Knight'sMove\knight's_move.jar"
