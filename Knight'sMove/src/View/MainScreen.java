@@ -2,7 +2,7 @@ package View;
 
 import java.io.IOException;
 
-import Control.QuestionMngController;
+import QuestionMngController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;

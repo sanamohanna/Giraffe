@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-19/lib/gson-2.10.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-19/lib/javafx.base.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-19/lib/javafx.controls.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-19/lib/javafx.fxml.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-19/lib/javafx.graphics.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-19/lib/javafx.media.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-19/lib/javafx.swing.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-19/lib/javafx.web.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-19/lib/javafx-swt.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/GitHub/Giraffe/knight&apos;s_move_lib/gson-2.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/GitHub/Giraffe/knight&apos;s_move_lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/GitHub/Giraffe/knight&apos;s_move_lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/GitHub/Giraffe/knight&apos;s_move_lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/GitHub/Giraffe/knight&apos;s_move_lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/GitHub/Giraffe/knight&apos;s_move_lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/GitHub/Giraffe/knight&apos;s_move_lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/GitHub/Giraffe/knight&apos;s_move_lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/GitHub/Giraffe/knight&apos;s_move_lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/GitHub/Giraffe/knight&apos;s_move_lib/org.eclipse.fx.ide.css.jfx8_3.8.0.202204150904.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
