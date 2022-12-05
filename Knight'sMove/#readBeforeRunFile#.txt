@@ -1,5 +1,0 @@
-to run jar file with "runFile" file the javafx/lib path has to be "C:\Program Files\javafx-sdk-19\lib" and the path for jar has to be "C:\Users\USER\Documents\GitHub\Giraffe\Knight'sMove\knight's_move.jar"
- 
-or change the bath for two of then in runFile.bat in the project 
-
- 
