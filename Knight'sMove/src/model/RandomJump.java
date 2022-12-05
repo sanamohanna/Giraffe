@@ -4,6 +4,7 @@ import Enum.Color;
 
 //to add the method\
 //another check
+
 public class RandomJump extends Squares {
 
 	// constructor
