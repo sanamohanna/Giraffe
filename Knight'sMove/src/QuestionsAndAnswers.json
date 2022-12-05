@@ -83,6 +83,30 @@
       "correct_ans": "2",
       "level": "2",
       "team": "animal"
+    },
+    {
+      "question": "what is TDD?",
+      "answers": [
+        "11",
+        "2",
+        "4",
+        "3"
+      ],
+      "correct_ans": "3",
+      "level": "2",
+      "team": "animal"
+    },
+    {
+      "question": "klara",
+      "answers": [
+        "k",
+        "l",
+        "a",
+        "r"
+      ],
+      "correct_ans": "4",
+      "level": "2",
+      "team": "animal"
     }
   ]
 }

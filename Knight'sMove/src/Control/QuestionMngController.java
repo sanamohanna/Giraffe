@@ -2,6 +2,9 @@ package Control;
 
 import java.util.ArrayList;
 
+import Enum.DifficultyLevel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +12,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.AdminPlayer;
+import model.Answer;
+import model.Question;
+import model.SysData;
 
 public class QuestionMngController {
 	@FXML
@@ -24,13 +33,39 @@ public class QuestionMngController {
 	private Button check;
 	@FXML
 	private Text warning;
-	
+	@FXML
+	private TableView<Question> table;
+	@FXML
+	private TableColumn<?,? > id;
+	@FXML
+	private TableColumn<?, ?> ques;
+	@FXML
+	private TextField context;
+	@FXML
+	private TextField answer1;
+	@FXML
+	private TextField answer2;
+	@FXML
+	private TextField answer3;
+	@FXML
+	private TextField answer4;
+	@FXML
+	private TextField team;
+	@FXML
+	private ChoiceBox<Integer> difLevel  ;
+	@FXML
+	private ChoiceBox<Integer> trueAnswer;
+	@FXML
+	private Button add;
+	@FXML
+	private Button addQues;
+
 
 
 	
 	private static QuestionMngController instance = null;
 	private ArrayList<AdminPlayer> admins = new ArrayList<AdminPlayer>();
-	
+	SysData sysData = SysData.getInstance();
 	// QuestionMngController Singleton Instance
 	public static QuestionMngController getInstance() {
 		if (instance == null) {
@@ -79,4 +114,82 @@ public class QuestionMngController {
 		if(flag==1)
 		warning.setVisible(true);
 	}
+//	public void displayQuestions(ActionEvent event) {
+//		for(int i=0; i<sysData.getQuestions().size();i++) {
+//		 id.setId(sysData.getQuestions().get(i).getId());
+//		}
+//	}
+	public void addQues(ActionEvent event) throws Exception{
+		ObservableList<Integer> diffList = FXCollections.observableArrayList(1,2,3);
+		ObservableList<Integer> trueAns = FXCollections.observableArrayList(1,2,3,4);
+		difLevel.setItems(diffList);
+		trueAnswer.setItems(trueAns);
+		
+		context.setVisible(true);
+		answer1.setVisible(true);
+		answer2.setVisible(true);
+		answer3.setVisible(true);
+		answer4.setVisible(true);
+		team.setVisible(true);
+		difLevel.setVisible(true);
+		trueAnswer.setVisible(true);
+		add.setVisible(true);
+		addQues.setVisible(false);
+		
+	}
+	public void finishAddQues(ActionEvent event) throws Exception{
+		ArrayList<Answer> answers = new ArrayList<Answer>();
+		Answer answer11 =new Answer(1,answer1.getText());
+		answers.add(answer11);
+		Answer answer22 =new Answer(2,answer2.getText());
+		answers.add(answer22);
+		Answer answer33 =new Answer(3,answer3.getText());
+		answers.add(answer33);
+		Answer answer44 =new Answer(4,answer4.getText());
+		answers.add(answer44);
+		if(trueAnswer.getValue().equals(1)) {
+			answer11.setTrue(true);
+		}
+		else
+			answer11.setTrue(false);
+		if(trueAnswer.getValue().equals(2)) {
+			answer22.setTrue(true);
+		}
+		else
+			answer22.setTrue(false);
+		if(trueAnswer.getValue().equals(3)) {
+			answer33.setTrue(true);
+		}
+		else
+			answer33.setTrue(false);
+		if(trueAnswer.getValue().equals(4))
+			answer44.setTrue(true);
+		else
+			answer44.setTrue(false);
+		DifficultyLevel diff;
+		if(difLevel.getValue().equals(1)) {
+			diff = DifficultyLevel.EASY;
+		}
+		else if(difLevel.getValue().equals(2)) {
+			diff = DifficultyLevel.MEDIOCRE;
+		}
+		else {
+			diff = DifficultyLevel.HARD;
+		}	
+		sysData.LoadQuestions();
+		Question newQues = new Question(sysData.getQuestions().size(),context.getText(),answers,diff,"animal");
+		sysData.addQuestion(newQues);
+		sysData.WriteQuestions();
+		context.setVisible(false);
+		answer1.setVisible(false);
+		answer2.setVisible(false);
+		answer3.setVisible(false);
+		answer4.setVisible(false);
+		team.setVisible(false);
+		difLevel.setVisible(false);
+		trueAnswer.setVisible(false);
+		add.setVisible(false);
+		addQues.setVisible(true);
+	}
+		
 }

@@ -21,7 +21,7 @@ import Enum.DifficultyLevel;
 
 public class SysData {
 	private static SysData instance = null;
-	private HashMap<String,ArrayList<Game>> gamesHistory = new HashMap<String,ArrayList<Game>>();;
+	private ArrayList<Game> gamesHistory = new ArrayList<Game>();
 	private ArrayList<Question> questions = new ArrayList<Question>();
 
 	
@@ -97,7 +97,8 @@ public class SysData {
 
 	}
 	//add game to dame history
-	public void addGameHistory(Game game) {
+	public void addGameHistory( Game game) {
+		gamesHistory.add(game);
 		
 	}
 

@@ -42,7 +42,6 @@ public class MainScreenController {
 		
 	}
 	public void StartGame(ActionEvent event) throws Exception {
-		q.getWarning().setVisible(false);
 		Parent root = FXMLLoader.load(getClass().getResource("/View/UserName.fxml"));
 		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
