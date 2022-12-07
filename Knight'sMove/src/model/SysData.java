@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,7 +21,7 @@ import Enum.DifficultyLevel;
 
 public class SysData {
 	private static SysData instance = null;
-	private ArrayList<Game> gamesHistory = new ArrayList<Game>();;
+	private ArrayList<Game> gamesHistory = new ArrayList<Game>();
 	private ArrayList<Question> questions = new ArrayList<Question>();
 
 	
@@ -32,14 +33,7 @@ public class SysData {
 		return instance;
 	}
 
-	public ArrayList<Game> getGamesHistory() {
-		return gamesHistory;
-	}
-
-	public void setGames(ArrayList<Game> games) {
-		this.gamesHistory.clear();
-		this.gamesHistory = games;
-	}
+	
 
 	public ArrayList<Question> getQuestions() {
 		return questions;
@@ -68,14 +62,16 @@ public class SysData {
 	public void addQuestion(Question q) {
 
 		if (q != null) {
+			int size = getQuestions().size();
+			q.setId(size);
 			this.getQuestions().add(q);
 		}
 
 	}
     // remove question from questions arrayList 
 	public void removeQuestion(Integer id) {
-		Integer i = -1;
-		Integer iterator = 0;
+		int i = -1;
+		int iterator = 0;
 
 		for (Question q : this.getQuestions()) {
 
@@ -100,13 +96,15 @@ public class SysData {
 		if (i != -1) {
 			this.questions.remove(i);
 		}
+		for (int j = 0; j < getQuestions().size(); j++) {
+			System.out.println(getQuestions().get(j));
 
+		}
 	}
 	//add game to dame history
-	public void addGameHistory(Game game) {
-		if (game != null) {
-			this.getGamesHistory().add(game);
-		}
+	public void addGameHistory( Game game) {
+		gamesHistory.add(game);
+		
 	}
 
 	// Write Questions To File Including Updated Questions
@@ -279,11 +277,6 @@ public class SysData {
 	
 	}
 
-
-	// removes question that had give id
-		public void removeQuestions(Integer id) {
-		this.removeQuestion(id);
-	}
 
 	//Checks if question already exists
 

@@ -12,6 +12,11 @@ public class Answer {
 		this.answerContext = answerContext;
 		this.isTrue = isTrue;
 	}
+	public Answer(int id, String answerContext) {
+		super();
+		this.id = id;
+		this.answerContext = answerContext;
+	}
 
 	// getters setters
 	public Integer getId() {

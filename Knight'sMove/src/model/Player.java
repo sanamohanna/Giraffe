@@ -1,20 +1,34 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Player {
 
 	private String nickname;
 	private Integer points;
-	private Knight knight;
+	//private Knight knight;
 	private ArrayList<Game> gamesHistory;
 	//constructor
-	public Player(String nickname, Integer points, Knight knight, ArrayList<Game> gamesHistory) {
+	public Player(String nickname) {
 		super();
 		this.nickname = nickname;
-		this.points = points;
-		this.knight = knight;
-		this.gamesHistory = gamesHistory;
+		this.gamesHistory = new ArrayList<Game>();
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(nickname);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Player other = (Player) obj;
+		return Objects.equals(nickname, other.nickname);
 	}
 	//getters setters
 	public String getNickname() {
@@ -33,13 +47,6 @@ public class Player {
 		this.points = points;
 	}
 
-	public Knight getKnight() {
-		return knight;
-	}
-
-	public void setKnight(Knight knight) {
-		this.knight = knight;
-	}
 
 	public ArrayList<Game> getGamesHistory() {
 		return gamesHistory;

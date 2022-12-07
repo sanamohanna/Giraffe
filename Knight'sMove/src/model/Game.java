@@ -10,6 +10,7 @@ public class Game {
 
 	private Board board;
 	private Player player;
+	private Knight knight;
 	private Queen queen;
 	private King king;
 	private GameStatus gameStatus;

@@ -40,6 +40,8 @@ public class Queen extends Piece {
 			}
 			break;
 		}
+		default:
+			throw new IllegalArgumentException("illegal Move");
 			
 		}
 
