@@ -62,14 +62,16 @@ public class SysData {
 	public void addQuestion(Question q) {
 
 		if (q != null) {
+			int size = getQuestions().size();
+			q.setId(size);
 			this.getQuestions().add(q);
 		}
 
 	}
     // remove question from questions arrayList 
 	public void removeQuestion(Integer id) {
-		Integer i = -1;
-		Integer iterator = 0;
+		int i = -1;
+		int iterator = 0;
 
 		for (Question q : this.getQuestions()) {
 
@@ -94,7 +96,10 @@ public class SysData {
 		if (i != -1) {
 			this.questions.remove(i);
 		}
+		for (int j = 0; j < getQuestions().size(); j++) {
+			System.out.println(getQuestions().get(j));
 
+		}
 	}
 	//add game to dame history
 	public void addGameHistory( Game game) {
@@ -272,11 +277,6 @@ public class SysData {
 	
 	}
 
-
-	// removes question that had give id
-		public void removeQuestions(Integer id) {
-		this.removeQuestion(id);
-	}
 
 	//Checks if question already exists
 

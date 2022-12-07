@@ -16,17 +16,36 @@
           <TableColumn fx:id="ques" prefWidth="488.66667683919275" text="question context" />
         </columns>
       </TableView>
-      <Button fx:id="addQues" layoutX="467.0" layoutY="187.0" mnemonicParsing="false" onAction="#addQues" text="add question" />
+      <Button fx:id="addQues" layoutX="467.0" layoutY="187.0" mnemonicParsing="false" onAction="#addQues" prefHeight="25.0" prefWidth="107.0" text="Add Question" />
       <TextField fx:id="context" layoutX="17.0" layoutY="174.0" prefHeight="25.0" prefWidth="266.0" promptText="question context" visible="false" />
       <TextField fx:id="answer1" layoutX="18.0" layoutY="212.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 1" visible="false" AnchorPane.topAnchor="205.0" />
       <TextField fx:id="answer2" layoutX="18.0" layoutY="237.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 2" visible="false" AnchorPane.topAnchor="235.0" />
       <TextField fx:id="answer3" layoutX="18.0" layoutY="267.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 3" visible="false" AnchorPane.topAnchor="265.0" />
       <TextField fx:id="answer4" layoutX="18.0" layoutY="297.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 4" visible="false" AnchorPane.topAnchor="295.0" />
       <ChoiceBox fx:id="difLevel" layoutX="343.0" layoutY="205.0" prefHeight="25.0" prefWidth="43.0" visible="false" />
-      <Text layoutX="260.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty Level" visible="false" />
+      <Text fx:id="diff1" layoutX="260.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty Level" visible="false" />
       <ChoiceBox fx:id="trueAnswer" layoutX="343.0" layoutY="235.0" prefHeight="25.0" prefWidth="43.0" visible="false" />
-      <Text layoutX="260.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="True Answer" visible="false" />
+      <Text fx:id="true1" layoutX="260.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="True Answer" visible="false" />
       <TextField fx:id="team" layoutX="18.0" layoutY="326.0" promptText="team" visible="false" AnchorPane.topAnchor="325.0" />
       <Button fx:id="add" layoutX="339.0" layoutY="277.0" mnemonicParsing="false" onAction="#finishAddQues" text="add" visible="false" />
+      <Button fx:id="deleteQues" layoutX="467.0" layoutY="226.0" mnemonicParsing="false" onAction="#deleteQues" prefHeight="25.0" prefWidth="107.0" text="Delete Question" />
+      <TextField fx:id="textF" layoutX="273.0" layoutY="226.0" prefHeight="25.0" prefWidth="149.0" promptText="enter question number" visible="false" />
+      <Button fx:id="delete" layoutX="285.0" layoutY="277.0" mnemonicParsing="false" onAction="#finishDeleteQues" text="delete" visible="false" />
+      <Text fx:id="error" fill="#ef0808" layoutX="247.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the number is not valid " visible="false" />
+      <Button fx:id="updateQues" layoutX="467.0" layoutY="265.0" mnemonicParsing="false" onAction="#updateQues" text="Update Question" />
+      <TextField fx:id="cotextUpdated" layoutX="18.0" layoutY="188.0" prefHeight="25.0" prefWidth="240.0" visible="false" />
+      <TextField fx:id="answer1Updated" layoutX="18.0" layoutY="217.0" visible="false" />
+      <TextField fx:id="answer2Updated" layoutX="18.0" layoutY="248.0" visible="false" />
+      <TextField fx:id="answer3Updated" layoutX="18.0" layoutY="277.0" visible="false" />
+      <TextField fx:id="answer4Updated" layoutX="18.0" layoutY="307.0" visible="false" />
+      <TextField fx:id="teamUpdated" layoutX="18.0" layoutY="337.0" prefHeight="25.0" prefWidth="99.0" visible="false" />
+      <ChoiceBox fx:id="difLevelUpdated" layoutX="340.0" layoutY="226.0" prefHeight="25.0" prefWidth="49.0" visible="false" />
+      <ChoiceBox fx:id="trueAnswerUpdated" layoutX="340.0" layoutY="264.0" prefHeight="25.0" prefWidth="49.0" visible="false" />
+      <Text fx:id="true11" layoutX="250.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="True Answer" visible="false" />
+      <Text fx:id="diff11" layoutX="245.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty Level" visible="false" />
+      <TextField fx:id="num2" layoutX="274.0" layoutY="265.0" prefHeight="25.0" prefWidth="149.0" promptText="enter question number" visible="false" />
+      <Text fx:id="error2" fill="#eb0b0b" layoutX="287.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the number is not valid" visible="false" />
+      <Button fx:id="update" layoutX="323.0" layoutY="313.0" mnemonicParsing="false" onAction="#finishUpdateQues" text="go to update" visible="false" />
+      <Button fx:id="updateQues2" layoutX="274.0" layoutY="320.0" mnemonicParsing="false" onAction="#finishUpdate" text="update" visible="false" />
    </children>
 </AnchorPane>

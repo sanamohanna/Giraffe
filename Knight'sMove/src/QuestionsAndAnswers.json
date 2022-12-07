@@ -13,48 +13,12 @@
       "team": "animal"
     },
     {
-      "question": "what is the ???",
-      "answers": [
-        "1",
-        "3",
-        "2",
-        "4"
-      ],
-      "correct_ans": "2",
-      "level": "2",
-      "team": "animal"
-    },
-    {
-      "question": "12",
-      "answers": [
-        "1",
-        "3",
-        "2",
-        "4"
-      ],
-      "correct_ans": "2",
-      "level": "3",
-      "team": "animal"
-    },
-    {
       "question": "what is the of the teacher ?",
       "answers": [
         "klara",
         "nada",
         "sana",
         "tsveka"
-      ],
-      "correct_ans": "2",
-      "level": "3",
-      "team": "animal"
-    },
-    {
-      "question": "ahcfydschuds\\",
-      "answers": [
-        "avsvhsahc",
-        "dxhxhh",
-        "xhgg",
-        "xg"
       ],
       "correct_ans": "2",
       "level": "3",
@@ -105,6 +69,30 @@
         "r"
       ],
       "correct_ans": "4",
+      "level": "2",
+      "team": "animal"
+    },
+    {
+      "question": "answer the ques",
+      "answers": [
+        "11",
+        "22",
+        "33",
+        "44"
+      ],
+      "correct_ans": "4",
+      "level": "2",
+      "team": "animal"
+    },
+    {
+      "question": "how is the weather today",
+      "answers": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correct_ans": "3",
       "level": "2",
       "team": "animal"
     }

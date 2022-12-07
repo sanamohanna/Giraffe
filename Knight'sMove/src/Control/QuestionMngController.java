@@ -59,9 +59,48 @@ public class QuestionMngController {
 	private Button add;
 	@FXML
 	private Button addQues;
-
-
-
+	@FXML
+	private TextField textF;
+	@FXML
+	private Button delete;
+	@FXML
+	private Button deleteQues;
+	@FXML
+	private Text error;
+	@FXML
+	private Text true1;
+	@FXML
+	private Text diff1;
+	@FXML
+	private TextField contextUpdated;
+	@FXML
+	private TextField answer1Updated;
+	@FXML
+	private TextField answer2Updated;
+	@FXML
+	private TextField answer3Updated;
+	@FXML
+	private TextField answer4Updated;
+	@FXML
+	private TextField teamUpdated;
+	@FXML
+	private ChoiceBox<Integer> difLevelUpdated  ;
+	@FXML
+	private ChoiceBox<Integer> trueAnswerUpdated;
+	@FXML
+	private Button updateQues; 
+	@FXML
+	private Button update;
+	@FXML
+	private TextField num2;
+	@FXML
+	private Text error2;
+	@FXML
+	private Text true11;
+	@FXML
+	private Text diff11;
+	@FXML
+	private Button updateQues2; 
 	
 	private static QuestionMngController instance = null;
 	private ArrayList<AdminPlayer> admins = new ArrayList<AdminPlayer>();
@@ -134,8 +173,11 @@ public class QuestionMngController {
 		difLevel.setVisible(true);
 		trueAnswer.setVisible(true);
 		add.setVisible(true);
+		true1.setVisible(true);
+		diff1.setVisible(true);
 		addQues.setVisible(false);
-		
+		deleteQues.setVisible(false);
+		updateQues.setVisible(false);
 	}
 	public void finishAddQues(ActionEvent event) throws Exception{
 		ArrayList<Answer> answers = new ArrayList<Answer>();
@@ -189,7 +231,66 @@ public class QuestionMngController {
 		difLevel.setVisible(false);
 		trueAnswer.setVisible(false);
 		add.setVisible(false);
+		true1.setVisible(false);
+		diff1.setVisible(false);
 		addQues.setVisible(true);
+		deleteQues.setVisible(true);
 	}
+	public void deleteQues(ActionEvent event) throws Exception{
+		textF.setVisible(true);
+		delete.setVisible(true);
+		addQues.setVisible(false);
+		deleteQues.setVisible(false);
 		
+			
+		
+	}
+	public void finishDeleteQues(ActionEvent event) throws Exception{
+		sysData.LoadQuestions();
+		if(Integer.parseInt(textF.getText())>= sysData.getQuestions().size() || Integer.parseInt(textF.getText())<0  ) {
+				error.setVisible(true);
+		}
+		else {
+			sysData.LoadQuestions();
+			sysData.removeQuestion(Integer.parseInt(textF.getText()));
+			sysData.WriteQuestions();
+			textF.setVisible(false);
+			delete.setVisible(false);
+			addQues.setVisible(true);
+			deleteQues.setVisible(true);
+	
+		}
+	}
+	public void updateQues(ActionEvent event) throws Exception{
+		num2.setVisible(true);
+		update.setVisible(true);
+	}
+	public void finishUpdateQues(ActionEvent event) throws Exception{
+//		sysData.LoadQuestions();
+//		if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
+//			error2.setVisible(true);
+//		}
+//	else {
+//		num2.setVisible(false);
+//		update.setVisible(false);
+//		error2.setVisible(false);
+//		contextUpdated.setVisible(true);
+//		answer1Updated.setVisible(true);
+//		answer2Updated.setVisible(true);
+//		answer3Updated.setVisible(true);
+//		answer4Updated.setVisible(true);
+//		teamUpdated.setVisible(true);
+//		difLevelUpdated.setVisible(true);
+//		trueAnswerUpdated.setVisible(true);
+//		true11.setVisible(true);
+//		diff11.setVisible(true);
+//		updateQues2.setVisible(true);
+//		addQues.setVisible(false);
+//		deleteQues.setVisible(false);
+//		updateQues.setVisible(false);
+//	}
+	}
+	public void finishUpdate(ActionEvent event) throws Exception{
+		
+	}
 }
