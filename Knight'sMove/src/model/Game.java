@@ -7,7 +7,7 @@ import Enum.GameStatus;
 
 public class Game {
 	private static Game instance;
-	
+
 	private Board board;
 	private Player player;
 	private Queen queen;
@@ -16,12 +16,14 @@ public class Game {
 	private TimerCount time;
 	private ArrayList<Question> availableQuestions;
 	private ArrayList<Question> unavailableQuestions;
+	final int WIN_POINT = 1;
+	final int LOSE_POINT = 1;
 
-	//constructor
+	// constructor
 	public Game(Board board, Player player, Queen queen, King king, GameStatus gameStatus, Time time) {
 		super();
 		this.board = Board.getInstance();
-		//we have to start the board
+		// we have to start the board
 		this.player = player;
 		this.queen = queen;
 		this.king = king;
@@ -29,24 +31,24 @@ public class Game {
 		this.time = new TimerCount();
 		availableQuestions = new ArrayList<>();
 		availableQuestions.addAll(SysData.getInstance().getQuestions());
-		unavailableQuestions=new ArrayList<Question>();
+		unavailableQuestions = new ArrayList<Question>();
 
 	}
+
 	public Game() {
 		super();
-		
+
 	}
 	// Game Singleton Instance
-	 
-	public static Game getInstance() 
-	{ 
-		if (instance == null) 
-		{ 
-			instance = new Game(); 
-		} 
-		return instance; 
+
+	public static Game getInstance() {
+		if (instance == null) {
+			instance = new Game();
+		}
+		return instance;
 	}
-	//getters setters
+
+	// getters setters
 	public Board getBoard() {
 		return board;
 	}
