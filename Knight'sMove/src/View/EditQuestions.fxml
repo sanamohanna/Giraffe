@@ -33,7 +33,7 @@
       <Button fx:id="delete" layoutX="285.0" layoutY="277.0" mnemonicParsing="false" onAction="#finishDeleteQues" text="delete" visible="false" />
       <Text fx:id="error" fill="#ef0808" layoutX="247.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the number is not valid " visible="false" />
       <Button fx:id="updateQues" layoutX="467.0" layoutY="265.0" mnemonicParsing="false" onAction="#updateQues" text="Update Question" />
-      <TextField fx:id="cotextUpdated" layoutX="18.0" layoutY="188.0" prefHeight="25.0" prefWidth="240.0" visible="false" />
+      <TextField fx:id="contextUpdated" layoutX="18.0" layoutY="188.0" prefHeight="25.0" prefWidth="240.0" visible="false" />
       <TextField fx:id="answer1Updated" layoutX="18.0" layoutY="217.0" visible="false" />
       <TextField fx:id="answer2Updated" layoutX="18.0" layoutY="248.0" visible="false" />
       <TextField fx:id="answer3Updated" layoutX="18.0" layoutY="277.0" visible="false" />
@@ -47,5 +47,6 @@
       <Text fx:id="error2" fill="#eb0b0b" layoutX="287.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the number is not valid" visible="false" />
       <Button fx:id="update" layoutX="323.0" layoutY="313.0" mnemonicParsing="false" onAction="#finishUpdateQues" text="go to update" visible="false" />
       <Button fx:id="updateQues2" layoutX="274.0" layoutY="320.0" mnemonicParsing="false" onAction="#finishUpdate" text="update" visible="false" />
+      <Text fx:id="error3" fill="#f70505" layoutX="413.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please enter all Data!" visible="false" wrappingWidth="140.5367431640625" />
    </children>
 </AnchorPane>
