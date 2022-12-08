@@ -12,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
@@ -67,8 +69,7 @@ public class QuestionMngController {
 	private Button delete;
 	@FXML
 	private Button deleteQues;
-	@FXML
-	private Text error;
+
 	@FXML
 	private Text true1;
 	@FXML
@@ -95,18 +96,17 @@ public class QuestionMngController {
 	private Button update;
 	@FXML
 	private TextField num2;
-	@FXML
-	private Text error2;
+
 	@FXML
 	private Text true11;
 	@FXML
 	private Text diff11;
 	@FXML
 	private Button updateQues2; 
-	@FXML
-	private Text error3;
 
-	
+
+    Alert a = new Alert(AlertType.NONE);
+
 	private static QuestionMngController instance = null;
 	private ArrayList<AdminPlayer> admins = new ArrayList<AdminPlayer>();
 	SysData sysData = SysData.getInstance();
@@ -264,15 +264,16 @@ public class QuestionMngController {
 			diff1.setVisible(false);
 			addQues.setVisible(true);
 			deleteQues.setVisible(true);
-//			a.setAlertType(AlertType.INFORMATION);
-//			a.setContentText("added successfully");
-//			a.show();
-//	        
+			updateQues.setVisible(true);
+			a.setAlertType(AlertType.INFORMATION);
+			a.setContentText("added successfully");
+			a.show();
+	        
 		}
 		catch (Exception e) {
-//			a.setAlertType(AlertType.ERROR);
-//			a.setContentText("please enter all data!");
-//			a.show();
+			a.setAlertType(AlertType.ERROR);
+			a.setContentText("please enter all data!");
+			a.show();
 		}
 		
 	}
@@ -282,6 +283,7 @@ public class QuestionMngController {
 		addQues.setVisible(false);
 		deleteQues.setVisible(false);
 		updateQues.setVisible(false);
+System.out.println(sysData.getQuestions().size());
 			
 	}
 	public void finishDeleteQues(ActionEvent event) throws Exception{
@@ -289,18 +291,13 @@ public class QuestionMngController {
 			if(textF == null)
 				throw new Exception();
 			sysData.LoadQuestions();
-			sysData.removeQuestion(Integer.parseInt(textF.getText()));
-			sysData.WriteQuestions();
-			error.setVisible(false);
-			textF.setVisible(false);
-			delete.setVisible(false);
-			addQues.setVisible(true);
-			deleteQues.setVisible(true);
+		
 	
 
 			if(Integer.parseInt(textF.getText())>= sysData.getQuestions().size() || Integer.parseInt(textF.getText())<0  ) {
-					error.setVisible(true);
-			}
+				a.setAlertType(AlertType.ERROR);
+				a.setContentText("the number is not valid , please try again!");
+				a.show();			}
 			else {
 				sysData.LoadQuestions();
 				sysData.removeQuestion(Integer.parseInt(textF.getText()));
@@ -309,47 +306,44 @@ public class QuestionMngController {
 				delete.setVisible(false);
 				addQues.setVisible(true);
 				deleteQues.setVisible(true);
-		
+				updateQues.setVisible(true);
+				a.setAlertType(AlertType.INFORMATION);
+				a.setContentText("deleted successfully");
+				a.show();
 			}
 			
 		}catch (Exception e) {
-			error3.setVisible(true);
-		}
+			a.setAlertType(AlertType.ERROR);
+			a.setContentText("please enter all data!");
+			a.show();		}
 		
 		
 	}
 	public void updateQues(ActionEvent event) throws Exception{
 		num2.setVisible(true);
 		update.setVisible(true);
+		addQues.setVisible(false);
+		deleteQues.setVisible(false);
+		updateQues.setVisible(false);
 	}
 	public void finishUpdateQues(ActionEvent event) throws Exception{
-
+        try {
 		sysData.LoadQuestions();
-		error2.setVisible(false);
-		if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
-			error2.setVisible(true);
+		if(num2.getText()== null) {
+			throw new Exception();
 		}
-		else 
-		{
+		if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
+			a.setAlertType(AlertType.ERROR);
+			a.setContentText("the number is not valid , please try again!");
+			a.show();		}
+				
+		else {
 			ObservableList<Integer> diffList = FXCollections.observableArrayList(1,2,3);
 			ObservableList<Integer> trueAns = FXCollections.observableArrayList(1,2,3,4);
 			difLevelUpdated.setItems(diffList);
 			trueAnswerUpdated.setItems(trueAns);
 			num2.setVisible(false);
 			update.setVisible(false);
-
-		try {
-			if(num2.getText() == null) {
-				throw new Exception();
-			}
-			sysData.LoadQuestions();
-			if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
-				error2.setVisible(true);
-			}
-		else {
-			num2.setVisible(false);
-			update.setVisible(false);
-			error2.setVisible(false);
 
 			contextUpdated.setVisible(true);
 			answer1Updated.setVisible(true);
@@ -383,15 +377,17 @@ public class QuestionMngController {
 				difLevelUpdated.setValue(3);
 			else
 				difLevelUpdated.setValue(2);
+			
 		}
 
 		}
 		catch (Exception e) {
-			error3.setVisible(true);
- 		}
+			a.setAlertType(AlertType.ERROR);
+			a.setContentText("please enter all data!");
+			a.show(); 		}
 		}
 
-	}
+	
 	public void finishUpdate(ActionEvent event) throws Exception{
 		sysData.LoadQuestions();
 		Integer num =Integer.parseInt(num2.getText());
@@ -452,5 +448,8 @@ public class QuestionMngController {
 		addQues.setVisible(true);
 		deleteQues.setVisible(true);
 		updateQues.setVisible(true);
+		a.setAlertType(AlertType.INFORMATION);
+		a.setContentText("Updated successfully");
+		a.show();
 	}
 }
