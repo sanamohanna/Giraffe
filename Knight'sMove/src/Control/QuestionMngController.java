@@ -102,6 +102,8 @@ public class QuestionMngController {
 	private Text diff11;
 	@FXML
 	private Button updateQues2; 
+	@FXML
+	private Text error3;
 
 	
 	private static QuestionMngController instance = null;
@@ -191,60 +193,78 @@ public class QuestionMngController {
 	}
 	public void finishAddQues(ActionEvent event) throws Exception{
 		ArrayList<Answer> answers = new ArrayList<Answer>();
-		Answer answer11 =new Answer(1,answer1.getText());
-		answers.add(answer11);
-		Answer answer22 =new Answer(2,answer2.getText());
-		answers.add(answer22);
-		Answer answer33 =new Answer(3,answer3.getText());
-		answers.add(answer33);
-		Answer answer44 =new Answer(4,answer4.getText());
-		answers.add(answer44);
-		if(trueAnswer.getValue().equals(1)) {
-			answer11.setTrue(true);
+		try {
+			if(difLevel.getValue() == null || context.getText() == null || answer1.getText() == null 
+					|| answer2.getText() == null || answer3.getText() == null || answer3.getText() == null
+					|| trueAnswer.getValue() == null ) {
+				throw new Exception();
+			}
+			Answer answer11 =new Answer(1,answer1.getText());
+			answers.add(answer11);
+			Answer answer22 =new Answer(2,answer2.getText());
+			answers.add(answer22);
+			Answer answer33 =new Answer(3,answer3.getText());
+			answers.add(answer33);
+			Answer answer44 =new Answer(4,answer4.getText());
+			answers.add(answer44);
+			
+			if(trueAnswer.getValue().equals(1)) {
+				answer11.setTrue(true);
+			}
+			else
+				answer11.setTrue(false);
+			if(trueAnswer.getValue().equals(2)) {
+				answer22.setTrue(true);
+			}
+			else
+				answer22.setTrue(false);
+			if(trueAnswer.getValue().equals(3)) {
+				answer33.setTrue(true);
+			}
+			else
+				answer33.setTrue(false);
+			if(trueAnswer.getValue().equals(4))
+				answer44.setTrue(true);
+			else
+				answer44.setTrue(false);
+			DifficultyLevel diff;
+			if(difLevel.getValue().equals(1)) {
+				diff = DifficultyLevel.EASY;
+			}
+			else if(difLevel.getValue().equals(2)) {
+				diff = DifficultyLevel.MEDIOCRE;
+			}
+			else {
+				diff = DifficultyLevel.HARD;
+			}	
+			sysData.LoadQuestions();
+			Question newQues = new Question(sysData.getQuestions().size(),context.getText(),answers,diff,"animal");
+			sysData.addQuestion(newQues);
+			sysData.WriteQuestions();
+			context.setVisible(false);
+			answer1.setVisible(false);
+			answer2.setVisible(false);
+			answer3.setVisible(false);
+			answer4.setVisible(false);
+			team.setVisible(false);
+			difLevel.setVisible(false);
+			trueAnswer.setVisible(false);
+			add.setVisible(false);
+			true1.setVisible(false);
+			diff1.setVisible(false);
+			addQues.setVisible(true);
+			deleteQues.setVisible(true);
+//			a.setAlertType(AlertType.INFORMATION);
+//			a.setContentText("added successfully");
+//			a.show();
+//	        
 		}
-		else
-			answer11.setTrue(false);
-		if(trueAnswer.getValue().equals(2)) {
-			answer22.setTrue(true);
+		catch (Exception e) {
+//			a.setAlertType(AlertType.ERROR);
+//			a.setContentText("please enter all data!");
+//			a.show();
 		}
-		else
-			answer22.setTrue(false);
-		if(trueAnswer.getValue().equals(3)) {
-			answer33.setTrue(true);
-		}
-		else
-			answer33.setTrue(false);
-		if(trueAnswer.getValue().equals(4))
-			answer44.setTrue(true);
-		else
-			answer44.setTrue(false);
-		DifficultyLevel diff;
-		if(difLevel.getValue().equals(1)) {
-			diff = DifficultyLevel.EASY;
-		}
-		else if(difLevel.getValue().equals(2)) {
-			diff = DifficultyLevel.MEDIOCRE;
-		}
-		else {
-			diff = DifficultyLevel.HARD;
-		}	
-		sysData.LoadQuestions();
-		Question newQues = new Question(sysData.getQuestions().size(),context.getText(),answers,diff,team.getText());
-		sysData.addQuestion(newQues);
-		sysData.WriteQuestions();
-		context.setVisible(false);
-		answer1.setVisible(false);
-		answer2.setVisible(false);
-		answer3.setVisible(false);
-		answer4.setVisible(false);
-		team.setVisible(false);
-		difLevel.setVisible(false);
-		trueAnswer.setVisible(false);
-		add.setVisible(false);
-		true1.setVisible(false);
-		diff1.setVisible(false);
-		addQues.setVisible(true);
-		deleteQues.setVisible(true);
+		
 	}
 	public void deleteQues(ActionEvent event) throws Exception{
 		textF.setVisible(true);
@@ -256,11 +276,9 @@ public class QuestionMngController {
 		
 	}
 	public void finishDeleteQues(ActionEvent event) throws Exception{
-		sysData.LoadQuestions();
-		if(Integer.parseInt(textF.getText())>= sysData.getQuestions().size() || Integer.parseInt(textF.getText())<0  ) {
-				error.setVisible(true);
-		}
-		else {
+		try {
+			if(textF == null)
+				throw new Exception();
 			sysData.LoadQuestions();
 			sysData.removeQuestion(Integer.parseInt(textF.getText()));
 			sysData.WriteQuestions();
@@ -270,13 +288,33 @@ public class QuestionMngController {
 			addQues.setVisible(true);
 			deleteQues.setVisible(true);
 	
+
+			if(Integer.parseInt(textF.getText())>= sysData.getQuestions().size() || Integer.parseInt(textF.getText())<0  ) {
+					error.setVisible(true);
+			}
+			else {
+				sysData.LoadQuestions();
+				sysData.removeQuestion(Integer.parseInt(textF.getText()));
+				sysData.WriteQuestions();
+				textF.setVisible(false);
+				delete.setVisible(false);
+				addQues.setVisible(true);
+				deleteQues.setVisible(true);
+		
+			}
+			
+		}catch (Exception e) {
+			error3.setVisible(true);
 		}
+		
+		
 	}
 	public void updateQues(ActionEvent event) throws Exception{
 		num2.setVisible(true);
 		update.setVisible(true);
 	}
 	public void finishUpdateQues(ActionEvent event) throws Exception{
+
 		sysData.LoadQuestions();
 		error2.setVisible(false);
 		if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
@@ -290,6 +328,20 @@ public class QuestionMngController {
 			trueAnswerUpdated.setItems(trueAns);
 			num2.setVisible(false);
 			update.setVisible(false);
+
+		try {
+			if(num2.getText() == null) {
+				throw new Exception();
+			}
+			sysData.LoadQuestions();
+			if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
+				error2.setVisible(true);
+			}
+		else {
+			num2.setVisible(false);
+			update.setVisible(false);
+			error2.setVisible(false);
+
 			contextUpdated.setVisible(true);
 			answer1Updated.setVisible(true);
 			answer2Updated.setVisible(true);
@@ -323,6 +375,13 @@ public class QuestionMngController {
 			else
 				difLevelUpdated.setValue(2);
 		}
+
+		}
+		catch (Exception e) {
+			error3.setVisible(true);
+ 		}
+		}
+
 	}
 	public void finishUpdate(ActionEvent event) throws Exception{
 		sysData.LoadQuestions();

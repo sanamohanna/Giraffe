@@ -47,5 +47,6 @@
       <Text fx:id="error2" fill="#eb0b0b" layoutX="286.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the number is not valid" visible="false" AnchorPane.topAnchor="290.0" />
       <Button fx:id="update" layoutX="306.0" layoutY="312.0" mnemonicParsing="false" onAction="#finishUpdateQues" text="go to update" visible="false" AnchorPane.topAnchor="308.0" />
       <Button fx:id="updateQues2" layoutX="274.0" layoutY="320.0" mnemonicParsing="false" onAction="#finishUpdate" text="update" visible="false" />
+      <Text fx:id="error3" fill="#f70505" layoutX="413.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please enter all Data!" visible="false" wrappingWidth="140.5367431640625" />
    </children>
 </AnchorPane>

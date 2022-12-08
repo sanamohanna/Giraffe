@@ -6,7 +6,6 @@ public class Answer {
 	private boolean isTrue;
 
 	// costructor
-	// check if it is ok
 	public Answer(int id, String answerContext, boolean isTrue) {
 		super();
 		this.id = id;

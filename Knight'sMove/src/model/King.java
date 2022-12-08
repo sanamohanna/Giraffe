@@ -7,9 +7,6 @@ public class King extends Piece {
 	private Location initialLocation;
 	private Integer speed;
 
-	
-
-	
 
 	public King(Location location, Location initialLocation, Integer speed) {
 		super(location);

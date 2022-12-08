@@ -41,7 +41,5 @@ public class Squares {
 	public void setVisited(boolean isVisited) {
 		this.isVisited = isVisited;
 	}
-	public boolean isvisited() {
-		return (piece==null );
-	}
+
 }
