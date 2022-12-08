@@ -273,7 +273,6 @@ public class QuestionMngController {
 		deleteQues.setVisible(false);
 		updateQues.setVisible(false);
 			
-		/*0000*/
 	}
 	public void finishDeleteQues(ActionEvent event) throws Exception{
 		try {
