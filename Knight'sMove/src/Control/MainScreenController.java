@@ -54,6 +54,20 @@ public class MainScreenController {
 		
 		
 	}
+	
+	public void GamesHistory(ActionEvent event) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("/View/gamesHistory.fxml"));
+		
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Scene scene = new Scene(root);
+		stage.setResizable(false);
+		scene.getStylesheets().add(getClass().getResource("/View/gamesHistory.css").toExternalForm());
+		stage.setScene(scene);
+		
+		stage.show();
+		
+		
+	}
 
 	
 
