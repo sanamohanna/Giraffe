@@ -148,19 +148,7 @@ public class QuestionMngController {
 				Parent root = FXMLLoader.load(getClass().getResource("/View/EditQuestions.fxml"));
 				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				Scene scene = new Scene(root);
-				stage.setResizable(false);
-//				ObservableList<Question> data = FXCollections.<Question>observableArrayList();
-//				data.addAll(SysData.getInstance().getQuestions());
-//				id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("id"));
-//				ques.setCellValueFactory(new PropertyValueFactory<>("context"));
-//				table.setItems(data);
-//				 table.getColumns().addAll(id,ques);
-//				table.refresh();
-//				table.getColumns().add(id);
-//				table.getColumns().add(ques);
-//				for(Question question: SysData.getInstance().getQuestions()) {
-//					table.getItems().add(question);
-//				}
+				stage.setResizable(false);			
 				//scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
 				stage.setScene(scene);
 				stage.show();

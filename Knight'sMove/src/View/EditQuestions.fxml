@@ -6,17 +6,18 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.QuestionMngController">
+<AnchorPane fx:id="backButton1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.QuestionMngController">
    <children>
-      <TableView fx:id="table" layoutX="17.0" layoutY="14.0" prefHeight="150.0" prefWidth="565.0">
+      <TableView fx:id="table" layoutX="17.0" layoutY="59.0" prefHeight="150.0" prefWidth="565.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="75.0" text="id" />
           <TableColumn fx:id="ques" prefWidth="488.66667683919275" text="question context" />
         </columns>
       </TableView>
-      <Button fx:id="addQues" layoutX="467.0" layoutY="187.0" mnemonicParsing="false" onAction="#addQues" prefHeight="25.0" prefWidth="107.0" text="Add Question" />
+      <Button fx:id="addQues" layoutX="466.0" layoutY="235.0" mnemonicParsing="false" onAction="#addQues" prefHeight="25.0" prefWidth="107.0" text="Add Question" />
       <TextField fx:id="context" layoutX="17.0" layoutY="174.0" prefHeight="25.0" prefWidth="266.0" promptText="question context" visible="false" />
       <TextField fx:id="answer1" layoutX="18.0" layoutY="212.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 1" visible="false" AnchorPane.topAnchor="205.0" />
       <TextField fx:id="answer2" layoutX="18.0" layoutY="237.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 2" visible="false" AnchorPane.topAnchor="235.0" />
@@ -28,11 +29,11 @@
       <Text fx:id="true1" layoutX="260.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="True Answer" visible="false" />
       <TextField fx:id="team" layoutX="18.0" layoutY="326.0" promptText="team" visible="false" AnchorPane.topAnchor="325.0" />
       <Button fx:id="add" layoutX="339.0" layoutY="277.0" mnemonicParsing="false" onAction="#finishAddQues" text="add" visible="false" />
-      <Button fx:id="deleteQues" layoutX="467.0" layoutY="226.0" mnemonicParsing="false" onAction="#deleteQues" prefHeight="25.0" prefWidth="107.0" text="Delete Question" />
+      <Button fx:id="deleteQues" layoutX="466.0" layoutY="273.0" mnemonicParsing="false" onAction="#deleteQues" prefHeight="25.0" prefWidth="107.0" text="Delete Question" />
       <TextField fx:id="textF" layoutX="273.0" layoutY="226.0" prefHeight="25.0" prefWidth="149.0" promptText="enter question number" visible="false" />
       <Button fx:id="delete" layoutX="323.0" layoutY="265.0" mnemonicParsing="false" onAction="#finishDeleteQues" text="delete" visible="false" />
       <Text fx:id="error" fill="#ef0808" layoutX="247.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the number is not valid " visible="false" />
-      <Button fx:id="updateQues" layoutX="467.0" layoutY="265.0" mnemonicParsing="false" onAction="#updateQues" text="Update Question" />
+      <Button fx:id="updateQues" layoutX="467.0" layoutY="312.0" mnemonicParsing="false" onAction="#updateQues" text="Update Question" />
       <TextField fx:id="contextUpdated" layoutX="18.0" layoutY="188.0" prefHeight="25.0" prefWidth="240.0" visible="false" />
       <TextField fx:id="answer1Updated" layoutX="18.0" layoutY="217.0" visible="false" />
       <TextField fx:id="answer2Updated" layoutX="18.0" layoutY="248.0" visible="false" />
@@ -48,5 +49,10 @@
       <Button fx:id="update" layoutX="306.0" layoutY="312.0" mnemonicParsing="false" onAction="#finishUpdateQues" text="go to update" visible="false" AnchorPane.topAnchor="308.0" />
       <Button fx:id="updateQues2" layoutX="274.0" layoutY="320.0" mnemonicParsing="false" onAction="#finishUpdate" text="update" visible="false" />
       <Text fx:id="error3" fill="#f70505" layoutX="413.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please enter all Data!" visible="false" wrappingWidth="140.5367431640625" />
+      <Button layoutX="18.0" layoutY="21.0" mnemonicParsing="false" text="Back">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

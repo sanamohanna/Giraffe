@@ -1,5 +1,7 @@
 package Control;
 
+import java.io.IOException;
+
 import View.MainScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,10 +26,32 @@ public class MainScreenController {
 		stage.show();
 
 	}
+	public void backButton1(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		Scene scene = new Scene(root);
+		stage.setResizable(false);
+		scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+		stage.setScene(scene);
+	
+		stage.show();
+
+	}
+	public void backButton2(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		Scene scene = new Scene(root);
+		stage.setResizable(false);
+		scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+		stage.setScene(scene);
+	
+		stage.show();
+
+	}
 
 	public void EditQuestions(ActionEvent event) throws Exception {
 
-		Parent root = FXMLLoader.load(getClass().getResource("/View/EditQuestions.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/View/SetPassword.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setResizable(false);
