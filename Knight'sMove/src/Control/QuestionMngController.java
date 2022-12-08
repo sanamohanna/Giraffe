@@ -17,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.AdminPlayer;
@@ -36,9 +37,9 @@ public class QuestionMngController {
 	@FXML
 	private TableView<Question> table;
 	@FXML
-	private TableColumn<?,? > id;
+	private TableColumn<Question, Integer> id;
 	@FXML
-	private TableColumn<?, ?> ques;
+	private TableColumn<Question, String> ques;
 	@FXML
 	private TextField context;
 	@FXML
@@ -103,6 +104,7 @@ public class QuestionMngController {
 	private Button updateQues2; 
 	@FXML
 	private Text error3;
+
 	
 	private static QuestionMngController instance = null;
 	private ArrayList<AdminPlayer> admins = new ArrayList<AdminPlayer>();
@@ -147,6 +149,18 @@ public class QuestionMngController {
 				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				Scene scene = new Scene(root);
 				stage.setResizable(false);
+//				ObservableList<Question> data = FXCollections.<Question>observableArrayList();
+//				data.addAll(SysData.getInstance().getQuestions());
+//				id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("id"));
+//				ques.setCellValueFactory(new PropertyValueFactory<>("context"));
+//				table.setItems(data);
+//				 table.getColumns().addAll(id,ques);
+//				table.refresh();
+//				table.getColumns().add(id);
+//				table.getColumns().add(ques);
+//				for(Question question: SysData.getInstance().getQuestions()) {
+//					table.getItems().add(question);
+//				}
 				//scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
 				stage.setScene(scene);
 				stage.show();
@@ -155,11 +169,7 @@ public class QuestionMngController {
 		if(flag==1)
 		warning.setVisible(true);
 	}
-//	public void displayQuestions(ActionEvent event) {
-//		for(int i=0; i<sysData.getQuestions().size();i++) {
-//		 id.setId(sysData.getQuestions().get(i).getId());
-//		}
-//	}
+	
 	public void addQues(ActionEvent event) throws Exception{
 		ObservableList<Integer> diffList = FXCollections.observableArrayList(1,2,3);
 		ObservableList<Integer> trueAns = FXCollections.observableArrayList(1,2,3,4);
@@ -244,10 +254,15 @@ public class QuestionMngController {
 			diff1.setVisible(false);
 			addQues.setVisible(true);
 			deleteQues.setVisible(true);
-
+//			a.setAlertType(AlertType.INFORMATION);
+//			a.setContentText("added successfully");
+//			a.show();
+//	        
 		}
 		catch (Exception e) {
-			error3.setVisible(true);
+//			a.setAlertType(AlertType.ERROR);
+//			a.setContentText("please enter all data!");
+//			a.show();
 		}
 		
 	}
@@ -257,7 +272,6 @@ public class QuestionMngController {
 		addQues.setVisible(false);
 		deleteQues.setVisible(false);
 		updateQues.setVisible(false);
-		
 			
 		/*0000*/
 	}
@@ -266,6 +280,15 @@ public class QuestionMngController {
 			if(textF == null)
 				throw new Exception();
 			sysData.LoadQuestions();
+			sysData.removeQuestion(Integer.parseInt(textF.getText()));
+			sysData.WriteQuestions();
+			error.setVisible(false);
+			textF.setVisible(false);
+			delete.setVisible(false);
+			addQues.setVisible(true);
+			deleteQues.setVisible(true);
+	
+
 			if(Integer.parseInt(textF.getText())>= sysData.getQuestions().size() || Integer.parseInt(textF.getText())<0  ) {
 					error.setVisible(true);
 			}
@@ -291,6 +314,21 @@ public class QuestionMngController {
 		update.setVisible(true);
 	}
 	public void finishUpdateQues(ActionEvent event) throws Exception{
+
+		sysData.LoadQuestions();
+		error2.setVisible(false);
+		if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
+			error2.setVisible(true);
+		}
+		else 
+		{
+			ObservableList<Integer> diffList = FXCollections.observableArrayList(1,2,3);
+			ObservableList<Integer> trueAns = FXCollections.observableArrayList(1,2,3,4);
+			difLevelUpdated.setItems(diffList);
+			trueAnswerUpdated.setItems(trueAns);
+			num2.setVisible(false);
+			update.setVisible(false);
+
 		try {
 			if(num2.getText() == null) {
 				throw new Exception();
@@ -303,6 +341,7 @@ public class QuestionMngController {
 			num2.setVisible(false);
 			update.setVisible(false);
 			error2.setVisible(false);
+
 			contextUpdated.setVisible(true);
 			answer1Updated.setVisible(true);
 			answer2Updated.setVisible(true);
@@ -317,13 +356,92 @@ public class QuestionMngController {
 			addQues.setVisible(false);
 			deleteQues.setVisible(false);
 			updateQues.setVisible(false);
+			Integer num =Integer.parseInt(num2.getText());
+			contextUpdated.setText(sysData.getQuestions().get(num).getContext());
+			answer1Updated.setText(sysData.getQuestions().get(num).getAnswers().get(0).getAnswerContext());
+			answer2Updated.setText(sysData.getQuestions().get(num).getAnswers().get(1).getAnswerContext());
+			answer3Updated.setText(sysData.getQuestions().get(num).getAnswers().get(2).getAnswerContext());
+			answer4Updated.setText(sysData.getQuestions().get(num).getAnswers().get(3).getAnswerContext());
+			teamUpdated.setText(sysData.getQuestions().get(num).getTeam());
+			for(int i=0;i<sysData.getQuestions().get(num).getAnswers().size();i++) {
+				if(sysData.getQuestions().get(num).getAnswers().get(i).isTrue()==true)	{
+					trueAnswerUpdated.setValue(i+1);
+				}
+			}
+			if(sysData.getQuestions().get(num).getDifficultyLevel()==DifficultyLevel.EASY)
+				difLevelUpdated.setValue(1);
+			if(sysData.getQuestions().get(num).getDifficultyLevel()==DifficultyLevel.HARD)
+				difLevelUpdated.setValue(3);
+			else
+				difLevelUpdated.setValue(2);
 		}
-		}catch (Exception e) {
+
+		}
+		catch (Exception e) {
 			error3.setVisible(true);
  		}
-		
+		}
+
 	}
 	public void finishUpdate(ActionEvent event) throws Exception{
+		sysData.LoadQuestions();
+		Integer num =Integer.parseInt(num2.getText());
+		ArrayList<Answer> answers = new ArrayList<Answer>();
+		sysData.getQuestions().get(num).setContext(contextUpdated.getText());
+		sysData.getQuestions().get(num).setTeam(teamUpdated.getText());
 		
+		if(difLevelUpdated.getValue()==1) {
+			sysData.getQuestions().get(num).setDifficultyLevel(DifficultyLevel.EASY);
+		}
+		else if(difLevelUpdated.getValue()==2) {
+			sysData.getQuestions().get(num).setDifficultyLevel(DifficultyLevel.MEDIOCRE);
+		}
+		else
+			sysData.getQuestions().get(num).setDifficultyLevel(DifficultyLevel.HARD);
+		
+		Answer answer1 =new Answer(1,answer1Updated.getText());
+		answers.add(answer1);
+		Answer answer2 =new Answer(2,answer2Updated.getText());
+		answers.add(answer2);
+		Answer answer3 =new Answer(3,answer3Updated.getText());
+		answers.add(answer3);
+		Answer answer4 =new Answer(4,answer4Updated.getText());
+		answers.add(answer4);
+	
+		if(trueAnswerUpdated.getValue().equals(1)) {
+			answer1.setTrue(true);
+		}
+		else
+			answer1.setTrue(false);
+		if(trueAnswerUpdated.getValue().equals(2)) {
+			answer2.setTrue(true);
+		}
+		else
+			answer2.setTrue(false);
+		if(trueAnswerUpdated.getValue().equals(3)) {
+			answer3.setTrue(true);
+		}
+		else
+			answer3.setTrue(false);
+		if(trueAnswerUpdated.getValue().equals(4))
+			answer4.setTrue(true);
+		else
+			answer4.setTrue(false);
+		sysData.getQuestions().get(num).setAnswers(answers);
+		sysData.WriteQuestions();
+		contextUpdated.setVisible(false);
+		answer1Updated.setVisible(false);
+		answer2Updated.setVisible(false);
+		answer3Updated.setVisible(false);
+		answer4Updated.setVisible(false);
+		teamUpdated.setVisible(false);
+		difLevelUpdated.setVisible(false);
+		trueAnswerUpdated.setVisible(false);
+		true11.setVisible(false);
+		diff11.setVisible(false);
+		updateQues2.setVisible(false);
+		addQues.setVisible(true);
+		deleteQues.setVisible(true);
+		updateQues.setVisible(true);
 	}
 }
