@@ -1,5 +1,6 @@
 package Control;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Enum.DifficultyLevel;
@@ -157,7 +158,28 @@ public class QuestionMngController {
 		if(flag==1)
 		warning.setVisible(true);
 	}
+	public void backButton1(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		Scene scene = new Scene(root);
+		stage.setResizable(false);
+		scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+		stage.setScene(scene);
 	
+		stage.show();
+
+	}
+	public void backButton2(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		Scene scene = new Scene(root);
+		stage.setResizable(false);
+		scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+		stage.setScene(scene);
+	
+		stage.show();
+
+	}
 	public void addQues(ActionEvent event) throws Exception{
 		ObservableList<Integer> diffList = FXCollections.observableArrayList(1,2,3);
 		ObservableList<Integer> trueAns = FXCollections.observableArrayList(1,2,3,4);

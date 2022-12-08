@@ -49,7 +49,7 @@
       <Button fx:id="update" layoutX="306.0" layoutY="312.0" mnemonicParsing="false" onAction="#finishUpdateQues" text="go to update" visible="false" AnchorPane.topAnchor="308.0" />
       <Button fx:id="updateQues2" layoutX="274.0" layoutY="320.0" mnemonicParsing="false" onAction="#finishUpdate" text="update" visible="false" />
       <Text fx:id="error3" fill="#f70505" layoutX="413.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please enter all Data!" visible="false" wrappingWidth="140.5367431640625" />
-      <Button layoutX="18.0" layoutY="21.0" mnemonicParsing="false" text="Back">
+      <Button layoutX="18.0" layoutY="21.0" mnemonicParsing="false" onAction="#backButton1" text="Back">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

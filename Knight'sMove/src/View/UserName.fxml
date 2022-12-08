@@ -8,11 +8,19 @@
 
 <AnchorPane fx:id="user" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="325.0" style="-fx-background-position: center;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.UserNameController">
    <children>
-      <TextField fx:id="nameTextField" layoutX="87.0" layoutY="137.0" />
+      <TextField fx:id="nameTextField" layoutX="86.0" layoutY="137.0" promptText="enter your user name" />
       <Text layoutX="62.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user name" textAlignment="CENTER" wrappingWidth="200.625">
          <font>
-            <Font size="28.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="33.0" />
          </font></Text>
-      <Button layoutX="130.0" layoutY="197.0" mnemonicParsing="false" onAction="#letsPlay" text="let's play" />
+      <Button layoutX="124.0" layoutY="197.0" mnemonicParsing="false" onAction="#letsPlay" text="let's play">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+         </font></Button>
+      <Button layoutX="26.0" layoutY="28.0" mnemonicParsing="false" onAction="#backButton" text="Back">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
