@@ -11,7 +11,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class UserNameController {
@@ -19,8 +21,14 @@ public class UserNameController {
 	TextField nameTextField;
 	int totalSec;
 	String time;
+    Alert a = new Alert(AlertType.NONE);
+
 	//StartGameController stg = new StartGameController();
 	public void letsPlay(ActionEvent event) throws Exception {
+		try {
+			if(nameTextField.getText() == "") {
+				throw new Exception();
+			}
 		String UserName =nameTextField.getText();
 		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/StartGame.fxml"));
 		
@@ -36,6 +44,11 @@ public class UserNameController {
 		//scene.getStylesheets().add(getClass().getResource("/View/.css").toExternalForm());
 		stage.setScene(scene);
 		stage.show();
+		}catch (Exception e) {
+			a.setAlertType(AlertType.ERROR);
+			a.setContentText("please enter all data!");
+			a.show();		
+			}
 	}	
 	public void backButton(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
