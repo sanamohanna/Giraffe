@@ -37,21 +37,21 @@
       "team": "animal"
     },
     {
-      "question": "how are you?",
+      "question": "animall",
       "answers": [
         "good",
-        "amazing",
+        "not good",
         "bad",
-        "wish god to take me"
+        "hhhh"
       ],
-      "correct_ans": "2",
+      "correct_ans": "1",
       "level": "2",
       "team": "animal"
     },
     {
       "question": "what is TDD?",
       "answers": [
-        "11",
+        "0",
         "2",
         "4",
         "3"

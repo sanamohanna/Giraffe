@@ -30,10 +30,10 @@
       <Button fx:id="add" layoutX="339.0" layoutY="277.0" mnemonicParsing="false" onAction="#finishAddQues" text="add" visible="false" />
       <Button fx:id="deleteQues" layoutX="467.0" layoutY="226.0" mnemonicParsing="false" onAction="#deleteQues" prefHeight="25.0" prefWidth="107.0" text="Delete Question" />
       <TextField fx:id="textF" layoutX="273.0" layoutY="226.0" prefHeight="25.0" prefWidth="149.0" promptText="enter question number" visible="false" />
-      <Button fx:id="delete" layoutX="285.0" layoutY="277.0" mnemonicParsing="false" onAction="#finishDeleteQues" text="delete" visible="false" />
+      <Button fx:id="delete" layoutX="323.0" layoutY="265.0" mnemonicParsing="false" onAction="#finishDeleteQues" text="delete" visible="false" />
       <Text fx:id="error" fill="#ef0808" layoutX="247.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the number is not valid " visible="false" />
       <Button fx:id="updateQues" layoutX="467.0" layoutY="265.0" mnemonicParsing="false" onAction="#updateQues" text="Update Question" />
-      <TextField fx:id="cotextUpdated" layoutX="18.0" layoutY="188.0" prefHeight="25.0" prefWidth="240.0" visible="false" />
+      <TextField fx:id="contextUpdated" layoutX="18.0" layoutY="188.0" prefHeight="25.0" prefWidth="240.0" visible="false" />
       <TextField fx:id="answer1Updated" layoutX="18.0" layoutY="217.0" visible="false" />
       <TextField fx:id="answer2Updated" layoutX="18.0" layoutY="248.0" visible="false" />
       <TextField fx:id="answer3Updated" layoutX="18.0" layoutY="277.0" visible="false" />
@@ -44,8 +44,8 @@
       <Text fx:id="true11" layoutX="250.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="True Answer" visible="false" />
       <Text fx:id="diff11" layoutX="245.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty Level" visible="false" />
       <TextField fx:id="num2" layoutX="274.0" layoutY="265.0" prefHeight="25.0" prefWidth="149.0" promptText="enter question number" visible="false" />
-      <Text fx:id="error2" fill="#eb0b0b" layoutX="287.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the number is not valid" visible="false" />
-      <Button fx:id="update" layoutX="323.0" layoutY="313.0" mnemonicParsing="false" onAction="#finishUpdateQues" text="go to update" visible="false" />
+      <Text fx:id="error2" fill="#eb0b0b" layoutX="286.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the number is not valid" visible="false" AnchorPane.topAnchor="290.0" />
+      <Button fx:id="update" layoutX="306.0" layoutY="312.0" mnemonicParsing="false" onAction="#finishUpdateQues" text="go to update" visible="false" AnchorPane.topAnchor="308.0" />
       <Button fx:id="updateQues2" layoutX="274.0" layoutY="320.0" mnemonicParsing="false" onAction="#finishUpdate" text="update" visible="false" />
    </children>
 </AnchorPane>
