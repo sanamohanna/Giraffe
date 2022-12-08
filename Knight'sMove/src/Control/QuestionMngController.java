@@ -291,29 +291,37 @@ public class QuestionMngController {
 		update.setVisible(true);
 	}
 	public void finishUpdateQues(ActionEvent event) throws Exception{
-		sysData.LoadQuestions();
-		if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
-			error2.setVisible(true);
+		try {
+			if(num2.getText() == null) {
+				throw new Exception();
+			}
+			sysData.LoadQuestions();
+			if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
+				error2.setVisible(true);
+			}
+		else {
+			num2.setVisible(false);
+			update.setVisible(false);
+			error2.setVisible(false);
+			contextUpdated.setVisible(true);
+			answer1Updated.setVisible(true);
+			answer2Updated.setVisible(true);
+			answer3Updated.setVisible(true);
+			answer4Updated.setVisible(true);
+			teamUpdated.setVisible(true);
+			difLevelUpdated.setVisible(true);
+			trueAnswerUpdated.setVisible(true);
+			true11.setVisible(true);
+			diff11.setVisible(true);
+			updateQues2.setVisible(true);
+			addQues.setVisible(false);
+			deleteQues.setVisible(false);
+			updateQues.setVisible(false);
 		}
-	else {
-		num2.setVisible(false);
-		update.setVisible(false);
-		error2.setVisible(false);
-		contextUpdated.setVisible(true);
-		answer1Updated.setVisible(true);
-		answer2Updated.setVisible(true);
-		answer3Updated.setVisible(true);
-		answer4Updated.setVisible(true);
-		teamUpdated.setVisible(true);
-		difLevelUpdated.setVisible(true);
-		trueAnswerUpdated.setVisible(true);
-		true11.setVisible(true);
-		diff11.setVisible(true);
-		updateQues2.setVisible(true);
-		addQues.setVisible(false);
-		deleteQues.setVisible(false);
-		updateQues.setVisible(false);
-	}
+		}catch (Exception e) {
+			error3.setVisible(true);
+ 		}
+		
 	}
 	public void finishUpdate(ActionEvent event) throws Exception{
 		
