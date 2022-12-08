@@ -9,26 +9,20 @@ public class Question {
 	private Integer id;
 	private String Context;
 	private ArrayList<Answer> answers;
-	private Integer corect_ans;
 	private DifficultyLevel difficultyLevel;
 	private String team;
+	
+	public Question() {
+		super();
+	}
 
 	public Question(Integer id, String context, ArrayList<Answer> answers, DifficultyLevel level, String team) {
 		super();
 		this.id = id;
 		Context = context;
 		this.answers = answers;
-		this.corect_ans = this.getCorrectAnswer();
 		this.difficultyLevel = level;
 		this.team = team;
-	}
-
-	public Integer getCorect_ans() {
-		return this.getCorrectAnswer();
-	}
-
-	public void setCorect_ans(Integer corect_ans) {
-		this.corect_ans = corect_ans;
 	}
 
 	@Override
