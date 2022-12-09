@@ -50,8 +50,7 @@ public class MainScreenController {
 	}
 
 	public void EditQuestions(ActionEvent event) throws Exception {
-
-		Parent root = FXMLLoader.load(getClass().getResource("/View/SetPassword.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/View/Password.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setResizable(false);
