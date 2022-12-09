@@ -19,5 +19,12 @@ public class InstructuresController {
 		stage.show();
 		
 		
+		
+		
+		
+		
+		
+		
+		
 	}
 }
