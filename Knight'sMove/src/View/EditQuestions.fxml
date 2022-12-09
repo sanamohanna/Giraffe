@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="backButton1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.QuestionMngController">
+<AnchorPane fx:id="backButton1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.QuestionMngController">
    <children>
       <TableView fx:id="table" layoutX="17.0" layoutY="59.0" prefHeight="150.0" prefWidth="565.0">
         <columns>
@@ -18,17 +18,17 @@
         </columns>
       </TableView>
       <Button fx:id="addQues" layoutX="466.0" layoutY="235.0" mnemonicParsing="false" onAction="#addQues" prefHeight="25.0" prefWidth="107.0" text="Add Question" />
-      <TextField fx:id="context" layoutX="17.0" layoutY="174.0" prefHeight="25.0" prefWidth="266.0" promptText="question context" visible="false" />
-      <TextField fx:id="answer1" layoutX="18.0" layoutY="212.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 1" visible="false" AnchorPane.topAnchor="205.0" />
-      <TextField fx:id="answer2" layoutX="18.0" layoutY="237.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 2" visible="false" AnchorPane.topAnchor="235.0" />
-      <TextField fx:id="answer3" layoutX="18.0" layoutY="267.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 3" visible="false" AnchorPane.topAnchor="265.0" />
-      <TextField fx:id="answer4" layoutX="18.0" layoutY="297.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 4" visible="false" AnchorPane.topAnchor="295.0" />
-      <ChoiceBox fx:id="difLevel" layoutX="343.0" layoutY="205.0" prefHeight="25.0" prefWidth="43.0" visible="false" />
-      <Text fx:id="diff1" layoutX="260.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty Level" visible="false" />
-      <ChoiceBox fx:id="trueAnswer" layoutX="343.0" layoutY="235.0" prefHeight="25.0" prefWidth="43.0" visible="false" />
-      <Text fx:id="true1" layoutX="260.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="True Answer" visible="false" />
-      <TextField fx:id="team" layoutX="18.0" layoutY="326.0" promptText="team" visible="false" AnchorPane.topAnchor="325.0" />
-      <Button fx:id="add" layoutX="339.0" layoutY="277.0" mnemonicParsing="false" onAction="#finishAddQues" text="add" visible="false" />
+      <TextField fx:id="context" layoutX="17.0" layoutY="230.0" prefHeight="25.0" prefWidth="266.0" promptText="question context" visible="false" />
+      <TextField fx:id="answer1" layoutX="18.0" layoutY="260.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 1" visible="false" />
+      <TextField fx:id="answer2" layoutX="17.0" layoutY="290.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 2" visible="false" />
+      <TextField fx:id="answer3" layoutX="17.0" layoutY="320.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 3" visible="false" />
+      <TextField fx:id="answer4" layoutX="17.0" layoutY="350.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 4" visible="false" />
+      <ChoiceBox fx:id="difLevel" layoutX="318.0" layoutY="259.0" prefHeight="25.0" prefWidth="43.0" visible="false" />
+      <Text fx:id="diff1" layoutX="305.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty Level" visible="false" />
+      <ChoiceBox fx:id="trueAnswer" layoutX="318.0" layoutY="320.0" prefHeight="25.0" prefWidth="43.0" visible="false" />
+      <Text fx:id="true1" layoutX="307.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="True Answer" visible="false" />
+      <TextField fx:id="team" layoutX="18.0" layoutY="384.0" promptText="team" visible="false" />
+      <Button fx:id="add" layoutX="390.0" layoutY="350.0" mnemonicParsing="false" onAction="#finishAddQues" text="add" visible="false" />
       <Button fx:id="deleteQues" layoutX="466.0" layoutY="273.0" mnemonicParsing="false" onAction="#deleteQues" prefHeight="25.0" prefWidth="107.0" text="Delete Question" />
       <TextField fx:id="textF" layoutX="273.0" layoutY="226.0" prefHeight="25.0" prefWidth="149.0" promptText="enter question number" visible="false" />
       <Button fx:id="delete" layoutX="323.0" layoutY="265.0" mnemonicParsing="false" onAction="#finishDeleteQues" text="delete" visible="false" />
