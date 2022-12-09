@@ -1,9 +1,9 @@
 package Control;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
+//import java.util.Timer;
+//import java.util.TimerTask;
+//import java.util.concurrent.TimeUnit;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,10 +63,10 @@ public class UserNameController {
 	}
 	
 	
-private  String format(long value) {
+/*private  String format(long value) {
 	if(value<10) {
 		return 0+""+value;
 	}
 	return value+"";
-}
+}*/
 }

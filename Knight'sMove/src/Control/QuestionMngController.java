@@ -20,7 +20,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+//import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.AdminPlayer;
@@ -29,14 +29,15 @@ import model.Question;
 import model.SysData;
 
 public class QuestionMngController {
-	@FXML
-	private TextField NickName;
+	
 	@FXML
 	private PasswordField Password;
 	@FXML
 	private Button check;
 	@FXML
 	private Text warning;
+	@FXML
+	private TextField NickName;
 	@FXML
 	private TableView<Question> table;
 	@FXML
@@ -102,7 +103,8 @@ public class QuestionMngController {
 	@FXML
 	private Text diff11;
 	@FXML
-	private Button updateQues2; 
+	private Button updateQues2;
+
 
 
     Alert a = new Alert(AlertType.NONE);

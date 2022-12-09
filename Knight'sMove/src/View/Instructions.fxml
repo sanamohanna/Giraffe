@@ -41,17 +41,17 @@
       </Text>
       <ImageView fitHeight="51.0" fitWidth="62.0" layoutX="110.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Queen.png" />
+            <Image url="@Images/Queen.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="180.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@king.png" />
+            <Image url="@Images/king.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="245.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Knighttt.png" />
+            <Image url="@Images/Knighttt.png" />
          </image>
       </ImageView>
       <Text layoutX="33.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ABOUT" wrappingWidth="48.89648437499994">
