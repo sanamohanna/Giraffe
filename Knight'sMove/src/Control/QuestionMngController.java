@@ -181,11 +181,14 @@ public class QuestionMngController {
 
 	}
 	public void addQues(ActionEvent event) throws Exception{
+		textF.setVisible(false);
+		delete.setVisible(false);
 		ObservableList<Integer> diffList = FXCollections.observableArrayList(1,2,3);
 		ObservableList<Integer> trueAns = FXCollections.observableArrayList(1,2,3,4);
 		difLevel.setItems(diffList);
 		trueAnswer.setItems(trueAns);
-		
+		num2.setVisible(false);
+		update.setVisible(false);
 		context.setVisible(true);
 		answer1.setVisible(true);
 		answer2.setVisible(true);
@@ -197,9 +200,9 @@ public class QuestionMngController {
 		add.setVisible(true);
 		true1.setVisible(true);
 		diff1.setVisible(true);
-		addQues.setVisible(false);
-		deleteQues.setVisible(false);
-		updateQues.setVisible(false);
+//		addQues.setVisible(false);
+//		deleteQues.setVisible(false);
+//		updateQues.setVisible(false);
 	}
 	public void finishAddQues(ActionEvent event) throws Exception{
 		ArrayList<Answer> answers = new ArrayList<Answer>();
@@ -278,11 +281,24 @@ public class QuestionMngController {
 		
 	}
 	public void deleteQues(ActionEvent event) throws Exception{
+		context.setVisible(false);
+		answer1.setVisible(false);
+		answer2.setVisible(false);
+		answer3.setVisible(false);
+		answer4.setVisible(false);
+		team.setVisible(false);
+		difLevel.setVisible(false);
+		trueAnswer.setVisible(false);
+		add.setVisible(false);
+		true1.setVisible(false);
+		diff1.setVisible(false);
 		textF.setVisible(true);
 		delete.setVisible(true);
-		addQues.setVisible(false);
-		deleteQues.setVisible(false);
-		updateQues.setVisible(false);
+		num2.setVisible(false);
+		update.setVisible(false);
+//		addQues.setVisible(false);
+//		deleteQues.setVisible(false);
+//		updateQues.setVisible(false);
 System.out.println(sysData.getQuestions().size());
 			
 	}
@@ -296,7 +312,7 @@ System.out.println(sysData.getQuestions().size());
 
 			if(Integer.parseInt(textF.getText())>= sysData.getQuestions().size() || Integer.parseInt(textF.getText())<0  ) {
 				a.setAlertType(AlertType.ERROR);
-				a.setContentText("the number is not valid , please try again!");
+				a.setContentText("the number is not valid, please try again!");
 				a.show();			}
 			else {
 				sysData.LoadQuestions();
@@ -322,9 +338,24 @@ System.out.println(sysData.getQuestions().size());
 	public void updateQues(ActionEvent event) throws Exception{
 		num2.setVisible(true);
 		update.setVisible(true);
-		addQues.setVisible(false);
-		deleteQues.setVisible(false);
-		updateQues.setVisible(false);
+		textF.setVisible(false);
+		delete.setVisible(false);
+		warning.setVisible(false);
+		context.setVisible(false);
+		answer1.setVisible(false);
+		answer2.setVisible(false);
+		answer3.setVisible(false);
+		answer4.setVisible(false);
+		team.setVisible(false);
+		difLevel.setVisible(false);
+		trueAnswer.setVisible(false);
+		add.setVisible(false);
+		true1.setVisible(false);
+		diff1.setVisible(false);
+		
+//		addQues.setVisible(false);
+//		deleteQues.setVisible(false);
+//		updateQues.setVisible(false);
 	}
 	public void finishUpdateQues(ActionEvent event) throws Exception{
         try {

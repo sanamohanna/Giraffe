@@ -35,42 +35,6 @@
       "correct_ans": "2",
       "level": "2",
       "team": "animal"
-    },
-    {
-      "question": "klara",
-      "answers": [
-        "k",
-        "l",
-        "a",
-        "r"
-      ],
-      "correct_ans": "4",
-      "level": "2",
-      "team": "animal"
-    },
-    {
-      "question": "answer the ques",
-      "answers": [
-        "11",
-        "22",
-        "33",
-        "44"
-      ],
-      "correct_ans": "4",
-      "level": "2",
-      "team": "animal"
-    },
-    {
-      "question": "how is the weather today",
-      "answers": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
-      "correct_ans": "3",
-      "level": "2",
-      "team": "animal"
     }
   ]
 }
