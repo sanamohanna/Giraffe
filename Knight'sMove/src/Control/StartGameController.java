@@ -1,25 +1,23 @@
 package Control;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-//import javafx.scene.control.Labeled;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class StartGameController {
+public class StartGameController implements Initializable {
 	
 	@FXML
 	private Label label1;
-	//@FXML
-	//private Label label2;
 	@FXML
 	private Text text;
 	@FXML
-	private AnchorPane user;
+	private Text level;
 	
 	
 	//timer fields;
@@ -27,7 +25,6 @@ public class StartGameController {
 	
 	
 	public void setTimer() {
-	
 		totalSec=60;
 		Timer timer = new Timer();
 		TimerTask timerTask = new TimerTask() {
@@ -35,11 +32,10 @@ public class StartGameController {
 			@Override
 			public void run() {
 				convertTime();
-				if(totalSec<=0) {
-					
+				if(totalSec<=0) {	
 				text.setText("00:00");
 				timer.cancel();
-					//add something here
+				//add something here
 				}
 			}
 			
@@ -49,8 +45,6 @@ public class StartGameController {
 	private  void convertTime() {
 		min = TimeUnit.SECONDS.toMinutes(totalSec);
 		sec = totalSec  - (min * 60);
-		//hr = TimeUnit.MINUTES.toHours(min);
-		//min = min - (hr *60);
 		text.setText(format(min)+":"+format(sec));
 		totalSec--;
 	}
@@ -62,7 +56,16 @@ public class StartGameController {
 	}
 	
 	public void displayName(String userName) {
-		label1.setText("hello: "+userName);
+		label1.setText("Player: "+userName);
+	}
+	public void displayLevel() {
+		level.setText("LEVEL 1");
+	}
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		setTimer();
+		displayLevel();
 	}
 	
 
