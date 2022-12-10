@@ -1,7 +1,9 @@
 package Control;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import Enum.DifficultyLevel;
 import javafx.collections.FXCollections;
@@ -9,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.AdminPlayer;
@@ -28,7 +32,7 @@ import model.Answer;
 import model.Question;
 import model.SysData;
 
-public class QuestionMngController {
+public class QuestionMngController implements Initializable {
 	@FXML
 	private TextField NickName;
 	@FXML
@@ -39,10 +43,6 @@ public class QuestionMngController {
 	private Text warning;
 	@FXML
 	private TableView<Question> table;
-	@FXML
-	private TableColumn<Question, Integer> id;
-	@FXML
-	private TableColumn<Question, String> ques;
 	@FXML
 	private TextField context;
 	@FXML
@@ -69,7 +69,6 @@ public class QuestionMngController {
 	private Button delete;
 	@FXML
 	private Button deleteQues;
-
 	@FXML
 	private Text true1;
 	@FXML
@@ -104,12 +103,27 @@ public class QuestionMngController {
 	@FXML
 	private Button updateQues2; 
 
-
+	SysData sysData = SysData.getInstance();
     Alert a = new Alert(AlertType.NONE);
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		sysData.LoadQuestions();
+		TableColumn id=new TableColumn("ID");
+		TableColumn ques=new TableColumn("Context");
+		table.getColumns().addAll(id,ques);
+	    ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
+	    
+		id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
+		ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
+		table.setItems(observQues);
+    }
+   
+    //ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
 
 	private static QuestionMngController instance = null;
 	private ArrayList<AdminPlayer> admins = new ArrayList<AdminPlayer>();
-	SysData sysData = SysData.getInstance();
+	
 	// QuestionMngController Singleton Instance
 	public static QuestionMngController getInstance() {
 		if (instance == null) {
@@ -149,7 +163,8 @@ public class QuestionMngController {
 				Parent root = FXMLLoader.load(getClass().getResource("/View/EditQuestions.fxml"));
 				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				Scene scene = new Scene(root);
-				stage.setResizable(false);			
+				stage.setResizable(false);		
+	
 				//scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
 				stage.setScene(scene);
 				stage.show();
@@ -296,10 +311,7 @@ public class QuestionMngController {
 		delete.setVisible(true);
 		num2.setVisible(false);
 		update.setVisible(false);
-//		addQues.setVisible(false);
-//		deleteQues.setVisible(false);
-//		updateQues.setVisible(false);
-System.out.println(sysData.getQuestions().size());
+
 			
 	}
 	public void finishDeleteQues(ActionEvent event) throws Exception{
@@ -336,11 +348,11 @@ System.out.println(sysData.getQuestions().size());
 		
 	}
 	public void updateQues(ActionEvent event) throws Exception{
+		
 		num2.setVisible(true);
 		update.setVisible(true);
 		textF.setVisible(false);
 		delete.setVisible(false);
-		warning.setVisible(false);
 		context.setVisible(false);
 		answer1.setVisible(false);
 		answer2.setVisible(false);
@@ -483,4 +495,6 @@ System.out.println(sysData.getQuestions().size());
 		a.setContentText("Updated successfully");
 		a.show();
 	}
+	 
+	   
 }

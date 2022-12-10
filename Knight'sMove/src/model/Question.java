@@ -3,11 +3,13 @@ package model;
 import java.util.ArrayList;
 import java.util.Objects;
 import Enum.DifficultyLevel;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class Question {
 
-	private Integer id;
-	private String Context;
+	private SimpleIntegerProperty Id;
+	private SimpleStringProperty Context;
 	private ArrayList<Answer> answers;
 	private DifficultyLevel difficultyLevel;
 	private String team;
@@ -18,8 +20,8 @@ public class Question {
 
 	public Question(Integer id, String context, ArrayList<Answer> answers, DifficultyLevel level, String team) {
 		super();
-		this.id = id;
-		Context = context;
+		this.Id = new SimpleIntegerProperty(id);
+		Context = new SimpleStringProperty(context);
 		this.answers = answers;
 		this.difficultyLevel = level;
 		this.team = team;
@@ -27,7 +29,7 @@ public class Question {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(Id);
 	}
 
 	@Override
@@ -39,23 +41,23 @@ public class Question {
 		if (getClass() != obj.getClass())
 			return false;
 		Question other = (Question) obj;
-		return id == other.id;
+		return Id == other.Id;
 	}
 
 	public Integer getId() {
-		return id;
+		return Id.get();
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.Id = new SimpleIntegerProperty(id);
 	}
 
 	public String getContext() {
-		return Context;
+		return Context.get();
 	}
 
 	public void setContext(String context) {
-		Context = context;
+		Context = new SimpleStringProperty(context);
 	}
 
 	public ArrayList<Answer> getAnswers() {
@@ -116,7 +118,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", Context=" + Context + ", answers=" + answers + ", difficultyLevel="
+		return "Question [id=" + Id + ", Context=" + Context + ", answers=" + answers + ", difficultyLevel="
 				+ difficultyLevel + ", team=" + team + "]";
 	}
 
