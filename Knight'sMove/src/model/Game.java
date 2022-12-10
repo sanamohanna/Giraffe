@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 
 import Enum.GameStatus;
 
@@ -14,11 +15,12 @@ public class Game {
 	private Queen queen;
 	private King king;
 	private GameStatus gameStatus;
-	private TimerCount time;
 	private ArrayList<Question> availableQuestions;
 	private ArrayList<Question> unavailableQuestions;
+	private Integer Points;
 	final int WIN_POINT = 1;
 	final int LOSE_POINT = 1;
+	private Date date ;
 	// Game Singleton Instance
 
 	public static Game getInstance() {
@@ -28,15 +30,15 @@ public class Game {
 		return instance;
 	}
 	// constructor
-	public Game(Board board, Player player, Queen queen, King king, GameStatus gameStatus, Time time) {
+	public Game(Board board, Player player, Queen queen, King king, GameStatus gameStatus) {
 		super();
 		this.board = Board.getInstance();
 		// we have to start the board
 		this.player = player;
 		this.queen = queen;
 		this.king = king;
+		this.date = new Date();
 		this.gameStatus = gameStatus;
-		this.time = new TimerCount();
 		availableQuestions = new ArrayList<>();
 		availableQuestions.addAll(SysData.getInstance().getQuestions());
 		unavailableQuestions = new ArrayList<Question>();
@@ -50,10 +52,28 @@ public class Game {
 
 	// getters setters
 	
+	public Game(Player player, Integer points, Date date) {
+		super();
+		this.player = player;
+		Points = points;
+		this.date = date;
+	}
 	public Knight getKnight() {
 		return knight;
 	}
 
+	public Integer getPoints() {
+		return Points;
+	}
+	public void setPoints(Integer points) {
+		Points = points;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	public void setKnight(Knight knight) {
 		this.knight = knight;
 	}
@@ -104,12 +124,5 @@ public class Game {
 		this.gameStatus = gameStatus;
 	}
 
-	public TimerCount getTime() {
-		return time;
-	}
-
-	public void setTime(TimerCount time) {
-		this.time = time;
-	}
 
 }

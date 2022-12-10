@@ -88,7 +88,6 @@ public class QuestionMngController implements Initializable {
 	private Button update;
 	@FXML
 	private TextField num2;
-
 	@FXML
 	private Text true11;
 	@FXML

@@ -3,8 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Objects;
 import Enum.DifficultyLevel;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+
 
 public class Question {
 
