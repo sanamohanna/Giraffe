@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,7 +21,7 @@ public class Game {
 	private Integer Points;
 	final int WIN_POINT = 1;
 	final int LOSE_POINT = 1;
-	private Date date ;
+	private LocalDate date ;
 	// Game Singleton Instance
 
 	public static Game getInstance() {
@@ -37,7 +38,7 @@ public class Game {
 		this.player = player;
 		this.queen = queen;
 		this.king = king;
-		this.date = new Date();
+		this.date =LocalDate.now();
 		this.gameStatus = gameStatus;
 		availableQuestions = new ArrayList<>();
 		availableQuestions.addAll(SysData.getInstance().getQuestions());
@@ -52,11 +53,11 @@ public class Game {
 
 	// getters setters
 	
-	public Game(Player player, Integer points, Date date) {
+	public Game(Player player, Integer points) {
 		super();
 		this.player = player;
 		Points = points;
-		this.date = date;
+		this.date = LocalDate.now();
 	}
 	public Knight getKnight() {
 		return knight;
@@ -68,10 +69,10 @@ public class Game {
 	public void setPoints(Integer points) {
 		Points = points;
 	}
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public void setKnight(Knight knight) {
