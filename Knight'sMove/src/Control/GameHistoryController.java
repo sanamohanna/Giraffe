@@ -26,12 +26,14 @@ import model.SysData;
 import java.util.Date;
 public class GameHistoryController implements Initializable{
      
-	TableColumn<Game, Date> Date;
-    TableColumn<Player, String> NickName;
-    TableColumn<Game, Integer> Points;
+	
     Player player = new Player("Klara");
+    TableColumn<Game, Date> Date;
+    TableColumn<Game, Player> NickName;
+    TableColumn<Game, Integer> Points;
     @FXML 
     private TableView Table;
+    
 	public void backButton(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -47,15 +49,15 @@ public class GameHistoryController implements Initializable{
      
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		NickName=new TableColumn<Player, String>("     Player     ");
-		Date=new TableColumn<Game, Date>("             Date           ");
-		Points =new TableColumn<Game, Integer>("         Points            "); 
+		NickName=new TableColumn<>("     Player     ");
+		Date=new TableColumn<>("             Date           ");
+		Points =new TableColumn<>("         Points            "); 
 		Table.getColumns().addAll(NickName,Date,Points);
 	    ObservableList<Game> observQues = FXCollections.observableArrayList(new Game(player,15 ,new Date()));
 	    
-		NickName.setCellValueFactory(new PropertyValueFactory<Player , String>("nickname"));
-		Date.setCellValueFactory(new PropertyValueFactory<Game,Date>("date"));
-		Points.setCellValueFactory(new PropertyValueFactory<Game,Integer>("Points"));
+		NickName.setCellValueFactory(new PropertyValueFactory<>("player"));
+		Date.setCellValueFactory(new PropertyValueFactory<>("date"));
+		Points.setCellValueFactory(new PropertyValueFactory<>("Points"));
 		Table.setItems(observQues);		
 	}
 
