@@ -98,17 +98,22 @@ public class QuestionMngController implements Initializable {
 
 	SysData sysData = SysData.getInstance();
     Alert a = new Alert(AlertType.NONE);
+    TableColumn id;
+    TableColumn ques;
+    TableColumn dif;
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		sysData.LoadQuestions();
-		TableColumn id=new TableColumn("ID");
-		TableColumn ques=new TableColumn("Context");
-		table.getColumns().addAll(id,ques);
+		 id=new TableColumn("ID   ");
+		ques=new TableColumn("Context        ");
+		dif =new TableColumn("Difficulty      ");
+		table.getColumns().addAll(id,ques,dif);
 	    ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
 	    
 		id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
 		ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
+		dif.setCellValueFactory(new PropertyValueFactory<Question,DifficultyLevel>("difficultyLevel"));
 		table.setItems(observQues);
     }
    
@@ -208,6 +213,7 @@ public class QuestionMngController implements Initializable {
 			Question newQues = new Question(sysData.getQuestions().size(),context.getText(),answers,diff,"animal");
 			sysData.addQuestion(newQues);
 			sysData.WriteQuestions();
+			initialize(null, null);
 			context.setVisible(false);
 			answer1.setVisible(false);
 			answer2.setVisible(false);
@@ -274,9 +280,15 @@ public class QuestionMngController implements Initializable {
 				addQues.setVisible(true);
 				deleteQues.setVisible(true);
 				updateQues.setVisible(true);
+				ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
+			    
+				id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
+				ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
+				table.setItems(observQues);
 				a.setAlertType(AlertType.INFORMATION);
 				a.setContentText("deleted successfully");
 				a.show();
+				
 			}
 			
 		}catch (Exception e) {
@@ -430,6 +442,10 @@ public class QuestionMngController implements Initializable {
 		addQues.setVisible(true);
 		deleteQues.setVisible(true);
 		updateQues.setVisible(true);
+		ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
+	    id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
+		ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
+		table.setItems(observQues);
 		a.setAlertType(AlertType.INFORMATION);
 		a.setContentText("Updated successfully");
 		a.show();
