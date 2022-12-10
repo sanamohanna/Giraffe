@@ -28,6 +28,8 @@ public class GameHistoryController implements Initializable{
      
 	
     Player player = new Player("Klara");
+    Player player1 = new Player("nada");
+    Player player2 = new Player("sana");
     TableColumn<Game, Date> Date;
     TableColumn<Game, Player> NickName;
     TableColumn<Game, Integer> Points;
@@ -53,7 +55,7 @@ public class GameHistoryController implements Initializable{
 		Date=new TableColumn<>("             Date           ");
 		Points =new TableColumn<>("         Points            "); 
 		Table.getColumns().addAll(NickName,Date,Points);
-	    ObservableList<Game> observQues = FXCollections.observableArrayList(new Game(player,15 ));
+	    ObservableList<Game> observQues = FXCollections.observableArrayList(new Game(player,150 ) , new Game(player1 , 100) , new Game(player2,200));
 	    
 		NickName.setCellValueFactory(new PropertyValueFactory<>("player"));
 		Date.setCellValueFactory(new PropertyValueFactory<>("date"));
