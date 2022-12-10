@@ -1,9 +1,9 @@
 package Control;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
+//import java.util.Timer;
+//import java.util.TimerTask;
+//import java.util.concurrent.TimeUnit;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,11 +22,9 @@ public class UserNameController {
 	int totalSec;
 	String time;
     Alert a = new Alert(AlertType.NONE);
-
-	//StartGameController stg = new StartGameController();
 	public void letsPlay(ActionEvent event) throws Exception {
 		try {
-			if(nameTextField.getText() == "") {
+			if(nameTextField.getText() == null) {
 				throw new Exception();
 			}
 		String UserName =nameTextField.getText();
@@ -34,14 +32,11 @@ public class UserNameController {
 		
 		Parent root = loader.load();
 		StartGameController sgc1 = loader.getController();
-		StartGameController sgc2 = loader.getController();
-		sgc2.setTimer();
 		sgc1.displayName(UserName);
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
 		stage.setResizable(false);
-		//scene.getStylesheets().add(getClass().getResource("/View/.css").toExternalForm());
 		stage.setScene(scene);
 		stage.show();
 		}catch (Exception e) {
@@ -61,12 +56,4 @@ public class UserNameController {
 		stage.show();
 
 	}
-	
-	
-private  String format(long value) {
-	if(value<10) {
-		return 0+""+value;
-	}
-	return value+"";
-}
 }

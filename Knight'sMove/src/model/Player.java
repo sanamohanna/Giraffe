@@ -5,9 +5,8 @@ import java.util.Objects;
 
 public class Player {
 
+	
 	private String nickname;
-	private Integer points;
-	//private Knight knight;
 	private ArrayList<Game> gamesHistory;
 	//constructor
 	public Player(String nickname) {
@@ -39,13 +38,6 @@ public class Player {
 		this.nickname = nickname;
 	}
 
-	public Integer getPoints() {
-		return points;
-	}
-
-	public void setPoints(Integer points) {
-		this.points = points;
-	}
 
 
 	public ArrayList<Game> getGamesHistory() {
@@ -55,5 +47,10 @@ public class Player {
 	public void setGamesHistory(ArrayList<Game> gamesHistory) {
 		this.gamesHistory = gamesHistory;
 	}
+	@Override
+	public String toString() {
+		return nickname ;
+	}
+
 
 }

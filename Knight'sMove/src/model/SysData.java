@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
-import java.util.HashMap;
+//import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -138,9 +138,8 @@ public class SysData {
 			question.addProperty("question", q.getContext());
 			question.add("answers", answerArray);
 			question.addProperty("correct_ans", String.valueOf(correct));
-
 			question.addProperty("level", String.valueOf(difficulty));
-			question.addProperty("team", "animal");
+			question.addProperty("team", q.getTeam());
 
 			questions.add(question);
 

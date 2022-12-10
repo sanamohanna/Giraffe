@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 import Enum.DifficultyLevel;
 
+
 public class Question {
 
-	private Integer id;
+	private Integer Id;
 	private String Context;
 	private ArrayList<Answer> answers;
 	private DifficultyLevel difficultyLevel;
@@ -18,8 +19,8 @@ public class Question {
 
 	public Question(Integer id, String context, ArrayList<Answer> answers, DifficultyLevel level, String team) {
 		super();
-		this.id = id;
-		Context = context;
+		this.Id = id;
+		this.Context = context;
 		this.answers = answers;
 		this.difficultyLevel = level;
 		this.team = team;
@@ -27,10 +28,10 @@ public class Question {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(Id);
 	}
 
-	@Override
+	@Override 
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -39,15 +40,15 @@ public class Question {
 		if (getClass() != obj.getClass())
 			return false;
 		Question other = (Question) obj;
-		return id == other.id;
+		return Id == other.Id;
 	}
 
 	public Integer getId() {
-		return id;
+		return Id;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.Id =id;
 	}
 
 	public String getContext() {
@@ -55,7 +56,7 @@ public class Question {
 	}
 
 	public void setContext(String context) {
-		Context = context;
+		this.Context = context;
 	}
 
 	public ArrayList<Answer> getAnswers() {
@@ -116,7 +117,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", Context=" + Context + ", answers=" + answers + ", difficultyLevel="
+		return "Question [id=" + Id + ", Context=" + Context + ", answers=" + answers + ", difficultyLevel="
 				+ difficultyLevel + ", team=" + team + "]";
 	}
 
