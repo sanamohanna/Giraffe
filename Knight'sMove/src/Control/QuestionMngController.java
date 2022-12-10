@@ -33,14 +33,7 @@ import model.Question;
 import model.SysData;
 
 public class QuestionMngController implements Initializable {
-	@FXML
-	private TextField NickName;
-	@FXML
-	private PasswordField Password;
-	@FXML
-	private Button check;
-	@FXML
-	private Text warning;
+
 	@FXML
 	private TableView<Question> table;
 	@FXML
@@ -107,22 +100,20 @@ public class QuestionMngController implements Initializable {
     Alert a = new Alert(AlertType.NONE);
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-//		// TODO Auto-generated method stub
-//		sysData.LoadQuestions();
-//		TableColumn id=new TableColumn("ID");
-//		TableColumn ques=new TableColumn("Context");
-//		table.getColumns().addAll(id,ques);
-//	    ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
-//	    
-//		id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
-//		ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
-//		table.setItems(observQues);
+		// TODO Auto-generated method stub
+		sysData.LoadQuestions();
+		TableColumn id=new TableColumn("ID");
+		TableColumn ques=new TableColumn("Context");
+		table.getColumns().addAll(id,ques);
+	    ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
+	    
+		id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
+		ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
+		table.setItems(observQues);
     }
    
-    //ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
-
 	private static QuestionMngController instance = null;
-	private ArrayList<AdminPlayer> admins = new ArrayList<AdminPlayer>();
+
 	
 	// QuestionMngController Singleton Instance
 	public static QuestionMngController getInstance() {
@@ -131,60 +122,8 @@ public class QuestionMngController implements Initializable {
 		}
 		return instance;
 	}
-
 	
-	public QuestionMngController() {
-		super();
-		 AdminPlayer admin1 =new AdminPlayer("klara","Klara");
-		 AdminPlayer admin2 =new AdminPlayer("sana","Sana");
-		 AdminPlayer admin3 =new AdminPlayer("nada","Nada");
-		 AdminPlayer admin4 =new AdminPlayer("safa","Safa");
-		this.admins.add(admin1);
-		this.admins.add(admin2);
-		this.admins.add(admin3);
-		this.admins.add(admin4);
-	}
-	
-	public Text getWarning() {
-		return warning;
-	}
-
-
-	public void setWarning(Text warning) {
-		this.warning = warning;
-	}
-
-	public void checkDetails(ActionEvent event) throws Exception{
-		int flag=1;
-		for(int i =0;i< admins.size();i++) {
-			if(NickName.getText().equals(admins.get(i).getNickname()) && Password.getText().equals(admins.get(i).getPassword()))
-			{
-				flag =0;
-				Parent root = FXMLLoader.load(getClass().getResource("/View/EditQuestions.fxml"));
-				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-				Scene scene = new Scene(root);
-				stage.setResizable(false);		
-	
-				//scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
-				stage.setScene(scene);
-				stage.show();
-			}
-		}
-		if(flag==1)
-		warning.setVisible(true);
-	}
 	public void backButton1(ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setResizable(false);
-		scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
-		stage.setScene(scene);
-	
-		stage.show();
-
-	}
-	public void backButton2(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
