@@ -7,7 +7,6 @@ public class Player {
 
 	private String nickname;
 	private Integer points;
-	//private Knight knight;
 	private ArrayList<Game> gamesHistory;
 	//constructor
 	public Player(String nickname) {

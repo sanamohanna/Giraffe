@@ -34,6 +34,7 @@
       <TextField fx:id="answer2" layoutX="18.0" layoutY="259.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 2" visible="false" AnchorPane.topAnchor="259.0" />
       <TextField fx:id="answer3" layoutX="18.0" layoutY="285.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 3" visible="false" AnchorPane.topAnchor="285.0" />
       <TextField fx:id="answer4" layoutX="18.0" layoutY="313.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 4" visible="false" AnchorPane.topAnchor="313.0" />
+      <TextField fx:id="team" layoutX="18.0" layoutY="344.0" promptText="team" visible="false" AnchorPane.topAnchor="344.0" />
       <ChoiceBox fx:id="difLevel" layoutX="351.0" layoutY="230.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="43.0" visible="false">
          <effect>
             <Lighting>
@@ -67,7 +68,6 @@
          <font>
             <Font name="Baskerville Old Face" size="13.0" />
          </font></Text>
-      <TextField fx:id="team" layoutX="18.0" layoutY="344.0" promptText="team" visible="false" AnchorPane.topAnchor="344.0" />
       <Button fx:id="add" layoutX="291.0" layoutY="312.0" mnemonicParsing="false" onAction="#finishAddQues" text="add" visible="false">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="12.0" />

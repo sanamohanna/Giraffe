@@ -10,7 +10,7 @@ public class Game {
 
 	private Board board;
 	private Player player;
-	//private Knight knight;
+	private Knight knight;
 	private Queen queen;
 	private King king;
 	private GameStatus gameStatus;
@@ -19,7 +19,14 @@ public class Game {
 	private ArrayList<Question> unavailableQuestions;
 	final int WIN_POINT = 1;
 	final int LOSE_POINT = 1;
+	// Game Singleton Instance
 
+	public static Game getInstance() {
+		if (instance == null) {
+			instance = new Game();
+		}
+		return instance;
+	}
 	// constructor
 	public Game(Board board, Player player, Queen queen, King king, GameStatus gameStatus, Time time) {
 		super();
@@ -35,7 +42,21 @@ public class Game {
 		unavailableQuestions = new ArrayList<Question>();
 
 	}
+	public Game() {
+		super();
 
+	}
+
+
+	// getters setters
+	
+	public Knight getKnight() {
+		return knight;
+	}
+
+	public void setKnight(Knight knight) {
+		this.knight = knight;
+	}
 	public ArrayList<Question> getUnavailableQuestions() {
 		return unavailableQuestions;
 	}
@@ -43,21 +64,6 @@ public class Game {
 	public void setUnavailableQuestions(ArrayList<Question> unavailableQuestions) {
 		this.unavailableQuestions = unavailableQuestions;
 	}
-
-	public Game() {
-		super();
-
-	}
-	// Game Singleton Instance
-
-	public static Game getInstance() {
-		if (instance == null) {
-			instance = new Game();
-		}
-		return instance;
-	}
-
-	// getters setters
 	public Board getBoard() {
 		return board;
 	}

@@ -138,9 +138,8 @@ public class SysData {
 			question.addProperty("question", q.getContext());
 			question.add("answers", answerArray);
 			question.addProperty("correct_ans", String.valueOf(correct));
-
 			question.addProperty("level", String.valueOf(difficulty));
-			question.addProperty("team", "animal");
+			question.addProperty("team", q.getTeam());
 
 			questions.add(question);
 
@@ -181,7 +180,7 @@ public class SysData {
 			e.printStackTrace();
 		}
 
-		//@SuppressWarnings("deprecation")
+		@SuppressWarnings("deprecation")
 		JsonObject jsonObject = new JsonParser().parse(reader).getAsJsonObject();
 
 		final JsonArray data = jsonObject.getAsJsonArray("questions");

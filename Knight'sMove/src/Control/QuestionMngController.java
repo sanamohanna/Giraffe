@@ -105,9 +105,9 @@ public class QuestionMngController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		sysData.LoadQuestions();
-		 id=new TableColumn("ID   ");
-		ques=new TableColumn("Context        ");
-		dif =new TableColumn("Difficulty      ");
+		id=new TableColumn("    ID   ");
+		ques=new TableColumn("                           Context                        ");
+		dif =new TableColumn("         Difficulty            "); 
 		table.getColumns().addAll(id,ques,dif);
 	    ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
 	    
@@ -210,10 +210,9 @@ public class QuestionMngController implements Initializable {
 				diff = DifficultyLevel.HARD;
 			}	
 			sysData.LoadQuestions();
-			Question newQues = new Question(sysData.getQuestions().size(),context.getText(),answers,diff,"animal");
+			Question newQues = new Question(sysData.getQuestions().size(),context.getText(),answers,diff,team.getText());
 			sysData.addQuestion(newQues);
 			sysData.WriteQuestions();
-			initialize(null, null);
 			context.setVisible(false);
 			answer1.setVisible(false);
 			answer2.setVisible(false);
@@ -228,6 +227,11 @@ public class QuestionMngController implements Initializable {
 			addQues.setVisible(true);
 			deleteQues.setVisible(true);
 			updateQues.setVisible(true);
+			ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());    
+			id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
+			ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
+			dif.setCellValueFactory(new PropertyValueFactory<Question,DifficultyLevel>("difficultyLevel"));		
+			table.setItems(observQues);
 			a.setAlertType(AlertType.INFORMATION);
 			a.setContentText("added successfully");
 			a.show();
@@ -280,12 +284,11 @@ public class QuestionMngController implements Initializable {
 				addQues.setVisible(true);
 				deleteQues.setVisible(true);
 				updateQues.setVisible(true);
-				ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
-			    
+				ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());    
 				id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
 				ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
-				table.setItems(observQues);
-				a.setAlertType(AlertType.INFORMATION);
+				dif.setCellValueFactory(new PropertyValueFactory<Question,DifficultyLevel>("difficultyLevel"));		
+				table.setItems(observQues);			a.setAlertType(AlertType.INFORMATION);
 				a.setContentText("deleted successfully");
 				a.show();
 				
@@ -442,9 +445,10 @@ public class QuestionMngController implements Initializable {
 		addQues.setVisible(true);
 		deleteQues.setVisible(true);
 		updateQues.setVisible(true);
-		ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
-	    id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
+		ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());    
+		id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
 		ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
+		dif.setCellValueFactory(new PropertyValueFactory<Question,DifficultyLevel>("difficultyLevel"));		
 		table.setItems(observQues);
 		a.setAlertType(AlertType.INFORMATION);
 		a.setContentText("Updated successfully");

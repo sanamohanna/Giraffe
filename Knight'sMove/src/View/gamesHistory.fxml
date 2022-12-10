@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="363.0" prefWidth="411.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="363.0" prefWidth="411.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.GameHistoryController">
    <children>
       <AnchorPane layoutY="-54.0" prefHeight="254.0" prefWidth="200.0">
          <children>
@@ -18,7 +18,7 @@
               </columns>
             </TableView>
             <Text id="txt1" layoutX="166.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Games History" wrappingWidth="79.58856201171875" />
-            <Button id="back" layoutX="14.0" layoutY="71.0" mnemonicParsing="false" text="back" />
+            <Button id="back" layoutX="14.0" layoutY="71.0" mnemonicParsing="false" onAction="#backButton" text="back" />
          </children>
       </AnchorPane>
    </children>
