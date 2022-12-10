@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jars"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JAVAFX___">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/commons-lang3-3.8.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/gson-2.8.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/hsqldb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/hsqldb-2.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/jackcess-3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/json-simple-2.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
