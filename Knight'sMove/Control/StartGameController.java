@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-//import javafx.scene.control.Labeled;
+import javafx.scene.control.Labeled;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 

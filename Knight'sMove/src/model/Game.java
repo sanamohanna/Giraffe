@@ -10,7 +10,7 @@ public class Game {
 
 	private Board board;
 	private Player player;
-	private Knight knight;
+	//private Knight knight;
 	private Queen queen;
 	private King king;
 	private GameStatus gameStatus;
@@ -34,6 +34,14 @@ public class Game {
 		availableQuestions.addAll(SysData.getInstance().getQuestions());
 		unavailableQuestions = new ArrayList<Question>();
 
+	}
+
+	public ArrayList<Question> getUnavailableQuestions() {
+		return unavailableQuestions;
+	}
+
+	public void setUnavailableQuestions(ArrayList<Question> unavailableQuestions) {
+		this.unavailableQuestions = unavailableQuestions;
 	}
 
 	public Game() {
