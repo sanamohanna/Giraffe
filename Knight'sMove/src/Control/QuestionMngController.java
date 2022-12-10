@@ -167,7 +167,7 @@ public class QuestionMngController implements Initializable {
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		try {
 			if(difLevel.getValue() == null || context.getText() == null || answer1.getText() == null 
-					|| answer2.getText() == null || answer3.getText() == null || answer3.getText() == null
+					|| answer2.getText() == null || answer3.getText() == null || answer3.getText() == null || team == null
 					|| trueAnswer.getValue() == null ) {
 				throw new Exception();
 			}

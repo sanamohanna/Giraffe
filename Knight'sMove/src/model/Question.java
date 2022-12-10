@@ -8,8 +8,8 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Question {
 
-	private SimpleIntegerProperty Id;
-	private SimpleStringProperty Context;
+	private Integer Id;
+	private String Context;
 	private ArrayList<Answer> answers;
 	private DifficultyLevel difficultyLevel;
 	private String team;
@@ -20,8 +20,8 @@ public class Question {
 
 	public Question(Integer id, String context, ArrayList<Answer> answers, DifficultyLevel level, String team) {
 		super();
-		this.Id = new SimpleIntegerProperty(id);
-		Context = new SimpleStringProperty(context);
+		this.Id = id;
+		this.Context = context;
 		this.answers = answers;
 		this.difficultyLevel = level;
 		this.team = team;
@@ -45,19 +45,19 @@ public class Question {
 	}
 
 	public Integer getId() {
-		return Id.get();
+		return Id;
 	}
 
 	public void setId(Integer id) {
-		this.Id = new SimpleIntegerProperty(id);
+		this.Id =id;
 	}
 
 	public String getContext() {
-		return Context.get();
+		return Context;
 	}
 
 	public void setContext(String context) {
-		Context = new SimpleStringProperty(context);
+		this.Context = context;
 	}
 
 	public ArrayList<Answer> getAnswers() {
