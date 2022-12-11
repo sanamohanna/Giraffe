@@ -121,16 +121,64 @@
       "team": "animal"
     },
     {
-      "question": "האם SINGLTON נחשב כתבנית עיצוב ?",
+      "question": "1",
       "answers": [
-        "כן",
-        "כן ",
-        "לא ידוע ",
-        "אולי "
+        "2",
+        "1",
+        "4",
+        "3"
+      ],
+      "correct_ans": "1",
+      "level": "2",
+      "team": "2"
+    },
+    {
+      "question": "klara",
+      "answers": [
+        "1",
+        "2",
+        "4",
+        ""
       ],
       "correct_ans": "2",
-      "level": "1",
-      "team": "ספא "
+      "level": "3",
+      "team": "6"
+    },
+    {
+      "question": "gh",
+      "answers": [
+        "",
+        "w",
+        "1",
+        "d"
+      ],
+      "correct_ans": "1",
+      "level": "2",
+      "team": "w"
+    },
+    {
+      "question": "a",
+      "answers": [
+        "aa",
+        "123",
+        "aaa",
+        ""
+      ],
+      "correct_ans": "2",
+      "level": "2",
+      "team": "a"
+    },
+    {
+      "question": "",
+      "answers": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correct_ans": "2",
+      "level": "3",
+      "team": "5"
     }
   ]
 }
