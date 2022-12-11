@@ -422,9 +422,9 @@ public class QuestionMngController implements Initializable {
 		int sameA = 0 , sameQ = 0 ;;
 		try {
 		sysData.LoadQuestions();
-		if(difLevel.getValue() == null || context.getText().isEmpty() || answer1.getText().isEmpty()
-				|| answer2.getText().isEmpty() || answer3.getText().isEmpty() || answer4.getText().isEmpty() || team.getText().isEmpty()
-				|| trueAnswer.getValue() == null ) {
+		if(difLevelUpdated.getValue() == null || contextUpdated.getText().isEmpty() || answer1Updated.getText().isEmpty()
+				|| answer2Updated.getText().isEmpty() || answer3Updated.getText().isEmpty() || answer4Updated.getText().isEmpty() || teamUpdated.getText().isEmpty()
+				|| trueAnswerUpdated.getValue() == null ) {
 			throw new NullPointerException();
 		}
 		Integer num =Integer.parseInt(num2.getText());
