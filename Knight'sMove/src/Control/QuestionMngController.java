@@ -165,13 +165,13 @@ public class QuestionMngController implements Initializable {
 //		updateQues.setVisible(false);
 	}
 	public void finishAddQues(ActionEvent event) throws Exception{
-		int flag = 1;
+		int sameQ = 0 , sameA = 0;
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		try {
 			if(difLevel.getValue() == null || context.getText() == null || answer1.getText() == null 
 					|| answer2.getText() == null || answer3.getText() == null || answer3.getText() == null || team == null
 					|| trueAnswer.getValue() == null ) {
-				throw new Exception();
+				throw new NullPointerException();
 			}
 			Answer answer11 =new Answer(1,answer1.getText());
 			answers.add(answer11);
@@ -213,33 +213,24 @@ public class QuestionMngController implements Initializable {
 			}	
 			sysData.LoadQuestions();
 			Question newQues = new Question(sysData.getQuestions().size(),context.getText(),answers,diff,team.getText());
-			try{
+			
 				if(sysData.quesAlreadyExists(newQues.getContext())==false )
 				{
-					try{
+					
 						if(newQues.answerAlreadyExist(answers)==false) {
 							sysData.addQuestion(newQues);
 						}
-						else 
-							throw new Exception();	
-					
-					}
-					catch(Exception e){
-						flag = 0;
-						c.setAlertType(AlertType.ERROR);
-						c.setContentText("there is two similar answers, try again!!");
-						c.show();
-					}
+						else {
+							sameA = 1;
+							throw new Exception();
+						}
 				}
-				else
+				else {
+					sameQ = 1;
 					throw new Exception();
-			}
-			catch(Exception e){
-				flag = 0;
-				c.setAlertType(AlertType.ERROR);
-				c.setContentText("question already exist!!");
-				c.show();
-			}
+				}
+			
+		
 			sysData.WriteQuestions();
 			context.setVisible(false);
 			answer1.setVisible(false);
@@ -260,17 +251,28 @@ public class QuestionMngController implements Initializable {
 			ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
 			dif.setCellValueFactory(new PropertyValueFactory<Question,DifficultyLevel>("difficultyLevel"));		
 			table.setItems(observQues);
-			if(flag==1) {
+			
 			a.setAlertType(AlertType.INFORMATION);
 			a.setContentText("added successfully");
 			a.show();
-			}
+			
 	        
 		}
-		catch (Exception e) {
+		catch (NullPointerException e) {
 			a.setAlertType(AlertType.ERROR);
 			a.setContentText("please enter all data!");
 			a.show();
+		}catch (Exception e) {
+			if(sameA == 1) {
+				c.setAlertType(AlertType.ERROR);
+				c.setContentText("there is two similar answers, try again!!");
+				c.show();
+			}
+			if(sameQ == 1) {
+				c.setAlertType(AlertType.ERROR);
+				c.setContentText("question already exist!!");
+				c.show();
+			}
 		}
 		
 	}
