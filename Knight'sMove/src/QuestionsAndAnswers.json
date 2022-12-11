@@ -119,6 +119,42 @@
       "correct_ans": "3",
       "level": "1",
       "team": "animal"
+    },
+    {
+      "question": "1",
+      "answers": [
+        "2",
+        "1",
+        "4",
+        "3"
+      ],
+      "correct_ans": "1",
+      "level": "2",
+      "team": "2"
+    },
+    {
+      "question": "klara",
+      "answers": [
+        "1",
+        "2",
+        "4",
+        ""
+      ],
+      "correct_ans": "2",
+      "level": "3",
+      "team": "6"
+    },
+    {
+      "question": "gh",
+      "answers": [
+        "",
+        "w",
+        "1",
+        "d"
+      ],
+      "correct_ans": "1",
+      "level": "2",
+      "team": "w"
     }
   ]
 }

@@ -104,6 +104,7 @@ public class QuestionMngController implements Initializable {
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+    
 		sysData.LoadQuestions();
 		id=new TableColumn("    ID   ");
 		ques=new TableColumn("                           Context                        ");
@@ -169,7 +170,7 @@ public class QuestionMngController implements Initializable {
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		try {
 			if(difLevel.getValue() == null || context.getText() == null || answer1.getText() == null 
-					|| answer2.getText() == null || answer3.getText() == null || answer3.getText() == null || team == null
+					|| answer2.getText() == null || answer3.getText() == null || answer4.getText() == null || team == null
 					|| trueAnswer.getValue() == null ) {
 				throw new NullPointerException();
 			}
