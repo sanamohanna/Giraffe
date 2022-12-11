@@ -16,8 +16,8 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-
 import Enum.DifficultyLevel;
+
 
 public class SysData {
 	private static SysData instance = null;
