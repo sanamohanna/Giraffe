@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<<<<<<< HEAD
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
-=======
->>>>>>> parent of d13dcc7 (Merge branch 'main' of https://github.com/sanamohanna/Giraffe)
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,14 +14,12 @@
 
 <AnchorPane prefHeight="786.0" prefWidth="912.0" stylesheets="@Instructions.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.InstructionsController">
 	<children>
-<<<<<<< HEAD
-=======
+
 		<Button fx:id="backButton" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" prefHeight="16.0" prefWidth="54.0" text="Back " textFill="#2e1e21">
 			<font>
 				<Font size="14.0" />
 			</font>
 		</Button>
->>>>>>> parent of d13dcc7 (Merge branch 'main' of https://github.com/sanamohanna/Giraffe)
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ece8e8" height="41.0" layoutX="109.0" layoutY="194.0" stroke="BLACK" strokeType="INSIDE" width="191.0" />
       <Line endX="100.0" endY="7.62939453125E-6" layoutX="80.0" layoutY="194.0" startX="100.0" startY="41.0" />
       <Text layoutX="123.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUEEN" textAlignment="CENTER">
@@ -165,7 +160,6 @@
       <Line endX="-3.199981689453125" layoutX="388.0" layoutY="517.0" startX="-3.199981689453125" startY="234.0" />
       <Line endX="117.5999755859375" endY="265.0" layoutX="616.0" layoutY="486.0" startX="117.5999755859375" startY="31.0" />
       <Line endX="-40.0" endY="265.0" layoutX="616.0" layoutY="486.0" startX="-40.0" startY="31.0" />
-<<<<<<< HEAD
       <Button layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onAction="#backButton" text="Back">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
@@ -181,7 +175,6 @@
             </Lighting>
          </effect>
       </Button>
-=======
->>>>>>> parent of d13dcc7 (Merge branch 'main' of https://github.com/sanamohanna/Giraffe)
+
 	</children>
 </AnchorPane>
