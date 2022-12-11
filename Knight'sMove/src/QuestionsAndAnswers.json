@@ -104,7 +104,7 @@
         "3. היא אותו הדבר כמו הנדסת מדעי מחשב",
         "4. גישה לפיתוח תוכנה שבה מודלים התוצרים העיקריים של תהליך הפיתוח"
       ],
-      "correct_ans": "",
+      "correct_ans": "4",
       "level": "3",
       "team": "animal"
     },
@@ -119,66 +119,6 @@
       "correct_ans": "3",
       "level": "1",
       "team": "animal"
-    },
-    {
-      "question": "",
-      "answers": [
-        "1. ",
-        "2. ",
-        "3. ",
-        "4. "
-      ],
-      "correct_ans": "",
-      "level": "2",
-      "team": "animal"
-    },
-    {
-      "question": "",
-      "answers": [
-        "1. ",
-        "2. ",
-        "3. ",
-        "4. "
-      ],
-      "correct_ans": "",
-      "level": "3",
-      "team": "animal"
-    },
-    {
-      "question": "",
-      "answers": [
-        "1. ",
-        "2. ",
-        "3. ",
-        "4. "
-      ],
-      "correct_ans": "",
-      "level": "1",
-      "team": "animal"
-    },
-    {
-      "question": "",
-      "answers": [
-        "1. ",
-        "2. ",
-        "3. ",
-        "4. "
-      ],
-      "correct_ans": "",
-      "level": "2",
-      "team": "animal"
-    },
-    {
-      "question": "",
-      "answers": [
-        "1. ",
-        "2. ",
-        "3. ",
-        "4. "
-      ],
-      "correct_ans": "",
-      "level": "3",
-      "team": "animal"
-    },
+    }
   ]
 }
