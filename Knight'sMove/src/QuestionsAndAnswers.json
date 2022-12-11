@@ -121,64 +121,16 @@
       "team": "animal"
     },
     {
-      "question": "1",
+      "question": "12",
       "answers": [
-        "2",
-        "1",
-        "4",
-        "3"
-      ],
-      "correct_ans": "1",
-      "level": "2",
-      "team": "2"
-    },
-    {
-      "question": "klara",
-      "answers": [
-        "1",
-        "2",
-        "4",
-        ""
-      ],
-      "correct_ans": "2",
-      "level": "3",
-      "team": "6"
-    },
-    {
-      "question": "gh",
-      "answers": [
-        "",
-        "w",
-        "1",
-        "d"
-      ],
-      "correct_ans": "1",
-      "level": "2",
-      "team": "w"
-    },
-    {
-      "question": "a",
-      "answers": [
-        "aa",
-        "123",
-        "aaa",
-        ""
-      ],
-      "correct_ans": "2",
-      "level": "2",
-      "team": "a"
-    },
-    {
-      "question": "",
-      "answers": [
-        "1",
-        "2",
+        "12",
         "3",
-        "4"
+        "32",
+        "2"
       ],
-      "correct_ans": "2",
-      "level": "3",
-      "team": "5"
+      "correct_ans": "1",
+      "level": "2",
+      "team": "3"
     }
   ]
 }
