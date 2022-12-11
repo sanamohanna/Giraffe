@@ -169,8 +169,8 @@ public class QuestionMngController implements Initializable {
 		int sameQ = 0 , sameA = 0;
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		try {
-			if(difLevel.getValue() == null || context.getText() == null || answer1.getText() == null 
-					|| answer2.getText() == null || answer3.getText() == null || answer4.getText() == null || team == null
+			if(difLevel.getValue() == null || context.getText().isEmpty() || answer1.getText().isEmpty()
+					|| answer2.getText().isEmpty() || answer3.getText().isEmpty() || answer4.getText().isEmpty() || team.getText().isEmpty()
 					|| trueAnswer.getValue() == null ) {
 				throw new NullPointerException();
 			}
@@ -215,7 +215,7 @@ public class QuestionMngController implements Initializable {
 			sysData.LoadQuestions();
 			Question newQues = new Question(sysData.getQuestions().size(),context.getText(),answers,diff,team.getText());
 			
-				if(sysData.quesAlreadyExists(newQues.getContext())==false )
+				if(sysData.quesAlreadyExists(newQues.getContext(),-1)==false  )
 				{
 					
 						if(newQues.answerAlreadyExist(answers)==false) {

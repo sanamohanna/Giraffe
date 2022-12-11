@@ -167,6 +167,18 @@
       "correct_ans": "2",
       "level": "2",
       "team": "a"
+    },
+    {
+      "question": "",
+      "answers": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correct_ans": "2",
+      "level": "3",
+      "team": "5"
     }
   ]
 }
