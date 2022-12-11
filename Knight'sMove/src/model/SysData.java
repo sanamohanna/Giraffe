@@ -16,6 +16,8 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+
+import Control.QuestionMngController;
 import Enum.DifficultyLevel;
 
 
@@ -25,14 +27,13 @@ public class SysData {
 	private ArrayList<Question> questions = new ArrayList<Question>();
 
 	
-	// SysData Singleton Instance
+	// QuestionMngController Singleton Instance
 	public static SysData getInstance() {
 		if (instance == null) {
 			instance = new SysData();
 		}
 		return instance;
 	}
-
 	
 
 	public ArrayList<Question> getQuestions() {
