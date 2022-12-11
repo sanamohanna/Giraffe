@@ -1,15 +1,11 @@
 /*JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx- Property */
 .root{
-	-fx-background-image: url("/View/Images/instBackground.jpg");	
+	-fx-background-image:url('/View/Images/backgroundInsta1.jpg"');
 	-fx-background-size:cover;
-}
+	
+	}
 #backButton{
--fx-background-color:white;
 -fx-font-weight:bold;
- -fx-color: white;
 
-}
 
-.Text{
--fx-font-weight:bold;
 }
