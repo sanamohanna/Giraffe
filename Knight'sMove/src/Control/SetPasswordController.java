@@ -69,7 +69,7 @@ public class SetPasswordController {
 				Scene scene = new Scene(root);
 				stage.setResizable(false);		
 	
-				//scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+				scene.getStylesheets().add(getClass().getResource("/View/editQuestion.css").toExternalForm());
 				stage.setScene(scene);
 				stage.show();
 			}

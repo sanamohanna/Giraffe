@@ -5,6 +5,8 @@
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
@@ -36,7 +38,14 @@
       <FlowPane layoutX="284.0" layoutY="133.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: grey; -fx-border-color: white;" />
       <FlowPane layoutX="248.0" layoutY="133.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: grey; -fx-border-color: white;" />
       <FlowPane layoutX="213.0" layoutY="133.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: grey; -fx-border-color: white;" />
-      <FlowPane layoutX="178.0" layoutY="133.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: grey; -fx-border-color: white;" />
+      <FlowPane layoutX="178.0" layoutY="133.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: grey; -fx-border-color: white;">
+         <children>
+            <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/6808582.png" />
+               </image>
+            </ImageView>
+         </children></FlowPane>
       <FlowPane layoutX="319.0" layoutY="237.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: grey; -fx-border-color: white;" />
       <FlowPane layoutX="354.0" layoutY="237.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: grey; -fx-border-color: white;" />
       <FlowPane layoutX="284.0" layoutY="237.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: grey; -fx-border-color: white;" />

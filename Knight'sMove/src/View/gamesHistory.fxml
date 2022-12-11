@@ -2,17 +2,33 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="363.0" prefWidth="411.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.GameHistoryController">
+<AnchorPane prefHeight="411.0" prefWidth="505.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.GameHistoryController">
    <children>
-      <AnchorPane layoutY="-54.0" prefHeight="254.0" prefWidth="200.0">
-         <children>
-            <TableView id="table" fx:id="Table" layoutY="127.0" prefHeight="200.0" prefWidth="411.0" />
-            <Text id="txt1" layoutX="166.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Games History" wrappingWidth="79.58856201171875" />
-            <Button id="back" layoutX="14.0" layoutY="71.0" mnemonicParsing="false" onAction="#backButton" text="back" />
-         </children>
-      </AnchorPane>
+      <TableView id="table" fx:id="Table" layoutX="31.0" layoutY="84.0" prefHeight="291.0" prefWidth="443.0" />
+      <Text id="txt1" layoutX="164.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Games History" wrappingWidth="177.5885467529297">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+         </font></Text>
+      <Button id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" text="Back">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="13.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></Button>
    </children>
 </AnchorPane>

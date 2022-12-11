@@ -20,7 +20,8 @@ import model.Game;
 import model.Player;
 import java.util.Date;
 public class GameHistoryController implements Initializable{
-     
+	@FXML 
+    private TableView Table;
 	
     Player player = new Player("Klara");
     Player player1 = new Player("nada");
@@ -28,8 +29,7 @@ public class GameHistoryController implements Initializable{
     TableColumn<Game, Date> Date;
     TableColumn<Game, Player> NickName;
     TableColumn<Game, Integer> Points;
-    @FXML 
-    private TableView Table;
+    
     
 	public void backButton(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
