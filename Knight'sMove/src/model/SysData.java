@@ -97,10 +97,7 @@ public class SysData {
 		if (i != -1) {
 			this.questions.remove(i);
 		}
-		for (int j = 0; j < getQuestions().size(); j++) {
-			System.out.println(getQuestions().get(j));
-
-		}
+		
 	}
 	//add game to dame history
 	public void addGameHistory( Game game) {

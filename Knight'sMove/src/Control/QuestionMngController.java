@@ -97,6 +97,7 @@ public class QuestionMngController implements Initializable {
 
 	SysData sysData = SysData.getInstance();
     Alert a = new Alert(AlertType.NONE);
+    Alert c = new Alert(AlertType.NONE);
     TableColumn id;
     TableColumn ques;
     TableColumn dif;
@@ -139,6 +140,7 @@ public class QuestionMngController implements Initializable {
 
 	}
 	public void addQues(ActionEvent event) throws Exception{
+		
 		textF.setVisible(false);
 		delete.setVisible(false);
 		ObservableList<Integer> diffList = FXCollections.observableArrayList(1,2,3);
@@ -163,6 +165,7 @@ public class QuestionMngController implements Initializable {
 //		updateQues.setVisible(false);
 	}
 	public void finishAddQues(ActionEvent event) throws Exception{
+		int flag = 1;
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		try {
 			if(difLevel.getValue() == null || context.getText() == null || answer1.getText() == null 
@@ -211,17 +214,31 @@ public class QuestionMngController implements Initializable {
 			sysData.LoadQuestions();
 			Question newQues = new Question(sysData.getQuestions().size(),context.getText(),answers,diff,team.getText());
 			try{
-				if(sysData.quesAlreadyExists(newQues.getContext())==false)
-			{
-				sysData.addQuestion(newQues);
-			}
-			else
-				throw new Exception();
+				if(sysData.quesAlreadyExists(newQues.getContext())==false )
+				{
+					try{
+						if(newQues.answerAlreadyExist(answers)==false) {
+							sysData.addQuestion(newQues);
+						}
+						else 
+							throw new Exception();	
+					
+					}
+					catch(Exception e){
+						flag = 0;
+						c.setAlertType(AlertType.ERROR);
+						c.setContentText("there is two similar answers, try again!!");
+						c.show();
+					}
+				}
+				else
+					throw new Exception();
 			}
 			catch(Exception e){
-				a.setAlertType(AlertType.ERROR);
-				a.setContentText("question already exist!!");
-				a.show();
+				flag = 0;
+				c.setAlertType(AlertType.ERROR);
+				c.setContentText("question already exist!!");
+				c.show();
 			}
 			sysData.WriteQuestions();
 			context.setVisible(false);
@@ -243,9 +260,11 @@ public class QuestionMngController implements Initializable {
 			ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
 			dif.setCellValueFactory(new PropertyValueFactory<Question,DifficultyLevel>("difficultyLevel"));		
 			table.setItems(observQues);
+			if(flag==1) {
 			a.setAlertType(AlertType.INFORMATION);
 			a.setContentText("added successfully");
 			a.show();
+			}
 	        
 		}
 		catch (Exception e) {
@@ -397,10 +416,24 @@ public class QuestionMngController implements Initializable {
 
 	
 	public void finishUpdate(ActionEvent event) throws Exception{
+		int flag =1;
 		sysData.LoadQuestions();
 		Integer num =Integer.parseInt(num2.getText());
 		ArrayList<Answer> answers = new ArrayList<Answer>();
-		sysData.getQuestions().get(num).setContext(contextUpdated.getText());
+		try {
+			if(sysData.quesAlreadyExists(contextUpdated.getText())==false){
+				sysData.getQuestions().get(num).setContext(contextUpdated.getText());
+			}
+			else {
+				throw new Exception();
+			}
+		}
+		catch(Exception e) {
+			flag=0;
+			c.setAlertType(AlertType.ERROR);
+			c.setContentText("question already exist!!");
+			c.show();
+		}
 		sysData.getQuestions().get(num).setTeam(teamUpdated.getText());
 		
 		if(difLevelUpdated.getValue()==1) {
@@ -440,7 +473,20 @@ public class QuestionMngController implements Initializable {
 			answer4.setTrue(true);
 		else
 			answer4.setTrue(false);
-		sysData.getQuestions().get(num).setAnswers(answers);
+		try {
+			if(sysData.getQuestions().get(num).answerAlreadyExist(answers)==false){
+				sysData.getQuestions().get(num).setAnswers(answers);
+			}
+			else {
+				throw new Exception();
+			}
+		}
+		catch(Exception e) {
+			flag=0;
+			c.setAlertType(AlertType.ERROR);
+			c.setContentText("there is two similar answers, try again!!");
+			c.show();
+		}
 		sysData.WriteQuestions();
 		contextUpdated.setVisible(false);
 		answer1Updated.setVisible(false);
@@ -461,9 +507,11 @@ public class QuestionMngController implements Initializable {
 		ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
 		dif.setCellValueFactory(new PropertyValueFactory<Question,DifficultyLevel>("difficultyLevel"));		
 		table.setItems(observQues);
+		if(flag==1) {
 		a.setAlertType(AlertType.INFORMATION);
 		a.setContentText("Updated successfully");
 		a.show();
+		}
 	}
 	 
 	   
