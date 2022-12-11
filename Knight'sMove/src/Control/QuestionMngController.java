@@ -210,7 +210,19 @@ public class QuestionMngController implements Initializable {
 			}	
 			sysData.LoadQuestions();
 			Question newQues = new Question(sysData.getQuestions().size(),context.getText(),answers,diff,team.getText());
-			sysData.addQuestion(newQues);
+			try{
+				if(sysData.quesAlreadyExists(newQues.getContext())==false)
+			{
+				sysData.addQuestion(newQues);
+			}
+			else
+				throw new Exception();
+			}
+			catch(Exception e){
+				a.setAlertType(AlertType.ERROR);
+				a.setContentText("question already exist!!");
+				a.show();
+			}
 			sysData.WriteQuestions();
 			context.setVisible(false);
 			answer1.setVisible(false);
