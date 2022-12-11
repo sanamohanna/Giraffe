@@ -298,7 +298,7 @@ public class QuestionMngController implements Initializable {
 	}
 	public void finishDeleteQues(ActionEvent event) throws Exception{
 		try {
-			if(textF == null)
+			if(textF.getText().isEmpty())
 				throw new Exception();
 			sysData.LoadQuestions();
 		
@@ -359,7 +359,7 @@ public class QuestionMngController implements Initializable {
 	public void finishUpdateQues(ActionEvent event) throws Exception{
         try {
 		sysData.LoadQuestions();
-		if(num2.getText()== null) {
+		if(num2.getText().isEmpty()) {
 			throw new Exception();
 		}
 		if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
@@ -419,24 +419,24 @@ public class QuestionMngController implements Initializable {
 
 	
 	public void finishUpdate(ActionEvent event) throws Exception{
-		int flag =1;
+		int sameA = 0 , sameQ = 0 ;;
+		try {
 		sysData.LoadQuestions();
+		if(difLevel.getValue() == null || context.getText().isEmpty() || answer1.getText().isEmpty()
+				|| answer2.getText().isEmpty() || answer3.getText().isEmpty() || answer4.getText().isEmpty() || team.getText().isEmpty()
+				|| trueAnswer.getValue() == null ) {
+			throw new NullPointerException();
+		}
 		Integer num =Integer.parseInt(num2.getText());
 		ArrayList<Answer> answers = new ArrayList<Answer>();
-		try {
 			if(sysData.quesAlreadyExists(contextUpdated.getText(),num)==false){
 				sysData.getQuestions().get(num).setContext(contextUpdated.getText());
 			}
 			else {
+				sameQ = 1;
 				throw new Exception();
 			}
-		}
-		catch(Exception e) {
-			flag=0;
-			c.setAlertType(AlertType.ERROR);
-			c.setContentText("question already exist!!");
-			c.show();
-		}
+		
 		sysData.getQuestions().get(num).setTeam(teamUpdated.getText());
 		
 		if(difLevelUpdated.getValue()==1) {
@@ -476,20 +476,15 @@ public class QuestionMngController implements Initializable {
 			answer4.setTrue(true);
 		else
 			answer4.setTrue(false);
-		try {
+		
 			if(sysData.getQuestions().get(num).answerAlreadyExist(answers)==false){
 				sysData.getQuestions().get(num).setAnswers(answers);
 			}
 			else {
+				sameA = 1 ;
 				throw new Exception();
 			}
-		}
-		catch(Exception e) {
-			flag=0;
-			c.setAlertType(AlertType.ERROR);
-			c.setContentText("there is two similar answers, try again!!");
-			c.show();
-		}
+	
 		sysData.WriteQuestions();
 		contextUpdated.setVisible(false);
 		answer1Updated.setVisible(false);
@@ -510,14 +505,31 @@ public class QuestionMngController implements Initializable {
 		ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
 		dif.setCellValueFactory(new PropertyValueFactory<Question,DifficultyLevel>("difficultyLevel"));		
 		table.setItems(observQues);
-		if(flag==1) {
 		a.setAlertType(AlertType.INFORMATION);
 		a.setContentText("Updated successfully");
 		a.show();
+		
+		
 		}
-	}
+		catch(NullPointerException e){
+			a.setAlertType(AlertType.ERROR);
+			a.setContentText("please enter all data!");
+			a.show();
+		}
+		catch (Exception e) {
+			if(sameA == 1) {
+				c.setAlertType(AlertType.ERROR);
+				c.setContentText("there is two similar answers, try again!!");
+				c.show();
+			}
+			if(sameQ == 1) {
+				c.setAlertType(AlertType.ERROR);
+				c.setContentText("question already exist!!");
+				c.show();
+			}
+		}
 	 
-	   
+	}	   
 }
 
     
