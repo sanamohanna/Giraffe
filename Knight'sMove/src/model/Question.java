@@ -119,11 +119,12 @@ public class Question {
 
 		for (int j = 0; j < answers.size(); j++) {
 			if (i != j) {
-
+				if(answers.get(i).getAnswerContext()!=null && answers.get(j).getAnswerContext()!=null){
 				if (answers.get(i).getAnswerContext().equals(answers.get(j).getAnswerContext())) {
 					return true;
 
 				}
+			}
 
 			}
 

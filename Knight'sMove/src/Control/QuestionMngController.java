@@ -424,7 +424,7 @@ public class QuestionMngController implements Initializable {
 		Integer num =Integer.parseInt(num2.getText());
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		try {
-			if(sysData.quesAlreadyExists(contextUpdated.getText())==false){
+			if(sysData.quesAlreadyExists(contextUpdated.getText(),num)==false){
 				sysData.getQuestions().get(num).setContext(contextUpdated.getText());
 			}
 			else {

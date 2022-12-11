@@ -277,10 +277,10 @@ public class SysData {
 
 	//Checks if question already exists
 
-	public boolean quesAlreadyExists(String content) {
+	public boolean quesAlreadyExists(String content , Integer id) {
 
 		for (Question q : this.getQuestions()) {
-			if (q.getContext().equals(content)) {
+			if (q.getContext().equals(content) &&q.getId()!=id) {
 				return true;
 			}
 		}
