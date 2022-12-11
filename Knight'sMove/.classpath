@@ -25,5 +25,15 @@
 	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/hsqldb-2.5.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/jackcess-3.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/HP/Desktop/libs/json-simple-2.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/safab/git/githuup/Giraffe/knight&apos;s_move_lib/gson-2.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/safab/git/githuup/Giraffe/knight&apos;s_move_lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="C:/Users/safab/git/githuup/Giraffe/knight&apos;s_move_lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="C:/Users/safab/git/githuup/Giraffe/knight&apos;s_move_lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="C:/Users/safab/git/githuup/Giraffe/knight&apos;s_move_lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="C:/Users/safab/git/githuup/Giraffe/knight&apos;s_move_lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="C:/Users/safab/git/githuup/Giraffe/knight&apos;s_move_lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/safab/git/githuup/Giraffe/knight&apos;s_move_lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="C:/Users/safab/git/githuup/Giraffe/knight&apos;s_move_lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/safab/git/githuup/Giraffe/knight&apos;s_move_lib/org.eclipse.fx.ide.css.jfx8_3.8.0.202204150904.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

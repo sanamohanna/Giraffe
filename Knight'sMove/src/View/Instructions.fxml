@@ -1,444 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
+<<<<<<< HEAD
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+=======
+>>>>>>> parent of d13dcc7 (Merge branch 'main' of https://github.com/sanamohanna/Giraffe)
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane prefHeight="590.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.InstructionsController">
-   <content>
-      <AnchorPane prefHeight="2276.0" prefWidth="958.0" styleClass="root" stylesheets="@Instructions.css">
-      	<children>
-      		<Button fx:id="backButton" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" onDragDetected="#backButton" prefHeight="16.0" prefWidth="54.0" text="Back " textFill="#2e1e21">
-      			<font>
-      				<Font size="14.0" />
-      			</font>
-      		</Button>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="41.0" layoutX="122.0" layoutY="463.0" stroke="BLACK" strokeType="INSIDE" width="191.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.12982456386089325" green="0.2812865376472473" blue="0.7789473533630371" />
-                           </color>
-                        </Stop>
-                        <Stop offset="0.006729475100942127">
-                           <color>
-                              <Color red="0.12941177189350128" green="0.2823529541492462" blue="0.7803921699523926" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <Line endX="100.0" endY="7.62939453125E-6" layoutX="93.0" layoutY="463.0" startX="100.0" startY="41.0" />
-            <Text layoutX="136.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUEEN" textAlignment="CENTER">
-               <font>
-                  <Font name="Baskerville Old Face" size="12.0" />
-               </font>
-            </Text>
-            <Line endX="114.699951171875" endY="-48.99999237060547" layoutX="139.0" layoutY="552.0" startX="114.69998168945312" startY="-88.99999237060547" />
-            <Text layoutX="211.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KING">
-               <font>
-                  <Font name="Baskerville Old Face" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="261.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KNIGHT">
-               <font>
-                  <Font name="Baskerville Old Face" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="31.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pieces" wrappingWidth="54.400000000000034">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="51.0" fitWidth="62.0" layoutX="123.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/Queen.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="193.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/king.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="258.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/Knighttt.png" />
-               </image>
-            </ImageView>
-            <Text layoutX="27.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ABOUT" wrappingWidth="52.89648437499994">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="14.0" />
-               </font>
-            </Text>
-            <Text fill="#484545" layoutX="68.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Knight's move is a BoardGame consist of  three pieces and 8X8 squares ,some of them are special squares. " wrappingWidth="605.0002075195312">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="19.0" layoutY="597.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Special Squares">
-               <font>
-                  <Font name="Arial Narrow Bold" size="16.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="91.0" layoutX="113.0" layoutY="634.0" stroke="BLACK" strokeType="INSIDE" width="164.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.12982456386089325" green="0.2812865376472473" blue="0.7789473533630371" />
-                           </color>
-                        </Stop>
-                        <Stop offset="0.006729475100942127">
-                           <color>
-                              <Color red="0.12941177189350128" green="0.2823529541492462" blue="0.7803921699523926" />
-                           </color>
-                        </Stop>
-                        <Stop offset="0.006729475100942127">
-                           <color>
-                              <Color red="0.12941177189350128" green="0.2823529541492462" blue="0.7803921699523926" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill></Rectangle>
-            <Line endX="-259.0" endY="48.600006103515625" layoutX="372.0" layoutY="618.0" startX="-95.00001525878906" startY="48.600006103515625" />
-            <Text layoutX="131.0" layoutY="687.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Blocked Square" textAlignment="CENTER" wrappingWidth="118.04962158203125">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="14.0" />
-               </font>
-            </Text>
-            <Line endX="35.9999885559082" endY="-67.60000610351562" layoutX="77.0" layoutY="764.0" startX="197.99998474121094" startY="-67.60000610351562" />
-            <Text layoutX="132.0" layoutY="656.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgets Square" wrappingWidth="126.27166748046875">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="14.0" />
-               </font>
-            </Text>
-            <Text layoutX="118.0" layoutY="710.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Random Jump Square">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="14.0" />
-               </font>
-            </Text>
-            <Text fill="#383737" layoutX="66.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="There is no marking that the square is special. When activating a special square the player will receive a notification accordingly." wrappingWidth="555.8671264648438">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="32.0" layoutX="274.0" layoutY="635.0" stroke="BLACK" strokeType="INSIDE" width="454.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="34.0" layoutX="274.0" layoutY="691.0" stroke="BLACK" strokeType="INSIDE" width="454.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="29.0" layoutX="274.0" layoutY="667.0" stroke="BLACK" strokeType="INSIDE" width="454.0" />
-            <Text layoutX="286.0" layoutY="656.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standing on this square will lead to deleting the last three steps of the knight." wrappingWidth="444.510498046875">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Text layoutX="289.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Square that can't stand on it ">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Text layoutX="277.0" layoutY="713.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standing on this square the knight changes position to a random empty square" wrappingWidth="461.17620849609375">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Text layoutX="30.0" layoutY="785.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pieces moves according to the level">
-               <font>
-                  <Font name="Arial Narrow Bold" size="15.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="305.0" layoutX="57.0" layoutY="862.0" stroke="BLACK" strokeType="INSIDE" width="75.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.12982456386089325" green="0.2812865376472473" blue="0.7789473533630371" />
-                           </color>
-                        </Stop>
-                        <Stop offset="0.006729475100942127">
-                           <color>
-                              <Color red="0.12941177189350128" green="0.2823529541492462" blue="0.7803921699523926" />
-                           </color>
-                        </Stop>
-                        <Stop offset="0.006729475100942127">
-                           <color>
-                              <Color red="0.13333334028720856" green="0.1764705926179886" blue="0.7803921699523926" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.9490196108818054" green="0.9490196108818054" blue="0.9490196108818054" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill></Rectangle>
-            <Text layoutX="62.0" layoutY="1013.0" strokeType="OUTSIDE" strokeWidth="0.0" text="King" textAlignment="CENTER" wrappingWidth="68.44964599609375">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="14.0" />
-               </font>
-            </Text>
-            <Text layoutX="70.0" layoutY="919.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Queen" wrappingWidth="54.400000000000034">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="14.0" />
-               </font>
-            </Text>
-            <Text layoutX="72.0" layoutY="1110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Knight">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="14.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="100.0" layoutX="132.0" layoutY="869.0" stroke="BLACK" strokeType="INSIDE" width="542.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="111.0" layoutX="130.0" layoutY="1057.0" stroke="BLACK" strokeType="INSIDE" width="542.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="89.0" layoutX="131.0" layoutY="968.0" stroke="BLACK" strokeType="INSIDE" width="542.0" />
-            <Text layoutX="143.0" layoutY="892.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move straight or diagonally all over the squares and has the ability to pass through walls" wrappingWidth="126.04962158203125">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Text layoutX="446.0" layoutY="912.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share ">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Text layoutX="147.0" layoutY="1078.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move one square straight and one square diagnolly or one square diagnolly and one square straight." wrappingWidth="118.04962158203125">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="130.0" layoutY="838.0" stroke="BLACK" strokeType="INSIDE" width="545.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.12982456386089325" green="0.2812865376472473" blue="0.7789473533630371" />
-                           </color>
-                        </Stop>
-                        <Stop offset="0.006729475100942127">
-                           <color>
-                              <Color red="0.12941177189350128" green="0.2823529541492462" blue="0.7803921699523926" />
-                           </color>
-                        </Stop>
-                        <Stop offset="0.006729475100942127">
-                           <color>
-                              <Color red="0.13333334028720856" green="0.1764705926179886" blue="0.7803921699523926" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.9490196108818054" green="0.9490196108818054" blue="0.9490196108818054" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill></Rectangle>
-            <Text layoutX="185.0" layoutY="859.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 1">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="326.0" layoutY="859.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 2">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="451.0" layoutY="859.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 3">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="566.0" layoutY="911.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share ">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Text layoutX="291.0" layoutY="1078.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move two squares straight and one diagonally or two diagonally and one square" wrappingWidth="110.800048828125">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Text layoutX="293.0" layoutY="892.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move straight or diagonally all over the squares and has the ability to pass through walls" wrappingWidth="126.27166748046875">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Text layoutX="583.0" layoutY="830.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 4">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="436.0" layoutY="981.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move one square straight or one square diagonally at constant speed" wrappingWidth="101.37500000000006">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Text layoutX="155.0" layoutY="1008.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share ">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Text layoutX="293.0" layoutY="1008.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share ">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font></Text>
-            <Text layoutX="557.0" layoutY="981.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move one square straight or one square diagonally at constant speed" wrappingWidth="110.27166748046875">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <Line endX="-3.199981689453125" endY="-17.0" layoutX="278.0" layoutY="886.0" startX="-3.199981689453125" startY="282.0" />
-            <Line endX="117.60009765625" endY="317.0" layoutX="419.0" layoutY="851.0" startX="117.60003662109375" startY="18.0" />
-            <Line endX="-39.999969482421875" endY="321.0" layoutX="465.0" layoutY="847.0" startX="-39.999969482421875" startY="22.0" />
-            <Text layoutX="36.0" layoutY="1208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Questions">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Text>
-            <Text layoutX="101.0" layoutY="1246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="At each level of the game there are three questions on the game board in random locations.  Also there are three levels of questions." wrappingWidth="514.0496368408203">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="44.0" layoutX="298.0" layoutY="1295.0" stroke="#cfcfcf" strokeType="INSIDE" width="301.0" />
-            <Text layoutX="307.0" layoutY="1322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Easy question (white color) - earns 1 point">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcff00" height="40.0" layoutX="296.0" layoutY="1348.0" stroke="#efeb09" strokeType="INSIDE" width="301.0" />
-            <Text layoutX="307.0" layoutY="1371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Medium question ( yellow color) - earns 2 points">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ef0606" height="42.0" layoutX="296.0" layoutY="1396.0" stroke="#cfcfcf" strokeType="INSIDE" width="301.0" />
-            <Text layoutX="307.0" layoutY="1421.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" -Difficult question (red color) - earns 3 points">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text fill="#48ac16" layoutX="158.0" layoutY="1302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct Answer:">
-               <font>
-                  <Font name="System Bold Italic" size="13.0" />
-               </font>
-            </Text>
-            <Text fill="#ab2416" layoutX="156.0" layoutY="1477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="wrong Answer:">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="295.0" layoutY="1482.0" stroke="#cfcfcf" strokeType="INSIDE" width="301.0" />
-            <Text layoutX="307.0" layoutY="1507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Easy question (white color) - lose 2 point">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcff00" height="40.0" layoutX="295.0" layoutY="1533.0" stroke="#efeb09" strokeType="INSIDE" width="301.0" />
-            <Text layoutX="307.0" layoutY="1556.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Medium question ( yellow color) - lose 3 points">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ef0606" height="42.0" layoutX="295.0" layoutY="1581.0" stroke="#cfcfcf" strokeType="INSIDE" width="301.0" />
-            <Text layoutX="307.0" layoutY="1606.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" -Difficult question (red color) - lose 4 points">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="31.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GOAL">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Text>
-            <Text fill="#383737" layoutX="75.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To score as many points as possible, when at each level you have to score over 15 points to pass the level and continue the game." wrappingWidth="555.8671264648438">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="35.0" layoutY="1690.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How the game End?">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fae7de" height="44.0" layoutX="269.0" layoutY="1718.0" stroke="#cfcfcf" strokeType="INSIDE" width="353.0" />
-            <Text layoutX="275.0" layoutY="1744.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-When the player failed to score 15 points during the levels" wrappingWidth="336.6441650390625">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#38ba149f" height="44.0" layoutX="269.0" layoutY="1876.0" stroke="#cfcfcf" strokeType="INSIDE" width="353.0" />
-            <Text layoutX="274.0" layoutY="1903.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-When the player finish all the levels" wrappingWidth="261.44415283203125">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f70f0fc6" height="44.0" layoutX="269.0" layoutY="1794.0" stroke="#cfcfcf" strokeType="INSIDE" width="353.0" />
-            <Text layoutX="275.0" layoutY="1821.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-When the knight collides with the king or the queen" wrappingWidth="323.84417724609375">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text fill="#090857" layoutX="435.0" layoutY="1782.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text fill="#090857" layoutX="435.0" layoutY="1863.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text layoutX="41.0" layoutY="1974.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Receiving A Trophy ">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#36bc14" height="63.0" layoutX="249.0" layoutY="2023.0" stroke="#cfcfcf" strokeType="INSIDE" width="379.0" />
-            <Text layoutX="283.0" layoutY="2050.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When the player finish with over than 200 points, he will get a trophy as a congratulatory message for winning" wrappingWidth="331.8441162109375">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="66.0" fitWidth="80.0" layoutX="403.0" layoutY="2094.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/trophyIcon.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="29.0" fitWidth="36.0" layoutX="189.0" layoutY="1954.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/trophyIcon.jpg" />
-               </image>
-            </ImageView>
-            <Text fill="#383737" layoutX="66.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The knight will try to score maximum number of points by passing over squares without returning to squares he visit before, within a time limit that depends on the level he is in." wrappingWidth="555.8671264648438">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#38ba149f" height="59.0" layoutX="114.0" layoutY="192.0" stroke="#cfcfcf" strokeType="INSIDE" width="490.0" />
-            <Text layoutX="119.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="knight's visit Empty Square =&gt; make the square as visited and will EARN 1 points" wrappingWidth="479.84417724609375">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f70f0fc6" height="59.0" layoutX="114.0" layoutY="258.0" stroke="#cfcfcf" strokeType="INSIDE" width="490.0" />
-            <Text layoutX="119.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="knight's visit Visited Square  =&gt; will LOSE 1 points" wrappingWidth="364.6441650390625">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-      	</children>
-      </AnchorPane>
-   </content>
-</ScrollPane>
+<AnchorPane prefHeight="786.0" prefWidth="912.0" stylesheets="@Instructions.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.InstructionsController">
+	<children>
+<<<<<<< HEAD
+=======
+		<Button fx:id="backButton" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" prefHeight="16.0" prefWidth="54.0" text="Back " textFill="#2e1e21">
+			<font>
+				<Font size="14.0" />
+			</font>
+		</Button>
+>>>>>>> parent of d13dcc7 (Merge branch 'main' of https://github.com/sanamohanna/Giraffe)
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ece8e8" height="41.0" layoutX="109.0" layoutY="194.0" stroke="BLACK" strokeType="INSIDE" width="191.0" />
+      <Line endX="100.0" endY="7.62939453125E-6" layoutX="80.0" layoutY="194.0" startX="100.0" startY="41.0" />
+      <Text layoutX="123.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUEEN" textAlignment="CENTER">
+         <font>
+            <Font name="Baskerville Old Face" size="12.0" />
+         </font>
+      </Text>
+      <Line endX="114.699951171875" endY="-48.99999237060547" layoutX="126.0" layoutY="283.0" startX="114.69998168945312" startY="-88.99999237060547" />
+      <Text layoutX="198.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KING">
+         <font>
+            <Font name="Baskerville Old Face" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="248.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KNIGHT">
+         <font>
+            <Font name="Baskerville Old Face" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="31.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pieces" wrappingWidth="54.400000000000034">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="51.0" fitWidth="62.0" layoutX="110.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Queen.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="180.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/king.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="245.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Knighttt.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="33.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ABOUT" wrappingWidth="48.89648437499994">
+         <font>
+            <Font name="Arial Narrow Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="54.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Knight's move is a BoardGame consist of  three pieces and 8X8 squares ,some of them are special squares that are divided into three types: Forgets Square,Random Jump Square,Blocked Square." wrappingWidth="785.0001464843749">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="29.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Special Squares">
+         <font>
+            <Font name="Arial Narrow Bold" size="16.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ece8e8" height="91.0" layoutX="99.0" layoutY="353.0" stroke="BLACK" strokeType="INSIDE" width="164.0" />
+      <Line endX="-259.0" endY="48.600006103515625" layoutX="358.0" layoutY="337.0" startX="-95.00001525878906" startY="48.600006103515625" />
+      <Text layoutX="117.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Blocked Square" textAlignment="CENTER" wrappingWidth="118.04962158203125">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Text>
+      <Line endX="35.9999885559082" endY="-67.60000610351562" layoutX="63.0" layoutY="483.0" startX="197.99998474121094" startY="-67.60000610351562" />
+      <Text layoutX="118.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgets Square" wrappingWidth="126.27166748046875">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="104.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Random Jump Square">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="49.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="There is no marking that the square is special. When activating a special square the player will receive a notification accordingly." wrappingWidth="742.2671508789062">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cbcfd4" height="32.0" layoutX="262.0" layoutY="354.0" stroke="BLACK" strokeType="INSIDE" width="452.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cbcfd4" height="32.0" layoutX="262.0" layoutY="410.0" stroke="BLACK" strokeType="INSIDE" width="452.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cbcfd4" height="30.0" layoutX="262.0" layoutY="386.0" stroke="BLACK" strokeType="INSIDE" width="452.0" />
+      <Text layoutX="278.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standing on this square will lead to deleting the last three steps of the horse." wrappingWidth="463.7105712890625" />
+      <Text layoutX="275.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Square that can't stand on it " />
+      <Text layoutX="277.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standing on this square the horse changes position to a random empty square" wrappingWidth="425.97625732421875" />
+      <Text layoutX="22.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pieces moves according to the level">
+         <font>
+            <Font name="Arial Narrow Bold" size="15.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ece8e8" height="204.0" layoutX="54.0" layoutY="546.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
+      <Text layoutX="65.0" layoutY="619.0" strokeType="OUTSIDE" strokeWidth="0.0" text="King" textAlignment="CENTER" wrappingWidth="68.44964599609375">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="77.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Queen" wrappingWidth="54.400000000000034">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="84.0" layoutY="708.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Knight">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cbcfd4" height="64.0" layoutX="191.0" layoutY="549.0" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cbcfd4" height="78.0" layoutX="190.0" layoutY="673.0" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cbcfd4" height="68.0" layoutX="191.0" layoutY="609.0" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+      <Text layoutX="208.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move straight or diagonally all over the squares and has the ability to pass through walls" wrappingWidth="180.0670776367187" />
+      <Text layoutX="606.0" layoutY="585.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share " />
+      <Text layoutX="208.0" layoutY="690.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move one square straight and one square diagnolly or one square diagnolly and one square straight." wrappingWidth="171.5999755859375" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ece8e8" height="32.0" layoutX="193.0" layoutY="517.0" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+      <Text layoutX="273.0" layoutY="536.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 1">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="469.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 2">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="623.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 3">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="780.0" layoutY="585.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share " />
+      <Text layoutX="398.0" layoutY="693.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move two squares straight and one diagonally or two diagonally and one square" wrappingWidth="150.0" />
+      <Text layoutX="398.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move straight or diagonally all over the squares and has the ability to pass through walls" wrappingWidth="180.0" />
+      <Text layoutX="818.0" layoutY="534.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 4">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="601.0" layoutY="621.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move one square straight or one square diagonally at constant speed" wrappingWidth="126.27166748046875" />
+      <Text layoutX="208.0" layoutY="635.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share " />
+      <Text layoutX="398.0" layoutY="645.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share " />
+      <Text layoutX="754.0" layoutY="621.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move one square straight or one square diagonally at constant speed" wrappingWidth="126.27166748046875" />
+      <Line endX="-3.199981689453125" layoutX="388.0" layoutY="517.0" startX="-3.199981689453125" startY="234.0" />
+      <Line endX="117.5999755859375" endY="265.0" layoutX="616.0" layoutY="486.0" startX="117.5999755859375" startY="31.0" />
+      <Line endX="-40.0" endY="265.0" layoutX="616.0" layoutY="486.0" startX="-40.0" startY="31.0" />
+<<<<<<< HEAD
+      <Button layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onAction="#backButton" text="Back">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="13.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+=======
+>>>>>>> parent of d13dcc7 (Merge branch 'main' of https://github.com/sanamohanna/Giraffe)
+	</children>
+</AnchorPane>
