@@ -19,15 +19,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.AdminPlayer;
 import model.Answer;
 import model.Question;
 import model.SysData;
@@ -94,7 +91,27 @@ public class QuestionMngController implements Initializable {
 	private Text diff11;
 	@FXML
 	private Button updateQues2; 
-
+	@FXML
+	private Button show;
+	@FXML
+	private TextField quesNum;
+	@FXML
+	private Text showDif;
+	@FXML
+	private Text showTrue;
+	@FXML
+	private Text showAnswer1;
+	@FXML
+	private Text showAnswer2;
+	@FXML
+	private Text showAnswer3;
+	@FXML
+	private Text showAnswer4;
+	@FXML
+	private Text showTeam;
+	@FXML
+	private Text showContext;
+	
 	SysData sysData = SysData.getInstance();
     Alert a = new Alert(AlertType.NONE);
     Alert c = new Alert(AlertType.NONE);
@@ -141,7 +158,16 @@ public class QuestionMngController implements Initializable {
 
 	}
 	public void addQues(ActionEvent event) throws Exception{
-		
+		showContext.setVisible(false);
+		showAnswer1.setVisible(false);
+		showAnswer2.setVisible(false);
+		showAnswer3.setVisible(false);
+		showAnswer4.setVisible(false);
+		showTeam.setVisible(false);
+		showDif.setVisible(false);
+		showTrue.setVisible(false);
+		show.setVisible(false);
+		quesNum.setVisible(false);
 		textF.setVisible(false);
 		delete.setVisible(false);
 		ObservableList<Integer> diffList = FXCollections.observableArrayList(1,2,3);
@@ -278,6 +304,16 @@ public class QuestionMngController implements Initializable {
 		
 	}
 	public void deleteQues(ActionEvent event) throws Exception{
+		showContext.setVisible(false);
+		showAnswer1.setVisible(false);
+		showAnswer2.setVisible(false);
+		showAnswer3.setVisible(false);
+		showAnswer4.setVisible(false);
+		showTeam.setVisible(false);
+		showDif.setVisible(false);
+		showTrue.setVisible(false);
+		show.setVisible(false);
+		quesNum.setVisible(false);
 		context.setVisible(false);
 		answer1.setVisible(false);
 		answer2.setVisible(false);
@@ -335,7 +371,27 @@ public class QuestionMngController implements Initializable {
 		
 	}
 	public void updateQues(ActionEvent event) throws Exception{
-		
+		showContext.setVisible(false);
+		showAnswer1.setVisible(false);
+		showAnswer2.setVisible(false);
+		showAnswer3.setVisible(false);
+		showAnswer4.setVisible(false);
+		showTeam.setVisible(false);
+		showDif.setVisible(false);
+		showTrue.setVisible(false);
+		show.setVisible(false);
+		quesNum.setVisible(false);
+		contextUpdated.setVisible(false);
+		answer1Updated.setVisible(false);
+		answer2Updated.setVisible(false);
+		answer3Updated.setVisible(false);
+		answer4Updated.setVisible(false);
+		teamUpdated.setVisible(false);
+		difLevelUpdated.setVisible(false);
+		trueAnswerUpdated.setVisible(false);
+		true11.setVisible(false);
+		diff11.setVisible(false);
+		updateQues2.setVisible(false);
 		num2.setVisible(true);
 		update.setVisible(true);
 		textF.setVisible(false);
@@ -386,9 +442,6 @@ public class QuestionMngController implements Initializable {
 			true11.setVisible(true);
 			diff11.setVisible(true);
 			updateQues2.setVisible(true);
-			addQues.setVisible(false);
-			deleteQues.setVisible(false);
-			updateQues.setVisible(false);
 			Integer num =Integer.parseInt(num2.getText());
 			contextUpdated.setText(sysData.getQuestions().get(num).getContext());
 			answer1Updated.setText(sysData.getQuestions().get(num).getAnswers().get(0).getAnswerContext());
@@ -529,7 +582,83 @@ public class QuestionMngController implements Initializable {
 			}
 		}
 	 
-	}	   
+	}
+	public void showQues(ActionEvent event) throws Exception{
+		
+		show.setVisible(true);
+		quesNum.setVisible(true);
+		num2.setVisible(false);
+		update.setVisible(false);
+		textF.setVisible(false);
+		delete.setVisible(false);
+		context.setVisible(false);
+		answer1.setVisible(false);
+		answer2.setVisible(false);
+		answer3.setVisible(false);
+		answer4.setVisible(false);
+		team.setVisible(false);
+		difLevel.setVisible(false);
+		trueAnswer.setVisible(false);
+		add.setVisible(false);
+		true1.setVisible(false);
+		diff1.setVisible(false);
+		showContext.setVisible(false);
+		showAnswer1.setVisible(false);
+		showAnswer2.setVisible(false);
+		showAnswer3.setVisible(false);
+		showAnswer4.setVisible(false);
+		showTeam.setVisible(false);
+		showDif.setVisible(false);
+		showTrue.setVisible(false);
+	}
+	public void finishShowQues(ActionEvent event) throws Exception{
+		  try {
+				sysData.LoadQuestions();
+				if(quesNum.getText().isEmpty()) {
+					throw new Exception();
+				}
+				if(Integer.parseInt(quesNum.getText())>= sysData.getQuestions().size() || Integer.parseInt(quesNum.getText())<0  ) {
+					a.setAlertType(AlertType.ERROR);
+					a.setContentText("the number is not valid , please try again!");
+					a.show();		}
+				else {
+			quesNum.setVisible(false);
+			show.setVisible(false);
+			showContext.setVisible(true);
+			showAnswer1.setVisible(true);
+			showAnswer2.setVisible(true);
+			showAnswer3.setVisible(true);
+			showAnswer4.setVisible(true);
+			showTeam.setVisible(true);
+			showDif.setVisible(true);
+			showTrue.setVisible(true);
+			Integer num =Integer.parseInt(quesNum.getText());
+			showContext.setText(sysData.getQuestions().get(num).getContext());
+			showAnswer1.setText(sysData.getQuestions().get(num).getAnswers().get(0).getAnswerContext());
+			showAnswer2.setText(sysData.getQuestions().get(num).getAnswers().get(1).getAnswerContext());
+			showAnswer3.setText(sysData.getQuestions().get(num).getAnswers().get(2).getAnswerContext());
+			showAnswer4.setText(sysData.getQuestions().get(num).getAnswers().get(3).getAnswerContext());
+			showTeam.setText(sysData.getQuestions().get(num).getTeam());
+			for(int i=0;i<sysData.getQuestions().get(num).getAnswers().size();i++) {
+				if(sysData.getQuestions().get(num).getAnswers().get(i).isTrue()==true)	{
+					showTrue.setText("True Answer "+String.valueOf(i+1));
+				}
+			}
+			if(sysData.getQuestions().get(num).getDifficultyLevel()==DifficultyLevel.EASY)
+				showDif.setText("Difficulty Level "+String.valueOf(1));
+			if(sysData.getQuestions().get(num).getDifficultyLevel()==DifficultyLevel.HARD)
+				showDif.setText("Difficulty Level "+String.valueOf(3));
+			else
+				showDif.setText("Difficulty Level "+String.valueOf(2));
+		}
+		  }
+			catch (Exception e) {
+				a.setAlertType(AlertType.ERROR);
+				a.setContentText("please enter all data!");
+				a.show(); 		}
+			}
 }
+
+
 
     

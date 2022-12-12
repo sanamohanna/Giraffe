@@ -16,8 +16,6 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-
-import Control.QuestionMngController;
 import Enum.DifficultyLevel;
 
 
@@ -104,9 +102,15 @@ public class SysData {
 		gamesHistory.add(game);
 		
 	}
+	
+	/**
+	 * 
+	 * The Observed Design Pattern
+	 *
+	 *
+	 **/
 
 	// Write Questions To File Including Updated Questions
-	
 	public void WriteQuestions() {
 
 		JsonArray questions = new JsonArray();
@@ -162,7 +166,13 @@ public class SysData {
 		}
 
 	}
-
+	/**
+	 * 
+	 * The Observed Design Pattern
+	 *
+	 *
+	 **/
+	
 	// Load  Questions From JSON File
 	 
 	public void LoadQuestions() {

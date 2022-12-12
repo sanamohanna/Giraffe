@@ -30,7 +30,7 @@ public class GameHistoryController implements Initializable{
     TableColumn<Game, Player> NickName;
     TableColumn<Game, Integer> Points;
     
-    
+    // button to return us to the main screen
 	public void backButton(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
