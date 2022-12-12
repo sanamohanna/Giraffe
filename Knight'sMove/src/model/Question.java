@@ -113,23 +113,19 @@ public class Question {
 		}
 		return false;
 
-	}
+	}//check if there is two similar answers
 	public Boolean answerAlreadyExist(ArrayList<Answer> answers) {
 	for (int i = 0; i < answers.size(); i++) {
 
 		for (int j = 0; j < answers.size(); j++) {
 			if (i != j) {
 				if(!answers.get(i).getAnswerContext().isEmpty() && !answers.get(j).getAnswerContext().isEmpty()){
-				if (answers.get(i).getAnswerContext().equals(answers.get(j).getAnswerContext())) {
-					return true;
-
+					if (answers.get(i).getAnswerContext().equals(answers.get(j).getAnswerContext())) {
+						return true;
+					}
 				}
 			}
-
-			}
-
 		}
-
 	}
 	return false;
 	}

@@ -3,6 +3,11 @@ package model;
 import java.util.Objects;
 
 public class Location {
+	@Override
+	public String toString() {
+		return "Location [x=" + x + ", y=" + y + "]";
+	}
+
 	private Integer x ;
 	private Integer y ;
 	//constructor

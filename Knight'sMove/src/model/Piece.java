@@ -72,7 +72,7 @@ public class Piece {
 			if (this.getLocation().getX() == 7) {
 				this.getLocation().setX(0);
 			} else {
-				this.getLocation().setY(this.location.getX() + 1);
+				this.getLocation().setX(this.location.getX() + 1);
 			}
 			break;
 		}
