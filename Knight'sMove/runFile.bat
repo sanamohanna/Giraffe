@@ -1,1 +1,1 @@
-java -jar --module-path "C:\javafx-sdk-16\lib" --add-modules javafx.controls,javafx.fxml knight's_move.jar
+java --module-path "C:\javafx-sdk-16\lib" --add-modules javafx.controls,javafx.fxml -jar knight's_move.jar
