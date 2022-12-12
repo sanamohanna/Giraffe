@@ -2,6 +2,14 @@ package model;
 
 //import java.util.ArrayList;
 
+/**
+ * 
+ * 
+ * Class extends from abstract class -> for Template Design Pattern
+ * 
+ * 
+ * **/
+
 public class King extends Piece {
 	
 	private Integer speed;

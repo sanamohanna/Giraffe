@@ -4,6 +4,14 @@ package model;
 
 import Enum.Directions;
 
+/**
+ * 
+ * 
+ * Class extends from abstract class -> for Template Design Pattern
+ * 
+ * 
+ * **/
+
 public class Queen extends Piece {
 
 

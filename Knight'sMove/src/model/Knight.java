@@ -2,6 +2,14 @@ package model;
 
 //import java.util.ArrayList;
 
+/**
+ * 
+ * 
+ * Class extends from abstract class -> for Template Design Pattern
+ * 
+ * 
+ * **/
+
 import Enum.Directions;
 
 public class Knight extends Piece {

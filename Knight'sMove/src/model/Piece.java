@@ -5,6 +5,16 @@ import java.util.Objects;
 
 import Enum.Directions;
 
+
+/**
+ * 
+ * 
+ * Abstract class -> The Template Design Pattern
+ * 
+ * 
+ * **/
+
+
 //2another check
 public abstract class Piece {
 
@@ -39,6 +49,14 @@ public abstract class Piece {
 		Piece other = (Piece) obj;
 		return Objects.equals(location, other.location);
 	}
+	
+	/**
+	 * 
+	 * 
+	 * method that used for all the pieces -> Template Design Pattern
+	 * 
+	 * 
+	 * **/
 
 	/* stright method make the pieces move straightly , UP , DOWN , LEFT OR RIGHT */
 	/* the location of the piece will change according to the move type */
