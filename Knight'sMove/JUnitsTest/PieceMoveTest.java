@@ -3,6 +3,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import Enum.Directions;
+import model.Knight;
 import model.Location;
 import model.Piece;
 
@@ -10,35 +11,69 @@ import model.Piece;
 class PieceMoveTest {
 
 	@Test
-	void strightPieceMoveUPTest() {
-		Location location1 = new Location(0,0);
-		Piece piece1 = new Piece(location1);
-		piece1.StrightMove(Directions.UP);
-		Location locationExpected1 = new Location(0,7);
-		assertEquals(locationExpected1,piece1.getLocation());
+	void Level1KnightMoveRightRightDownTest() {
+		
+		Knight knight = new Knight(false);
+		knight.level1Move(Directions.RIGHT, Directions.RIGHT, Directions.DOWN);
+		Location locationExpected1 = new Location(2,1);
+		System.out.println(knight.getLocation()+ " test 1");
+		assertEquals(locationExpected1,knight.getLocation());
 	}
 	@Test
-	void strightPieceMoveDOWNTest() {
-		Location location2 = new Location(0,0);
-		Piece piece2 = new Piece(location2);
-		piece2.StrightMove(Directions.DOWN);
-		Location locationExpected2 = new Location(0,1);
-		assertEquals(locationExpected2,piece2.getLocation());
+	void Level1KnightMoveRightRightUpTest() {
+		Knight knight = new Knight(false);
+		knight.level1Move(Directions.RIGHT, Directions.RIGHT, Directions.UP);
+		Location locationExpected1 = new Location(2,7);
+		System.out.println(knight.getLocation()+" test 2");
+		assertEquals(locationExpected1,knight.getLocation());
 	}
 	@Test
-	void strightPieceMoveLEFTTest() {
-		Location location3 = new Location(0,0);
-		Piece piece3 = new Piece(location3);
-		piece3.StrightMove(Directions.LEFT);
-		Location locationExpected3 = new Location(7,0);
-		assertEquals(locationExpected3,piece3.getLocation());
+	void Level1KnightMoveLeftLeftUpTest() {
+		Knight knight = new Knight(false);
+		knight.level1Move(Directions.LEFT, Directions.LEFT, Directions.UP);
+		Location locationExpected1 = new Location(6,7);
+		System.out.println(knight.getLocation()+" test 3");
+		assertEquals(locationExpected1,knight.getLocation());
+		
 	}
 	@Test
-	void strightPieceMoveRIGHTTest() {
-		Location location4 = new Location(0,0);
-		Piece piece4 = new Piece(location4);
-		piece4.StrightMove(Directions.RIGHT);
-		Location locationExpected4 = new Location(1,0);
-		assertEquals(locationExpected4,piece4.getLocation());	
+	void  Level1KnightMoveLeftLeftDownTest() {
+		Knight knight = new Knight(false);
+		knight.level1Move(Directions.LEFT, Directions.LEFT, Directions.DOWN);
+		Location locationExpected1 = new Location(6,1);
+		System.out.println(knight.getLocation()+" test 4");
+		assertEquals(locationExpected1,knight.getLocation());		
+	}
+	@Test
+	void  Level1KnightMoveDownDownLeftTest() {
+		Knight knight = new Knight(false);
+		knight.level1Move(Directions.DOWN, Directions.DOWN, Directions.LEFT);
+		Location locationExpected1 = new Location(7,2);
+		System.out.println(knight.getLocation()+" test 5");
+		assertEquals(locationExpected1,knight.getLocation());		
+	}
+	@Test
+	void  Level1KnightMoveDownDownRightTest() {
+		Knight knight = new Knight(false);
+		knight.level1Move(Directions.DOWN, Directions.DOWN, Directions.RIGHT);
+		Location locationExpected1 = new Location(1,2);
+		System.out.println(knight.getLocation()+" test 6");
+		assertEquals(locationExpected1,knight.getLocation());		
+	}
+	@Test
+	void  Level1KnightMoveUpUpLeftTest() {
+		Knight knight = new Knight(false);
+		knight.level1Move(Directions.UP, Directions.UP, Directions.LEFT);
+		Location locationExpected1 = new Location(7,6);
+		System.out.println(knight.getLocation()+" test 7");
+		assertEquals(locationExpected1,knight.getLocation());		
+	}
+	@Test
+	void  Level1KnightMoveUpUpRightTest() {
+		Knight knight = new Knight(false);
+		knight.level1Move(Directions.UP, Directions.UP, Directions.RIGHT);
+		Location locationExpected1 = new Location(1,6);
+		System.out.println(knight.getLocation()+" test 8");
+		assertEquals(locationExpected1,knight.getLocation());		
 	}
 }

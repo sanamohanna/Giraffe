@@ -3,24 +3,15 @@ package model;
 //import java.util.ArrayList;
 
 public class King extends Piece {
-
-	private Location initialLocation;
+	
 	private Integer speed;
 
 
-	public King(Location location, Location initialLocation, Integer speed) {
-		super(location);
-		this.initialLocation = initialLocation;
+	public King(Integer speed) {
+		super(new Location(7,0));
 		this.speed = speed;
 	}
 
-	public Location getInitialLocation() {
-		return initialLocation;
-	}
-
-	public void setInitialLocation(Location initialLocation) {
-		this.initialLocation = initialLocation;
-	}
 
 	public Integer getSpeed() {
 		return speed;

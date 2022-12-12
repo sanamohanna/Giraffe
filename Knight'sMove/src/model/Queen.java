@@ -6,20 +6,10 @@ import Enum.Directions;
 
 public class Queen extends Piece {
 
-	private Location initialLocation;
 
-	public Queen(Location location, Location initialLocation) {
-		super(location);
-		this.initialLocation = new Location(7,0);
-	}
-
-	public Location getInitialLocation() {
-		return initialLocation;
-	}
-	
-	
-	public void setInitialLocation(Location initialLocation) {
-		this.initialLocation = initialLocation;
+	public Queen() {
+		super(new Location(7,0));
+		
 	}
     /*this method receiving two parameters , one of the direction of the queen move , 
      and another Integer parameter which it is a number of the square that the queen need to move 

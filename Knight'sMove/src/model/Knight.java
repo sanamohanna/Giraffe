@@ -5,18 +5,12 @@ package model;
 import Enum.Directions;
 
 public class Knight extends Piece {
-	private Location initialLocation;
 	private boolean isKilled;
 	
-	public Knight(Location location, Location initialLocation, boolean isKilled) {
-		super(location);
-		this.initialLocation = new Location(0,0);
+	public Knight(boolean isKilled) {
+		super(new Location(0,0));
 		this.isKilled = isKilled;
 	}  
-
-	public Location getInitialLocation() {
-		return initialLocation;
-	}
 
 
 	public boolean isKilled() {
@@ -39,7 +33,7 @@ public class Knight extends Piece {
 				this.StrightMove(direction3);
 			}
 		}
-		if(direction1 == Directions.DOWN) {
+		else if(direction1 == Directions.DOWN) {
 			if(direction2 != Directions.DOWN || (direction3 == Directions.DOWN || direction3 == Directions.UP)) {
 				throw new IllegalArgumentException("illegal Move");
 			}
@@ -49,7 +43,7 @@ public class Knight extends Piece {
 				this.StrightMove(direction3);
 			}
 		}
-		if(direction1 == Directions.LEFT) {
+		else if(direction1 == Directions.LEFT) {
 			if(direction2 != Directions.LEFT || (direction3 == Directions.LEFT || direction3 == Directions.RIGHT)) {
 				throw new IllegalArgumentException("illegal Move");
 			}
@@ -59,7 +53,7 @@ public class Knight extends Piece {
 				this.StrightMove(direction3);
 			}
 		}
-		if(direction1 == Directions.RIGHT) {
+		else if(direction1 == Directions.RIGHT) {
 			if(direction2 != Directions.RIGHT || (direction3 == Directions.LEFT || direction3 == Directions.RIGHT)) {
 				throw new IllegalArgumentException("illegal Move");
 			}

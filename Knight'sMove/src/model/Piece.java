@@ -6,7 +6,7 @@ import java.util.Objects;
 import Enum.Directions;
 
 //2another check
-public class Piece {
+public abstract class Piece {
 
 	private Location location;
 
