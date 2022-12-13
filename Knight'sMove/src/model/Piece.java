@@ -20,11 +20,13 @@ public abstract class Piece {
 
 	private Location location;
 
+	//constructor
 	public Piece(Location location) {
 		super();
 		this.location = location;
 	}
 
+	//getter and setter
 	public Location getLocation() {
 		return location;
 	}

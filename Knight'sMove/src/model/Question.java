@@ -13,10 +13,12 @@ public class Question {
 	private DifficultyLevel difficultyLevel;
 	private String team;
 	
+	//constructor
 	public Question() {
 		super();
 	}
 
+	//constructor
 	public Question(Integer id, String context, ArrayList<Answer> answers, DifficultyLevel level, String team) {
 		super();
 		this.Id = id;
@@ -43,6 +45,7 @@ public class Question {
 		return Id == other.Id;
 	}
 
+	//getters and setters
 	public Integer getId() {
 		return Id;
 	}
@@ -82,6 +85,8 @@ public class Question {
 	public void setTeam(String team) {
 		this.team = team;
 	}
+	
+	
 	// update the answers
 	public void updateAnswers(ArrayList<Answer> updatedAnswers) {
 		this.answers = new ArrayList<Answer>();
@@ -90,6 +95,8 @@ public class Question {
 			this.addAnswer(a);
 		}
 	}
+	
+	
 	// return the true answer
 	public Integer getCorrectAnswer() {
 		for (int i = 0; i < answers.size(); i++) {
@@ -99,6 +106,8 @@ public class Question {
 		}
 		return -1;
 	}
+	
+	
 	// add answer
 	public Boolean addAnswer(Answer answer) {
 		if (answer != null) {
@@ -106,6 +115,8 @@ public class Question {
 		}
 		return false;
 	}
+	
+	
 	// delete answer
 	public Boolean removeAnswer(Answer answer) {
 		if (answer != null) {
@@ -113,7 +124,9 @@ public class Question {
 		}
 		return false;
 
-	}//check if there is two similar answers
+	}
+	
+	//check if there is two similar answers
 	public Boolean answerAlreadyExist(ArrayList<Answer> answers) {
 	for (int i = 0; i < answers.size(); i++) {
 
@@ -129,6 +142,8 @@ public class Question {
 	}
 	return false;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "Question [id=" + Id + ", Context=" + Context + ", answers=" + answers + ", difficultyLevel="
