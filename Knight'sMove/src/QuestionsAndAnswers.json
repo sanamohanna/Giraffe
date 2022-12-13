@@ -119,6 +119,67 @@
       "correct_ans": "3",
       "level": "1",
       "team": "animal"
+    },
+    {
+      "question": "there is :",
+      "answers": [
+        "1 Stages of testing",
+        "3 Stages of testing",
+        "5 Stages of testing",
+        "2 Stages of testing"
+      ],
+      "correct_ans": "2",
+      "level": "2",
+      "team": "animal"
+    },
+    {
+      "question": "Development Testing is  :",
+      "answers": [
+        "where the system is tested during development to discover bugs and defects",
+        "where a separate testing team test a complete version of the system before it is released to users",
+        "where users or potential users of a system test the system in their own environment",
+        "4. Answers 1 and 2 are correct"
+      ],
+      "correct_ans": "1",
+      "level": "3",
+      "team": "animal"
+    },
+    {
+      "question": "an Evolution is : ",
+      "answers": [
+        "The software may still be used but no further changes are made to it",
+        "It is to produce the same system but more innovative",
+        "a part of junit test",
+        "it's a software system’s life cycle where it is in operational use and is evolving"
+      ],
+      "correct_ans": "4",
+      "level": "1",
+      "team": "animal"
+    },
+    {
+      "question": "Which of the answers is considered to a legacy system component?",
+      "answers": [
+        "system hardware",
+        "support software",
+        "application data",
+        "4. All the answers is correct"
+      ],
+      "correct_ans": "4",
+      "level": "2",
+      "team": "animal"
+    },
+    {
+      "question": "what is a Maintenance?",
+      "answers": [
+        "to make efficient of the Development testing to make the system more effective",
+        "it is that with the finish of project we need to to make sure that all the system data is complate and correct ",
+        " it's to ensure the continuous and efficient operation of the system ",
+        "4. all answers is uncorrect"
+      ],
+      "correct_ans": "3",
+      "level": "3",
+      "team": "animal"
     }
   ]
 }
+
