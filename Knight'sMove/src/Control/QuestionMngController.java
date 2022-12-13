@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -111,6 +112,7 @@ public class QuestionMngController implements Initializable {
 	private Text showTeam;
 	@FXML
 	private Text showContext;
+
 	
 	SysData sysData = SysData.getInstance();
     Alert a = new Alert(AlertType.NONE);
@@ -197,7 +199,8 @@ public class QuestionMngController implements Initializable {
 		try {
 			if(difLevel.getValue() == null || context.getText().isEmpty() || answer1.getText().isEmpty()
 					|| answer2.getText().isEmpty() || answer3.getText().isEmpty() || answer4.getText().isEmpty() || team.getText().isEmpty()
-					|| trueAnswer.getValue() == null ) {
+					|| trueAnswer.getValue() == null || context.getText() == " "|| answer1.getText()==" "
+					|| answer2.getText()== " "|| answer3.getText() == " " || answer4.getText() == " " || team.getText() == " ") {
 				throw new NullPointerException();
 			}
 			Answer answer11 =new Answer(1,answer1.getText());
@@ -334,7 +337,7 @@ public class QuestionMngController implements Initializable {
 	}
 	public void finishDeleteQues(ActionEvent event) throws Exception{
 		try {
-			if(textF.getText().isEmpty())
+			if(textF.getText().isEmpty() || textF.getText() == " ")
 				throw new Exception();
 			sysData.LoadQuestions();
 		
@@ -415,7 +418,7 @@ public class QuestionMngController implements Initializable {
 	public void finishUpdateQues(ActionEvent event) throws Exception{
         try {
 		sysData.LoadQuestions();
-		if(num2.getText().isEmpty()) {
+		if(num2.getText().isEmpty() || num2.getText() == " ") {
 			throw new Exception();
 		}
 		if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
@@ -430,7 +433,6 @@ public class QuestionMngController implements Initializable {
 			trueAnswerUpdated.setItems(trueAns);
 			num2.setVisible(false);
 			update.setVisible(false);
-
 			contextUpdated.setVisible(true);
 			answer1Updated.setVisible(true);
 			answer2Updated.setVisible(true);
@@ -460,7 +462,8 @@ public class QuestionMngController implements Initializable {
 				difLevelUpdated.setValue(3);
 			else
 				difLevelUpdated.setValue(2);
-			
+
+
 		}
 
 		}
@@ -477,7 +480,8 @@ public class QuestionMngController implements Initializable {
 		sysData.LoadQuestions();
 		if(difLevelUpdated.getValue() == null || contextUpdated.getText().isEmpty() || answer1Updated.getText().isEmpty()
 				|| answer2Updated.getText().isEmpty() || answer3Updated.getText().isEmpty() || answer4Updated.getText().isEmpty() || teamUpdated.getText().isEmpty()
-				|| trueAnswerUpdated.getValue() == null ) {
+				|| trueAnswerUpdated.getValue() == null || contextUpdated.getText() == " "|| answer1Updated.getText()==" "
+				|| answer2Updated.getText()== " "|| answer3Updated.getText() == " " || answer4Updated.getText() == " " || teamUpdated.getText() == " " ) {
 			throw new NullPointerException();
 		}
 		Integer num =Integer.parseInt(num2.getText());
@@ -623,7 +627,7 @@ public class QuestionMngController implements Initializable {
 	public void finishShowQues(ActionEvent event) throws Exception{
 		  try {
 				sysData.LoadQuestions();
-				if(quesNum.getText().isEmpty()) {
+				if(quesNum.getText().isEmpty() || quesNum.getText() == " ") {
 					throw new Exception();
 				}
 				if(Integer.parseInt(quesNum.getText())>= sysData.getQuestions().size() || Integer.parseInt(quesNum.getText())<0  ) {

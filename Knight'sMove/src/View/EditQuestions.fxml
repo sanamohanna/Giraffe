@@ -12,10 +12,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.QuestionMngController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.QuestionMngController">
    <children>
-      <TableView fx:id="table" layoutX="16.0" layoutY="42.0" prefHeight="150.0" prefWidth="565.0" AnchorPane.topAnchor="42.0" />
-      <Button fx:id="addQues" layoutX="451.0" layoutY="246.0" mnemonicParsing="false" onAction="#addQues" prefHeight="25.0" prefWidth="122.0" text="Add Question">
+      <TableView fx:id="table" layoutX="17.0" layoutY="48.0" prefHeight="162.0" prefWidth="566.0" AnchorPane.topAnchor="48.0" />
+      <Button fx:id="addQues" layoutX="451.0" layoutY="283.0" mnemonicParsing="false" onAction="#addQues" prefHeight="25.0" prefWidth="122.0" text="Add Question">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font>
@@ -29,13 +29,13 @@
                </light>
             </Lighting>
          </effect></Button>
-      <TextField fx:id="context" layoutX="18.0" layoutY="200.0" prefHeight="25.0" prefWidth="266.0" promptText="question context" visible="false" />
-      <TextField fx:id="answer1" layoutX="18.0" layoutY="230.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 1" visible="false" AnchorPane.topAnchor="230.0" />
-      <TextField fx:id="answer2" layoutX="18.0" layoutY="259.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 2" visible="false" AnchorPane.topAnchor="259.0" />
-      <TextField fx:id="answer3" layoutX="18.0" layoutY="285.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 3" visible="false" AnchorPane.topAnchor="285.0" />
-      <TextField fx:id="answer4" layoutX="18.0" layoutY="313.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 4" visible="false" AnchorPane.topAnchor="313.0" />
-      <TextField fx:id="team" layoutX="18.0" layoutY="344.0" promptText="team" visible="false" AnchorPane.topAnchor="344.0" />
-      <ChoiceBox fx:id="difLevel" layoutX="351.0" layoutY="230.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="43.0" visible="false">
+      <TextField fx:id="context" layoutX="18.0" layoutY="226.0" prefHeight="25.0" prefWidth="266.0" promptText="question context" visible="false" />
+      <TextField fx:id="answer1" layoutX="18.0" layoutY="260.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 1" visible="false" AnchorPane.topAnchor="260.0" />
+      <TextField fx:id="answer2" layoutX="17.0" layoutY="295.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 2" visible="false" AnchorPane.topAnchor="295.0" />
+      <TextField fx:id="answer3" layoutX="18.0" layoutY="333.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 3" visible="false" AnchorPane.topAnchor="333.0" />
+      <TextField fx:id="answer4" layoutX="18.0" layoutY="373.0" prefHeight="25.0" prefWidth="199.0" promptText="answer 4" visible="false" AnchorPane.topAnchor="373.0" />
+      <TextField fx:id="team" layoutX="18.0" layoutY="408.0" promptText="team" visible="false" AnchorPane.topAnchor="408.0" />
+      <ChoiceBox fx:id="difLevel" layoutX="343.0" layoutY="273.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="43.0" visible="false">
          <effect>
             <Lighting>
                <bumpInput>
@@ -46,11 +46,11 @@
                </light>
             </Lighting>
          </effect></ChoiceBox>
-      <Text fx:id="diff1" layoutX="255.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty Level" visible="false">
+      <Text fx:id="diff1" layoutX="254.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty Level" visible="false">
          <font>
             <Font name="Baskerville Old Face" size="13.0" />
          </font></Text>
-      <ChoiceBox fx:id="trueAnswer" layoutX="351.0" layoutY="263.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="43.0" visible="false">
+      <ChoiceBox fx:id="trueAnswer" layoutX="343.0" layoutY="321.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="43.0" visible="false">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -64,11 +64,11 @@
                </light>
             </Lighting>
          </effect></ChoiceBox>
-      <Text fx:id="true1" layoutX="257.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="True Answer" visible="false">
+      <Text fx:id="true1" layoutX="255.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="True Answer" visible="false">
          <font>
             <Font name="Baskerville Old Face" size="13.0" />
          </font></Text>
-      <Button fx:id="add" layoutX="291.0" layoutY="312.0" mnemonicParsing="false" onAction="#finishAddQues" text="add" visible="false">
+      <Button fx:id="add" layoutX="346.0" layoutY="381.0" mnemonicParsing="false" onAction="#finishAddQues" text="add" visible="false">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="12.0" />
          </font>
@@ -82,7 +82,7 @@
                </light>
             </Lighting>
          </effect></Button>
-      <Button fx:id="deleteQues" layoutX="451.0" layoutY="292.0" mnemonicParsing="false" onAction="#deleteQues" prefHeight="25.0" prefWidth="122.0" text="Delete Question">
+      <Button fx:id="deleteQues" layoutX="451.0" layoutY="331.0" mnemonicParsing="false" onAction="#deleteQues" prefHeight="25.0" prefWidth="122.0" text="Delete Question">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font>
@@ -112,7 +112,7 @@
             </Lighting>
          </effect></Button>
       <Text fx:id="error" fill="#ef0808" layoutX="295.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the number is not valid " visible="false" />
-      <Button fx:id="updateQues" layoutX="451.0" layoutY="339.0" mnemonicParsing="false" onAction="#updateQues" prefHeight="25.0" prefWidth="122.0" text="Update Question">
+      <Button fx:id="updateQues" layoutX="451.0" layoutY="380.0" mnemonicParsing="false" onAction="#updateQues" prefHeight="25.0" prefWidth="122.0" text="Update Question">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font>
@@ -126,13 +126,8 @@
                </light>
             </Lighting>
          </effect></Button>
-      <TextField fx:id="contextUpdated" layoutX="17.0" layoutY="218.0" prefHeight="25.0" prefWidth="240.0" visible="false" />
-      <TextField fx:id="answer1Updated" layoutX="18.0" layoutY="247.0" visible="false" />
-      <TextField fx:id="answer2Updated" layoutX="18.0" layoutY="276.0" visible="false" />
-      <TextField fx:id="answer3Updated" layoutX="18.0" layoutY="304.0" visible="false" />
-      <TextField fx:id="answer4Updated" layoutX="18.0" layoutY="332.0" visible="false" />
-      <TextField fx:id="teamUpdated" layoutX="18.0" layoutY="360.0" prefHeight="25.0" prefWidth="99.0" visible="false" />
-      <ChoiceBox fx:id="difLevelUpdated" layoutX="340.0" layoutY="226.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="49.0" visible="false">
+      <TextField fx:id="teamUpdated" layoutX="18.0" layoutY="438.0" prefHeight="25.0" prefWidth="99.0" visible="false" />
+      <ChoiceBox fx:id="difLevelUpdated" layoutX="379.0" layoutY="271.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="49.0" visible="false">
          <effect>
             <Lighting>
                <bumpInput>
@@ -143,7 +138,7 @@
                </light>
             </Lighting>
          </effect></ChoiceBox>
-      <ChoiceBox fx:id="trueAnswerUpdated" layoutX="340.0" layoutY="264.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="49.0" visible="false">
+      <ChoiceBox fx:id="trueAnswerUpdated" layoutX="379.0" layoutY="316.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="49.0" visible="false">
          <effect>
             <Lighting>
                <bumpInput>
@@ -154,8 +149,8 @@
                </light>
             </Lighting>
          </effect></ChoiceBox>
-      <Text fx:id="true11" layoutX="266.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="True Answer" visible="false" />
-      <Text fx:id="diff11" layoutX="256.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty Level" visible="false" />
+      <Text fx:id="true11" layoutX="297.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="True Answer" visible="false" />
+      <Text fx:id="diff11" layoutX="292.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty Level" visible="false" />
       <TextField fx:id="num2" layoutX="283.0" layoutY="339.0" prefHeight="25.0" prefWidth="149.0" promptText="enter question number" visible="false" />
       <Button fx:id="update" layoutX="311.0" layoutY="365.0" mnemonicParsing="false" onAction="#finishUpdateQues" text="go to update" visible="false" AnchorPane.topAnchor="370.0">
          <font>
@@ -171,7 +166,7 @@
                </light>
             </Lighting>
          </effect></Button>
-      <Button fx:id="updateQues2" layoutX="274.0" layoutY="320.0" mnemonicParsing="false" onAction="#finishUpdate" text="update" visible="false">
+      <Button fx:id="updateQues2" layoutX="352.0" layoutY="400.0" mnemonicParsing="false" onAction="#finishUpdate" text="update" visible="false">
          <effect>
             <Lighting>
                <bumpInput>
@@ -198,7 +193,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="showQues" layoutX="451.0" layoutY="200.0" mnemonicParsing="false" onAction="#showQues" prefHeight="25.0" prefWidth="122.0" text="Show Question">
+      <Button fx:id="showQues" layoutX="451.0" layoutY="233.0" mnemonicParsing="false" onAction="#showQues" prefHeight="25.0" prefWidth="122.0" text="Show Question">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font>
@@ -213,8 +208,8 @@
             </Lighting>
          </effect>
       </Button>
-      <TextField fx:id="quesNum" layoutX="276.0" layoutY="200.0" promptText="enter question number" visible="false" />
-      <Button fx:id="show" layoutX="327.0" layoutY="227.0" mnemonicParsing="false" onAction="#finishShowQues" text="Show" visible="false">
+      <TextField fx:id="quesNum" layoutX="276.0" layoutY="247.0" promptText="enter question number" visible="false" />
+      <Button fx:id="show" layoutX="328.0" layoutY="285.0" mnemonicParsing="false" onAction="#finishShowQues" text="Show" visible="false">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font>
@@ -229,37 +224,42 @@
             </Lighting>
          </effect>
       </Button>
-      <Text fx:id="showContext" layoutX="18.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="256.8034362792969">
+      <Text fx:id="showContext" layoutX="23.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="266.4">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font></Text>
-      <Text fx:id="showAnswer1" layoutX="18.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="256.8034362792969">
+      <Text fx:id="showAnswer1" layoutX="23.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="256.8034362792969">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font></Text>
-      <Text fx:id="showAnswer2" layoutX="23.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="256.8034362792969">
+      <Text fx:id="showAnswer2" layoutX="23.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="256.8034362792969">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font></Text>
-      <Text fx:id="showAnswer3" layoutX="23.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="256.8034362792969">
+      <Text fx:id="showAnswer3" layoutX="23.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="256.8034362792969">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font></Text>
-      <Text fx:id="showAnswer4" layoutX="23.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="256.8034362792969">
+      <Text fx:id="showAnswer4" layoutX="28.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="256.8034362792969">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font></Text>
-      <Text fx:id="showTeam" layoutX="23.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="256.8034362792969">
+      <Text fx:id="showTeam" layoutX="304.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="256.8034362792969">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font></Text>
-      <Text fx:id="showDif" layoutX="298.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
+      <Text fx:id="showDif" layoutX="328.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font></Text>
-      <Text fx:id="showTrue" layoutX="298.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
+      <Text fx:id="showTrue" layoutX="328.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font></Text>
+      <TextField fx:id="contextUpdated" layoutX="18.0" layoutY="220.0" prefHeight="26.0" prefWidth="328.0" visible="false" />
+      <TextField fx:id="answer1Updated" layoutX="18.0" layoutY="254.0" prefHeight="37.0" prefWidth="266.0" visible="false" />
+      <TextField fx:id="answer2Updated" layoutX="18.0" layoutY="299.0" prefHeight="38.0" prefWidth="266.0" visible="false" />
+      <TextField fx:id="answer3Updated" layoutX="18.0" layoutY="345.0" prefHeight="38.0" prefWidth="266.0" visible="false" />
+      <TextField fx:id="answer4Updated" layoutX="18.0" layoutY="390.0" prefHeight="38.0" prefWidth="266.0" visible="false" />
    </children>
 </AnchorPane>
