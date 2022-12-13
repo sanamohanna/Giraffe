@@ -48,15 +48,6 @@ public class SetPasswordController {
 		this.admins.add(admin3);
 		this.admins.add(admin4);
 	}
-	
-	public Text getWarning() {
-		return warning;
-	}
-
-
-	public void setWarning(Text warning) {
-		this.warning = warning;
-	}
 
 	public void checkDetails(ActionEvent event) throws Exception{
 		int flag=1;

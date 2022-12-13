@@ -13,7 +13,7 @@ public class MainScreen extends Application {
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
-	
+	// this method display the main screen 
 	public void start(Stage primaryStage) throws IOException {
 
 		try {
@@ -21,7 +21,7 @@ public class MainScreen extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
-			Image icon = new Image("6808582.png"); 
+			Image icon = new Image("/View/Images/6808582.png"); 
 			primaryStage.setResizable(false);
 			primaryStage.getIcons().add(icon);
 			primaryStage.setTitle("Knight's Move Game");

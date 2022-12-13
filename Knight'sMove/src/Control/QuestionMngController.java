@@ -550,9 +550,7 @@ public class QuestionMngController implements Initializable {
 		true11.setVisible(false);
 		diff11.setVisible(false);
 		updateQues2.setVisible(false);
-		addQues.setVisible(true);
-		deleteQues.setVisible(true);
-		updateQues.setVisible(true);
+		
 		ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());    
 		id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
 		ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
@@ -610,6 +608,17 @@ public class QuestionMngController implements Initializable {
 		showTeam.setVisible(false);
 		showDif.setVisible(false);
 		showTrue.setVisible(false);
+		contextUpdated.setVisible(false);
+		answer1Updated.setVisible(false);
+		answer2Updated.setVisible(false);
+		answer3Updated.setVisible(false);
+		answer4Updated.setVisible(false);
+		teamUpdated.setVisible(false);
+		difLevelUpdated.setVisible(false);
+		trueAnswerUpdated.setVisible(false);
+		true11.setVisible(false);
+		diff11.setVisible(false);
+		updateQues2.setVisible(false);
 	}
 	public void finishShowQues(ActionEvent event) throws Exception{
 		  try {

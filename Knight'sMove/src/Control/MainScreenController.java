@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 //import javafx.scene.control.Button;
 //import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -16,7 +17,6 @@ import javafx.stage.Stage;
 public class MainScreenController {
 
 	public void Instructions(ActionEvent event) throws Exception {
-
 		Parent root = FXMLLoader.load(getClass().getResource("/View/Instructions.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
@@ -24,29 +24,6 @@ public class MainScreenController {
 		scene.getStylesheets().add(getClass().getResource("/View/Instructions.css").toExternalForm());
 		stage.setScene(scene);
 		stage.show();
-
-	}
-	public void backButton1(ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setResizable(false);
-		scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
-		stage.setScene(scene);
-	
-		stage.show();
-
-	}
-	public void backButton2(ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setResizable(false);
-		scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
-		stage.setScene(scene);
-	
-		stage.show();
-
 	}
 
 	public void EditQuestions(ActionEvent event) throws Exception {
@@ -55,38 +32,28 @@ public class MainScreenController {
 		Scene scene = new Scene(root);
 		stage.setResizable(false);
 		scene.getStylesheets().add(getClass().getResource("/View/setPassword.css").toExternalForm());
-
 		stage.setScene(scene);
 		stage.show();
-
 	}
 
 	public void StartGame(ActionEvent event) throws Exception {
-
 		Parent root = FXMLLoader.load(getClass().getResource("/View/UserName.fxml"));
-
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setResizable(false);
 		scene.getStylesheets().add(getClass().getResource("/View/UserName.css").toExternalForm());
 		stage.setScene(scene);
-
 		stage.show();
-
 	}
 	
 	public void GamesHistory(ActionEvent event) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/gamesHistory.fxml"));
-		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setResizable(false);
 		scene.getStylesheets().add(getClass().getResource("/View/gameHistory.css").toExternalForm());
 		stage.setScene(scene);
-		
 		stage.show();
-		
-		
 	}
 
 }
