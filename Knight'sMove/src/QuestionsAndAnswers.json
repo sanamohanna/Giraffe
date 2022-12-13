@@ -1,120 +1,120 @@
 {
   "questions": [
     {
-      "question": "הנדסת תוכנה היא דיסציפלינה הנדסית העוסקת ב:",
+      "question": "Software engineering is an engineering discipline that is concerned with:",
       "answers": [
-        "1. שלבים מוקדמים של המערכת",
-        "2. בבעיות של המערכת לאחר כניסתה לשימוש",
-        "3. עיצוב ממשק משתמש של המערכת",
-        "4. בכל שלבי ייצור המערכת,משלבים מוקדמים ועד לתחזוקה"
+        "1. Early stages of the system",
+        "2. the problems of the system after its use",
+        "3. User interface design of the system",
+        "4. all aspects of software production from the early stages of system specification through to maintaining "
       ],
       "correct_ans": "4",
       "level": "1",
       "team": "animal"
     },
     {
-      "question": "למה התוכנות נכשלו בשנת 2005?",
+      "question": "Why did the software fail in 2005?",
       "answers": [
-        "1. הלקוחות היו תמיד לוחצים על המפתחים בעניין הזמן",
-        "2. לא היה הערכות מדויקות של המשאבים הדרושים",
-        "3. הסיכונים לא היו מנוהלים",
-        "4. תשובות 2 ו 3 נכונות"
+        "1. The customers would always press the developers about the time",
+        "2. Inaccurate estimates of needed resources ",
+        "3. Unmanaged risks ",
+        "4. Answers 2 and 3 are correct"
       ],
       "correct_ans": "4",
       "level": "2",
       "team": "animal"
     },
     {
-      "question": "מה ההבדל בין מדעי מחשב והנדסת תוכנה?",
+      "question":"What differences has the web made to software engineering?",
       "answers": [
-        "1. מדעי מחשב מתמקדים בחומרת התוכנה והנדסת תוכנה בעיצוב",
-        "2. מדעי המחשב מתמקדים בתיאוריה ,הנדסת תוכנה עוסקת בפיתוח ואספקת תוכנה ",
-        "3. אין הבדל",
-        "4. תשובות 1 ו 2 נכונות"
+        "1. Computer science focuses on the software hardware and software engineering on design",
+        "2. Computer science focuses on theory, software engineering deals with the development and delivery of software",
+        "3. There is no difference",
+        "4. Answers 1 and 2 are correct"
       ],
       "correct_ans": "2",
       "level": "3",
       "team": "animal"
     },
     {
-      "question": "מה הוא אב טיפוס? ",
+      "question": "What is a prototype?",
       "answers": [
-        "1. תצוגה ראשונית של ממשק משתמש",
-        "2. תהליך בדיקות",
-        "3. שם השלב האחרון בייצור",
-        "4. אף תשובה נכונה"
+        "1. Initial display of user interface",
+        "2. Testing process",
+        "3. Name of the last stage in production",
+        "4. all answers is uncorrect"
       ],
       "correct_ans": "1",
       "level": "1",
       "team": "animal"
     },
     {
-      "question": "מה העלות של הנדסת תוכנה?",
+      "question": "What is the cost of software engineering?",
       "answers": [
-        "1. עלות פיתוח היא 60% מהעלות ו 40% עלות בדיקות",
-        "2. כל העלות היא עלות פיתוח",
-        "3. עלות פיתוח ועלות בדיקה עולות אותו הדבר",
-        "4. עלות פיתוח היא 90% מהעלות ו 10% עלות בדיקות"
+        "1. The cost of development is 60% of the cost and 40% of the cost of tests",
+        "2. The entire cost is a development cost",
+        "3. Development cost and test cost is the same",
+        "4. Development cost is 90% of the cost and the remaining 10% is a testing cost"
       ],
       "correct_ans": "1",
       "level": "2",
       "team": "animal"
     },
     {
-      "question": "מה מאלה הן פעילויות תהליך התוכנה",
+      "question": "Which of these are the activities of the software process",
       "answers": [
-        "1. פיתוח ",
-        "2. אימות",
-        "3. התפתחות ",
-        "4. כל התשובות נכונות"
+        "1. Development",
+        "2. Verification",
+        "3. evolution",
+        "4. All the answers are correct"
       ],
       "correct_ans": "4",
       "level": "3",
       "team": "animal"
     },
     {
-      "question": "מה מתארת תוכנית פיתוח צוות עובדים",
+      "question": "What does a staff development program describe",
       "answers": [
-        "1. איך לחלק את העבודה בין העובדים",
-        "2. מחליטים מי מהצוות כן יעבוד על הפרויקט ומי לא",
-        "3. איך לגדל מספר העובדים בצוות",
-        "4. איך יפותחו הכישורים של חברי צוות הפרויקט"
+        "1. How to divide the work between the employees",
+        "2. Deciding which of the team will work on the project and who will not",
+        "3. How to increase the number of employees in the team",
+        "4. How will the skills of the project team members be developed"
       ],
       "correct_ans": "4",
       "level": "1",
       "team": "animal"
     },
     {
-      "question": "דיאגרמת הרצף:",
+      "question": "Sequence Diagram:",
       "answers": [
-        "1. מציגה את רצף כל הפעולות במערכת",
-        "2. מציגה את רצף האינטראקציות בין השחקנים והאובייקטים בתוך מערכת",
-        "3. מציגה את רצף האינטראקציות רק של השחקנים",
-        "4. ציגה את רצף האינטראקציות רק של האובייקטים"
+        "1. Shows the sequence of all operations in the system",
+        "2. Shows the sequence of interactions between the actors and the objects within a system",
+        "3. Shows the sequence of interactions only of the players",
+        "4. Show the sequence of interactions only of the objects"
       ],
       "correct_ans": "2",
       "level": "2",
       "team": "animal"
     },
     {
-      "question": ": הנדסה מונעת מודלים היא(MDE)",
-      "answers": [
-        "1.UML היא הנדסה של כל תרשימי ה ",
-        "2. הנדסה שבזכותה התחילו לדעת מה זה מודלים ",
-        "3. היא אותו הדבר כמו הנדסת מדעי מחשב",
-        "4. גישה לפיתוח תוכנה שבה מודלים התוצרים העיקריים של תהליך הפיתוח"
+      "question":": Model Driven Engineering is (MDE)",
+             "answers": [
+               "1. is the engineering of all the UML diagrams",
+               "2. from this type of Engineering they started to know what models are",
+               "3. Is the same as computer science engineering",
+               "4. An approach to software development in which the main products of the development process is models"
       ],
       "correct_ans": "4",
       "level": "3",
       "team": "animal"
     },
     {
-      "question": "UML איזה תרשים הוא מסוג ",
+      "question": "which diagram is a UML diagram?",
       "answers": [
-        "1. ERD : Entity Relationship Diagrem",
-        "2. DFD : Data Flow Diagram",
+        "1. ERD : Entity Relationship Diagram",
+        "2. DFD: Data Flow Diagram",
         "3. use case",
-        "4. אף תשובה נכונה"
+        "4. all answers is uncorrect"
       ],
       "correct_ans": "3",
       "level": "1",
