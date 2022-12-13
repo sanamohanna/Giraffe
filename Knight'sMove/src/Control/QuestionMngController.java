@@ -115,17 +115,17 @@ public class QuestionMngController implements Initializable {
 	SysData sysData = SysData.getInstance();
     Alert a = new Alert(AlertType.NONE);
     Alert c = new Alert(AlertType.NONE);
-    TableColumn id;
-    TableColumn ques;
-    TableColumn dif;
+    TableColumn<Question, Integer> id;
+    TableColumn<Question, String> ques;
+    TableColumn<Question,DifficultyLevel> dif;
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
     
 		sysData.LoadQuestions();
-		id=new TableColumn("    ID   ");
-		ques=new TableColumn("                           Context                        ");
-		dif =new TableColumn("         Difficulty            "); 
+		id=new TableColumn<Question, Integer>("    ID   ");
+		ques=new TableColumn<Question, String>("                           Context                        ");
+		dif =new TableColumn<Question, DifficultyLevel>("         Difficulty            "); 
 		table.getColumns().addAll(id,ques,dif);
 	    ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
 	    
