@@ -31,7 +31,8 @@ import model.Question;
 import model.SysData;
 
 public class QuestionMngController implements Initializable {
-
+    // Declare javaFX Variables
+	// Variables named in sceneBuilder 
 	@FXML
 	private TableView<Question> table;
 	@FXML
@@ -113,13 +114,16 @@ public class QuestionMngController implements Initializable {
 	@FXML
 	private Text showContext;
 
-	
+	//calling the singleton of sysData class
 	SysData sysData = SysData.getInstance();
+	//declare Alert to show an error or an information message on the Screen
     Alert a = new Alert(AlertType.NONE);
     Alert c = new Alert(AlertType.NONE);
+    // declaring the column of the table that well show all Questions
     TableColumn<Question, Integer> id;
     TableColumn<Question, String> ques;
     TableColumn<Question,DifficultyLevel> dif;
+    //fell the table with all Questions and names of each column 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -130,7 +134,7 @@ public class QuestionMngController implements Initializable {
 		dif =new TableColumn<Question, DifficultyLevel>("         Difficulty            "); 
 		table.getColumns().addAll(id,ques,dif);
 	    ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());
-	    
+	    //declaring to each column what the name of the variable that should take
 		id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
 		ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
 		dif.setCellValueFactory(new PropertyValueFactory<Question,DifficultyLevel>("difficultyLevel"));
@@ -147,7 +151,8 @@ public class QuestionMngController implements Initializable {
 		}
 		return instance;
 	}
-	
+	//method that take ud back to the main screen
+	//it's an action to back button
 	public void backButton1(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -159,6 +164,8 @@ public class QuestionMngController implements Initializable {
 		stage.show();
 
 	}
+	// method that changing the visible show of some variable
+	// According to the button we clicked (in this case it is add)
 	public void addQues(ActionEvent event) throws Exception{
 		showContext.setVisible(false);
 		showAnswer1.setVisible(false);
@@ -189,19 +196,21 @@ public class QuestionMngController implements Initializable {
 		add.setVisible(true);
 		true1.setVisible(true);
 		diff1.setVisible(true);
-//		addQues.setVisible(false);
-//		deleteQues.setVisible(false);
-//		updateQues.setVisible(false);
+
 	}
+	//method that add the question to the arraylist of all questions
+	// also add the JSON file
 	public void finishAddQues(ActionEvent event) throws Exception{
 		int sameQ = 0 , sameA = 0;
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		try {
+			//check if the user entered a null value or space 
 			if(difLevel.getValue() == null || context.getText().trim().isEmpty() || answer1.getText().trim().isEmpty()
 					|| answer2.getText().trim().isEmpty() || answer3.getText().trim().isEmpty() || answer4.getText().trim().isEmpty() || team.getText().trim().isEmpty()
 					|| trueAnswer.getValue() == null) {
 				throw new NullPointerException();
 			}
+			// get all the answers that the user want to add 
 			Answer answer11 =new Answer(1,answer1.getText());
 			answers.add(answer11);
 			Answer answer22 =new Answer(2,answer2.getText());
@@ -210,7 +219,7 @@ public class QuestionMngController implements Initializable {
 			answers.add(answer33);
 			Answer answer44 =new Answer(4,answer4.getText());
 			answers.add(answer44);
-			
+			//checking the right answer between all answers 
 			if(trueAnswer.getValue().equals(1)) {
 				answer11.setTrue(true);
 			}
@@ -230,6 +239,7 @@ public class QuestionMngController implements Initializable {
 				answer44.setTrue(true);
 			else
 				answer44.setTrue(false);
+			// get the difficultly of the question
 			DifficultyLevel diff;
 			if(difLevel.getValue().equals(1)) {
 				diff = DifficultyLevel.EASY;
@@ -241,19 +251,23 @@ public class QuestionMngController implements Initializable {
 				diff = DifficultyLevel.HARD;
 			}	
 			sysData.LoadQuestions();
+			//take all the entered data and add a new question
 			Question newQues = new Question(sysData.getQuestions().size(),context.getText(),answers,diff,team.getText());
-			
+			//checking if there is the same question
 				if(sysData.quesAlreadyExists(newQues.getContext(),-1)==false  )
 				{
-					
+					//checking if there is two similar answers
 						if(newQues.answerAlreadyExist(answers)==false) {
+							// adding the new question to JSON and to the ArrayList
 							sysData.addQuestion(newQues);
 						}
+						//if there is two similar answers 
 						else {
 							sameA = 1;
 							throw new Exception();
 						}
 				}
+				//if the question already exist
 				else {
 					sameQ = 1;
 					throw new Exception();
@@ -261,6 +275,7 @@ public class QuestionMngController implements Initializable {
 			
 		
 			sysData.WriteQuestions();
+			//changing the visible show 
 			context.setVisible(false);
 			answer1.setVisible(false);
 			answer2.setVisible(false);
@@ -275,6 +290,7 @@ public class QuestionMngController implements Initializable {
 			addQues.setVisible(true);
 			deleteQues.setVisible(true);
 			updateQues.setVisible(true);
+			// adding the new question to the table that show on the screen
 			ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());    
 			id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
 			ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
@@ -287,10 +303,12 @@ public class QuestionMngController implements Initializable {
 			
 	        
 		}
+		// catch for null data
 		catch (NullPointerException e) {
 			a.setAlertType(AlertType.ERROR);
 			a.setContentText("please enter all data!");
 			a.show();
+			// catch for two similar answers or already existing question
 		}catch (Exception e) {
 			if(sameA == 1) {
 				c.setAlertType(AlertType.ERROR);
@@ -305,6 +323,8 @@ public class QuestionMngController implements Initializable {
 		}
 		
 	}
+	// method that changing the visible show of some variable
+	// According to the button we clicked (in this case it is remove)
 	public void deleteQues(ActionEvent event) throws Exception{
 		showContext.setVisible(false);
 		showAnswer1.setVisible(false);
@@ -334,20 +354,24 @@ public class QuestionMngController implements Initializable {
 
 			
 	}
+	//method that delete the question from the arraylist of all questions
+	// also delete it from the JSON file
 	public void finishDeleteQues(ActionEvent event) throws Exception{
 		try {
+			//checking if the number of the question that we want to delete is entered as null or space
 			if(textF.getText().trim().isEmpty())
 				throw new Exception();
 			sysData.LoadQuestions();
 		
 	
-
+           // checking if the number that entered existing or if it illegal
 			if(Integer.parseInt(textF.getText())>= sysData.getQuestions().size() || Integer.parseInt(textF.getText())<0  ) {
 				a.setAlertType(AlertType.ERROR);
 				a.setContentText("the number is not valid, please try again!");
 				a.show();			}
 			else {
 				sysData.LoadQuestions();
+				//deleting the question from the arraylist and JsonFile 
 				sysData.removeQuestion(Integer.parseInt(textF.getText()));
 				sysData.WriteQuestions();
 				textF.setVisible(false);
@@ -355,6 +379,7 @@ public class QuestionMngController implements Initializable {
 				addQues.setVisible(true);
 				deleteQues.setVisible(true);
 				updateQues.setVisible(true);
+				// deleting question from the table that show on the screen
 				ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());    
 				id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
 				ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
@@ -364,7 +389,7 @@ public class QuestionMngController implements Initializable {
 				a.show();
 				
 			}
-			
+			//catch for entered a null data
 		}catch (Exception e) {
 			a.setAlertType(AlertType.ERROR);
 			a.setContentText("please enter all data!");
@@ -372,6 +397,8 @@ public class QuestionMngController implements Initializable {
 		
 		
 	}
+	// method that changing the visible show of some variable
+	// According to the button we clicked (in this case it is update)
 	public void updateQues(ActionEvent event) throws Exception{
 		showContext.setVisible(false);
 		showAnswer1.setVisible(false);
@@ -409,23 +436,25 @@ public class QuestionMngController implements Initializable {
 		add.setVisible(false);
 		true1.setVisible(false);
 		diff1.setVisible(false);
-		
-//		addQues.setVisible(false);
-//		deleteQues.setVisible(false);
-//		updateQues.setVisible(false);
+
 	}
+	//method that take the question number that we want to update 
+	//and show us the question details
 	public void finishUpdateQues(ActionEvent event) throws Exception{
+		//checking if the number of the question that we want to update is entered as null or space
         try {
 		sysData.LoadQuestions();
 		if(num2.getText().trim().isEmpty()) {
 			throw new Exception();
 		}
+		//checking if the number of the question that we want to delete is entered as null or space
 		if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
 			a.setAlertType(AlertType.ERROR);
 			a.setContentText("the number is not valid , please try again!");
 			a.show();		}
 				
 		else {
+			//showing question's details on the screen
 			ObservableList<Integer> diffList = FXCollections.observableArrayList(1,2,3);
 			ObservableList<Integer> trueAns = FXCollections.observableArrayList(1,2,3,4);
 			difLevelUpdated.setItems(diffList);
@@ -466,17 +495,20 @@ public class QuestionMngController implements Initializable {
 		}
 
 		}
+		//catch for entered a null data
 		catch (Exception e) {
 			a.setAlertType(AlertType.ERROR);
 			a.setContentText("please enter all data!");
 			a.show(); 		}
 		}
-
 	
+	//method that update the question in the arraylist of all questions
+	// also update it in the JSON file
 	public void finishUpdate(ActionEvent event) throws Exception{
 		int sameA = 0 , sameQ = 0 ;;
 		try {
 		sysData.LoadQuestions();
+		//check if the user entered a null value or space 
 		if(difLevelUpdated.getValue() == null || contextUpdated.getText().trim().isEmpty() || answer1Updated.getText().trim().isEmpty()
 				|| answer2Updated.getText().trim().isEmpty() || answer3Updated.getText().trim().isEmpty() || answer4Updated.getText().trim().isEmpty() 
 				|| teamUpdated.getText().trim().isEmpty() || trueAnswerUpdated.getValue() == null ) {
@@ -484,6 +516,7 @@ public class QuestionMngController implements Initializable {
 		}
 		Integer num =Integer.parseInt(num2.getText());
 		ArrayList<Answer> answers = new ArrayList<Answer>();
+		//checking if there is the same question
 			if(sysData.quesAlreadyExists(contextUpdated.getText(),num)==false){
 				sysData.getQuestions().get(num).setContext(contextUpdated.getText());
 			}
@@ -491,7 +524,7 @@ public class QuestionMngController implements Initializable {
 				sameQ = 1;
 				throw new Exception();
 			}
-		
+			// get the difficultly of the question
 		sysData.getQuestions().get(num).setTeam(teamUpdated.getText());
 		
 		if(difLevelUpdated.getValue()==1) {
@@ -502,7 +535,7 @@ public class QuestionMngController implements Initializable {
 		}
 		else
 			sysData.getQuestions().get(num).setDifficultyLevel(DifficultyLevel.HARD);
-		
+		// get all the answers that the user want to update
 		Answer answer1 =new Answer(1,answer1Updated.getText());
 		answers.add(answer1);
 		Answer answer2 =new Answer(2,answer2Updated.getText());
@@ -511,7 +544,7 @@ public class QuestionMngController implements Initializable {
 		answers.add(answer3);
 		Answer answer4 =new Answer(4,answer4Updated.getText());
 		answers.add(answer4);
-	
+		//checking the right answer between all answers
 		if(trueAnswerUpdated.getValue().equals(1)) {
 			answer1.setTrue(true);
 		}
@@ -531,7 +564,7 @@ public class QuestionMngController implements Initializable {
 			answer4.setTrue(true);
 		else
 			answer4.setTrue(false);
-		
+		//checking if there is two similar answers
 			if(sysData.getQuestions().get(num).answerAlreadyExist(answers)==false){
 				sysData.getQuestions().get(num).setAnswers(answers);
 			}
@@ -552,7 +585,7 @@ public class QuestionMngController implements Initializable {
 		true11.setVisible(false);
 		diff11.setVisible(false);
 		updateQues2.setVisible(false);
-		
+		// update question in the table that show on the screen
 		ObservableList<Question> observQues = FXCollections.observableArrayList(sysData.getQuestions());    
 		id.setCellValueFactory(new PropertyValueFactory<Question,Integer>("Id"));
 		ques.setCellValueFactory(new PropertyValueFactory<>("Context"));
@@ -564,11 +597,13 @@ public class QuestionMngController implements Initializable {
 		
 		
 		}
+		// catch for null data
 		catch(NullPointerException e){
 			a.setAlertType(AlertType.ERROR);
 			a.setContentText("please enter all data!");
 			a.show();
 		}
+		// catch for two similar answers or already existing question
 		catch (Exception e) {
 			if(sameA == 1) {
 				c.setAlertType(AlertType.ERROR);
@@ -583,6 +618,8 @@ public class QuestionMngController implements Initializable {
 		}
 	 
 	}
+	// method that changing the visible show of some variable
+	// According to the button we clicked (in this case it is show)
 	public void showQues(ActionEvent event) throws Exception{
 		
 		show.setVisible(true);
@@ -622,17 +659,21 @@ public class QuestionMngController implements Initializable {
 		diff11.setVisible(false);
 		updateQues2.setVisible(false);
 	}
+	//method that show us details of one question  
 	public void finishShowQues(ActionEvent event) throws Exception{
 		  try {
+			//checking if the number of the question that we want to delete is entered as null or space
 				sysData.LoadQuestions();
 				if(quesNum.getText().trim().isEmpty()) {
 					throw new Exception();
 				}
+		           // checking if the number that entered existing or if it illegal
 				if(Integer.parseInt(quesNum.getText())>= sysData.getQuestions().size() || Integer.parseInt(quesNum.getText())<0  ) {
 					a.setAlertType(AlertType.ERROR);
 					a.setContentText("the number is not valid , please try again!");
 					a.show();		}
 				else {
+					//showing question's details on the screen
 			quesNum.setVisible(false);
 			show.setVisible(false);
 			showContext.setVisible(true);
@@ -663,6 +704,7 @@ public class QuestionMngController implements Initializable {
 				showDif.setText("Difficulty Level: "+String.valueOf(2));
 		}
 		  }
+			// catch for null data
 			catch (Exception e) {
 				a.setAlertType(AlertType.ERROR);
 				a.setContentText("please enter all data!");
