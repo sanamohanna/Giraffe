@@ -31,6 +31,7 @@ public class StartGameController implements Initializable {
 	
 	//timer fields;
 	static long min,hr, sec,totalSec,points=0;
+	// button to return us to the main screen
 	public void backButton(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -42,7 +43,7 @@ public class StartGameController implements Initializable {
 		stage.show();
 
 	}
-	
+	// method that start timer in long one minute to every level in the game 
 	public void setTimer() {
 		totalSec=60;
 		Timer timer = new Timer();
@@ -63,30 +64,33 @@ public class StartGameController implements Initializable {
 		};   
 		timer.schedule(timerTask, 0, 1000);
 	}
+	//method that replace the totalsec to minutes and sec  
 	private  void convertTime() {
 		min = TimeUnit.SECONDS.toMinutes(totalSec);
 		sec = totalSec  - (min * 60);
 		text.setText(format(min)+":"+format(sec));
 		totalSec--;
 	}
+	// add 0 to left side to value that small than 10
 	private  String format(long value) {
 		if(value<10) {
 			return 0+""+value;
 		}
 		return value+"";
 	}
-	
+	// display username in the screen 
 	public void displayName(String userName) {
 		label1.setText("Player: "+userName);
 	}
-	public void displayLevel() {
-		level.setText("LEVEL 1");
+	public void displayLevel(String level1) {
+		level.setText(level1);
 	}
+	//initialize the timer and display level
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		setTimer();
-		displayLevel();
+		displayLevel("LEVEL 1");
 	}
 	
 

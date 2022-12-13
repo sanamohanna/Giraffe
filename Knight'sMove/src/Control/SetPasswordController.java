@@ -27,6 +27,7 @@ public class SetPasswordController {
 	private Text warning;
 
 	private static SetPasswordController instance = null;
+	// arrayList that containing all the admin players details that can enter to editquestions screen 
 	private ArrayList<AdminPlayer> admins = new ArrayList<AdminPlayer>();
 	
 	// QuestionMngController Singleton Instance
@@ -36,7 +37,7 @@ public class SetPasswordController {
 		}
 		return instance;
 	}
-	
+	// fiil out all the admin players details 
 	public SetPasswordController() {
 		super();
 		 AdminPlayer admin1 =new AdminPlayer("klara","Klara");
@@ -48,7 +49,8 @@ public class SetPasswordController {
 		this.admins.add(admin3);
 		this.admins.add(admin4);
 	}
-
+// check if the password and the username of the player is existed in the admins arrayList 
+	//if true open the edit questions screen
 	public void checkDetails(ActionEvent event) throws Exception{
 		int flag=1;
 		for(int i =0;i< admins.size();i++) {
@@ -65,9 +67,10 @@ public class SetPasswordController {
 				stage.show();
 			}
 		}
-		if(flag==1)
+		if(flag==1) //if not display warning text
 		warning.setVisible(true);
 	}
+	// button to return us to the main screen 
 	public void backButton2(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -75,7 +78,6 @@ public class SetPasswordController {
 		stage.setResizable(false);
 		scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
 		stage.setScene(scene);
-	
 		stage.show();
 
 	}

@@ -25,7 +25,6 @@ public class UserNameController {
     //button that open startGame screen to to play
 	public void letsPlay(ActionEvent event) throws Exception {
 		//check if the user entered a user name 
-		//if not pop out a warning
 		try {
 			if(nameTextField.getText() == null) {
 				throw new Exception();
@@ -43,7 +42,7 @@ public class UserNameController {
 		stage.setScene(scene);
 		stage.show();
 		}catch (Exception e) {
-			a.setAlertType(AlertType.ERROR);
+			a.setAlertType(AlertType.ERROR);//if the user not enter data 
 			a.setContentText("please enter all data!");
 			a.show();		
 			}

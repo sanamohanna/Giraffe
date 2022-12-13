@@ -15,7 +15,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainScreenController {
-
+	// button that send us to Instructions screen
 	public void Instructions(ActionEvent event) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/Instructions.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -25,7 +25,7 @@ public class MainScreenController {
 		stage.setScene(scene);
 		stage.show();
 	}
-
+	// button that send us to SetPassword screen 
 	public void EditQuestions(ActionEvent event) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/SetPassword.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -35,7 +35,7 @@ public class MainScreenController {
 		stage.setScene(scene);
 		stage.show();
 	}
-
+	// button that send us to UserName screen 
 	public void StartGame(ActionEvent event) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/UserName.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -45,9 +45,9 @@ public class MainScreenController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+	// button that send us to usernameForHistory screen 
 	public void GamesHistory(ActionEvent event) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/View/usernameForHistory.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/View/usernameForHistory .fxml"));
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setResizable(false);
