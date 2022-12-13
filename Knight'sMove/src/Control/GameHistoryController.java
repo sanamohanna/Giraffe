@@ -24,13 +24,12 @@ public class GameHistoryController implements Initializable{
     private TableView Table;
 	
     Player player = new Player("Klara");
-    Player player1 = new Player("nada");
-    Player player2 = new Player("sana");
     TableColumn<Game, Date> Date;
     TableColumn<Game, Player> NickName;
     TableColumn<Game, Integer> Points;
     TableColumn<Game, Integer> Status; //still don't have the status because we don't finish the game
-    
+    String UserName;
+
     // button to return us to the main screen
 	public void backButton(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
@@ -50,20 +49,21 @@ public class GameHistoryController implements Initializable{
 		NickName=new TableColumn<>("     Player     ");
 		Date=new TableColumn<>("             Date           ");
 		Points =new TableColumn<>("         Points            "); 
-<<<<<<< Updated upstream
-		Table.getColumns().addAll(NickName,Date,Points);
-		// fill specific user details
-=======
 		Status = new TableColumn<>("         Status            ");
+
+		// fill specific user details
 		Table.getColumns().addAll(NickName,Date,Points,Status);
->>>>>>> Stashed changes
-	    ObservableList<Game> observQues = FXCollections.observableArrayList(new Game(player,150 ) , new Game(player1 , 100) , new Game(player2,200));
-	    
+
+		// this details are just for giving example we will fill the table in true data in the last iteration 
+	    ObservableList<Game> observQues = FXCollections.observableArrayList(new Game(player,150 ) , new Game(player , 100) , new Game(player,200));
+
 		NickName.setCellValueFactory(new PropertyValueFactory<>("player"));
 		Date.setCellValueFactory(new PropertyValueFactory<>("date"));
 		Points.setCellValueFactory(new PropertyValueFactory<>("Points"));
 		Status.setCellValueFactory(new PropertyValueFactory<>("gameStatus"));
 		Table.setItems(observQues);		
 	}
-
+	public void returnUserName(String username) {
+		UserName = username;
+	}
 }
