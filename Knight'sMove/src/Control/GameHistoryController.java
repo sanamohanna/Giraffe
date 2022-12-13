@@ -55,7 +55,7 @@ public class GameHistoryController implements Initializable{
 		Table.getColumns().addAll(NickName,Date,Points,Status);
 		// fill specific user details
 		// this details are just for giving example we will fill the table in true data in the last iteration 
-	    ObservableList<Game> observQues = FXCollections.observableArrayList(new Game(player,150 ) , new Game(player1 , 100) , new Game(player2,200));
+	    ObservableList<Game> observQues = FXCollections.observableArrayList(new Game(player,150 ) , new Game(player , 100) , new Game(player,200));
 	    
 		NickName.setCellValueFactory(new PropertyValueFactory<>("player"));
 		Date.setCellValueFactory(new PropertyValueFactory<>("date"));
