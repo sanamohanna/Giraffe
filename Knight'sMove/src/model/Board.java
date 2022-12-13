@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Board {
@@ -45,6 +46,39 @@ public class Board {
 
 	public int getBOARD_SIZE() {
 		return BOARD_SIZE;
+	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + BOARD_SIZE;
+		result = prime * result + ((pieces == null) ? 0 : pieces.hashCode());
+		result = prime * result + Arrays.deepHashCode(squares);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Board other = (Board) obj;
+		if (BOARD_SIZE != other.BOARD_SIZE)
+			return false;
+		if (pieces == null) {
+			if (other.pieces != null)
+				return false;
+		} else if (!pieces.equals(other.pieces))
+			return false;
+		if (!Arrays.deepEquals(squares, other.squares))
+			return false;
+		return true;
 	}
 
 	// method initialized the board

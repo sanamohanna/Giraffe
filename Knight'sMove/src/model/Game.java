@@ -123,6 +123,88 @@ public class Game {
 	public void setGameStatus(GameStatus gameStatus) {
 		this.gameStatus = gameStatus;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + LOSE_POINT;
+		result = prime * result + ((Points == null) ? 0 : Points.hashCode());
+		result = prime * result + WIN_POINT;
+		result = prime * result + ((availableQuestions == null) ? 0 : availableQuestions.hashCode());
+		result = prime * result + ((board == null) ? 0 : board.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((gameStatus == null) ? 0 : gameStatus.hashCode());
+		result = prime * result + ((king == null) ? 0 : king.hashCode());
+		result = prime * result + ((knight == null) ? 0 : knight.hashCode());
+		result = prime * result + ((player == null) ? 0 : player.hashCode());
+		result = prime * result + ((queen == null) ? 0 : queen.hashCode());
+		result = prime * result + ((unavailableQuestions == null) ? 0 : unavailableQuestions.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Game other = (Game) obj;
+		if (LOSE_POINT != other.LOSE_POINT)
+			return false;
+		if (Points == null) {
+			if (other.Points != null)
+				return false;
+		} else if (!Points.equals(other.Points))
+			return false;
+		if (WIN_POINT != other.WIN_POINT)
+			return false;
+		if (availableQuestions == null) {
+			if (other.availableQuestions != null)
+				return false;
+		} else if (!availableQuestions.equals(other.availableQuestions))
+			return false;
+		if (board == null) {
+			if (other.board != null)
+				return false;
+		} else if (!board.equals(other.board))
+			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (gameStatus != other.gameStatus)
+			return false;
+		if (king == null) {
+			if (other.king != null)
+				return false;
+		} else if (!king.equals(other.king))
+			return false;
+		if (knight == null) {
+			if (other.knight != null)
+				return false;
+		} else if (!knight.equals(other.knight))
+			return false;
+		if (player == null) {
+			if (other.player != null)
+				return false;
+		} else if (!player.equals(other.player))
+			return false;
+		if (queen == null) {
+			if (other.queen != null)
+				return false;
+		} else if (!queen.equals(other.queen))
+			return false;
+		if (unavailableQuestions == null) {
+			if (other.unavailableQuestions != null)
+				return false;
+		} else if (!unavailableQuestions.equals(other.unavailableQuestions))
+			return false;
+		return true;
+	}
+	
+	
 
 
 }

@@ -15,12 +15,13 @@ import Enum.Directions;
 public class Knight extends Piece {
 	private boolean isKilled;
 	
+	//constructor
 	public Knight(boolean isKilled) {
 		super(new Location(0,0));
 		this.isKilled = isKilled;
 	}  
-
-
+	
+	//getter and setter
 	public boolean isKilled() {
 		return isKilled;
 	}
@@ -28,6 +29,13 @@ public class Knight extends Piece {
 	public void setKilled(boolean isKilled) {
 		this.isKilled = isKilled;
 	}
+	
+	/**
+	 * 
+	 * levels moves
+	 * 
+	 * **/
+	
 	public void level1Move( Directions direction1 , Directions direction2, Directions direction3){
 		// the knight move two squares in one direction and then one square in a perpendicular direction .
 		// checking if the knight's move is correct .

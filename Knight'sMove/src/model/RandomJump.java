@@ -12,7 +12,7 @@ public class RandomJump extends Squares {
 		super(peice, location, color);
 		// TODO Auto-generated constructor stub
 	}
-
+ 
 	public void changePlaceToEmptuSquare() {
 
 	}

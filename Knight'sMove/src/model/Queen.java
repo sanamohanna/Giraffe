@@ -15,10 +15,13 @@ import Enum.Directions;
 public class Queen extends Piece {
 
 
+	//constructor
 	public Queen() {
 		super(new Location(7,0));
 		
 	}
+	
+	
     /*this method receiving two parameters , one of the direction of the queen move , 
      and another Integer parameter which it is a number of the square that the queen need to move 
      to catch the knight*/
