@@ -119,30 +119,7 @@
       "correct_ans": "3",
       "level": "1",
       "team": "animal"
-    },
-    {
-      "question": "12",
-      "answers": [
-        "12",
-        "3",
-        "32",
-        "2"
-      ],
-      "correct_ans": "1",
-      "level": "2",
-      "team": "3"
-    },
-    {
-      "question": "    ",
-      "answers": [
-        "   ",
-        " ",
-        "    ",
-        "        "
-      ],
-      "correct_ans": "2",
-      "level": "2",
-      "team": " "
     }
+    
   ]
 }
