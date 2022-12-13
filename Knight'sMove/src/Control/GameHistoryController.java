@@ -24,8 +24,7 @@ public class GameHistoryController implements Initializable{
     private TableView Table;
 	
     Player player = new Player("Klara");
-    Player player1 = new Player("nada");
-    Player player2 = new Player("sana");
+   
     TableColumn<Game, Date> Date;
     TableColumn<Game, Player> NickName;
     TableColumn<Game, Integer> Points;
