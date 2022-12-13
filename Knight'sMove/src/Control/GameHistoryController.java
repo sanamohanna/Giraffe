@@ -29,6 +29,7 @@ public class GameHistoryController implements Initializable{
     TableColumn<Game, Date> Date;
     TableColumn<Game, Player> NickName;
     TableColumn<Game, Integer> Points;
+    TableColumn<Game, Integer> Status; //still don't have the status because we don't finish the game
     
     // button to return us to the main screen
 	public void backButton(ActionEvent event) throws IOException {
@@ -49,13 +50,19 @@ public class GameHistoryController implements Initializable{
 		NickName=new TableColumn<>("     Player     ");
 		Date=new TableColumn<>("             Date           ");
 		Points =new TableColumn<>("         Points            "); 
+<<<<<<< Updated upstream
 		Table.getColumns().addAll(NickName,Date,Points);
 		// fill specific user details
+=======
+		Status = new TableColumn<>("         Status            ");
+		Table.getColumns().addAll(NickName,Date,Points,Status);
+>>>>>>> Stashed changes
 	    ObservableList<Game> observQues = FXCollections.observableArrayList(new Game(player,150 ) , new Game(player1 , 100) , new Game(player2,200));
 	    
 		NickName.setCellValueFactory(new PropertyValueFactory<>("player"));
 		Date.setCellValueFactory(new PropertyValueFactory<>("date"));
 		Points.setCellValueFactory(new PropertyValueFactory<>("Points"));
+		Status.setCellValueFactory(new PropertyValueFactory<>("gameStatus"));
 		Table.setItems(observQues);		
 	}
 
