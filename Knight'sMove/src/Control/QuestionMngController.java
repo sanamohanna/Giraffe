@@ -197,10 +197,9 @@ public class QuestionMngController implements Initializable {
 		int sameQ = 0 , sameA = 0;
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		try {
-			if(difLevel.getValue() == null || context.getText().isEmpty() || answer1.getText().isEmpty()
-					|| answer2.getText().isEmpty() || answer3.getText().isEmpty() || answer4.getText().isEmpty() || team.getText().isEmpty()
-					|| trueAnswer.getValue() == null || context.getText() == " "|| answer1.getText()==" "
-					|| answer2.getText()== " "|| answer3.getText() == " " || answer4.getText() == " " || team.getText() == " ") {
+			if(difLevel.getValue() == null || context.getText().trim().isEmpty() || answer1.getText().trim().isEmpty()
+					|| answer2.getText().trim().isEmpty() || answer3.getText().trim().isEmpty() || answer4.getText().trim().isEmpty() || team.getText().trim().isEmpty()
+					|| trueAnswer.getValue() == null) {
 				throw new NullPointerException();
 			}
 			Answer answer11 =new Answer(1,answer1.getText());
@@ -337,7 +336,7 @@ public class QuestionMngController implements Initializable {
 	}
 	public void finishDeleteQues(ActionEvent event) throws Exception{
 		try {
-			if(textF.getText().isEmpty() || textF.getText() == " ")
+			if(textF.getText().trim().isEmpty())
 				throw new Exception();
 			sysData.LoadQuestions();
 		
@@ -418,7 +417,7 @@ public class QuestionMngController implements Initializable {
 	public void finishUpdateQues(ActionEvent event) throws Exception{
         try {
 		sysData.LoadQuestions();
-		if(num2.getText().isEmpty() || num2.getText() == " ") {
+		if(num2.getText().trim().isEmpty()) {
 			throw new Exception();
 		}
 		if(Integer.parseInt(num2.getText())>= sysData.getQuestions().size() || Integer.parseInt(num2.getText())<0  ) {
@@ -478,10 +477,9 @@ public class QuestionMngController implements Initializable {
 		int sameA = 0 , sameQ = 0 ;;
 		try {
 		sysData.LoadQuestions();
-		if(difLevelUpdated.getValue() == null || contextUpdated.getText().isEmpty() || answer1Updated.getText().isEmpty()
-				|| answer2Updated.getText().isEmpty() || answer3Updated.getText().isEmpty() || answer4Updated.getText().isEmpty() || teamUpdated.getText().isEmpty()
-				|| trueAnswerUpdated.getValue() == null || contextUpdated.getText() == " "|| answer1Updated.getText()==" "
-				|| answer2Updated.getText()== " "|| answer3Updated.getText() == " " || answer4Updated.getText() == " " || teamUpdated.getText() == " " ) {
+		if(difLevelUpdated.getValue() == null || contextUpdated.getText().trim().isEmpty() || answer1Updated.getText().trim().isEmpty()
+				|| answer2Updated.getText().trim().isEmpty() || answer3Updated.getText().trim().isEmpty() || answer4Updated.getText().trim().isEmpty() 
+				|| teamUpdated.getText().trim().isEmpty() || trueAnswerUpdated.getValue() == null ) {
 			throw new NullPointerException();
 		}
 		Integer num =Integer.parseInt(num2.getText());
@@ -627,7 +625,7 @@ public class QuestionMngController implements Initializable {
 	public void finishShowQues(ActionEvent event) throws Exception{
 		  try {
 				sysData.LoadQuestions();
-				if(quesNum.getText().isEmpty() || quesNum.getText() == " ") {
+				if(quesNum.getText().trim().isEmpty()) {
 					throw new Exception();
 				}
 				if(Integer.parseInt(quesNum.getText())>= sysData.getQuestions().size() || Integer.parseInt(quesNum.getText())<0  ) {
