@@ -47,11 +47,11 @@ public class MainScreenController {
 	}
 	// button that send us to usernameForHistory screen 
 	public void GamesHistory(ActionEvent event) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/View/usernameForHistory .fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/View/usernameForHistory.fxml"));
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setResizable(false);
-		scene.getStylesheets().add(getClass().getResource("/View/gameHistory.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/View/usernameForHistory.css").toExternalForm());
 		stage.setScene(scene);
 		stage.show();
 	}

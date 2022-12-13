@@ -52,6 +52,7 @@ public class StartGameController implements Initializable {
 			@Override
 			public void run() {
 				convertTime();
+				// we added the points text just for checking we will change it when we finish the game
 				points++;
 				pointsT.setText("POINTS:"+String.valueOf(points));
 				if(totalSec<=0) {	
