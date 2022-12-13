@@ -21,7 +21,7 @@ import model.Player;
 import java.util.Date;
 public class GameHistoryController implements Initializable{
 	@FXML 
-    private TableView<Game> Table;
+    private TableView Table;
 	
     Player player = new Player("Klara");
     Player player1 = new Player("nada");
@@ -38,10 +38,12 @@ public class GameHistoryController implements Initializable{
 		stage.setResizable(false);
 		scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
 		stage.setScene(scene);
+	
 		stage.show();
+
 	}
       
-     
+     //method that fill out the table with user game history details
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		NickName=new TableColumn<>("     Player     ");
