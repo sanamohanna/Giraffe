@@ -32,14 +32,18 @@ public class UserNameForGameHistoryController {
 		}
 		// button to enter to the history list for  player
 		public void seeHistory(ActionEvent event) throws IOException {
-			Parent root = FXMLLoader.load(getClass().getResource("/View/gamesHistory.fxml"));
 			try {
 				if(userName.getText().isEmpty() || userName.getText() == " ")
 					throw new Exception();
+				Parent root = FXMLLoader.load(getClass().getResource("/View/gamesHistory.fxml"));
+//				FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/gamesHistory.fxml"));
+//				Parent root = loader.load();
+//				GameHistoryController ghc = loader.getController();
+//				ghc.returnUserName(userName.getText());
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				Scene scene = new Scene(root);
-				stage.setResizable(false);
 				scene.getStylesheets().add(getClass().getResource("/View/gameHistory.css").toExternalForm());
+				stage.setResizable(false);
 				stage.setScene(scene);
 				stage.show();
 				

@@ -24,14 +24,13 @@ public class GameHistoryController implements Initializable{
     private TableView Table;
 	
     Player player = new Player("Klara");
-    Player player1 = new Player("nada");
-    Player player2 = new Player("sana");
     TableColumn<Game, Date> Date;
     TableColumn<Game, Player> NickName;
     TableColumn<Game, Integer> Points;
-    
+    String UserName;
     // button to return us to the main screen
 	public void backButton(ActionEvent event) throws IOException {
+		System.out.println(UserName);
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
@@ -51,12 +50,13 @@ public class GameHistoryController implements Initializable{
 		Points =new TableColumn<>("         Points            "); 
 		Table.getColumns().addAll(NickName,Date,Points);
 		// fill specific user details
-	    ObservableList<Game> observQues = FXCollections.observableArrayList(new Game(player,150 ) , new Game(player1 , 100) , new Game(player2,200));
-	    
+	    ObservableList<Game> observQues = FXCollections.observableArrayList(new Game(player,150 ) , new Game(player , 100) , new Game(player,200));
 		NickName.setCellValueFactory(new PropertyValueFactory<>("player"));
 		Date.setCellValueFactory(new PropertyValueFactory<>("date"));
 		Points.setCellValueFactory(new PropertyValueFactory<>("Points"));
 		Table.setItems(observQues);		
 	}
-
+	public void returnUserName(String username) {
+		UserName = username;
+	}
 }
