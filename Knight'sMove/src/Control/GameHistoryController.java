@@ -30,7 +30,6 @@ public class GameHistoryController implements Initializable{
     String UserName;
     // button to return us to the main screen
 	public void backButton(ActionEvent event) throws IOException {
-		System.out.println(UserName);
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
@@ -50,6 +49,7 @@ public class GameHistoryController implements Initializable{
 		Points =new TableColumn<>("         Points            "); 
 		Table.getColumns().addAll(NickName,Date,Points);
 		// fill specific user details
+		// this details are just for giving example we will fill the table in true data in the last iteration 
 	    ObservableList<Game> observQues = FXCollections.observableArrayList(new Game(player,150 ) , new Game(player , 100) , new Game(player,200));
 		NickName.setCellValueFactory(new PropertyValueFactory<>("player"));
 		Date.setCellValueFactory(new PropertyValueFactory<>("date"));
