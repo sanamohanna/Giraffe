@@ -22,16 +22,19 @@ public class UserNameController {
 	int totalSec;
 	String time;
     Alert a = new Alert(AlertType.NONE);
+    //button that open startGame screen to to play
 	public void letsPlay(ActionEvent event) throws Exception {
+		//check if the user entered a user name 
+		//if not pop out a warning
 		try {
 			if(nameTextField.getText() == null) {
 				throw new Exception();
 			}
 		String UserName =nameTextField.getText();
 		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/StartGame.fxml"));
-		
 		Parent root = loader.load();
 		StartGameController sgc1 = loader.getController();
+		//send the username to start game controller to display
 		sgc1.displayName(UserName);
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
@@ -44,7 +47,8 @@ public class UserNameController {
 			a.setContentText("please enter all data!");
 			a.show();		
 			}
-	}	
+	}
+	// button to return us to the main screen
 	public void backButton(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

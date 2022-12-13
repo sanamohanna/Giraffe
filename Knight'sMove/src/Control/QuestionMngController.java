@@ -651,18 +651,18 @@ public class QuestionMngController implements Initializable {
 			showAnswer2.setText(sysData.getQuestions().get(num).getAnswers().get(1).getAnswerContext());
 			showAnswer3.setText(sysData.getQuestions().get(num).getAnswers().get(2).getAnswerContext());
 			showAnswer4.setText(sysData.getQuestions().get(num).getAnswers().get(3).getAnswerContext());
-			showTeam.setText(sysData.getQuestions().get(num).getTeam());
+			showTeam.setText("Team: " +sysData.getQuestions().get(num).getTeam());
 			for(int i=0;i<sysData.getQuestions().get(num).getAnswers().size();i++) {
 				if(sysData.getQuestions().get(num).getAnswers().get(i).isTrue()==true)	{
-					showTrue.setText("True Answer "+String.valueOf(i+1));
+					showTrue.setText("True Answer: "+String.valueOf(i+1));
 				}
 			}
 			if(sysData.getQuestions().get(num).getDifficultyLevel()==DifficultyLevel.EASY)
-				showDif.setText("Difficulty Level "+String.valueOf(1));
+				showDif.setText("Difficulty Level: "+String.valueOf(1));
 			if(sysData.getQuestions().get(num).getDifficultyLevel()==DifficultyLevel.HARD)
-				showDif.setText("Difficulty Level "+String.valueOf(3));
+				showDif.setText("Difficulty Level: "+String.valueOf(3));
 			else
-				showDif.setText("Difficulty Level "+String.valueOf(2));
+				showDif.setText("Difficulty Level: "+String.valueOf(2));
 		}
 		  }
 			catch (Exception e) {
