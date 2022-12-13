@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -111,6 +112,7 @@ public class QuestionMngController implements Initializable {
 	private Text showTeam;
 	@FXML
 	private Text showContext;
+
 	
 	SysData sysData = SysData.getInstance();
     Alert a = new Alert(AlertType.NONE);
@@ -431,7 +433,6 @@ public class QuestionMngController implements Initializable {
 			trueAnswerUpdated.setItems(trueAns);
 			num2.setVisible(false);
 			update.setVisible(false);
-
 			contextUpdated.setVisible(true);
 			answer1Updated.setVisible(true);
 			answer2Updated.setVisible(true);
@@ -461,7 +462,8 @@ public class QuestionMngController implements Initializable {
 				difLevelUpdated.setValue(3);
 			else
 				difLevelUpdated.setValue(2);
-			
+
+
 		}
 
 		}
