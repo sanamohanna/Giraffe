@@ -8,6 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import Enum.Directions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,9 +19,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Game;
 import model.Question;
 import model.SysData;
 
@@ -32,11 +37,16 @@ public class StartGameController implements Initializable{
 	private Text text;
 	@FXML
 	private Text level;
-	@FXML Text pointsT;
+	@FXML 
+	private Text pointsT;
+	@FXML
+	private GridPane board;
+	@FXML
+	private ImageView image;
 	
 	//timer fields;
 	static long min,hr, sec,totalSec,points=0;
-		
+	Game game = new Game();
 		// method that start timer in long one minute to every level in the game 
 		public void setTimer(){
 			totalSec=60;
@@ -45,6 +55,7 @@ public class StartGameController implements Initializable{
 				@Override
 				public void run(){					
 						convertTime();
+						
 						// we added the points text just for checking we will change it when we finish the game
 						pointsT.setText(String.valueOf(points));
 						
@@ -116,6 +127,41 @@ public class StartGameController implements Initializable{
 			stage.setScene(scene);			
 			stage.show();
 		}		
-		
-
+		public void upLeft(ActionEvent event) throws IOException {
+			game.getKnight().level1Move(Directions.UP, Directions.UP, Directions.LEFT);
+			board.add(image, game.getKnight().getLocation().getX(), game.getKnight().getLocation().getY());
+			
+		}
+		public void downRight(ActionEvent event) throws IOException {
+			game.getKnight().level1Move(Directions.DOWN, Directions.DOWN, Directions.RIGHT);
+			board.add(image, game.getKnight().getLocation().getX(), game.getKnight().getLocation().getY());
+			
+		}
+		public void upRight(ActionEvent event) throws IOException {
+			game.getKnight().level1Move(Directions.UP, Directions.UP, Directions.RIGHT);
+			board.add(image, game.getKnight().getLocation().getX(), game.getKnight().getLocation().getY());
+			
+		}
+		public void downLeft(ActionEvent event) throws IOException {
+			game.getKnight().level1Move(Directions.DOWN, Directions.DOWN, Directions.LEFT);
+			board.add(image, game.getKnight().getLocation().getX(), game.getKnight().getLocation().getY());
+		}
+		public void rightUp(ActionEvent event) throws IOException {
+			game.getKnight().level1Move(Directions.RIGHT, Directions.RIGHT, Directions.UP);
+			board.add(image, game.getKnight().getLocation().getX(), game.getKnight().getLocation().getY());
+			
+		}
+		public void rightDown(ActionEvent event) throws IOException {
+			game.getKnight().level1Move(Directions.RIGHT, Directions.RIGHT, Directions.DOWN);
+			board.add(image, game.getKnight().getLocation().getX(), game.getKnight().getLocation().getY());
+		}
+		public void leftUp(ActionEvent event) throws IOException {
+			game.getKnight().level1Move(Directions.LEFT, Directions.LEFT, Directions.UP);
+			board.add(image, game.getKnight().getLocation().getX(), game.getKnight().getLocation().getY());
+			
+		}
+		public void leftDown(ActionEvent event) throws IOException {
+			game.getKnight().level1Move(Directions.LEFT, Directions.LEFT, Directions.DOWN);
+			board.add(image, game.getKnight().getLocation().getX(), game.getKnight().getLocation().getY());
+		}
 		}

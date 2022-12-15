@@ -21,14 +21,7 @@ public class Game {
 	final int WIN_POINT = 1;
 	final int LOSE_POINT = 1;
 	private LocalDate date ;
-	// Game Singleton Instance
-
-	public static Game getInstance() {
-		if (instance == null) {
-			instance = new Game();
-		}
-		return instance;
-	}
+	
 	// constructor
 	public Game(Board board, Player player, Queen queen, King king, GameStatus gameStatus) {
 		super();
@@ -46,7 +39,7 @@ public class Game {
 	}
 	public Game() {
 		super();
-
+		this.knight=new Knight(false);
 	}
 
 
