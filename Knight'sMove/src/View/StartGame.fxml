@@ -119,5 +119,6 @@
             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
          </font>
       </Text>
+      <Button layoutX="126.0" layoutY="13.0" mnemonicParsing="false" onAction="#pop" text="pop" />
    </children>
 </AnchorPane>

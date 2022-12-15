@@ -4,6 +4,9 @@ import java.io.IOException;
 //import java.util.Timer;
 //import java.util.TimerTask;
 //import java.util.concurrent.TimeUnit;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,14 +22,13 @@ import javafx.stage.Stage;
 public class UserNameController {
 	@FXML
 	TextField nameTextField;
-	int totalSec;
-	String time;
+	
     Alert a = new Alert(AlertType.NONE);
     //button that open startGame screen to to play
 	public void letsPlay(ActionEvent event) throws Exception {
 		//check if the user entered a user name 
 		try {
-			if(nameTextField.getText() == null) {
+			if(nameTextField.getText().isEmpty()) {
 				throw new Exception();
 			}
 		String UserName =nameTextField.getText();
@@ -35,12 +37,16 @@ public class UserNameController {
 		StartGameController sgc1 = loader.getController();
 		//send the username to start game controller to display
 		sgc1.displayName(UserName);
+		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
+		
+	
+	
 		}catch (Exception e) {
 			a.setAlertType(AlertType.ERROR);//if the user not enter data 
 			a.setContentText("please enter all data!");
