@@ -4,18 +4,10 @@ import java.util.ArrayList;
 
 import Enum.Color;
 
-<<<<<<< Updated upstream
-public class Forgets  extends Squares{
-	//constructor
-	public Forgets(Location location) {
-		super(location);
-=======
 public class Forgets extends Squares {
 	// constructor
-	public Forgets(Piece peice, Location location, Color color) {
-		super(peice, location, color);
->>>>>>> Stashed changes
-		// TODO Auto-generated constructor stub
+	public Forgets(Location location) {
+		super(location);
 	}
 
 	public void handleLastThreeSteps(ArrayList<Squares> knightMoves) {
