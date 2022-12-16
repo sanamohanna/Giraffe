@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -129,7 +129,7 @@
             <Image url="@Images/6808582.png" />
          </image>
       </ImageView>
-      <GridPane fx:id="board" layoutX="171.0" layoutY="103.0" prefHeight="312.0" prefWidth="321.0">
+      <GridPane fx:id="board" gridLinesVisible="true" layoutX="178.0" layoutY="103.0" prefHeight="312.0" prefWidth="321.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="10.0" prefWidth="40.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="10.0" prefWidth="40.0" />
@@ -151,33 +151,80 @@
           <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <ImageView fx:id="image" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="5" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="6" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="7" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <ImageView fx:id="imageK" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/6808582.png" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="2" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="3" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="4" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="5" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="6" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="7" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.rowIndex="2" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b9be" height="40.0" stroke="BLACK" strokeType="INSIDE" width="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ImageView fitHeight="39.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ImageView fx:id="imageQ" fitHeight="32.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.halignment="CENTER">
+               <image>
+                  <Image url="@Images/queenOnBoard.png" />
+               </image>
+            </ImageView>
          </children>
       </GridPane>
    </children>

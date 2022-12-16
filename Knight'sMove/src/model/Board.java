@@ -10,23 +10,31 @@ public class Board {
 	private ArrayList<Piece> pieces;// A list of all the pieces currently on the board.
 
 	private static Board instance = null;
-//constructor 
+	
+	// Get the only object available
+		public static Board getInstance() {
 
+			if (instance == null) {
+				instance = new Board();
+			}
+			return instance;
+		}
+		//constructor 
 	public Board() {
 		super();
 		squares = new Squares[BOARD_SIZE][BOARD_SIZE];
+		for (int i = 0; i < squares.length; i++)
+		    for (int j = 0; j < squares[i].length; j++)
+		    {
+		       Location loc = new Location(i,j);
+		       squares[i][j].setVisited(false);
+		       squares[i][j].setLocation(loc);
+		    }
 		pieces = new ArrayList<Piece>();
 
 	}
 
-	// Get the only object available
-	public static Board getInstance() {
-
-		if (instance == null) {
-			instance = new Board();
-		}
-		return instance;
-	}
+	
 
 	public Squares[][] getSquares() {
 		return squares;

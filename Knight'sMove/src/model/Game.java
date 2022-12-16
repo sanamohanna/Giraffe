@@ -39,7 +39,8 @@ public class Game {
 	}
 	public Game() {
 		super();
-		this.knight=new Knight(false);
+		knight=new Knight(false);
+		queen = new Queen();
 	}
 
 

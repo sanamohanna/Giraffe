@@ -8,8 +8,8 @@ import Enum.Color;
 public class RandomJump extends Squares {
 
 	// constructor
-	public RandomJump(Piece peice, Location location, Color color) {
-		super(peice, location, color);
+	public RandomJump(Location location) {
+		super(location);
 		// TODO Auto-generated constructor stub
 	}
  
