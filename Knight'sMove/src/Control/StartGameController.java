@@ -56,18 +56,6 @@ public class StartGameController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-//		
-//		for(int i=0; i<8; i++){
-//	        for(int j=0; j<8; j++){
-//	        	Rectangle rec =new Rectangle(38, 38);
-//	        	rec.setFill(Color.GRAY);
-//	        	rec.setStroke(Color.BLACK);
-////	        	if(i==0&&j==0) {
-////	        		board.add(image,0,0);
-////	        	}
-//	            board.add(rec, i, j);
-//	        }
-//	    }
 		setTimer();
 		displayLevel("LEVEL 1");
 		pointsT.setText(String.valueOf(points));
@@ -144,7 +132,7 @@ public class StartGameController implements Initializable{
 			game.getKnight().level1Move(Directions.UP, Directions.UP, Directions.LEFT);
 			GridPane.setColumnIndex(imageK, game.getKnight().getLocation().getX());
 			GridPane.setRowIndex(imageK,game.getKnight().getLocation().getY() );
-			
+			points++;
 			game.getQueen().queenMove(3, Directions.DOWN);
 			GridPane.setColumnIndex(imageQ, game.getQueen().getLocation().getX());
 			GridPane.setRowIndex(imageQ,game.getQueen().getLocation().getY());
@@ -155,7 +143,7 @@ public class StartGameController implements Initializable{
 			game.getKnight().level1Move(Directions.DOWN, Directions.DOWN, Directions.RIGHT);
 			GridPane.setColumnIndex(imageK, game.getKnight().getLocation().getX());
 			GridPane.setRowIndex(imageK,game.getKnight().getLocation().getY() );
-			
+			points++;
 			game.getQueen().queenMove(3, Directions.DOWN);
 			GridPane.setColumnIndex(imageQ, game.getQueen().getLocation().getX());
 			GridPane.setRowIndex(imageQ,game.getQueen().getLocation().getY());
@@ -164,7 +152,7 @@ public class StartGameController implements Initializable{
 			game.getKnight().level1Move(Directions.UP, Directions.UP, Directions.RIGHT);
 			GridPane.setColumnIndex(imageK, game.getKnight().getLocation().getX());
 			GridPane.setRowIndex(imageK,game.getKnight().getLocation().getY() );
-			
+			points++;
 			game.getQueen().queenMove(3, Directions.DOWN);
 			GridPane.setColumnIndex(imageQ, game.getQueen().getLocation().getX());
 			GridPane.setRowIndex(imageQ,game.getQueen().getLocation().getY());
@@ -173,7 +161,7 @@ public class StartGameController implements Initializable{
 			game.getKnight().level1Move(Directions.DOWN, Directions.DOWN, Directions.LEFT);
 			GridPane.setColumnIndex(imageK, game.getKnight().getLocation().getX());
 			GridPane.setRowIndex(imageK,game.getKnight().getLocation().getY() );
-			
+			points++;
 			game.getQueen().queenMove(3, Directions.LEFT);
 			GridPane.setColumnIndex(imageQ, game.getQueen().getLocation().getX());
 			GridPane.setRowIndex(imageQ,game.getQueen().getLocation().getY());
@@ -182,7 +170,7 @@ public class StartGameController implements Initializable{
 			game.getKnight().level1Move(Directions.RIGHT, Directions.RIGHT, Directions.UP);
 			GridPane.setColumnIndex(imageK, game.getKnight().getLocation().getX());
 			GridPane.setRowIndex(imageK,game.getKnight().getLocation().getY() );
-			
+			points++;
 			game.getQueen().queenMove(3, Directions.DOWN_RIGHT);
 			GridPane.setColumnIndex(imageQ, game.getQueen().getLocation().getX());
 			GridPane.setRowIndex(imageQ,game.getQueen().getLocation().getY());
@@ -192,7 +180,7 @@ public class StartGameController implements Initializable{
 			game.getKnight().level1Move(Directions.RIGHT, Directions.RIGHT, Directions.DOWN);
 			GridPane.setColumnIndex(imageK, game.getKnight().getLocation().getX());
 			GridPane.setRowIndex(imageK,game.getKnight().getLocation().getY() );
-			
+			points++;
 			game.getQueen().queenMove(3, Directions.DOWN_LEFT);
 			GridPane.setColumnIndex(imageQ, game.getQueen().getLocation().getX());
 			GridPane.setRowIndex(imageQ,game.getQueen().getLocation().getY());
@@ -201,7 +189,7 @@ public class StartGameController implements Initializable{
 			game.getKnight().level1Move(Directions.LEFT, Directions.LEFT, Directions.UP);
 			GridPane.setColumnIndex(imageK, game.getKnight().getLocation().getX());
 			GridPane.setRowIndex(imageK,game.getKnight().getLocation().getY() );
-			
+			points++;
 			game.getQueen().queenMove(3, Directions.UP_RIGHT);
 			GridPane.setColumnIndex(imageQ, game.getQueen().getLocation().getX());
 			GridPane.setRowIndex(imageQ,game.getQueen().getLocation().getY());
@@ -211,7 +199,7 @@ public class StartGameController implements Initializable{
 			game.getKnight().level1Move(Directions.LEFT, Directions.LEFT, Directions.DOWN);
 			GridPane.setColumnIndex(imageK, game.getKnight().getLocation().getX());
 			GridPane.setRowIndex(imageK,game.getKnight().getLocation().getY() );
-			
+			points++;
 			game.getQueen().queenMove(3, Directions.UP_LEFT);
 			GridPane.setColumnIndex(imageQ, game.getQueen().getLocation().getX());
 			GridPane.setRowIndex(imageQ,game.getQueen().getLocation().getY());
