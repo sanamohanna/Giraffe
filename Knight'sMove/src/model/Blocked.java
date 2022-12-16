@@ -9,8 +9,5 @@ public class Blocked extends Squares{
 	   //color = Color.Red;
 		// TODO Auto-generated constructor stub
 	}
-
-	
-
    
 }

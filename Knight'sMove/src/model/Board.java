@@ -95,9 +95,12 @@ public class Board {
 
 		}
 	}
+
 	// method that return arraylist of locations
-	//we will use them when we will indicate which of the squares will be special squares
-	//the method will get an integer which is the amount of the location we need according to the level 
+	// we will use them when we will indicate which of the squares will be special
+	// squares
+	// the method will get an integer which is the amount of the location we need
+	// according to the level
 	public ArrayList<Location> possibleLocation(int i) {
 		HashMap<Integer, Integer> pairs = new HashMap<Integer, Integer>();
 		ArrayList<Location> locations = new ArrayList<Location>();
@@ -106,13 +109,11 @@ public class Board {
 		for (int j = 0; j < i; j++) {
 			Integer index1 = (int) (Math.random() * BOARD_SIZE);
 			Integer index2 = (int) (Math.random() * BOARD_SIZE);
-			if (j != 1 && pairs.containsKey(index1) && pairs.containsValue(index2)) {
+			while (j > 0 && pairs.containsKey(index1) && pairs.containsValue(index2)) {
 				index1 = (int) (Math.random() * BOARD_SIZE);
 				index2 = (int) (Math.random() * BOARD_SIZE);
-				pairs.put(index1, index2);
-			} else {
-				pairs.put(index1, index2);
 			}
+			pairs.put(index1, index2);
 			locations.add(new Location(index1, index2));
 
 		}
