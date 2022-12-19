@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 //import java.util.ArrayList;
 
 /**
@@ -13,6 +15,7 @@ package model;
 import Enum.Directions;
 
 public class Knight extends Piece {
+	
 	private boolean isKilled;
 	
 	//constructor
@@ -20,7 +23,9 @@ public class Knight extends Piece {
 		super(new Location(0,0));
 		this.isKilled = isKilled;
 	}  
-	
+	public Knight(Location loc) {
+		super(loc);
+	}
 	//getter and setter
 	public boolean isKilled() {
 		return isKilled;
@@ -36,7 +41,7 @@ public class Knight extends Piece {
 	 * 
 	 * **/
 	
-	public void level1Move( Directions direction1 , Directions direction2, Directions direction3){
+	public void level1Move( Directions direction1 , Directions direction2, Directions direction3,Knight knight){
 		// the knight move two squares in one direction and then one square in a perpendicular direction .
 		// checking if the knight's move is correct .
 		if(direction1 == Directions.UP) {
@@ -44,9 +49,9 @@ public class Knight extends Piece {
 				throw new IllegalArgumentException("illegal Move");
 			}
 			else {
-				this.StrightMove(direction1);
-				this.StrightMove(direction2);
-				this.StrightMove(direction3);
+				knight.StrightMove(direction1);
+				knight.StrightMove(direction2);
+				knight.StrightMove(direction3);
 			}
 		}
 		else if(direction1 == Directions.DOWN) {
@@ -54,9 +59,9 @@ public class Knight extends Piece {
 				throw new IllegalArgumentException("illegal Move");
 			}
 			else {
-				this.StrightMove(direction1);
-				this.StrightMove(direction2);
-				this.StrightMove(direction3);
+				knight.StrightMove(direction1);
+				knight.StrightMove(direction2);
+				knight.StrightMove(direction3);
 			}
 		}
 		else if(direction1 == Directions.LEFT) {
@@ -64,9 +69,9 @@ public class Knight extends Piece {
 				throw new IllegalArgumentException("illegal Move");
 			}
 			else {
-				this.StrightMove(direction1);
-				this.StrightMove(direction2);
-				this.StrightMove(direction3);
+				knight.StrightMove(direction1);
+				knight.StrightMove(direction2);
+				knight.StrightMove(direction3);
 			}
 		}
 		else if(direction1 == Directions.RIGHT) {
@@ -74,9 +79,9 @@ public class Knight extends Piece {
 				throw new IllegalArgumentException("illegal Move");
 			}
 			else {
-				this.StrightMove(direction1);
-				this.StrightMove(direction2);
-				this.StrightMove(direction3);
+				knight.StrightMove(direction1);
+				knight.StrightMove(direction2);
+				knight.StrightMove(direction3);
 			}
 		}
 		
@@ -120,6 +125,76 @@ public class Knight extends Piece {
 			}
 		}
 		
+	}
+	public ArrayList<Location> allValidMovesLevel1(Location first){
+		ArrayList<Location> toReturn =new ArrayList<Location>();
+		Knight knight = new Knight(first);
+		level1Move( Directions.DOWN, Directions.DOWN, Directions.LEFT,knight);
+		//System.out.println(knight.getLocation());
+		Location loc1 = new Location(0,0) ;
+		loc1.setX(knight.getLocation().getX());
+		loc1.setY(knight.getLocation().getY());
+		toReturn.add(loc1);
+		knight.setLocation(new Location(0,0));
+		System.out.println(knight.getLocation());
+		
+		level1Move( Directions.DOWN, Directions.DOWN, Directions.RIGHT,knight);
+		Location loc2 = new Location(0,0) ;
+		loc2.setX(knight.getLocation().getX());
+		loc2.setY(knight.getLocation().getY());
+		System.out.println(loc2);
+		toReturn.add(loc2);
+		knight.setLocation(new Location(0,0));
+		
+		level1Move( Directions.UP, Directions.UP, Directions.LEFT,knight);
+		Location loc3 = new Location(0,0) ;
+		loc3.setX(knight.getLocation().getX());
+		loc3.setY(knight.getLocation().getY());
+		System.out.println(loc3);
+		toReturn.add(loc3);
+		knight.setLocation(new Location(0,0));
+		
+		level1Move( Directions.UP, Directions.UP, Directions.RIGHT,knight);
+		Location loc4 = new Location(0,0) ;
+		loc4.setX(knight.getLocation().getX());
+		loc4.setY(knight.getLocation().getY());
+		System.out.println(loc4);
+		toReturn.add(loc4);
+		knight.setLocation(new Location(0,0));
+		
+		level1Move( Directions.RIGHT, Directions.RIGHT, Directions.DOWN,knight);
+		Location loc5 = new Location(0,0) ;
+		loc5.setX(knight.getLocation().getX());
+		loc5.setY(knight.getLocation().getY());
+		System.out.println(loc5);
+		toReturn.add(loc5);
+		knight.setLocation(new Location(0,0));
+		
+		level1Move( Directions.RIGHT, Directions.RIGHT, Directions.UP,knight);
+		Location loc6 = new Location(0,0) ;
+		loc6.setX(knight.getLocation().getX());
+		loc6.setY(knight.getLocation().getY());
+		System.out.println(loc6);
+		toReturn.add(loc6);
+		knight.setLocation(new Location(0,0));
+		
+		level1Move( Directions.LEFT, Directions.LEFT, Directions.DOWN,knight);
+		Location loc7 = new Location(0,0) ;
+		loc7.setX(knight.getLocation().getX());
+		loc7.setY(knight.getLocation().getY());
+		System.out.println(loc7);
+		toReturn.add(loc7);
+		knight.setLocation(new Location(0,0));
+		
+		level1Move( Directions.LEFT, Directions.LEFT, Directions.UP,knight);
+		Location loc8 = new Location(0,0) ;
+		loc8.setX(knight.getLocation().getX());
+		loc8.setY(knight.getLocation().getY());
+		System.out.println(loc8);
+		toReturn.add(loc8);
+		knight.setLocation(new Location(0,0));
+		
+		return toReturn;
 	}
 	/*in this two levels the knight move how ever it wants , so
 	  we check if the move is a straight move or a diagonally move

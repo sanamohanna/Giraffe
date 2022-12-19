@@ -11,13 +11,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.StartGameController">
    <children>
-      <Label fx:id="label1" layoutX="14.0" layoutY="133.0" prefHeight="35.0" prefWidth="164.0">
+      <Label fx:id="label1" layoutX="26.0" layoutY="171.0" prefHeight="35.0" prefWidth="164.0">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
          </font></Label>
@@ -26,7 +25,7 @@
             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
          </font>
       </Text>
-      <Text fx:id="level" layoutX="294.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="102.80337524414062">
+      <Text fx:id="level" layoutX="287.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="102.80337524414062">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
          </font>
@@ -46,90 +45,18 @@
             </Lighting>
          </effect>
       </Button>
-      <Text fx:id="pointsT" layoutX="21.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="pointsT" layoutX="311.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
          </font>
       </Text>
       <Button layoutX="126.0" layoutY="13.0" mnemonicParsing="false" onAction="#pop" text="pop" />
-      <Button layoutX="50.0" layoutY="224.0" mnemonicParsing="false" onAction="#upLeft" prefHeight="31.0" prefWidth="31.0">
-         <graphic>
-            <ImageView fitHeight="27.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/arrow1.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="85.0" layoutY="307.0" mnemonicParsing="false" onAction="#downRight" prefHeight="31.0" prefWidth="31.0" AnchorPane.bottomAnchor="130.0">
-         <graphic>
-            <ImageView fitHeight="27.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/arrow3.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="48.0" layoutY="307.0" mnemonicParsing="false" onAction="#downLeft" prefHeight="31.0" prefWidth="31.0" AnchorPane.bottomAnchor="130.0">
-         <graphic>
-            <ImageView fitHeight="27.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/arrow4.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="85.0" layoutY="224.0" mnemonicParsing="false" onAction="#upRight" prefHeight="31.0" prefWidth="31.0">
-         <graphic>
-            <ImageView fitHeight="27.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/arrow2.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="108.0" layoutY="291.0" mnemonicParsing="false" onAction="#rightDown" prefHeight="31.0" prefWidth="31.0">
-         <graphic>
-            <ImageView fitHeight="19.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/arrow5.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="108.0" layoutY="259.0" mnemonicParsing="false" onAction="#rightUp" prefHeight="31.0" prefWidth="31.0">
-         <graphic>
-            <ImageView fitHeight="19.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/arrow6.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="14.0" layoutY="291.0" mnemonicParsing="false" onAction="#leftDown" prefHeight="31.0" prefWidth="31.0">
-         <graphic>
-            <ImageView fitHeight="19.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/arrow8.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="14.0" layoutY="259.0" mnemonicParsing="false" onAction="#leftUp" prefHeight="31.0" prefWidth="31.0">
-         <graphic>
-            <ImageView fitHeight="19.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/arrow7.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="66.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/6808582.png" />
          </image>
       </ImageView>
-      <GridPane fx:id="board" gridLinesVisible="true" layoutX="178.0" layoutY="103.0" prefHeight="312.0" prefWidth="321.0">
+      <GridPane fx:id="board" layoutX="178.0" layoutY="103.0" prefHeight="312.0" prefWidth="321.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="10.0" prefWidth="40.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="10.0" prefWidth="40.0" />
@@ -151,71 +78,72 @@
           <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="5" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="6" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="6" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" GridPane.rowIndex="7" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="7" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="7" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: grey;" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-            <ImageView fx:id="imageK" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="b07" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="7" />
+            <Button fx:id="b00" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" />
+            <Button fx:id="b01" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="1" />
+            <Button fx:id="b10" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.rowIndex="1" />
+            <Button fx:id="b11" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="b02" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="2" />
+            <Button fx:id="b12" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="b20" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.rowIndex="2" />
+            <Button fx:id="b21" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="b22" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="b03" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="3" />
+            <Button fx:id="b13" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="b23" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="b04" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="4" />
+            <Button fx:id="b14" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button fx:id="b24" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Button fx:id="b05" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="5" />
+            <Button fx:id="b15" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Button fx:id="b25" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Button fx:id="b06" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="6" />
+            <Button fx:id="b16" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Button fx:id="b26" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Button fx:id="b17" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <Button fx:id="b27" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <Button fx:id="b37" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <Button fx:id="b36" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <Button fx:id="b30" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.rowIndex="3" />
+            <Button fx:id="b31" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="b32" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button fx:id="b33" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Button fx:id="b34" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Button fx:id="b35" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Button fx:id="b40" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.rowIndex="4" />
+            <Button fx:id="b41" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button fx:id="b42" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button fx:id="b43" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Button fx:id="b44" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Button fx:id="b45" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Button fx:id="b46" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <Button fx:id="b47" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+            <Button fx:id="b50" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.rowIndex="5" />
+            <Button fx:id="b60" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.rowIndex="6" />
+            <Button fx:id="b70" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.rowIndex="7" />
+            <Button fx:id="b51" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button fx:id="b61" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button fx:id="b71" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Button fx:id="b52" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Button fx:id="b62" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Button fx:id="b53" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Button fx:id="b54" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Button fx:id="b63" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Button fx:id="b64" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Button fx:id="b55" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Button fx:id="b0048" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <Button fx:id="b56" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <Button fx:id="b57" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <Button fx:id="b65" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <Button fx:id="b72" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Button fx:id="b73" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Button fx:id="b74" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <Button fx:id="b75" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <Button fx:id="b76" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            <Button fx:id="b67" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+            <Button fx:id="b77" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+            <Button fx:id="b66" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <ImageView fx:id="imageK" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
                <image>
                   <Image url="@Images/6808582.png" />
                </image>
@@ -227,5 +155,45 @@
             </ImageView>
          </children>
       </GridPane>
+      <ImageView fitHeight="27.0" fitWidth="19.0" layoutX="88.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/arrow2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="19.0" layoutX="58.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/arrow1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="27.0" layoutX="31.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/arrow7.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="27.0" layoutX="31.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/arrow8.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="27.0" layoutX="100.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/arrow6.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="27.0" layoutX="100.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/arrow5.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="19.0" layoutX="88.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/arrow3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="19.0" layoutX="58.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/arrow4.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
