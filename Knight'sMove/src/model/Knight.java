@@ -136,13 +136,11 @@ public class Knight extends Piece {
 		loc1.setY(knight.getLocation().getY());
 		toReturn.add(loc1);
 		knight.setLocation(new Location(0,0));
-		System.out.println(knight.getLocation());
 		
 		level1Move( Directions.DOWN, Directions.DOWN, Directions.RIGHT,knight);
 		Location loc2 = new Location(0,0) ;
 		loc2.setX(knight.getLocation().getX());
 		loc2.setY(knight.getLocation().getY());
-		System.out.println(loc2);
 		toReturn.add(loc2);
 		knight.setLocation(new Location(0,0));
 		
@@ -150,7 +148,6 @@ public class Knight extends Piece {
 		Location loc3 = new Location(0,0) ;
 		loc3.setX(knight.getLocation().getX());
 		loc3.setY(knight.getLocation().getY());
-		System.out.println(loc3);
 		toReturn.add(loc3);
 		knight.setLocation(new Location(0,0));
 		
@@ -158,7 +155,6 @@ public class Knight extends Piece {
 		Location loc4 = new Location(0,0) ;
 		loc4.setX(knight.getLocation().getX());
 		loc4.setY(knight.getLocation().getY());
-		System.out.println(loc4);
 		toReturn.add(loc4);
 		knight.setLocation(new Location(0,0));
 		
@@ -166,7 +162,6 @@ public class Knight extends Piece {
 		Location loc5 = new Location(0,0) ;
 		loc5.setX(knight.getLocation().getX());
 		loc5.setY(knight.getLocation().getY());
-		System.out.println(loc5);
 		toReturn.add(loc5);
 		knight.setLocation(new Location(0,0));
 		
@@ -174,7 +169,6 @@ public class Knight extends Piece {
 		Location loc6 = new Location(0,0) ;
 		loc6.setX(knight.getLocation().getX());
 		loc6.setY(knight.getLocation().getY());
-		System.out.println(loc6);
 		toReturn.add(loc6);
 		knight.setLocation(new Location(0,0));
 		
@@ -182,7 +176,6 @@ public class Knight extends Piece {
 		Location loc7 = new Location(0,0) ;
 		loc7.setX(knight.getLocation().getX());
 		loc7.setY(knight.getLocation().getY());
-		System.out.println(loc7);
 		toReturn.add(loc7);
 		knight.setLocation(new Location(0,0));
 		
@@ -190,7 +183,6 @@ public class Knight extends Piece {
 		Location loc8 = new Location(0,0) ;
 		loc8.setX(knight.getLocation().getX());
 		loc8.setY(knight.getLocation().getY());
-		System.out.println(loc8);
 		toReturn.add(loc8);
 		knight.setLocation(new Location(0,0));
 		

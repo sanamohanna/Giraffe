@@ -13,9 +13,9 @@ class test {
 	@Test
 	void Level1KnightMoveRightRightDownTest() {
 		
-		Knight knight = new Knight();
+		model.Knight knight = new Knight(new Location(0,0));
 		
-		knight.level1Move(Directions.RIGHT, Directions.RIGHT, Directions.DOWN);
+		knight.level1Move(Directions.RIGHT, Directions.RIGHT, Directions.DOWN,knight);
 		Location locationExpected1 = new Location(2,1);
 		System.out.println(knight.getLocation()+ " test 1");
 		assertEquals(locationExpected1,knight.getLocation());

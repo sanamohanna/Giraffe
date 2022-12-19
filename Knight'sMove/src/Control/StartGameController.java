@@ -72,8 +72,7 @@ public class StartGameController implements Initializable{
 	Alert a = new Alert(AlertType.NONE);
 	//timer fields;
 	static long min,hr, sec,totalSec,points=0;
-	
-	static Node node;
+
 	static String buttonId;
 	//Board boardGame = new Board();
 	Game game = new Game();
@@ -174,43 +173,45 @@ public class StartGameController implements Initializable{
 //		}
 		String bt;
 		int k = 0 , j = 0 ;
+		int node ;
 		ArrayList<Location> validMoves;
 		public void level1Moves() throws IOException {
-		
+			
 			int y = GridPane.getRowIndex(imageK);;
 			int x = GridPane.getColumnIndex(imageK);
 			Location loc = new Location(x,y);
 			validMoves= new ArrayList<Location>();
 			validMoves= game.getKnight().allValidMovesLevel1(loc);
-			validMoves.add(new Location(1, 0));
-//			for(int i=0 ; i < board.getChildren().size();i++) {
-//				System.out.println(board.getChildren().get(i).getId());
-//			}
+
 			j = 0 ;
-			for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+			for(node = 0 ; node < board.getChildren().size()-2 ; node++,j++) {
+				Location locNew = new Location(k,j);
+				if(validMoves.contains(locNew)) {
+					board.getChildren().get(node).setStyle("-fx-background-color: green; ");
+				}
 				bt = "b" + k +""+j;
-				System.out.println(k+"///"+j);
 				if(j > 7) {
 
 					j=0;
 					k++;
 
 				}
-				System.out.println(bt);
 				if(board.getChildren().get(node).getId().equals(bt)) {
-					((Button) board.getChildren().get(node)).setOnAction(arg0 -> {
-						System.out.println(k + "///// " + j);
+
+					board.getChildren().get(node).addEventHandler(ActionEvent.ACTION,arg0 -> {
+						System.out.println(board.getChildren().get(node).getId());
+						System.out.println(bt);
+						try {
 						//b12.setStyle("-fx-background-color: white; ");
 						int flag=0;
-						Location loc00 = new Location(k,j); 
-						try {
+						Location loc1 = new Location(k,j); 
+						
 						for(int i = 0 ;i< validMoves.size();i++) {
-								//b12.setStyle("-fx-background-color: green; ");
-								if(validMoves.get(i).equals(loc00)) {
+								if(validMoves.contains(loc1)) {
 									System.out.println("i'm here");
 									flag =1;
-									GridPane.setColumnIndex(imageK, k);
-									GridPane.setRowIndex(imageK,j );
+									GridPane.setColumnIndex(imageK, j);
+									GridPane.setRowIndex(imageK,k );
 								}
 							}
 							if(flag == 0) {
@@ -226,9 +227,9 @@ public class StartGameController implements Initializable{
 							
 					});
 				}
-			
-				j++;
+
 			}
+		}
 //			b00.setOnAction(arg0 -> {
 //				//b12.setStyle("-fx-background-color: white; ");
 //				int flag=0;
@@ -416,7 +417,6 @@ public class StartGameController implements Initializable{
 //				}
 //			});
 
-		}
 //		public void upLeft(ActionEvent event) throws IOException {
 //			game.getKnight().level1Move(Directions.UP, Directions.UP, Directions.LEFT);
 //			GridPane.setColumnIndex(imageK, game.getKnight().getLocation().getX());
