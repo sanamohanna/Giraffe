@@ -176,7 +176,18 @@ public class StartGameController implements Initializable{
 		int node ;
 		ArrayList<Location> validMoves;
 		public void level1Moves() throws IOException {
-			
+			Random rand = new Random();
+			Node node1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-2));
+			node1.setStyle("-fx-background-color: red; ");
+			node1.addEventHandler(ActionEvent.ACTION,arg0 -> {
+				
+				try {
+					pop();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				});
 			int y = GridPane.getRowIndex(imageK);;
 			int x = GridPane.getColumnIndex(imageK);
 			Location loc = new Location(x,y);
@@ -197,12 +208,15 @@ public class StartGameController implements Initializable{
 
 				}
 				if(board.getChildren().get(node).getId().equals(bt)) {
-
+					//System.out.println(board.getChildren().get(node).getId());
+					System.out.println(GridPane.getColumnIndex(board.getChildren().get(node)));
+					//System.out.println(bt);
 					board.getChildren().get(node).addEventHandler(ActionEvent.ACTION,arg0 -> {
-						System.out.println(board.getChildren().get(node).getId());
+						System.out.println(board.getChildren().get(0).getId());
 						System.out.println(bt);
 						try {
 						//b12.setStyle("-fx-background-color: white; ");
+						board.getChildren().get(node).setStyle("-fx-background-color: black; ");
 						int flag=0;
 						Location loc1 = new Location(k,j); 
 						
