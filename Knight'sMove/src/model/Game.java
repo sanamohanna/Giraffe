@@ -23,7 +23,7 @@ public class Game {
 	private LocalDate date ;
 	
 	// constructor
-	public Game(Board board, Player player, Queen queen, King king, GameStatus gameStatus) {
+	public Game(Player player, Queen queen, King king, GameStatus gameStatus) {
 		super();
 		this.board = Board.getInstance();
 		// we have to start the board
