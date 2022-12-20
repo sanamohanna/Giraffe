@@ -223,16 +223,18 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				int flag=0;
 				Location loc1 = new Location(GridPane.getColumnIndex(bt),GridPane.getRowIndex(bt)); 
 				if(validMoves.contains(loc1)) {
-					board.getChildren().get(node).setStyle("-fx-background-color: green; ");
+					bt.setStyle("-fx-background-color: green; ");
 				}
-				for(int i = 0 ;i< validMoves.size();i++) {
+				//for(int i = 0 ;i< validMoves.size();i++) {
 						if(validMoves.contains(loc1)) {
 							flag =1;
 							GridPane.setColumnIndex(imageK, GridPane.getColumnIndex(bt));
 							GridPane.setRowIndex(imageK,GridPane.getRowIndex(bt) );
+							points++;
+							
 							level1Moves();
 						}
-					}
+					//}
 					if(flag == 0) {
 						throw new Exception();
 					}
