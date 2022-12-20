@@ -93,7 +93,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			try {
 				pop();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			});
@@ -115,7 +114,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			try {
 				pop();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			});
@@ -206,30 +204,33 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //			}
 //			return null;
 //		}
+		ArrayList<Location> validMoves;
 		@Override
 		public void handle(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-
-			
+				
+				
 				Button bt =(Button) arg0.getSource();
 				int y = GridPane.getRowIndex(imageK);;
 				int x = GridPane.getColumnIndex(imageK);
+				System.out.println(GridPane.getColumnIndex(imageK));
+				System.out.println(GridPane.getRowIndex(imageK));
 				Location loc = new Location(x,y);
-				validMoves= new ArrayList<Location>();
-				
 				validMoves= game.getKnight().allValidMovesLevel1(loc);
+				for(int i = 0 ; i < validMoves.size(); i++) {
+					System.out.println(validMoves.get(i));
+				}
 				//if(arg0.getSource()==b00) {
 					try {
 				int flag=0;
 				Location loc1 = new Location(GridPane.getColumnIndex(bt),GridPane.getRowIndex(bt)); 
-				if(validMoves.contains(loc1)) {
-					bt.setStyle("-fx-background-color: green; ");
-				}
+				
 				//for(int i = 0 ;i< validMoves.size();i++) {
 						if(validMoves.contains(loc1)) {
 							flag =1;
 							GridPane.setColumnIndex(imageK, GridPane.getColumnIndex(bt));
 							GridPane.setRowIndex(imageK,GridPane.getRowIndex(bt) );
+
 							points++;
 							
 							level1Moves();
@@ -280,15 +281,25 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		String bt;
 		int k = 0 , j = 0 ;
 		int node ;
-		ArrayList<Location> validMoves;
+		
 		public void level1Moves() throws IOException {
-			
+			int y = GridPane.getRowIndex(imageK);;
+			int x = GridPane.getColumnIndex(imageK);
 
-			
-			for(node = 0 ; node < board.getChildren().size()-2 ; node++) {
+			Location loc = new Location(x,y);
+			validMoves= game.getKnight().allValidMovesLevel1(loc);
+			for(node = 0 ; node < board.getChildren().size()-2 ; node++,j++) {
+				if(j>7) {
+					k++;
+					j=0;
+				}
 				Location locNew = new Location(k,j);
 				
-				((ButtonBase) board.getChildren().get(node)).setOnAction(this);
+				((Button) board.getChildren().get(node)).setOnAction(this);
+				
+				if(validMoves.contains(locNew)) {
+					board.getChildren().get(node).setStyle("-fx-background-color: green; ");
+				}
 //				bt = "b" + k +""+j;
 //				if(board.getChildren().get(node).getId().equals(bt)) {
 //					//System.out.println(board.getChildren().get(node).getId());
