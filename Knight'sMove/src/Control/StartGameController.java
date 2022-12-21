@@ -314,7 +314,39 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		public void handle(ActionEvent arg0) {
 			ArrayList<Location> validsPrevious =new ArrayList<Location>();
 			validsPrevious = game.getKnight().allValidMovesLevel1(game.getKnight());
-			
+			if(arg0.getSource()==node1) {
+				Location locNode1 = new Location(GridPane.getColumnIndex(node1),GridPane.getRowIndex(node1));
+				if(validsPrevious.contains(locNode1)) {
+					try {
+						pop();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+					
+			}
+			if(arg0.getSource()==node2) {
+				Location locNode2 = new Location(GridPane.getColumnIndex(node2),GridPane.getRowIndex(node2));
+				if(validsPrevious.contains(locNode2)) {
+						try {
+							pop();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				}
+			}
+			if(arg0.getSource()==node3) {
+				Location locNode3 = new Location(GridPane.getColumnIndex(node3),GridPane.getRowIndex(node3));
+				if(validsPrevious.contains(locNode3)) {
+				try {
+							pop();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				}
+			}
 			for(int i = 0 ; i < 8 ; i++) {
 				for(int j = 0 ; j < 8 ; j ++) {
 					
@@ -342,6 +374,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						
 					}
 						else {
+							//ColorChange(loc,validsPrevious,b00);
 							a.setAlertType(AlertType.ERROR);//if the user not enter data 
 							a.setContentText("invalid move try again");
 							a.show();	
@@ -351,32 +384,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				}
 
 			}
-			if(arg0.getSource()==node1) {	
-					try {
-						pop();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					
-			}
-			if(arg0.getSource()==node2) {
 			
-						try {
-							pop();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				
-			}
-			if(arg0.getSource()==node3) {
-						try {
-							pop();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-			}
 		}
 			public void ColorChange(Location locNew ,ArrayList<Location> valids,Node node) {
 				if(valids.contains(locNew)) {						
