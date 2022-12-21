@@ -15,11 +15,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -36,7 +38,10 @@ public class QuestionController implements Initializable{
 	
 	@FXML
 	private Button sub;
+	@FXML 
+	private Label warningBT;
 	Question ques;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -70,8 +75,8 @@ public class QuestionController implements Initializable{
 	}
 	
 	public void submit(ActionEvent event) throws Exception {
-		Stage stage = (Stage) sub.getScene().getWindow();
-	    stage.close();
+		Boolean selected = false;
+		Stage stage ;
 
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	
@@ -81,7 +86,9 @@ public class QuestionController implements Initializable{
 				trueanswer= i;
 			}
 		}
+		try {
 		if(answer1.isSelected()) {
+			selected = true;
 			if(answer1.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
 				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
 					StartGameController.points+=3;
@@ -112,6 +119,7 @@ public class QuestionController implements Initializable{
 			
 		}
 		else if(answer2.isSelected()) {
+			selected = true;
 			if(answer2.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
 				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
 					StartGameController.points+=3;
@@ -144,6 +152,7 @@ public class QuestionController implements Initializable{
 			}
 		}
 		if(answer3.isSelected()) {
+			selected = true;
 			if(answer3.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
 				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
 					StartGameController.points+=3;
@@ -173,6 +182,7 @@ public class QuestionController implements Initializable{
 			}
 		}
 		if(answer4.isSelected()) {
+			selected = true;
 			if(answer4.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
 				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
 					StartGameController.points+=3;
@@ -200,6 +210,15 @@ public class QuestionController implements Initializable{
 			    	}
 			}
 		}
+		if(selected == false) {
+			throw new Exception();
+		}
+	    stage.close();
+
+	}catch (Exception e) {
+	   
+			warningBT.setVisible(true);
+	}
 		
 	}
 	
