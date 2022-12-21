@@ -79,11 +79,12 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	static String buttonId;
 	//Board boardGame = new Board();
 	Game game = new Game();
-	@Override
 	
+	Node node1,node2 ,node3;
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+		game.getKnight().setLocation(new Location(0,0));
 		
 		GridPane.setColumnIndex(imageK, 0);
 		GridPane.setRowIndex(imageK, 0);
@@ -96,37 +97,13 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			e.printStackTrace();
 		}
 		Random rand = new Random();
-		Node node1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-2));
+		node1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-2));
 		node1.setStyle("-fx-background-color: red; ");
-		((Button) node1).setOnAction(event ->{
-			
-			try {
-				pop();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			});
-		Node node2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-2));
+		node2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-2));
 		node2.setStyle("-fx-background-color: red; ");
-		((Button) node2).setOnAction(event ->{
-			
-			try {
-				pop();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			});
-		Node node3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-2));
+		node3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-2));
 		node3.setStyle("-fx-background-color: red; ");
-		((Button) node3).setOnAction(event ->{
-			
-			try {
-				pop();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			});
+
 		setTimer();
 		displayLevel("LEVEL 1");
 		pointsT.setText(String.valueOf(points));
@@ -207,7 +184,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //			}
 //			return null;
 //		}
-		ArrayList<Location> validMoves;
+
 		/*@Override
 		public void handle(ActionEvent arg0) {
 			// TODO Auto-generated method stub
@@ -248,6 +225,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			Location loc =game.getKnight().getLocation();
 			//validMoves= game.getKnight().allValidMovesLevel1(loc);
 			for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+				
 				((ButtonBase) board.getChildren().get(node)).setOnAction(this);
 				
 			}
@@ -334,39 +312,78 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 
 		@Override
 		public void handle(ActionEvent arg0) {
+			ArrayList<Location> validsPrevious =new ArrayList<Location>();
+			validsPrevious = game.getKnight().allValidMovesLevel1(game.getKnight());
+			
 			for(int i = 0 ; i < 8 ; i++) {
 				for(int j = 0 ; j < 8 ; j ++) {
+					
 					if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j)) {
 						Location loc = new Location(j, i);
+						if(validsPrevious.contains(loc)) {
+						
 						game.getKnight().setLocation(loc);
+						System.out.println(game.getKnight().getLocation());
 						GridPane.setColumnIndex(imageK,j);
 						GridPane.setRowIndex(imageK,i );
+						points++;
 						ArrayList<Location> valids =new ArrayList<Location>();
 						valids = game.getKnight().allValidMovesLevel1(game.getKnight());
-						System.out.println(valids);
+						//System.out.println(valids);
 						for(int node = 0 ; node < board.getChildren().size()-2 ; node++,n++) {
 							if(n>7) {
 								k++;
 								n=0;
 							}
 							Location locNew = new Location(k,n);
-					
-							for(int v = 0 ;v<valids.size();v++) {
-								if(valids.get(v).equals(locNew)) {
-								
-									board.getChildren().get(node).setStyle("-fx-background-color: green; ");
-									
-								}
-								else {
-									
-								}
-							}
+
+							ColorChange(locNew,valids, board.getChildren().get(node));
+					}
 						
 					}
-					}
+						else {
+							a.setAlertType(AlertType.ERROR);//if the user not enter data 
+							a.setContentText("invalid move try again");
+							a.show();	
+						}
 
+					}
 				}
 
+			}
+			if(arg0.getSource()==node1) {	
+					try {
+						pop();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					
+			}
+			if(arg0.getSource()==node2) {
+			
+						try {
+							pop();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				
+			}
+			if(arg0.getSource()==node3) {
+						try {
+							pop();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			}
+		}
+			public void ColorChange(Location locNew ,ArrayList<Location> valids,Node node) {
+				if(valids.contains(locNew)) {						
+					node.setStyle("-fx-background-color: green; "); 		
+				}else {
+					
+				}
 			}
 			/*if(arg0.getSource() == b54 ) {
 				
@@ -396,4 +413,4 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				}
 			}*/
 		}
-		}
+		
