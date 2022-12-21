@@ -321,6 +321,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					try {
 						flag1++;
 						pop();
+						node1.setStyle("-fx-background-color: defult; ");
+						node1.setStyle("-fx-border-color : black");
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -333,6 +335,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						try {
 							flag2++;
 							pop();
+							node2.setStyle("-fx-background-color: defult ; ");
+							node2.setStyle("-fx-border-color : black");
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -345,6 +349,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				try {
 					       flag3++;
 							pop();
+							node3.setStyle("-fx-background-color: defult; ");
+							node3.setStyle("-fx-border-color : black");
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
