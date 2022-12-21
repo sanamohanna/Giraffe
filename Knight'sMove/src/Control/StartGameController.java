@@ -309,6 +309,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 		//}
 		int k = 0 , n = 0 ;
+		int flag1 = 0  , flag2 = 0 , flag3 = 0;
 
 		@Override
 		public void handle(ActionEvent arg0) {
@@ -316,8 +317,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			validsPrevious = game.getKnight().allValidMovesLevel1(game.getKnight());
 			if(arg0.getSource()==node1) {
 				Location locNode1 = new Location(GridPane.getColumnIndex(node1),GridPane.getRowIndex(node1));
-				if(validsPrevious.contains(locNode1)) {
+				if(validsPrevious.contains(locNode1) && flag1 == 0) {
 					try {
+						flag1++;
 						pop();
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -327,8 +329,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 			if(arg0.getSource()==node2) {
 				Location locNode2 = new Location(GridPane.getColumnIndex(node2),GridPane.getRowIndex(node2));
-				if(validsPrevious.contains(locNode2)) {
+				if(validsPrevious.contains(locNode2) && flag2 == 0) {
 						try {
+							flag2++;
 							pop();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
@@ -338,8 +341,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 			if(arg0.getSource()==node3) {
 				Location locNode3 = new Location(GridPane.getColumnIndex(node3),GridPane.getRowIndex(node3));
-				if(validsPrevious.contains(locNode3)) {
+				if(validsPrevious.contains(locNode3) && flag3 == 0) {
 				try {
+					       flag3++;
 							pop();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
