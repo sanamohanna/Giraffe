@@ -249,6 +249,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			//validMoves= game.getKnight().allValidMovesLevel1(loc);
 			for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 				((ButtonBase) board.getChildren().get(node)).setOnAction(this);
+				
 			}
 //			 b00.setOnAction(this);
 //			 b01.setOnAction(this);
@@ -349,14 +350,17 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								n=0;
 							}
 							Location locNew = new Location(k,n);
-							//System.out.println(locNew);
-							
-							if(valids.contains(locNew)) {
-								board.getChildren().get(node).setStyle("-fx-background-color: green; ");
-							}else {
+					
+							for(int v = 0 ;v<valids.size();v++) {
+								if(valids.get(v).equals(locNew)) {
 								
+									board.getChildren().get(node).setStyle("-fx-background-color: green; ");
+									
+								}
+								else {
+									
+								}
 							}
-
 						
 					}
 					}
