@@ -9,6 +9,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+
 import Enum.Directions;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -206,7 +208,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //			return null;
 //		}
 		ArrayList<Location> validMoves;
-		@Override
+		/*@Override
 		public void handle(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 
@@ -239,26 +241,152 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					}
 				
 					
-		}
+		}*/
 		
-		int k = 0 , j = 0 ;
 	
 		public void level1Moves() throws IOException {
 			Location loc =game.getKnight().getLocation();
-			validMoves= game.getKnight().allValidMovesLevel1(loc);
-			for(int node = 0 ; node < board.getChildren().size()-2 ; node++,j++) {
-				if(j>7) {
-					k++;
-					j=0;
-				}
-				Location locNew = new Location(k,j);
+			//validMoves= game.getKnight().allValidMovesLevel1(loc);
+			 b00.setOnAction(this);
+			 b01.setOnAction(this);
+			 b02.setOnAction(this);
+			 b03.setOnAction(this);
+			 b04.setOnAction(this);
+			 b05.setOnAction(this);
+			 b06.setOnAction(this);
+			 b07.setOnAction(this);
+			 b10.setOnAction(this);
+			 b11.setOnAction(this);
+			 b12.setOnAction(this);
+			 b13.setOnAction(this);
+			 b14.setOnAction(this);
+			 b15.setOnAction(this);
+			 b16.setOnAction(this);
+			 b17.setOnAction(this);
+			 b20.setOnAction(this);
+			 b21.setOnAction(this);
+			 b22.setOnAction(this);
+			 b23.setOnAction(this);
+			 b24.setOnAction(this);
+			 b25.setOnAction(this);
+			 b26.setOnAction(this);
+			 b27.setOnAction(this);
+			 b30.setOnAction(this);
+			 b31.setOnAction(this);
+			 b32.setOnAction(this);
+			 b33.setOnAction(this);
+			 b34.setOnAction(this);
+			 b35.setOnAction(this);
+			 b36.setOnAction(this);
+			 b37.setOnAction(this);
+			 b40.setOnAction(this);
+			 b41.setOnAction(this);
+			 b42.setOnAction(this);
+			 b43.setOnAction(this);
+			 b44.setOnAction(this);
+			 b45.setOnAction(this);
+			 b46.setOnAction(this);
+			 b47.setOnAction(this);
+			 b50.setOnAction(this);
+			 b51.setOnAction(this);
+			 b52.setOnAction(this);
+			 b53.setOnAction(this);
+			 b54.setOnAction(this);
+			 b55.setOnAction(this);
+			 b56.setOnAction(this);
+			 b57.setOnAction(this);
+			 b60.setOnAction(this);
+			 b61.setOnAction(this);
+			 b62.setOnAction(this);
+			 b63.setOnAction(this);
+			 b64.setOnAction(this);
+			 b65.setOnAction(this);
+			 b66.setOnAction(this);
+			 b67.setOnAction(this);
+			 b70.setOnAction(this);
+			 b71.setOnAction(this);
+			 b72.setOnAction(this);
+			 b73.setOnAction(this);
+			 b74.setOnAction(this);
+			 b75.setOnAction(this);
+			 b76.setOnAction(this);
+			 b77.setOnAction(this);
+		    
+//			for(int node = 0 ; node < board.getChildren().size()-2 ; node++,j++) {
+//				if(j>7) {
+//					k++;
+//					j=0;
+//				}
 				//System.out.println(locNew);
-				((Button) board.getChildren().get(node)).setOnAction(this);
+				//((Button) board.getChildren().get(node)).setOnAction(this);
 				
-				if(validMoves.contains(locNew)) {
+				/*if(validMoves.contains(locNew)) {
 					board.getChildren().get(node).setStyle("-fx-background-color: green; ");
+				}*/
+
+			}
+		//}
+		int k = 0 , n = 0 ;
+
+		@Override
+		public void handle(ActionEvent arg0) {
+			for(int i = 0 ; i < 8 ; i++) {
+				for(int j = 0 ; j < 8 ; j ++) {
+					if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j)) {
+						Location loc = new Location(j, i);
+						game.getKnight().setLocation(loc);
+						GridPane.setColumnIndex(imageK,j);
+						GridPane.setRowIndex(imageK,i );
+						ArrayList<Location> valids =new ArrayList<Location>();
+						valids = game.getKnight().allValidMovesLevel1(game.getKnight());
+						System.out.println(valids);
+						for(int node = 0 ; node < board.getChildren().size()-2 ; node++,n++) {
+							if(n>7) {
+								k++;
+								n=0;
+							}
+							Location locNew = new Location(k,n);
+							//System.out.println(locNew);
+							
+							if(valids.contains(locNew)) {
+								board.getChildren().get(node).setStyle("-fx-background-color: green; ");
+							}else {
+								
+							}
+
+						
+					}
+					}
+
 				}
 
 			}
+			/*if(arg0.getSource() == b54 ) {
+				
+					
+			}
+			if(arg0.getSource() == b33 ) {
+				Location loc = new Location(3, 3);
+				game.getKnight().setLocation(loc);
+				GridPane.setColumnIndex(imageK, 3);
+				GridPane.setRowIndex(imageK,3 );
+				ArrayList<Location> valids =new ArrayList<Location>();
+				valids = game.getKnight().allValidMovesLevel1(game.getKnight());
+				System.out.println(valids);
+					for(int node = 0 ; node < board.getChildren().size()-2 ; node++,n++) {
+						if(n>7) {
+							k++;
+							n=0;
+						}
+						Location locNew = new Location(k,n);
+						//System.out.println(locNew);
+						
+						if(valids.contains(locNew)) {
+							board.getChildren().get(node).setStyle("-fx-background-color: green; ");
+						}
+
+					
+				}
+			}*/
 		}
 		}

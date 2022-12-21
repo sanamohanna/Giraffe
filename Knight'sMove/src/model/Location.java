@@ -16,6 +16,11 @@ public class Location {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public Location() {
+		super();
+	}
+
 	// getters setters
 	public Integer getX() {
 		return x;
