@@ -282,7 +282,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		}
 			public void ColorChange(Location locNew ,ArrayList<Location> valids,Node node) {
 				if(valids.contains(locNew)) {						
-					node.setStyle("-fx-background-color: green; "); 		
+					node.setStyle("-fx-background-color: green; "); 
+					node1.setStyle("-fx-background-color: red; ");
+					node2.setStyle("-fx-background-color: red; ");
+					node3.setStyle("-fx-background-color: red; ");
 				}else {
 					
 				}

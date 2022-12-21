@@ -100,53 +100,7 @@ public class Knight extends Piece {
 				return null;
 				
 	}
-	/*public void level1Move( Directions direction1 , Directions direction2, Directions direction3,Knight knight){
-		// the knight move two squares in one direction and then one square in a perpendicular direction .
-		// checking if the knight's move is correct .
-		if(direction1 == Directions.UP) {
-			if(direction2 != Directions.UP || (direction3 == Directions.DOWN || direction3 == Directions.UP)) {
-				throw new IllegalArgumentException("illegal Move");
-			}
-			else {
-				knight.StrightMove(direction1);
-				knight.StrightMove(direction2);
-				knight.StrightMove(direction3);
-			}
-		}
-		else if(direction1 == Directions.DOWN) {
-			if(direction2 != Directions.DOWN || (direction3 == Directions.DOWN || direction3 == Directions.UP)) {
-				throw new IllegalArgumentException("illegal Move");
-			}
-			else {
-				knight.StrightMove(direction1);
-				knight.StrightMove(direction2);
-				knight.StrightMove(direction3);
-			}
-		}
-		else if(direction1 == Directions.LEFT) {
-			if(direction2 != Directions.LEFT || (direction3 == Directions.LEFT || direction3 == Directions.RIGHT)) {
-				throw new IllegalArgumentException("illegal Move");
-			}
-			else {
-				knight.StrightMove(direction1);
-				knight.StrightMove(direction2);
-				knight.StrightMove(direction3);
-			}
-		}
-		else if(direction1 == Directions.RIGHT) {
-			if(direction2 != Directions.RIGHT || (direction3 == Directions.LEFT || direction3 == Directions.RIGHT)) {
-				throw new IllegalArgumentException("illegal Move");
-			}
-			else {
-				knight.StrightMove(direction1);
-				knight.StrightMove(direction2);
-				knight.StrightMove(direction3);
-			}
-		}
-		
-		
-	}*/
-	
+
 
 	public void level2Move(Directions direction1 , Directions direction2 ,  Directions direction3 ) {
 		/*in this level the knight can move two squares straight and one diagonally or two diagonally and one straight*/
