@@ -43,7 +43,7 @@ public class Knight extends Piece {
 	public Location level1Move(Directions direction1 , Directions direction2, Directions direction3 , String X , String Y) {
 		// the knight move two squares in one direction and then one square in a perpendicular direction .
 				// checking if the knight's move is correct .
-		Location loc = new Location(Integer.parseInt(Y), Integer.parseInt(X));
+		Location loc = new Location(Integer.parseInt(X), Integer.parseInt(Y));
 		Knight knight1 = new Knight(loc);
 		Location newLoc = new Location();
 				if(direction1 == Directions.UP) {
@@ -192,54 +192,37 @@ public class Knight extends Piece {
 		 String strX = KnightLocation.getX().toString();
 		 String strY = KnightLocation.getY().toString();
 		Location loc1 = new Location();
-		//System.out.println(strX+" " + strY);
 		loc1 = level1Move( Directions.DOWN, Directions.DOWN, Directions.LEFT,strX , strY);
-		//System.out.println(loc1);
-		//System.out.println(strX+" " + strY);
-
 		toReturn.add(loc1);
-		//System.out.println(toReturn);
+
 		Location loc2 = new Location();
 		loc2= level1Move( Directions.DOWN, Directions.DOWN, Directions.RIGHT,strX , strY);
 		toReturn.add(loc2);
-		//System.out.println(toReturn);
-        //System.out.println(loc2);
 
 		Location loc3 = new Location(); 
 		loc3 = level1Move( Directions.UP, Directions.UP, Directions.LEFT,strX , strY);
 		toReturn.add(loc3);
-		//System.out.println(toReturn);
-        //System.out.println(loc3);
 
 		Location loc4 = new Location();
 		loc4 = level1Move( Directions.UP, Directions.UP, Directions.RIGHT,strX , strY);
 		toReturn.add(loc4);
-		//System.out.println(toReturn);
-        //System.out.println(loc4);
+
 
 		Location loc5 = new Location();
 		loc5 = level1Move( Directions.RIGHT, Directions.RIGHT, Directions.DOWN,strX , strY);
 		toReturn.add(loc5);
-		//System.out.println(toReturn);
-        //System.out.println(loc5);
 
 		Location loc6 = new Location();
 		loc6 = level1Move( Directions.RIGHT, Directions.RIGHT, Directions.UP,strX , strY);
 		toReturn.add(loc6);
-		//System.out.println(toReturn);
-        //System.out.println(loc6);
 
 		Location loc7 = new Location();
 		loc7 = level1Move( Directions.LEFT, Directions.LEFT, Directions.DOWN,strX , strY);
 		toReturn.add(loc7);
-		//System.out.println(toReturn);
-        //System.out.println(loc7);
 
 		Location loc8 = new Location();
 		loc8 = level1Move( Directions.LEFT, Directions.LEFT, Directions.UP,strX , strY);
 		toReturn.add(loc8);
-		//System.out.println(toReturn);
-        //System.out.println(loc8);
 
 		return toReturn;
 	}
