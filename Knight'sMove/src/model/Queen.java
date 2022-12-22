@@ -477,48 +477,48 @@ public class Queen extends Piece {
 		*/
 		
 		switch (dir) {
-		case UP_LEFT: {
-		if (this.getLocation().getX() == 0 && this.getLocation().getY() > 0) {
-		return 0; 
-		} else if (this.getLocation().getY() == 0) {
-		return 0;
-		} 
-		break;
-		}
-		case UP_RIGHT: {
-		if (this.getLocation().getX() == 7 && this.getLocation().getY() > 0) {
-		return 0; 
-		} 
-		else if (this.getLocation().getY() == 0) {
-		return 0; 
-		}
-		break;
-		}
-		// ?????
-		case DOWN_LEFT: {
-		if (this.getLocation().getX() == 0 && this.getLocation().getY() < 7) {
-		return 0;
-		} 
-		else if (this.getLocation().getY() == 7) { 
-		return 0;
-		}
-		break;
-		}
-		case DOWN_RIGHT: {
-		if (this.getLocation().getX() == 7 && this.getLocation().getY() < 7) {
-		return 0;
-		} 
-		else if (this.getLocation().getY() == 7) {
-		return 0;
-		} 
-		break;
-		}
-		default:
-		break;
+			case UP_LEFT: {
+				if (this.getLocation().getX() == 0 && this.getLocation().getY() > 0) {
+					return 0; 
+				} else if (this.getLocation().getY() == 0) {
+					return 0;
+				} 
+				break;
+			}
+			case UP_RIGHT: {
+				if (this.getLocation().getX() == 7 && this.getLocation().getY() > 0) {
+					return 0; 
+				} 
+				else if (this.getLocation().getY() == 0) {
+					return 0; 
+				}
+				break;
+			}
+			// ?????
+			case DOWN_LEFT: {
+				if (this.getLocation().getX() == 0 && this.getLocation().getY() < 7) {
+					return 0;
+				} 
+				else if (this.getLocation().getY() == 7) { 
+					return 0;
+				}
+				break;
+			}
+			case DOWN_RIGHT: {
+				if (this.getLocation().getX() == 7 && this.getLocation().getY() < 7) {
+					return 0;
+				} 
+				else if (this.getLocation().getY() == 7) {
+					return 0;
+				} 
+				break;
+			}
+			default:
+				break;
 		}
 		
 		return 1;
-		}
+	}
 
 	
     /*this method receiving two parameters , one of the direction of the queen move , 
