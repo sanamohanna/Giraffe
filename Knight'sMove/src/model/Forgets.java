@@ -6,8 +6,8 @@ import Enum.Color;
 
 public class Forgets extends Squares {
 	// constructor
-	public Forgets(Location location) {
-		super(location);
+	public Forgets() {
+		super();
 	}
 
 	public void handleLastThreeSteps(ArrayList<Squares> knightMoves) {

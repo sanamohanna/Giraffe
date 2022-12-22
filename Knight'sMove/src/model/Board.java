@@ -3,11 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Board {
 	private final int BOARD_SIZE = 8;
 	private Squares[][] squares;// A list of all the squares that make up the board
-	private ArrayList<Piece> pieces;// A list of all the pieces currently on the board.
+	//private ArrayList<Piece> pieces;// A list of all the pieces currently on the board.
 
 	private static Board instance = null;
 	
@@ -26,11 +27,14 @@ public class Board {
 		for (int i = 0; i < squares.length; i++)
 		    for (int j = 0; j < squares[i].length; j++)
 		    {
-		       Location loc = new Location(i,j);
-		       squares[i][j].setVisited(false);
-		       squares[i][j].setLocation(loc);
+		    	Squares s = new Squares(); 
+		    	
+		    	squares[i][j]=s;
+		    	Location loc = new Location(j,i);
+		    	squares[i][j].setLocation(loc);
+
 		    }
-		pieces = new ArrayList<Piece>();
+		//pieces = new ArrayList<Piece>();
 
 	}
 
@@ -44,13 +48,13 @@ public class Board {
 		this.squares = squares;
 	}
 
-	public ArrayList<Piece> getPieces() {
-		return pieces;
-	}
-
-	public void setPieces(ArrayList<Piece> pieces) {
-		this.pieces = pieces;
-	}
+//	public ArrayList<Piece> getPieces() {
+//		return pieces;
+//	}
+//
+//	public void setPieces(ArrayList<Piece> pieces) {
+//		this.pieces = pieces;
+//	}
 
 	public int getBOARD_SIZE() {
 		return BOARD_SIZE;
@@ -62,12 +66,10 @@ public class Board {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + BOARD_SIZE;
-		result = prime * result + ((pieces == null) ? 0 : pieces.hashCode());
 		result = prime * result + Arrays.deepHashCode(squares);
+		result = prime * result + Objects.hash(BOARD_SIZE);
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,18 +79,8 @@ public class Board {
 		if (getClass() != obj.getClass())
 			return false;
 		Board other = (Board) obj;
-		if (BOARD_SIZE != other.BOARD_SIZE)
-			return false;
-		if (pieces == null) {
-			if (other.pieces != null)
-				return false;
-		} else if (!pieces.equals(other.pieces))
-			return false;
-		if (!Arrays.deepEquals(squares, other.squares))
-			return false;
-		return true;
+		return BOARD_SIZE == other.BOARD_SIZE && Arrays.deepEquals(squares, other.squares);
 	}
-
 	// method initialized the board
 	public void initBasicBoard() {
 		for (int i = 0; i <= BOARD_SIZE; i++) {

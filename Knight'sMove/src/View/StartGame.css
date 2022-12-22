@@ -9,3 +9,6 @@
 
 
 }
+Button:valid {
+    -fx-background-color: green;
+}

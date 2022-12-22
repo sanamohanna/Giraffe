@@ -6,8 +6,8 @@ package model;
 public class RandomJump extends Squares {
 
 	// constructor
-	public RandomJump(Location location) {
-		super(location);
+	public RandomJump( ) {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 

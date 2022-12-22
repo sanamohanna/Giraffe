@@ -15,7 +15,7 @@ class test {
 		
 		model.Knight knight = new Knight(new Location(0,0));
 		
-		knight.level1Move(Directions.RIGHT, Directions.RIGHT, Directions.DOWN,knight);
+		knight.level1Move(Directions.RIGHT, Directions.RIGHT, Directions.DOWN,"2","1");
 		Location locationExpected1 = new Location(2,1);
 		System.out.println(knight.getLocation()+ " test 1");
 		assertEquals(locationExpected1,knight.getLocation());

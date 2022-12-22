@@ -8,16 +8,17 @@ public class Squares {
 	private Color color;
 
 	// constructor
-	public Squares(Location location) {
+	public Squares() {
 		super();
 		this.isVisited = false;
-		this.location = location;
+		location=new Location();
+		//this.location = location;
 	}
 
 	// constructor
 	public Squares(Location location, Color color) {
 		super();
-		this.location = location;
+		//this.location = location;
 		this.color = color;
 	}
 	// getters setters
@@ -46,4 +47,9 @@ public class Squares {
 		this.isVisited = isVisited;
 	}
 
+	@Override
+	public String toString() {
+		return "Squares [location=" + location + ", isVisited=" + isVisited + ", color=" + color + "]\n";
+	}
+	
 }
