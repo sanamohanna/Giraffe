@@ -41,6 +41,8 @@ public class Game {
 		super();
 		knight=new Knight(false);
 		queen = new Queen();
+		this.date =LocalDate.now();
+		this.king=new King(0);
 	}
 
 

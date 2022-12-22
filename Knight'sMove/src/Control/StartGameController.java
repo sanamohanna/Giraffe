@@ -113,7 +113,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		node3Q.setStyle("-fx-background-color: red; ");
 		nodeRandomJump1=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-		nodeRandomJump1.setStyle("-fx-background-color: green; ");
+		//nodeRandomJump1.setStyle("-fx-background-color: green; ");
 		nodeRandomJump2=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		//nodeRandomJump2.setStyle("-fx-background-color: green; ");
 		nodeRandomJump3=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
@@ -256,6 +256,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						}
 				}
 			}
+			Location locQueen = new Location();
+			int smallestDistance = 11;
 			for(int i = 0 ; i < 8 ; i++) {
 				for(int j = 0 ; j < 8 ; j ++) {
 					
@@ -266,6 +268,17 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							game.getKnight().setLocation(loc);
 							GridPane.setColumnIndex(imageK,j);
 							GridPane.setRowIndex(imageK,i );
+							ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
+							QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
+							for(int k =0;k<QueenValidMoves.size();k++) {
+								if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
+									smallestDistance=game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k));
+									locQueen = QueenValidMoves.get(k);
+								}
+							}
+							game.getQueen().setLocation(locQueen);
+							GridPane.setColumnIndex(imageQ,locQueen.getX());
+							GridPane.setRowIndex(imageQ,locQueen.getY());
 							if(boardGame.getSquares()[i][j].isVisited() == true) {
 								points--;
 							}else 							points++;

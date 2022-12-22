@@ -370,9 +370,12 @@
 //    
     package model;
 
+import java.util.ArrayList;
+
 //import java.util.ArrayList;
 
 import Enum.Directions;
+import javafx.scene.control.skin.TextInputControlSkin.Direction;
 
 /**
  * 
@@ -466,32 +469,160 @@ public class Queen extends Piece {
 		}
 		return 1;
 	}
+	public int DiagonallyMoveQueen(Directions dir) {
+		/* the different cases it's about the direction that the slant goes */
+		/*
+		* in case the piece is on the last square of the board sides , it goes to the
+		* first square in the same line
+		*/
+		
+		switch (dir) {
+		case UP_LEFT: {
+		if (this.getLocation().getX() == 0 && this.getLocation().getY() > 0) {
+		return 0; 
+		} else if (this.getLocation().getY() == 0) {
+		return 0;
+		} 
+		break;
+		}
+		case UP_RIGHT: {
+		if (this.getLocation().getX() == 7 && this.getLocation().getY() > 0) {
+		return 0; 
+		} 
+		else if (this.getLocation().getY() == 0) {
+		return 0; 
+		}
+		break;
+		}
+		// ?????
+		case DOWN_LEFT: {
+		if (this.getLocation().getX() == 0 && this.getLocation().getY() < 7) {
+		return 0;
+		} 
+		else if (this.getLocation().getY() == 7) { 
+		return 0;
+		}
+		break;
+		}
+		case DOWN_RIGHT: {
+		if (this.getLocation().getX() == 7 && this.getLocation().getY() < 7) {
+		return 0;
+		} 
+		else if (this.getLocation().getY() == 7) {
+		return 0;
+		} 
+		break;
+		}
+		default:
+		break;
+		}
+		
+		return 1;
+		}
 
 	
     /*this method receiving two parameters , one of the direction of the queen move , 
      and another Integer parameter which it is a number of the square that the queen need to move 
      to catch the knight*/
-	public void queenMove(Integer moveNumber , Directions dir) {
+	public int queenMove(Integer moveNumber , Directions dir) {
+		
 		switch(dir) {
 		case UP , DOWN , RIGHT , LEFT:{
 			while(moveNumber !=0 ) {
-				this.StrightMove(dir);
+				if(this.StrightMoveQueen(dir)==0) {
+					return 0;
+				}
+				else {
 				 moveNumber--;
+				}
 			}
+		 
 			break;
 		}
 		case UP_LEFT,UP_RIGHT , DOWN_LEFT,DOWN_RIGHT:{
 			while(moveNumber !=0 ) {
-				this.DiagonallyMove(dir);
+				if(this.DiagonallyMoveQueen(dir)==0) {
+					return 0;
+				}
+				else {
 				 moveNumber--;
+				}
 			}
 			break;
 		}
 		default:
-			throw new IllegalArgumentException("illegal Move");
+			break;
 			
 		}
-
+		return 1;
+	}
+	public ArrayList<Location> validMovesForQueen(Queen queen){
+		ArrayList<Location> toReturn =new ArrayList<Location>();
+		Location loc2 = new Location();
+		loc2 = queen.getLocation();
+		for(int i= 1;i<=8 ; i++) {
+			if(queenMove(i,Directions.LEFT)==1) {
+				for(int j=0;j<i;j++) {
+					loc2.setX(loc2.getX()-1);
+				}
+				toReturn.add(loc2);
+				loc2 = queen.getLocation();
+			}
+			if(queenMove(i,Directions.RIGHT)==1) {
+				for(int j=0;j<i;j++) {
+					loc2.setX(loc2.getX()+1);
+				}
+				toReturn.add(loc2);
+				loc2 = queen.getLocation();
+			}
+			if(queenMove(i,Directions.UP)==1) {
+				for(int j=0;j<i;j++) {
+					loc2.setY(loc2.getY()-1);
+				}
+				toReturn.add(loc2);
+				loc2 = queen.getLocation();
+			}
+			if(queenMove(i,Directions.DOWN)==1) {
+				for(int j=0;j<i;j++) {
+					loc2.setY(loc2.getY()+1);
+				}
+				toReturn.add(loc2);
+				loc2 = queen.getLocation();
+			}
+			if(queenMove(i,Directions.DOWN_LEFT)==1) {
+				for(int j=0;j<i;j++) {
+					loc2.setY(loc2.getY()+1);
+					loc2.setX(loc2.getX()-1);
+				}
+				toReturn.add(loc2);
+				loc2 = queen.getLocation();
+			}
+			if(queenMove(i,Directions.DOWN_RIGHT)==1) {
+				for(int j=0;j<i;j++) {
+					loc2.setY(loc2.getY()+1);
+					loc2.setX(loc2.getX()+1);
+				}
+				toReturn.add(loc2);
+				loc2 = queen.getLocation();
+			}
+			if(queenMove(i,Directions.UP_LEFT)==1) {
+				for(int j=0;j<i;j++) {
+					loc2.setY(loc2.getY()-1);
+					loc2.setX(loc2.getX()-1);
+				}
+				toReturn.add(loc2);
+				loc2 = queen.getLocation();
+			}
+			if(queenMove(i,Directions.UP_RIGHT)==1) {
+				for(int j=0;j<i;j++) {
+					loc2.setY(loc2.getY()-1);
+					loc2.setX(loc2.getX()+1);
+				}
+				toReturn.add(loc2);
+				loc2 = queen.getLocation();
+			}
+		}
+		return toReturn;
 	}
 }
 
