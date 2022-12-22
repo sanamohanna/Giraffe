@@ -265,11 +265,14 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							game.getKnight().setLocation(loc);
 							GridPane.setColumnIndex(imageK,j);
 							GridPane.setRowIndex(imageK,i );
+							if(boardGame.getSquares()[i][j].isVisited() == true) {
+								points--;
+							}else 							points++;
+
 							boardGame.getSquares()[i][j].setVisited(true);
 							notVisited.remove(boardGame.getSquares()[i][j]);
 							((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
 							
-							points++;
 							ArrayList<Location> valids =new ArrayList<Location>();
 							valids = game.getKnight().allValidMovesLevel1(game.getKnight());
 						
