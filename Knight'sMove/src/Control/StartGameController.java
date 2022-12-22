@@ -112,7 +112,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		node3Q.setStyle("-fx-background-color: red; ");
 		nodeRandomJump1=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-		//nodeRandomJump1.setStyle("-fx-background-color: green; ");
+		nodeRandomJump1.setStyle("-fx-background-color: green; ");
 		nodeRandomJump2=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		//nodeRandomJump2.setStyle("-fx-background-color: green; ");
 		nodeRandomJump3=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
@@ -309,7 +309,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 					if(board.getChildren().get(node).getId()==str) {
-						board.getChildren().get(node).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+						((Button)board.getChildren().get(node)).setStyle("-fx-background-color: grey;-fx-border-color : black;");
 					}
 				}
 				
