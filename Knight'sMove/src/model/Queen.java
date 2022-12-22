@@ -390,7 +390,83 @@ public class Queen extends Piece {
 		super(new Location(7,0));
 		
 	}
-	
+	public int shortestDistance(Location loc1 ,Location loc2) {
+		if(loc1.getX()==loc2.getX()) {
+			if((loc2.getY()-loc1.getY())<0) {
+				return (loc2.getY()-loc1.getY())*-1;
+			}
+			else {
+				return loc2.getY()-loc1.getY();
+			}
+		}
+		else if(loc1.getY()==loc2.getY()) {
+			if((loc2.getX()-loc1.getX())<0) {
+				return (loc2.getX()-loc1.getX())*-1;
+			}
+			else {
+				return loc2.getX()-loc1.getX();
+			}
+		}
+		else {
+				int a ;
+				int b;
+				int c ;
+				if((loc1.getX()-loc2.getX())<0) {
+					a = (loc1.getX()-loc2.getX())*-1;
+				}
+				else {
+					a = (loc1.getX()-loc2.getX());
+				}
+				if((loc1.getY()-loc2.getY())<0) {
+					b = (loc1.getY()-loc2.getY())*-1;
+				}
+				else {
+					b = (loc1.getY()-loc2.getY());
+				}
+				c = a*a + b*b;
+				return (int) Math.sqrt(c);
+		}
+	}
+	//this method calculate the shortest distance between two location
+	public int StrightMoveQueen(Directions dir) {
+		switch (dir) {
+		/* here is the location changes in case the piece moved up */
+		/*
+		* in case the piece is on the last square of the board sides , return 0;
+		*/
+			case UP: {
+				if (this.getLocation().getY() == 0) {
+					return 0;
+				}
+				break;
+			}
+			/* here is the location changes in case the piece moved down */
+			case DOWN: {
+				if (this.getLocation().getY() == 7) {
+					return 0;
+				}
+				break;
+			}
+			/* here is the location changes in case the piece moved right */
+			case RIGHT: {
+				if (this.getLocation().getX() == 7) {
+					return 0;
+				} 
+				break;
+				}
+				/* here is the location changes in case the piece moved left */
+			case LEFT: {
+				if (this.getLocation().getX() == 0) {
+					return 0;
+				} 
+				break;
+			}
+			default:
+				break;
+		}
+		return 1;
+	}
+
 	
     /*this method receiving two parameters , one of the direction of the queen move , 
      and another Integer parameter which it is a number of the square that the queen need to move 

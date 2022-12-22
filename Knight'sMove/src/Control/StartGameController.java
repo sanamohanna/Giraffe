@@ -87,6 +87,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		
 		fillNotVisitedArray(notVisited);
 		Location locFirst = new Location(0,0);
 		game.getKnight().setLocation(locFirst);
@@ -112,7 +113,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		node3Q.setStyle("-fx-background-color: red; ");
 		nodeRandomJump1=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-		//nodeRandomJump1.setStyle("-fx-background-color: green; ");
+		nodeRandomJump1.setStyle("-fx-background-color: green; ");
 		nodeRandomJump2=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		//nodeRandomJump2.setStyle("-fx-background-color: green; ");
 		nodeRandomJump3=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
