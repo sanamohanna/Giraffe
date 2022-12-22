@@ -268,8 +268,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							game.getKnight().setLocation(loc);
 							GridPane.setColumnIndex(imageK,j);
 							GridPane.setRowIndex(imageK,i );
+							//zedet hon 
 							ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
 							QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
+							System.out.println(	QueenValidMoves);
 							for(int k =0;k<QueenValidMoves.size();k++) {
 								if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
 									smallestDistance=game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k));
@@ -279,6 +281,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							game.getQueen().setLocation(locQueen);
 							GridPane.setColumnIndex(imageQ,locQueen.getX());
 							GridPane.setRowIndex(imageQ,locQueen.getY());
+							//lhons
 							if(boardGame.getSquares()[i][j].isVisited() == true) {
 								points--;
 							}else 							points++;
