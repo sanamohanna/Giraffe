@@ -102,10 +102,13 @@ public class Knight extends Piece {
 	}
 
 
-	public void level2Move(Directions direction1 , Directions direction2 ,  Directions direction3 ) {
+	public Location level2Move(Directions direction1 , Directions direction2 ,  Directions direction3 , String X , String Y) {
 		/*in this level the knight can move two squares straight and one diagonally or two diagonally and one straight*/
 		/*if the knight start with a straight square we check if the 
 		 next square is straight and the last one is diagonally*/
+		Location loc = new Location(Integer.parseInt(X), Integer.parseInt(Y));
+		Knight knight1 = new Knight(loc);
+		Location newLoc = new Location();
 		if(direction1 ==  Directions.DOWN || direction1 == Directions.UP 
 				|| direction1 == Directions.RIGHT || direction1 == Directions.LEFT ) {
 			if((direction2 !=  Directions.DOWN && direction2 != Directions.UP 
@@ -119,6 +122,8 @@ public class Knight extends Piece {
 				this.StrightMove(direction1);
 				this.StrightMove(direction2);
 				this.DiagonallyMove(direction3);
+				newLoc=knight1.getLocation();
+				return newLoc;
 			}
 		}
 		/*and the same checking but if it start with diagonally*/
@@ -135,6 +140,8 @@ public class Knight extends Piece {
 				this.DiagonallyMove(direction1);
 				this.DiagonallyMove(direction2);
 				this.StrightMove(direction3);
+				newLoc=knight1.getLocation();
+				return newLoc;
 			}
 		}
 		

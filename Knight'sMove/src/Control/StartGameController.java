@@ -110,17 +110,43 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		}
 		rand = new Random();
 		node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-		node1Q.setStyle("-fx-background-color: green; ");
+		
 		node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		
+		while(node1Q==node2Q ) {
+			node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+			
+		}
 		node2Q.setStyle("-fx-background-color: yellow; ");
 		node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		while(node2Q==node3Q ||node3Q==node1Q) {
+			node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+			
+		}
 		node3Q.setStyle("-fx-background-color: red; ");
 		nodeRandomJump1=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		while(node3Q==nodeRandomJump1 ||node1Q==nodeRandomJump1||node2Q==nodeRandomJump1 ) {
+			nodeRandomJump1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+			
+		}
 		nodeRandomJump1.setStyle("-fx-background-color: blue; ");
 		nodeRandomJump2=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		while(nodeRandomJump1==nodeRandomJump2 ||node3Q==nodeRandomJump2 ||node2Q==nodeRandomJump2 ||node1Q==nodeRandomJump2 ) {
+			nodeRandomJump2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+			
+		}
 		nodeRandomJump2.setStyle("-fx-background-color: pink; ");
 		nodeRandomJump3=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		while(nodeRandomJump2==nodeRandomJump3 ||nodeRandomJump1==nodeRandomJump3 ||node2Q==nodeRandomJump3
+				||node1Q==nodeRandomJump3 ||node3Q==nodeRandomJump3) {
+			nodeRandomJump3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+			
+		}
 		nodeRandomJump3.setStyle("-fx-background-color: purple; ");
+		while(node1Q== node2Q||node1Q== node3Q||node1Q== nodeRandomJump3||node1Q==nodeRandomJump2 ||node1Q==nodeRandomJump1 ) {
+			node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		}
+		node1Q.setStyle("-fx-background-color: green; ");
 		setTimer();
 		displayLevel("LEVEL 1");
 		pointsT.setText(String.valueOf(points));
