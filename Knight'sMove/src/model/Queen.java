@@ -563,64 +563,69 @@ public class Queen extends Piece {
 		for(int i= 1;i<=8 ; i++) {
 			if(queenMove(i,Directions.LEFT)==1) {
 				for(int j=0;j<i;j++) {
+					//if(loc2.getX()>0) {
 					loc2.setX(loc2.getX()-1);
+					//System.out.println(loc2.getX());
+					//}
+					//else break;
 				}
 				toReturn.add(loc2);
 				loc2 = queen.getLocation();
+				System.out.println(loc2.getX());
 			}
-			if(queenMove(i,Directions.RIGHT)==1) {
-				for(int j=0;j<i;j++) {
-					loc2.setX(loc2.getX()+1);
-				}
-				toReturn.add(loc2);
-				loc2 = queen.getLocation();
-			}
-			if(queenMove(i,Directions.UP)==1) {
-				for(int j=0;j<i;j++) {
-					loc2.setY(loc2.getY()-1);
-				}
-				toReturn.add(loc2);
-				loc2 = queen.getLocation();
-			}
-			if(queenMove(i,Directions.DOWN)==1) {
-				for(int j=0;j<i;j++) {
-					loc2.setY(loc2.getY()+1);
-				}
-				toReturn.add(loc2);
-				loc2 = queen.getLocation();
-			}
-			if(queenMove(i,Directions.DOWN_LEFT)==1) {
-				for(int j=0;j<i;j++) {
-					loc2.setY(loc2.getY()+1);
-					loc2.setX(loc2.getX()-1);
-				}
-				toReturn.add(loc2);
-				loc2 = queen.getLocation();
-			}
-			if(queenMove(i,Directions.DOWN_RIGHT)==1) {
-				for(int j=0;j<i;j++) {
-					loc2.setY(loc2.getY()+1);
-					loc2.setX(loc2.getX()+1);
-				}
-				toReturn.add(loc2);
-				loc2 = queen.getLocation();
-			}
-			if(queenMove(i,Directions.UP_LEFT)==1) {
-				for(int j=0;j<i;j++) {
-					loc2.setY(loc2.getY()-1);
-					loc2.setX(loc2.getX()-1);
-				}
-				toReturn.add(loc2);
-				loc2 = queen.getLocation();
-			}
-			if(queenMove(i,Directions.UP_RIGHT)==1) {
-				for(int j=0;j<i;j++) {
-					loc2.setY(loc2.getY()-1);
-					loc2.setX(loc2.getX()+1);
-				}
-				toReturn.add(loc2);
-				loc2 = queen.getLocation();
-			}
+//			if(queenMove(i,Directions.RIGHT)==1) {
+//				for(int j=0;j<i;j++) {
+//					loc2.setX(loc2.getX()+1);
+//				}
+//				toReturn.add(loc2);
+//				loc2 = queen.getLocation();
+//			}
+//			if(queenMove(i,Directions.UP)==1) {
+//				for(int j=0;j<i;j++) {
+//					loc2.setY(loc2.getY()-1);
+//				}
+//				toReturn.add(loc2);
+//				loc2 = queen.getLocation();
+//			}
+//			if(queenMove(i,Directions.DOWN)==1) {
+//				for(int j=0;j<i;j++) {
+//					loc2.setY(loc2.getY()+1);
+//				}
+//				toReturn.add(loc2);
+//				loc2 = queen.getLocation();
+//			}
+//			if(queenMove(i,Directions.DOWN_LEFT)==1) {
+//				for(int j=0;j<i;j++) {
+//					loc2.setY(loc2.getY()+1);
+//					loc2.setX(loc2.getX()-1);
+//				}
+//				toReturn.add(loc2);
+//				loc2 = queen.getLocation();
+//			}
+//			if(queenMove(i,Directions.DOWN_RIGHT)==1) {
+//				for(int j=0;j<i;j++) {
+//					loc2.setY(loc2.getY()+1);
+//					loc2.setX(loc2.getX()+1);
+//				}
+//				toReturn.add(loc2);
+//				loc2 = queen.getLocation();
+//			}
+//			if(queenMove(i,Directions.UP_LEFT)==1) {
+//				for(int j=0;j<i;j++) {
+//					loc2.setY(loc2.getY()-1);
+//					loc2.setX(loc2.getX()-1);
+//				}
+//				toReturn.add(loc2);
+//				loc2 = queen.getLocation();
+//			}
+//			if(queenMove(i,Directions.UP_RIGHT)==1) {
+//				for(int j=0;j<i;j++) {
+//					loc2.setY(loc2.getY()-1);
+//					loc2.setX(loc2.getX()+1);
+//				}
+//				toReturn.add(loc2);
+//				loc2 = queen.getLocation();
+//			}
 		}
 		return toReturn;
 	}
