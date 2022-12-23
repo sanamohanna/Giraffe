@@ -2,7 +2,6 @@ package Control;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -41,53 +40,19 @@ public class QuestionController implements Initializable{
 	private Button sub;
 	@FXML 
 	private Label warningBT;
-	Question ques1;
-	Question ques2;
-	Question ques3;
-	ArrayList<Question> easy = new ArrayList<Question>();
-	ArrayList<Question> hard = new ArrayList<Question>();
-	ArrayList<Question> mediocre = new ArrayList<Question>();
-	int flag = 1;
+	Question ques;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
 		 SysData.getInstance().LoadQuestions();
-		
-		for(int i=0 ; i<SysData.getInstance().getQuestions().size();i++) {
-			if(SysData.getInstance().getQuestions().get(i).getDifficultyLevel()==DifficultyLevel.HARD) {
-				hard.add(SysData.getInstance().getQuestions().get(i));
-			}
-			if(SysData.getInstance().getQuestions().get(i).getDifficultyLevel()==DifficultyLevel.MEDIOCRE) {
-				mediocre.add(SysData.getInstance().getQuestions().get(i));
-			}
-			if(SysData.getInstance().getQuestions().get(i).getDifficultyLevel()==DifficultyLevel.EASY) {
-				easy.add(SysData.getInstance().getQuestions().get(i));
-			}
-		}
 		Random rand = new Random();
-		ques1 =easy.get(rand.nextInt(easy.size()));
-		ques2 =mediocre.get(rand.nextInt(mediocre.size()));		
-		ques3 =hard.get(rand.nextInt(hard.size()));
-			
-		
-	    context.setText(ques1.getContext());
-	    answer1.setText(ques1.getAnswers().get(0).getAnswerContext());
-	    answer2.setText(ques1.getAnswers().get(1).getAnswerContext());
-	    answer3.setText(ques1.getAnswers().get(2).getAnswerContext());
-	    answer4.setText(ques1.getAnswers().get(3).getAnswerContext());
-	    
-	    context.setText(ques2.getContext());
-	    answer1.setText(ques2.getAnswers().get(0).getAnswerContext());
-	    answer2.setText(ques2.getAnswers().get(1).getAnswerContext());
-	    answer3.setText(ques2.getAnswers().get(2).getAnswerContext());
-	    answer4.setText(ques2.getAnswers().get(3).getAnswerContext());
-	    
-	    context.setText(ques3.getContext());
-	    answer1.setText(ques3.getAnswers().get(0).getAnswerContext());
-	    answer2.setText(ques3.getAnswers().get(1).getAnswerContext());
-	    answer3.setText(ques3.getAnswers().get(2).getAnswerContext());
-	    answer4.setText(ques3.getAnswers().get(3).getAnswerContext());
+		ques = SysData.getInstance().getQuestions().get(rand.nextInt(SysData.getInstance().getQuestions().size()));
+	    context.setText(ques.getContext());
+	    answer1.setText(ques.getAnswers().get(0).getAnswerContext());
+	    answer2.setText(ques.getAnswers().get(1).getAnswerContext());
+	    answer3.setText(ques.getAnswers().get(2).getAnswerContext());
+	    answer4.setText(ques.getAnswers().get(3).getAnswerContext());
 	    //this object for selecting one answer
 	    ToggleGroup group = new ToggleGroup();
 	    
@@ -95,22 +60,18 @@ public class QuestionController implements Initializable{
 	    answer2.setToggleGroup(group);
 	    answer3.setToggleGroup(group);
 	    answer4.setToggleGroup(group);
-	  
-	    if(ques1.getDifficultyLevel()== DifficultyLevel.EASY) {
-	    	level.setText("EASY QUESTION");
-	    	level.setFill(Color.GREEN);
-	    }
-	   
-	    if(ques2.getDifficultyLevel()== DifficultyLevel.MEDIOCRE) {
-	    	level.setText("MEDIOCRE QUESTION");
-	    	level.setFill(Color.YELLOW);
-	    }
-	   
-	    if(ques3.getDifficultyLevel()== DifficultyLevel.HARD) {
+	    if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
 	    	level.setText("HARD QUESTION");
 	    	level.setFill(Color.RED);
 	    }
-	    
+	    if(ques.getDifficultyLevel()== DifficultyLevel.EASY) {
+	    	level.setText("EASY QUESTION");
+	    	level.setFill(Color.GREEN);
+	    }
+	    if(ques.getDifficultyLevel()== DifficultyLevel.MEDIOCRE) {
+	    	level.setText("MEDIOCRE QUESTION");
+	    	level.setFill(Color.YELLOW);
+	    }
 	}
 	
 	public void submit(ActionEvent event) throws Exception {
@@ -120,18 +81,8 @@ public class QuestionController implements Initializable{
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	
 		int trueanswer = 0 ;
-		for(int i =0 ; i< ques1.getAnswers().size();i++) {
-			if(ques1.getAnswers().get(i).isTrue()) {
-				trueanswer= i;
-			}
-		}
-		for(int i =0 ; i< ques2.getAnswers().size();i++) {
-			if(ques2.getAnswers().get(i).isTrue()) {
-				trueanswer= i;
-			}
-		}
-		for(int i =0 ; i< ques3.getAnswers().size();i++) {
-			if(ques3.getAnswers().get(i).isTrue()) {
+		for(int i =0 ; i< ques.getAnswers().size();i++) {
+			if(ques.getAnswers().get(i).isTrue()) {
 				trueanswer= i;
 			}
 		}
