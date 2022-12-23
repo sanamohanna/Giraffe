@@ -139,7 +139,23 @@ public class Knight extends Piece {
 		}
 		
 	}
-	public ArrayList<Location> allValidMovesLevel1(Knight knight){
+	
+	/*in this two levels the knight move how ever it wants , so
+	  we check if the move is a straight move or a diagonally move
+	  then we use the right method*/
+    public void level3and4Move(Directions dir){
+    	switch(dir) {
+	    	case UP , DOWN , RIGHT , LEFT:{
+				this.StrightMove(dir);
+				break;
+			}
+			case UP_LEFT,UP_RIGHT , DOWN_LEFT,DOWN_RIGHT:{
+				this.DiagonallyMove(dir);
+				break;
+			}
+		}
+	}
+    public ArrayList<Location> allValidMovesLevel1(Knight knight){
 		ArrayList<Location> toReturn =new ArrayList<Location>();
 		//System.out.println(knight.getLocation());
 		 Location KnightLocation = knight.getLocation();
@@ -180,20 +196,14 @@ public class Knight extends Piece {
 
 		return toReturn;
 	}
-	/*in this two levels the knight move how ever it wants , so
-	  we check if the move is a straight move or a diagonally move
-	  then we use the right method*/
-    public void level3and4Move(Directions dir){
-    	switch(dir) {
-    	case UP , DOWN , RIGHT , LEFT:{
-			this.StrightMove(dir);
-			break;
-		}
-		case UP_LEFT,UP_RIGHT , DOWN_LEFT,DOWN_RIGHT:{
-			this.DiagonallyMove(dir);
-			break;
-		}
-			
-		}
+	public ArrayList<Location> allValidMovesLevel2(Knight knight){
+		ArrayList<Location> toReturn =new ArrayList<Location>();
+		//System.out.println(knight.getLocation());
+		 Location KnightLocation = knight.getLocation();
+		 String strX = KnightLocation.getX().toString();
+		 String strY = KnightLocation.getY().toString();
+		Location loc1 = new Location();
+		
+		return toReturn;
 	}
 	}
