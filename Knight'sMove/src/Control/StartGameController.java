@@ -36,6 +36,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Board;
 import model.Game;
+import model.Knight;
 import model.Location;
 import model.Question;
 import model.Squares;
@@ -284,6 +285,140 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								game.getQueen().setLocation(locQueen);
 								GridPane.setColumnIndex(imageQ,locQueen.getX());
 								GridPane.setRowIndex(imageQ,locQueen.getY());
+							}else {
+								if(arg0.getSource()==nodeRandomJump1) {
+									System.out.println(validsPrevious);
+									Squares sq= notVisited.get(rand.nextInt(notVisited.size())); 
+									Location loc0 = new Location(sq.getLocation().getX(),sq.getLocation().getY());
+									System.out.println(validsPrevious);
+					                System.out.println(game.getKnight().getLocation());
+									//if(validsPrevious.contains(loc) ) {
+										game.getKnight().setLocation(loc0);
+										System.out.println(game.getKnight().getLocation());
+										GridPane.setColumnIndex(imageK,sq.getLocation().getX());
+										GridPane.setRowIndex(imageK,sq.getLocation().getY() );
+										
+										ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
+										QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
+						
+										for(int k =0;k<QueenValidMoves.size();k++) {
+											if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
+												smallestDistance=game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k));
+												locQueen = QueenValidMoves.get(k);
+											}
+										}
+										game.getQueen().setLocation(locQueen);
+										GridPane.setColumnIndex(imageQ,locQueen.getX());
+										GridPane.setRowIndex(imageQ,locQueen.getY());
+										if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
+												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
+												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
+												try {
+													pop();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+											}
+										boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
+										notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
+										String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
+										for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+											if(board.getChildren().get(node).getId().toString().equals(str)) {
+												((Button)board.getChildren().get(node)).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+											}
+										}
+									//}
+									
+									
+								}
+								if(arg0.getSource()==nodeRandomJump2) {
+									Squares sq= notVisited.get(rand.nextInt(notVisited.size()));
+									Location loc1 = new Location(sq.getLocation().getX(),sq.getLocation().getY());
+									System.out.println(validsPrevious);
+					              
+									//if(validsPrevious.contains(loc) ) {
+										game.getKnight().setLocation(loc1);
+										System.out.println(game.getKnight().getLocation());
+										GridPane.setColumnIndex(imageK,sq.getLocation().getX());
+										GridPane.setRowIndex(imageK,sq.getLocation().getY() );
+										notVisited.remove(sq);
+										ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
+										QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
+						
+										for(int k =0;k<QueenValidMoves.size();k++) {
+											if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
+												smallestDistance=game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k));
+												locQueen = QueenValidMoves.get(k);
+											}
+										}
+										game.getQueen().setLocation(locQueen);
+										GridPane.setColumnIndex(imageQ,locQueen.getX());
+										GridPane.setRowIndex(imageQ,locQueen.getY());
+										if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
+												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
+												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
+												try {
+													pop();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+											}
+										boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
+										notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
+										String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
+										for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+											if(board.getChildren().get(node).getId().toString().equals(str)) {
+												board.getChildren().get(node).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+											}
+										}
+									//}
+								}
+								
+								
+								if(arg0.getSource()==nodeRandomJump3) {
+									Squares sq= notVisited.get(rand.nextInt(notVisited.size()));
+									Location loc2 = new Location(sq.getLocation().getX(),sq.getLocation().getY());
+									System.out.println(validsPrevious);
+					                System.out.println();
+									//if(validsPrevious.contains(loc) ) {
+										game.getKnight().setLocation(loc2);
+										System.out.println(game.getKnight().getLocation());
+										GridPane.setColumnIndex(imageK,sq.getLocation().getX());
+										GridPane.setRowIndex(imageK,sq.getLocation().getY() );
+										ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
+										QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
+						
+										for(int k =0;k<QueenValidMoves.size();k++) {
+											if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
+												smallestDistance=game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k));
+												locQueen = QueenValidMoves.get(k);
+											}
+										}
+										game.getQueen().setLocation(locQueen);
+										GridPane.setColumnIndex(imageQ,locQueen.getX());
+										GridPane.setRowIndex(imageQ,locQueen.getY());
+										if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
+												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
+												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
+												try {
+													pop();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+											}
+										boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
+										notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
+										((Button)arg0.getSource()).setStyle("-fx-background-color: grey;");
+										String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
+										for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+											if(board.getChildren().get(node).getId().toString().equals(str)) {
+												board.getChildren().get(node).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+											}
+										}
+									}
 							}
 							//lhons
 							if(boardGame.getSquares()[i][j].isVisited() == true) {
@@ -307,132 +442,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				}
 
 			}
-			if(arg0.getSource()==nodeRandomJump1) {
-				Squares sq= notVisited.get(rand.nextInt(notVisited.size())); 
-				Location loc = new Location(sq.getLocation().getX(),sq.getLocation().getY());
-				//if(validsPrevious.contains(loc) ) {
-					game.getKnight().setLocation(loc);
-					System.out.println(game.getKnight().getLocation());
-					GridPane.setColumnIndex(imageK,sq.getLocation().getX());
-					GridPane.setRowIndex(imageK,sq.getLocation().getY() );
-					
-					ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
-					QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
-	
-					for(int k =0;k<QueenValidMoves.size();k++) {
-						if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
-							smallestDistance=game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k));
-							locQueen = QueenValidMoves.get(k);
-						}
-					}
-					game.getQueen().setLocation(locQueen);
-					GridPane.setColumnIndex(imageQ,locQueen.getX());
-					GridPane.setRowIndex(imageQ,locQueen.getY());
-					if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
-							||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
-							||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
-							try {
-								pop();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
-					notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
-					String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
-					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-						if(board.getChildren().get(node).getId().toString().equals(str)) {
-							((Button)board.getChildren().get(node)).setStyle("-fx-background-color: grey;-fx-border-color : black;");
-						}
-					}
-				//}
-				
-				
-			}
-			if(arg0.getSource()==nodeRandomJump2) {
-				Squares sq= notVisited.get(rand.nextInt(notVisited.size()));
-				Location loc = new Location(sq.getLocation().getX(),sq.getLocation().getY());
-				//if(validsPrevious.contains(loc) ) {
-					game.getKnight().setLocation(loc);
-					System.out.println(game.getKnight().getLocation());
-					GridPane.setColumnIndex(imageK,sq.getLocation().getX());
-					GridPane.setRowIndex(imageK,sq.getLocation().getY() );
-					notVisited.remove(sq);
-					ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
-					QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
-	
-					for(int k =0;k<QueenValidMoves.size();k++) {
-						if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
-							smallestDistance=game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k));
-							locQueen = QueenValidMoves.get(k);
-						}
-					}
-					game.getQueen().setLocation(locQueen);
-					GridPane.setColumnIndex(imageQ,locQueen.getX());
-					GridPane.setRowIndex(imageQ,locQueen.getY());
-					if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
-							||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
-							||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
-							try {
-								pop();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
-					notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
-					String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
-					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-						if(board.getChildren().get(node).getId().toString().equals(str)) {
-							board.getChildren().get(node).setStyle("-fx-background-color: grey;-fx-border-color : black;");
-						}
-					}
-				//}
-			}
-			if(arg0.getSource()==nodeRandomJump3) {
-				
-				Squares sq= notVisited.get(rand.nextInt(notVisited.size()));
-				Location loc = new Location(sq.getLocation().getX(),sq.getLocation().getY());
-				
-				//if(validsPrevious.contains(loc) ) {
-					game.getKnight().setLocation(loc);
-					System.out.println(game.getKnight().getLocation());
-					GridPane.setColumnIndex(imageK,sq.getLocation().getX());
-					GridPane.setRowIndex(imageK,sq.getLocation().getY() );
-					ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
-					QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
-	
-					for(int k =0;k<QueenValidMoves.size();k++) {
-						if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
-							smallestDistance=game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k));
-							locQueen = QueenValidMoves.get(k);
-						}
-					}
-					game.getQueen().setLocation(locQueen);
-					GridPane.setColumnIndex(imageQ,locQueen.getX());
-					GridPane.setRowIndex(imageQ,locQueen.getY());
-					if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
-							||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
-							||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
-							try {
-								pop();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
-					notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
-					((Button)arg0.getSource()).setStyle("-fx-background-color: grey;");
-					String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
-					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-						if(board.getChildren().get(node).getId().toString().equals(str)) {
-							board.getChildren().get(node).setStyle("-fx-background-color: grey;-fx-border-color : black;");
-						}
-					}
-				}
+			
 			//}
 			
 		}
