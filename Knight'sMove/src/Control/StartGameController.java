@@ -257,7 +257,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				}
 			}
 			Location locQueen = new Location();
-			int smallestDistance = 11;
+			double smallestDistance = 11;
 			for(int i = 0 ; i < 8 ; i++) {
 				for(int j = 0 ; j < 8 ; j ++) {
 					
@@ -271,6 +271,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							//zedet hon 
 							ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
 							QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
+							System.out.println(game.getQueen().getLocation()+"+++++++++++++++++++");
 							System.out.println(	QueenValidMoves);
 							for(int k =0;k<QueenValidMoves.size();k++) {
 								if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
