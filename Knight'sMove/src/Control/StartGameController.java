@@ -10,6 +10,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import Enum.DifficultyLevel;
+import javafx.application.Application;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -79,6 +80,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 
 	static String buttonId;
 	//Board boardGame = new Board();
+	int finish=0;
 	Random rand;
 	Game game = new Game();
 	Board boardGame = new Board();
@@ -90,6 +92,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+
 		//Location loc =new Location(0,0);
 		Knight knight = new Knight(false);
 		ArrayList<Location> trya = new ArrayList<Location>();
@@ -105,13 +108,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		GridPane.setColumnIndex(imageK, 0);
 		GridPane.setRowIndex(imageK, 0);
 		
-		
-		try {
-			level1Moves();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		rand = new Random();
 		node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		
@@ -154,8 +150,18 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		setTimer();
 		displayLevel("LEVEL 1");
 		pointsT.setText(String.valueOf(points));
+		try {
+			level1Moves();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-
+			//Thread.sleep(7000);
+		
+		//setTimer();
+		if(finish==1)
+			System.out.println("what");
 		
 	}
 		// method that start timer in long one minute to every level in the game 
@@ -172,7 +178,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						
 						if(totalSec<=0) {	
 							text.setText("00:00");
-							timer.cancel();			
+							finish =1;
+							timer.cancel();
+							
 							}
 				}
 			};   
@@ -229,8 +237,19 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		
 	
 		public void level1Moves() throws IOException {
-			Location loc =game.getKnight().getLocation();
-			//validMoves= game.getKnight().allValidMovesLevel1(loc);
+		
+			for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+				
+				((ButtonBase) board.getChildren().get(node)).setOnAction(this);
+//				while(finish==0) {
+//					System.out.print(" ya rab tozbot");
+//				}
+			}
+
+
+		}
+		public void level2Moves() throws IOException {
+		
 			for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 				
 				((ButtonBase) board.getChildren().get(node)).setOnAction(this);
@@ -238,7 +257,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 
 
-			}
+		}
 		int k = 0 , n = 0 ;
 		int flag1 = 0  , flag2 = 0 , flag3 = 0;
 
@@ -312,6 +331,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										locQueen = QueenValidMoves.get(k);
 									}
 								}
+								
 								game.getQueen().setLocation(locQueen);
 								GridPane.setColumnIndex(imageQ,locQueen.getX());
 								GridPane.setRowIndex(imageQ,locQueen.getY());
