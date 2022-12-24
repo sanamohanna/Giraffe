@@ -27,7 +27,6 @@ import javafx.scene.control.Alert.AlertType;
 public abstract class Piece {
 
 	private Location location;
-	Alert a = new Alert(AlertType.NONE);
 
 	// constructor
 	public Piece(Location location) {
@@ -126,68 +125,63 @@ public abstract class Piece {
 		 * in case the piece is on the last square of the board sides , it goes to the
 		 * first square in the same line
 		 */
-		try {
-			switch (dir) {
-			case UP_LEFT: {
-				if (this.location.getX() == 0 && this.location.getY() > 0) {
-					this.location.setX(7);
-					this.location.setY((this.location.getY()) - 1);
-				} else if (this.location.getY() == 0) {
-					throw new IllegalArgumentException("illegal Move");
-				} else {
-					this.location.setX(this.location.getX() - 1);
-					this.location.setY((this.location.getY()) - 1);
-				}
-				break;
 
+		switch (dir) {
+		case UP_LEFT: {
+			if (this.location.getX() == 0 && this.location.getY() > 0) {
+				this.location.setX(7);
+				this.location.setY((this.location.getY()) - 1);
+			} else if (this.location.getY() == 0) {
+				throw new IllegalArgumentException("illegal Move");
+			} else {
+				this.location.setX(this.location.getX() - 1);
+				this.location.setY((this.location.getY()) - 1);
 			}
-			case UP_RIGHT: {
-				if (this.location.getX() == 7 && this.location.getY() > 0) {
-					this.location.setX(0);
-					this.location.setY((this.location.getY()) - 1);
-				} else if (this.location.getY() == 0) {
-					throw new IllegalArgumentException("illegal Move");
-				} else {
-					this.location.setX(this.location.getX() + 1);
-					this.location.setY((this.location.getY()) - 1);
-				}
-				break;
-			}
-			// ?????
-			case DOWN_LEFT: {
-				if (this.location.getX() == 0 && this.location.getY() < 7) {
-					this.location.setX(7);
-					this.location.setY((this.location.getY()) + 1);
-				} else if (this.location.getY() == 7) {
+			break;
 
-					throw new IllegalArgumentException("illegal Move");
-				} else {
-					this.location.setX(this.location.getX() - 1);
-					this.location.setY((this.location.getY()) + 1);
-				}
-				break;
+		}
+		case UP_RIGHT: {
+			if (this.location.getX() == 7 && this.location.getY() > 0) {
+				this.location.setX(0);
+				this.location.setY((this.location.getY()) - 1);
+			} else if (this.location.getY() == 0) {
+				throw new IllegalArgumentException("illegal Move");
+			} else {
+				this.location.setX(this.location.getX() + 1);
+				this.location.setY((this.location.getY()) - 1);
 			}
-			case DOWN_RIGHT: {
-				if (this.location.getX() == 7 && this.location.getY() < 7) {
-					this.location.setX(0);
-					this.location.setY((this.location.getY()) + 1);
-				} else if (this.location.getY() == 7) {
-					throw new IllegalArgumentException("illegal Move");
+			break;
+		}
+		// ?????
+		case DOWN_LEFT: {
+			if (this.location.getX() == 0 && this.location.getY() < 7) {
+				this.location.setX(7);
+				this.location.setY((this.location.getY()) + 1);
+			} else if (this.location.getY() == 7) {
 
-				} else {
-					this.location.setX(this.location.getX() + 1);
-					this.location.setY((this.location.getY()) + 1);
-				}
-				break;
+				throw new IllegalArgumentException("illegal Move");
+			} else {
+				this.location.setX(this.location.getX() - 1);
+				this.location.setY((this.location.getY()) + 1);
 			}
-			default:
-				break;
+			break;
+		}
+		case DOWN_RIGHT: {
+			if (this.location.getX() == 7 && this.location.getY() < 7) {
+				this.location.setX(0);
+				this.location.setY((this.location.getY()) + 1);
+			} else if (this.location.getY() == 7) {
+				throw new IllegalArgumentException("illegal Move");
 
+			} else {
+				this.location.setX(this.location.getX() + 1);
+				this.location.setY((this.location.getY()) + 1);
 			}
-		} catch (IllegalArgumentException e) {
-			a.setAlertType(AlertType.ERROR);// if the user not enter data
-			a.setContentText("please enter all data!");
-			a.show();
+			break;
+		}
+		default:
+			break;
+
 		}
 	}
 
