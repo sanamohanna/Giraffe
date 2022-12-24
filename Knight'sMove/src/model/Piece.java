@@ -130,7 +130,11 @@ public abstract class Piece {
 		try {
 			switch (dir) {
 				case UP_LEFT: {
-					if (this.location.getX() == 0 && this.location.getY() > 0) {
+					if (this.location.getX() == 0 && this.location.getY() ==0) {
+						this.location.setX(7);
+						this.location.setY(7);
+					}
+					else if (this.location.getX() == 0 ) {
 						this.location.setX(7);
 						this.location.setY((this.location.getY()) - 1);
 					}
@@ -146,7 +150,11 @@ public abstract class Piece {
 		
 				}
 				case UP_RIGHT: {
-					if (this.location.getX() == 7 && this.location.getY() > 0) {
+					if (this.location.getX() == 7 && this.location.getY() == 0) {
+						this.location.setX(0);
+						this.location.setY(7);
+					}
+					else if (this.location.getX() == 7 ) {
 						this.location.setX(0);
 						this.location.setY((this.location.getY()) - 1);
 					} 
@@ -162,7 +170,11 @@ public abstract class Piece {
 				}
 				// ?????
 				case DOWN_LEFT: {
-					if (this.location.getX() == 0 && this.location.getY() < 7) {
+					if(this.location.getX() == 0 && this.location.getY() == 7) {
+						this.location.setX(7);
+						this.location.setY(0);
+					}
+					else if (this.location.getX() == 0 ) {
 						this.location.setX(7);
 						this.location.setY((this.location.getY()) + 1);
 					}
@@ -177,7 +189,12 @@ public abstract class Piece {
 					break;
 				}
 				case DOWN_RIGHT: {
-					if (this.location.getX() == 7 && this.location.getY() < 7) {
+					if(this.location.getX() == 7 && this.location.getY() == 7) {
+						this.location.setX(0);
+						this.location.setY(0);
+						
+					}
+					else if (this.location.getX() == 7) {
 						this.location.setX(0);
 						this.location.setY((this.location.getY()) + 1);
 					} 
