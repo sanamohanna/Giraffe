@@ -15,10 +15,11 @@ class test {
 		
 		Knight knight = new Knight(new Location(0,0));
 		
-		knight.level1Move(Directions.RIGHT, Directions.RIGHT, Directions.DOWN,"0","0");
+		Location x =knight.level1Move(Directions.RIGHT, Directions.RIGHT, Directions.DOWN,"0","0");
 		Location locationExpected1 = new Location(2,1);
-		System.out.println(knight.getLocation()+ " test 1");
-		assertEquals(locationExpected1,knight.getLocation());
+		System.out.println(x+ " test 1");
+		
+		assertEquals(locationExpected1,x);
 	}
 //	@Test
 //	void Level1KnightMoveRightRightUpTest() {
