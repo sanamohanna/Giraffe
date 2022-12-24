@@ -29,7 +29,7 @@ import javafx.scene.control.Alert.AlertType;
 public abstract class Piece {
 
 	private Location location;
-	 Alert a = new Alert(AlertType.NONE);
+	
 	//constructor
 	public Piece(Location location) {
 		super();
@@ -127,7 +127,6 @@ public abstract class Piece {
 		 * in case the piece is on the last square of the board sides , it goes to the
 		 * first square in the same line
 		 */
-		try {
 			switch (dir) {
 				case UP_LEFT: {
 					if (this.location.getX() == 0 && this.location.getY() ==0) {
@@ -213,12 +212,8 @@ public abstract class Piece {
 					break;
 	
 			}
-		}
-		catch(IllegalArgumentException e){
-			a.setAlertType(AlertType.ERROR);//if the user not enter data 
-			a.setContentText("please enter all data !!!!!!!!!!!!");
-			a.show();	
-		}
+		
+	
 	}
 
 }
