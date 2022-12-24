@@ -188,7 +188,7 @@ public abstract class Piece {
 		}
 		catch(IllegalArgumentException e){
 			a.setAlertType(AlertType.ERROR);//if the user not enter data 
-			a.setContentText("please enter all data!");
+			a.setContentText("please enter all data !!!!!!!!!!!!");
 			a.show();	
 		}
 	}

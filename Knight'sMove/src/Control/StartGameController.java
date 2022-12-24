@@ -90,7 +90,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-	
+		//Location loc =new Location(0,0);
+		Knight knight = new Knight(false);
+		ArrayList<Location> trya = new ArrayList<Location>();
+		trya= game.getKnight().allValidMovesLevel2(knight);
+		System.out.println(trya);
 		fillNotVisitedArray(notVisited);
 		Location locFirst = new Location(0,0);
 		game.getKnight().setLocation(locFirst);
