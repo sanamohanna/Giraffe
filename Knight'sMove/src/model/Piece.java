@@ -15,28 +15,27 @@ import Enum.Directions;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-
 /**
  * 
  * 
  * Abstract class -> The Template Design Pattern
  * 
  * 
- * **/
-
+ **/
 
 //2another check
 public abstract class Piece {
 
 	private Location location;
-	 Alert a = new Alert(AlertType.NONE);
-	//constructor
+	Alert a = new Alert(AlertType.NONE);
+
+	// constructor
 	public Piece(Location location) {
 		super();
 		this.location = location;
 	}
 
-	//getter and setter
+	// getter and setter
 	public Location getLocation() {
 		return location;
 	}
@@ -61,14 +60,14 @@ public abstract class Piece {
 		Piece other = (Piece) obj;
 		return Objects.equals(location, other.location);
 	}
-	
+
 	/**
 	 * 
 	 * 
 	 * method that used for all the pieces -> Template Design Pattern
 	 * 
 	 * 
-	 * **/
+	 **/
 
 	/* stright method make the pieces move straightly , UP , DOWN , LEFT OR RIGHT */
 	/* the location of the piece will change according to the move type */
@@ -129,101 +128,71 @@ public abstract class Piece {
 		 */
 		try {
 			switch (dir) {
-				case UP_LEFT: {
-					if (this.location.getX() == 0 && this.location.getY() ==0) {
-						this.location.setX(7);
-						this.location.setY(7);
-					}
-					else if (this.location.getX() == 0 ) {
-						this.location.setX(7);
-						this.location.setY((this.location.getY()) - 1);
-					}
-					else if (this.location.getY() == 0) {
-						this.location.setY(7);
-						this.location.setX((this.location.getX()) - 1);
-					}
-					else {
-						this.location.setX(this.location.getX() - 1);
-						this.location.setY((this.location.getY()) - 1);
-					}
-					break;
-		
+			case UP_LEFT: {
+				if (this.location.getX() == 0 && this.location.getY() > 0) {
+					this.location.setX(7);
+					this.location.setY((this.location.getY()) - 1);
+				} else if (this.location.getY() == 0) {
+					throw new IllegalArgumentException("illegal Move");
+				} else {
+					this.location.setX(this.location.getX() - 1);
+					this.location.setY((this.location.getY()) - 1);
 				}
-				case UP_RIGHT: {
-					if (this.location.getX() == 7 && this.location.getY() == 0) {
-						this.location.setX(0);
-						this.location.setY(7);
-					}
-					else if (this.location.getX() == 7 ) {
-						this.location.setX(0);
-						this.location.setY((this.location.getY()) - 1);
-					} 
-					else if (this.location.getY() == 0) {
-						this.location.setX(this.location.getX() + 1);
-						this.location.setY(7);
-					} 
-					else {
-						this.location.setX(this.location.getX() + 1);
-						this.location.setY((this.location.getY()) - 1);
-					}
-					break;
-				}
-				// ?????
-				case DOWN_LEFT: {
-					if(this.location.getX() == 0 && this.location.getY() == 7) {
-						this.location.setX(7);
-						this.location.setY(0);
-					}
-					else if (this.location.getX() == 0 ) {
-						this.location.setX(7);
-						this.location.setY((this.location.getY()) + 1);
-					}
-					else if (this.location.getY() == 7) {
-						this.location.setY(0);
-						this.location.setX(this.location.getX() - 1);
-					} 
-					else {
-						this.location.setX(this.location.getX() - 1);
-						this.location.setY((this.location.getY()) + 1);
-					}
-					break;
-				}
-				case DOWN_RIGHT: {
-					if(this.location.getX() == 7 && this.location.getY() == 7) {
-						this.location.setX(0);
-						this.location.setY(0);
-						
-					}
-					else if (this.location.getX() == 7) {
-						this.location.setX(0);
-						this.location.setY((this.location.getY()) + 1);
-					} 
-					else if (this.location.getY() == 7) {
-						this.location.setY(0);
-						this.location.setX(this.location.getX() + 1);
-						
-					} 
-					else {
-						this.location.setX(this.location.getX() + 1);
-						this.location.setY((this.location.getY()) + 1);
-					}
-					break;
-				}
-				default:
-					break;
-	
+				break;
+
 			}
-		}
-		catch(IllegalArgumentException e){
-			a.setAlertType(AlertType.ERROR);//if the user not enter data 
-			a.setContentText("please enter all data !!!!!!!!!!!!");
-			a.show();	
+			case UP_RIGHT: {
+				if (this.location.getX() == 7 && this.location.getY() > 0) {
+					this.location.setX(0);
+					this.location.setY((this.location.getY()) - 1);
+				} else if (this.location.getY() == 0) {
+					throw new IllegalArgumentException("illegal Move");
+				} else {
+					this.location.setX(this.location.getX() + 1);
+					this.location.setY((this.location.getY()) - 1);
+				}
+				break;
+			}
+			// ?????
+			case DOWN_LEFT: {
+				if (this.location.getX() == 0 && this.location.getY() < 7) {
+					this.location.setX(7);
+					this.location.setY((this.location.getY()) + 1);
+				} else if (this.location.getY() == 7) {
+
+					throw new IllegalArgumentException("illegal Move");
+				} else {
+					this.location.setX(this.location.getX() - 1);
+					this.location.setY((this.location.getY()) + 1);
+				}
+				break;
+			}
+			case DOWN_RIGHT: {
+				if (this.location.getX() == 7 && this.location.getY() < 7) {
+					this.location.setX(0);
+					this.location.setY((this.location.getY()) + 1);
+				} else if (this.location.getY() == 7) {
+					throw new IllegalArgumentException("illegal Move");
+
+				} else {
+					this.location.setX(this.location.getX() + 1);
+					this.location.setY((this.location.getY()) + 1);
+				}
+				break;
+			}
+			default:
+				break;
+
+			}
+		} catch (IllegalArgumentException e) {
+			a.setAlertType(AlertType.ERROR);// if the user not enter data
+			a.setContentText("please enter all data!");
+			a.show();
 		}
 	}
 
 }
 
-    
 //
 //
 ///**
