@@ -1,34 +1,25 @@
 package Control;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.EventObject;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import Enum.DifficultyLevel;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Question;
 import model.SysData;
 
-public class QuestionController implements Initializable{
+public class MediocreQuestionWindowController  implements Initializable{
 	@FXML
 	private Text context;
 	@FXML
@@ -60,19 +51,10 @@ public class QuestionController implements Initializable{
 	    answer2.setToggleGroup(group);
 	    answer3.setToggleGroup(group);
 	    answer4.setToggleGroup(group);
-	    if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
-	    	level.setText("HARD QUESTION");
-	    	level.setFill(Color.RED);
-	    }
-	    if(ques.getDifficultyLevel()== DifficultyLevel.EASY) {
 	    	level.setText("EASY QUESTION");
 	    	level.setFill(Color.GREEN);
-	    }
-	    if(ques.getDifficultyLevel()== DifficultyLevel.MEDIOCRE) {
-	    	level.setText("MEDIOCRE QUESTION");
-	    	level.setFill(Color.YELLOW);
-	    }
 	}
+	  
 	
 	public void submit(ActionEvent event) throws Exception {
 		Boolean selected = false;
@@ -90,124 +72,44 @@ public class QuestionController implements Initializable{
 		if(answer1.isSelected()) {
 			selected = true;
 			if(answer1.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
-				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
-					StartGameController.points+=3;
-			    }
-				else if(ques.getDifficultyLevel()== DifficultyLevel.EASY) {
-			    	StartGameController.points+=1;	
-			    	
-			    }
-			    else{
-			    	StartGameController.points+=2;	
-			    	
-			    }
+			    	StartGameController.points+=2;	 
 			}
-			else {
-				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
-					StartGameController.points-=3;
-			    }
-				else if(ques.getDifficultyLevel()== DifficultyLevel.EASY) {
-			    	StartGameController.points-=1;
-			    	
-			    }
-				else {
-			    	StartGameController.points-=2;
-			    	
-			    	
-			    }
-			}
-			
+			else{
+				StartGameController.points-=2;
+	
+			    }			
 		}
 		else if(answer2.isSelected()) {
 			selected = true;
 			if(answer2.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
-				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
-					StartGameController.points+=3;
 
-					
-			    }
-				else if(ques.getDifficultyLevel()== DifficultyLevel.EASY) {
-			    	StartGameController.points+=1;	
-			    	
-			    	}
-				else {
 			    	StartGameController.points+=2;	
-			    	
-			    	}
+
 			}
 			else {
-				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
-					StartGameController.points-=3;
-					
-					
-			    }
-				else if(ques.getDifficultyLevel()== DifficultyLevel.EASY) {
 			    	StartGameController.points-=1;	
 			    	
-			    	}
-			    else{
-			    	StartGameController.points-=1;	
-			    	
-			    	}
 			}
 		}
 		if(answer3.isSelected()) {
 			selected = true;
 			if(answer3.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
-				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
-					StartGameController.points+=3;
-					
-					
-			    }
-			    else if(ques.getDifficultyLevel()== DifficultyLevel.EASY) {
-			    	StartGameController.points+=1;	
-			    	
-			    	}
-			    else{
 			    	StartGameController.points+=2;	
-			    	}
 			}
 			else {
-				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
-					StartGameController.points-=3;
-					
-					
-			    }
-				else if(ques.getDifficultyLevel()== DifficultyLevel.EASY) {
-			    	StartGameController.points-=1;	
-			    	}
-				else{
 			    	StartGameController.points-=2;	
-			    	}
+			    	
 			}
 		}
 		if(answer4.isSelected()) {
 			selected = true;
 			if(answer4.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
-				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
-					StartGameController.points+=3;
-					
-			    }
-				else if(ques.getDifficultyLevel()== DifficultyLevel.EASY) {
-			    	StartGameController.points+=1;	
-			    	}
-				else{
 			    	StartGameController.points+=2;	
-			    	
-			    	}
+
 			}
 			else {
-				if(ques.getDifficultyLevel()== DifficultyLevel.HARD) {
-					StartGameController.points-=3;
-					
-			    }
-				else if(ques.getDifficultyLevel()== DifficultyLevel.EASY) {
-			    	StartGameController.points-=1;	
-			    	}
-			    else {
 			    	StartGameController.points-=2;	
 			    
-			    	}
 			}
 		}
 		if(selected == false) {
@@ -221,5 +123,4 @@ public class QuestionController implements Initializable{
 	}
 		
 	}
-	
 }

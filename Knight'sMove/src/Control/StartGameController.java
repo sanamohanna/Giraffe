@@ -225,7 +225,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	
 		//method that pop question window in the middle of the game
 		public void pop() throws IOException {
-			Parent root = FXMLLoader.load(getClass().getResource("/View/QuestionWindow.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/View/QuestionWindowHard.fxml"));
 			Stage stage = new Stage(); 
 			Scene scene = new Scene(root);
 			stage.setAlwaysOnTop(true);

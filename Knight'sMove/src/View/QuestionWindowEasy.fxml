@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.HardQuestionWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.EasyQuestionWindowController">
    <children>
       <Button fx:id="sub" layoutX="191.0" layoutY="349.0" mnemonicParsing="false" onAction="#submit" text="submit" />
       <Text fx:id="context" layoutX="40.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="276.80340576171875" />
