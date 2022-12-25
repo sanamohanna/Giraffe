@@ -54,9 +54,6 @@ public class HardQuestionWindowController implements Initializable{
 				HardQuestions.add(SysData.getInstance().getQuestions().get(i));
 			}
 		}
-
-
-		 SysData.getInstance().LoadQuestions();
 		Random rand = new Random();
 		ques = HardQuestions.get(rand.nextInt(HardQuestions.size()));
 	    context.setText(ques.getContext());

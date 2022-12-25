@@ -1,6 +1,7 @@
 package Control;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -36,10 +37,16 @@ public class EasyQuestionWindowController  implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		 SysData.getInstance().LoadQuestions();
+		ArrayList<Question> EasyQuestions = new ArrayList<Question>();
+		SysData.getInstance().LoadQuestions();
+		for(int i = 0 ; i<SysData.getInstance().getQuestions().size(); i++){
+			if(SysData.getInstance().getQuestions().get(i).getDifficultyLevel() == DifficultyLevel.EASY) {
+				EasyQuestions.add(SysData.getInstance().getQuestions().get(i));
+			}
+		}
 		Random rand = new Random();
-		ques = SysData.getInstance().getQuestions().get(rand.nextInt(SysData.getInstance().getQuestions().size()));
-	    context.setText(ques.getContext());
+		ques = EasyQuestions.get(rand.nextInt(EasyQuestions.size()));
+		context.setText(ques.getContext());
 	    answer1.setText(ques.getAnswers().get(0).getAnswerContext());
 	    answer2.setText(ques.getAnswers().get(1).getAnswerContext());
 	    answer3.setText(ques.getAnswers().get(2).getAnswerContext());

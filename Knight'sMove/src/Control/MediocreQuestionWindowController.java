@@ -1,6 +1,7 @@
 package Control;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -36,9 +37,16 @@ public class MediocreQuestionWindowController  implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		 SysData.getInstance().LoadQuestions();
+		
+		ArrayList<Question> MediocreQuestions = new ArrayList<Question>();
+		SysData.getInstance().LoadQuestions();
+		for(int i = 0 ; i<SysData.getInstance().getQuestions().size(); i++){
+			if(SysData.getInstance().getQuestions().get(i).getDifficultyLevel() == DifficultyLevel.MEDIOCRE) {
+				MediocreQuestions.add(SysData.getInstance().getQuestions().get(i));
+			}
+		}
 		Random rand = new Random();
-		ques = SysData.getInstance().getQuestions().get(rand.nextInt(SysData.getInstance().getQuestions().size()));
+		ques = MediocreQuestions.get(rand.nextInt(MediocreQuestions.size()));
 	    context.setText(ques.getContext());
 	    answer1.setText(ques.getAnswers().get(0).getAnswerContext());
 	    answer2.setText(ques.getAnswers().get(1).getAnswerContext());
@@ -51,8 +59,8 @@ public class MediocreQuestionWindowController  implements Initializable{
 	    answer2.setToggleGroup(group);
 	    answer3.setToggleGroup(group);
 	    answer4.setToggleGroup(group);
-	    	level.setText("EASY QUESTION");
-	    	level.setFill(Color.GREEN);
+	    	level.setText("MEDIOCRE QUESTION");
+	    	level.setFill(Color.YELLOW);
 	}
 	  
 	
@@ -87,7 +95,7 @@ public class MediocreQuestionWindowController  implements Initializable{
 
 			}
 			else {
-			    	StartGameController.points-=1;	
+			    	StartGameController.points-=2;	
 			    	
 			}
 		}

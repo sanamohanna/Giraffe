@@ -223,9 +223,31 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		}
 		
 	
-		//method that pop question window in the middle of the game
-		public void pop() throws IOException {
+		//method that pop hard question window in the middle of the game
+		public void popHard() throws IOException {
 			Parent root = FXMLLoader.load(getClass().getResource("/View/QuestionWindowHard.fxml"));
+			Stage stage = new Stage(); 
+			Scene scene = new Scene(root);
+			stage.setAlwaysOnTop(true);
+			stage.setResizable(false);
+			scene.getStylesheets().add(getClass().getResource("/View/editQuestion.css").toExternalForm());
+			stage.setScene(scene);
+			stage.show();
+		}
+		//method that pop easy question window in the middle of the game
+		public void popEasy() throws IOException {
+			Parent root = FXMLLoader.load(getClass().getResource("/View/QuestionWindowEasy.fxml"));
+			Stage stage = new Stage(); 
+			Scene scene = new Scene(root);
+			stage.setAlwaysOnTop(true);
+			stage.setResizable(false);
+			scene.getStylesheets().add(getClass().getResource("/View/editQuestion.css").toExternalForm());
+			stage.setScene(scene);
+			stage.show();
+		}
+		//method that pop mediocre question window in the middle of the game
+		public void popMediocre() throws IOException {
+			Parent root = FXMLLoader.load(getClass().getResource("/View/QuestionWindowMediocre.fxml"));
 			Stage stage = new Stage(); 
 			Scene scene = new Scene(root);
 			stage.setAlwaysOnTop(true);
@@ -285,7 +307,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				if(validsPrevious.contains(locNode1) && flag1 == 0) {
 					try {
 						flag1++;
-						pop();
+						popEasy();
 						node1Q.setStyle("-fx-background-color: defult; ");
 						node1Q.setStyle("-fx-border-color : black");
 					} catch (IOException e) {
@@ -299,7 +321,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				if(validsPrevious.contains(locNode2) && flag2 == 0) {
 						try {
 							flag2++;
-							pop();
+							popMediocre();
 							node2Q.setStyle("-fx-background-color: defult ; ");
 							node2Q.setStyle("-fx-border-color : black");
 						} catch (IOException e) {
@@ -313,7 +335,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				if(validsPrevious.contains(locNode3) && flag3 == 0) {
 				try {
 					       flag3++;
-							pop();
+							popHard();
 							node3Q.setStyle("-fx-background-color: defult; ");
 							node3Q.setStyle("-fx-border-color : black");
 						} catch (IOException e) {
@@ -389,7 +411,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
 													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
 													try {
-														pop();
+														//lazmmm ta4yeer!!!!!!!!!!!!!!!!!!!!!!!!!1
+														popHard();
 													} catch (IOException e) {
 														// TODO Auto-generated catch block
 														e.printStackTrace();
@@ -440,7 +463,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
 													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
 													try {
-														pop();
+														//lazmmm ta4yeer!!!!!!!!!!!!!!!!!!!!!!!!!1
+														popHard();
 													} catch (IOException e) {
 														// TODO Auto-generated catch block
 														e.printStackTrace();
@@ -490,7 +514,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
 													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
 													try {
-														pop();
+														//lazmmm ta4yeer!!!!!!!!!!!!!!!!!!!!!!!!!1
+														popHard();
 													} catch (IOException e) {
 														// TODO Auto-generated catch block
 														e.printStackTrace();
@@ -569,6 +594,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			public void nextLevel() throws IOException {
 				
 				if(points>15 && finish==1) {
+					points=0;
 					level2Moves();
 					setTimer();
 					displayLevel("LEVEL 2");
