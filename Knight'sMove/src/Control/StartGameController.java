@@ -74,6 +74,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	private ImageView imageK;
 	@FXML
 	private ImageView imageQ;
+	Timer timer;
 	Alert a = new Alert(AlertType.NONE);
 	//timer fields;
 	static long min,hr, sec,totalSec,points=0;
@@ -158,7 +159,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		}
 		
 			//Thread.sleep(7000);
-		
+	
 		//setTimer();
 		if(finish==1)
 			System.out.println("what");
@@ -167,7 +168,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		// method that start timer in long one minute to every level in the game 
 		public void setTimer(){
 			totalSec=60;
-			Timer timer = new Timer();
+			timer = new Timer();
 			TimerTask timerTask = new TimerTask() {
 				@Override
 				public void run(){					
@@ -185,6 +186,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				}
 			};   
 			timer.schedule(timerTask,0,1000);
+			
+				System.out.println(totalSec);
 		}
 		//method that replace the totalsec to minutes and sec  
 		private  void convertTime() {
@@ -335,6 +338,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								game.getQueen().setLocation(locQueen);
 								GridPane.setColumnIndex(imageQ,locQueen.getX());
 								GridPane.setRowIndex(imageQ,locQueen.getY());
+								if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
+									a.setAlertType(AlertType.ERROR);//if the user not enter data 
+									a.setContentText("you lost");
+									a.show();
+								}
 							}else {
 								if(arg0.getSource()==nodeRandomJump1) {
 									System.out.println(validsPrevious);
@@ -360,6 +368,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										game.getQueen().setLocation(locQueen);
 										GridPane.setColumnIndex(imageQ,locQueen.getX());
 										GridPane.setRowIndex(imageQ,locQueen.getY());
+										if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
+											a.setAlertType(AlertType.ERROR);//if the user not enter data 
+											a.setContentText("you lost");
+											a.show();
+										}
 										if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
 												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
 												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
@@ -405,6 +418,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										game.getQueen().setLocation(locQueen);
 										GridPane.setColumnIndex(imageQ,locQueen.getX());
 										GridPane.setRowIndex(imageQ,locQueen.getY());
+										if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
+											a.setAlertType(AlertType.ERROR);//if the user not enter data 
+											a.setContentText("you lost");
+											a.show();
+										}
 										if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
 												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
 												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
@@ -449,6 +467,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										game.getQueen().setLocation(locQueen);
 										GridPane.setColumnIndex(imageQ,locQueen.getX());
 										GridPane.setRowIndex(imageQ,locQueen.getY());
+										if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
+											a.setAlertType(AlertType.ERROR);//if the user not enter data 
+											a.setContentText("you lost");
+											a.show();
+										}
 										if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
 												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
 												||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
@@ -478,7 +501,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							boardGame.getSquares()[i][j].setVisited(true);
 							notVisited.remove(boardGame.getSquares()[i][j]);
 							((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
-					
+							
+	
 						
 					}
 						else {
