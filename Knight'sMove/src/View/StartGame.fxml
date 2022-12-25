@@ -50,7 +50,20 @@
             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
          </font>
       </Text>
-      <Button layoutX="126.0" layoutY="13.0" mnemonicParsing="false" onAction="#pop" text="pop" />
+      <Button layoutX="26.0" layoutY="436.0" mnemonicParsing="false" text="pause">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></Button>
       <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="66.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/6808582.png" />
