@@ -5,7 +5,6 @@ import Enum.Color;
 public class Squares {
 	private Location location;
 	private boolean isVisited;
-	private Color color;
 
 	// constructor
 	public Squares() {
@@ -16,10 +15,10 @@ public class Squares {
 	}
 
 	// constructor
-	public Squares(Location location, Color color) {
+	public Squares(Location location) {
 		super();
 		//this.location = location;
-		this.color = color;
+		
 	}
 	// getters setters
 
@@ -31,13 +30,7 @@ public class Squares {
 		this.location = location;
 	}
 
-	public Color getColor() {
-		return color;
-	}
 
-	public void setColor(Color color) {
-		this.color = color;
-	}
 
 	public boolean isVisited() {
 		return isVisited;
@@ -49,7 +42,7 @@ public class Squares {
 
 	@Override
 	public String toString() {
-		return "Squares [location=" + location + ", isVisited=" + isVisited + ", color=" + color + "]\n";
+		return "Squares [location=" + location + ", isVisited=" + isVisited + "]\n";
 	}
 	
 }

@@ -165,14 +165,14 @@ return 1;
 		}
 		return 1;
 	}
-	public ArrayList<Location> validMovesForKing(Queen queen){
+	public ArrayList<Location> validMovesForKing(King king){
 		ArrayList<Location> toReturn =new ArrayList<Location>();
 		Location loc2 = new Location();
 		int X = 0 , Y = 0 ;
-	//	loc2 = queen.getLocation();
-		System.out.println(queen.getLocation()+" queen class");
-		X = queen.getLocation().getX();
-		Y = queen.getLocation().getY();
+	//	loc2 = king.getLocation();
+		System.out.println(king.getLocation()+" king class");
+		X = king.getLocation().getX();
+		Y = king.getLocation().getY();
 			if(kingMove(Directions.LEFT)==1) {
 				Location loc = new Location();
 					X--;
@@ -182,7 +182,7 @@ return 1;
 				if(loc.getX() >= 0) {
 				toReturn.add(loc);
 				}
-				X = queen.getLocation().getX();
+				X = king.getLocation().getX();
 			}
 			if(kingMove(Directions.RIGHT)==1) {
 				Location loc = new Location();
@@ -193,7 +193,7 @@ return 1;
 				if(loc.getX() <= 7) {
 				toReturn.add(loc);
 				}
-				X = queen.getLocation().getX();
+				X = king.getLocation().getX();
 			}
 			if(kingMove(Directions.UP)==1) {
 				Location loc = new Location();
@@ -204,7 +204,7 @@ return 1;
 				if(loc.getY() >= 0) {
 				toReturn.add(loc);
 				}
-				Y = queen.getLocation().getY();
+				Y = king.getLocation().getY();
 			}
 			if(kingMove(Directions.DOWN)==1) {
 				Location loc = new Location();
@@ -215,7 +215,7 @@ return 1;
 				if(loc.getY() <= 7) {
 				toReturn.add(loc);
 				}
-				Y = queen.getLocation().getY();
+				Y = king.getLocation().getY();
 			}
 			if(kingMove(Directions.UP_LEFT)==1) {
 				Location loc = new Location();
@@ -227,8 +227,8 @@ return 1;
 				if(loc.getY() >= 0 && loc.getX() >= 0) {
 				toReturn.add(loc);
 				}
-				Y = queen.getLocation().getY();
-				X = queen.getLocation().getX();
+				Y = king.getLocation().getY();
+				X = king.getLocation().getX();
 			}
 			if(kingMove(Directions.UP_RIGHT)==1) {
 				Location loc = new Location();
@@ -240,8 +240,8 @@ return 1;
 				if(loc.getY() >= 0 && loc.getX() <= 7) {
 				toReturn.add(loc);
 				}
-				Y = queen.getLocation().getY();
-				X = queen.getLocation().getX();
+				Y = king.getLocation().getY();
+				X = king.getLocation().getX();
 			}
 			if(kingMove(Directions.DOWN_LEFT)==1) {
 				Location loc = new Location();
@@ -253,8 +253,8 @@ return 1;
 				if(loc.getY() <= 7 && loc.getX() >= 0) {
 				toReturn.add(loc);
 				}
-				Y = queen.getLocation().getY();
-				X = queen.getLocation().getX();
+				Y = king.getLocation().getY();
+				X = king.getLocation().getX();
 			}
 			if(kingMove(Directions.DOWN_RIGHT)==1) {
 				Location loc = new Location();
@@ -266,8 +266,8 @@ return 1;
 				if(loc.getY() <= 7 && loc.getX() <= 7) {
 				toReturn.add(loc);
 				}
-				Y = queen.getLocation().getY();
-				X = queen.getLocation().getX();
+				Y = king.getLocation().getY();
+				X = king.getLocation().getX();
 			
 			}
 		return toReturn;

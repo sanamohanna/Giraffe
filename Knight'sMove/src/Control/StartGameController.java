@@ -388,6 +388,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											System.out.println(game.getKnight().getLocation());
 											GridPane.setColumnIndex(imageK,sq.getLocation().getX());
 											GridPane.setRowIndex(imageK,sq.getLocation().getY() );
+											
 											ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
 											QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
 							
@@ -406,17 +407,32 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												a.setContentText("you lose");
 												a.show();
 											}
-											if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
-													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
-													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
-													try {
-														//lazmmm ta4yeer!!!!!!!!!!!!!!!!!!!!!!!!!1
-														popHard();
-													} catch (IOException e) {
-														// TODO Auto-generated catch block
-														e.printStackTrace();
-													}
+											if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
+												try {
+													popEasy();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
 												}
+											}
+											else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) ) {
+												try {
+													
+													popMediocre();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+											}
+											else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
+												try {
+													
+													popHard();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+											}
 											boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
 											notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
 											String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
@@ -458,17 +474,32 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												a.setContentText("you lose");
 												a.show();
 											}
-											if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
-													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
-													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
-													try {
-														//lazmmm ta4yeer!!!!!!!!!!!!!!!!!!!!!!!!!1
-														popHard();
-													} catch (IOException e) {
-														// TODO Auto-generated catch block
-														e.printStackTrace();
-													}
+											if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
+												try {
+													popEasy();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
 												}
+											}
+											else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) ) {
+												try {
+													
+													popMediocre();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+											}
+											else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
+												try {
+													
+													popHard();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+											}
 											boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
 											notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
 											String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
@@ -509,17 +540,32 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												a.setContentText("you lose");
 												a.show();
 											}
-											if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)
-													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) 
-													||GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
-													try {
-														//lazmmm ta4yeer!!!!!!!!!!!!!!!!!!!!!!!!!1
-														popHard();
-													} catch (IOException e) {
-														// TODO Auto-generated catch block
-														e.printStackTrace();
-													}
+											if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
+												try {
+													popEasy();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
 												}
+											}
+											else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) ) {
+												try {
+													
+													popMediocre();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+											}
+											else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
+												try {
+													
+													popHard();
+												} catch (IOException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+											}
 											boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
 											notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
 											((Button)arg0.getSource()).setStyle("-fx-background-color: grey;");
@@ -543,6 +589,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 									}
 									notVisited.add(boardGame.getSquares()[i][j]);
+									// boardGame.getSquares()[i][j].setVisited(false);
 								}else {
 									points++;
 									System.out.println(notVisited);
