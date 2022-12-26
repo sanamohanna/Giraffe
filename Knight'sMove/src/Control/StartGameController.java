@@ -534,11 +534,23 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 								if(boardGame.getSquares()[i][j].isVisited() == true) {
 									points--;
-								}else 							points++;
-	
-								boardGame.getSquares()[i][j].setVisited(true);
-								notVisited.remove(boardGame.getSquares()[i][j]);
-								((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+									
+									String str = "b"+boardGame.getSquares()[i][j].getLocation().getY()+boardGame.getSquares()[i][j].getLocation().getX();
+									System.out.println(str);
+									for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+										if(board.getChildren().get(node).getId().toString().equals(str)) {
+											board.getChildren().get(node).setStyle("-fx-background-color: defult;-fx-border-color : black;");
+										}
+									}
+									notVisited.add(boardGame.getSquares()[i][j]);
+								}else {
+									points++;
+									boardGame.getSquares()[i][j].setVisited(true);
+									notVisited.remove(boardGame.getSquares()[i][j]);
+									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+								}
+								
+								
 								
 							
 						}
