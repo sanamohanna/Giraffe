@@ -3,6 +3,8 @@ package Control;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -153,7 +155,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		displayLevel("LEVEL 1");
 		pointsT.setText(String.valueOf(points));
 		try {
-			level1Moves();
+			levelsMoves();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -269,28 +271,16 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 
 		
 	
-		public void level1Moves() throws IOException {
+		public void levelsMoves() throws IOException {
 		
 			for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 				
 				((ButtonBase) board.getChildren().get(node)).setOnAction(this);
-//				while(finish==0) {
-//					System.out.print(" ya rab tozbot");
-//				}
 			}
 
 
 		}
-		public void level2Moves() throws IOException {
 		
-			for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-				
-				((ButtonBase) board.getChildren().get(node)).setOnAction(this);
-				
-			}
-
-
-		}
 		int k = 0 , n = 0 ;
 		int flag1 = 0  , flag2 = 0 , flag3 = 0;
 
@@ -300,7 +290,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			validsPrevious = game.getKnight().allValidMovesLevel1(game.getKnight());
 			ArrayList<Location> validsMovesLevel2 =new ArrayList<Location>();
 			validsMovesLevel2 = game.getKnight().allValidMovesLevel2(game.getKnight());
-			
+			Queue<Squares>  lastThreeMoves = new LinkedList();
 			
 			if(arg0.getSource()==node1Q) {
 				Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
@@ -623,11 +613,37 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 							}
 						}
+					else if(finish == 2)
+					{
+						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
+							Location loc = new Location(j,i);
+							
+							if(validsMovesLevel2.contains(loc) ) {
+								game.getKnight().setLocation(loc);
+								GridPane.setColumnIndex(imageK,j);
+								GridPane.setRowIndex(imageK,i );
+							}
+						}
 					}
+					else if(finish == 3)
+					{
+						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
+							Location loc = new Location(j,i);
+							
+							if(validsMovesLevel2.contains(loc) ) {
+								game.getKnight().setLocation(loc);
+								GridPane.setColumnIndex(imageK,j);
+								GridPane.setRowIndex(imageK,i );
+							}
+						}
+					}
+				
+				}
+				
 
 			}
 			
-			//}
+
 			
 		}
 			public void ColorChange(Location locNew ,ArrayList<Location> valids,Node node) {
@@ -655,13 +671,19 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				
 				if(points>15 && finish==1) {
 					points=0;
-					level2Moves();
+					levelsMoves();
 					setTimer();
 					displayLevel("LEVEL 2");
 				}
 				else if(points<15){
 					timer.cancel();
 					System.out.println("you lose !!");	
+				}
+				if(points>15 && finish==2) {
+					points=0;
+					levelsMoves();
+					setTimer();
+					displayLevel("LEVEL 3");
 				}
 //				Parent root = FXMLLoader.load(getClass().getResource("/View/pause.fxml"));
 //				Stage stage = new Stage(); 
