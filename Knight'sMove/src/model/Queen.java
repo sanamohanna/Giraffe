@@ -300,59 +300,6 @@ public class Queen extends Piece {
 				Y = queen.getLocation().getY();
 				X = queen.getLocation().getX();
 			}
-//			if(queenMove(i,Directions.RIGHT)==1) {
-//				for(int j=0;j<i;j++) {
-//					loc2.setX(loc2.getX()+1);
-//				}
-//				toReturn.add(loc2);
-//				loc2 = queen.getLocation();
-//			}
-//			if(queenMove(i,Directions.UP)==1) {
-//				for(int j=0;j<i;j++) {
-//					loc2.setY(loc2.getY()-1);
-//				}
-//				toReturn.add(loc2);
-//				loc2 = queen.getLocation();
-//			}
-//			if(queenMove(i,Directions.DOWN)==1) {
-//				for(int j=0;j<i;j++) {
-//					loc2.setY(loc2.getY()+1);
-//				}
-//				toReturn.add(loc2);
-//				loc2 = queen.getLocation();
-//			}
-//			if(queenMove(i,Directions.DOWN_LEFT)==1) {
-//				for(int j=0;j<i;j++) {
-//					loc2.setY(loc2.getY()+1);
-//					loc2.setX(loc2.getX()-1);
-//				}
-//				toReturn.add(loc2);
-//				loc2 = queen.getLocation();
-//			}
-//			if(queenMove(i,Directions.DOWN_RIGHT)==1) {
-//				for(int j=0;j<i;j++) {
-//					loc2.setY(loc2.getY()+1);
-//					loc2.setX(loc2.getX()+1);
-//				}
-//				toReturn.add(loc2);
-//				loc2 = queen.getLocation();
-//			}
-//			if(queenMove(i,Directions.UP_LEFT)==1) {
-//				for(int j=0;j<i;j++) {
-//					loc2.setY(loc2.getY()-1);
-//					loc2.setX(loc2.getX()-1);
-//				}
-//				toReturn.add(loc2);
-//				loc2 = queen.getLocation();
-//			}
-//			if(queenMove(i,Directions.UP_RIGHT)==1) {
-//				for(int j=0;j<i;j++) {
-//					loc2.setY(loc2.getY()-1);
-//					loc2.setX(loc2.getX()+1);
-//				}
-//				toReturn.add(loc2);
-//				loc2 = queen.getLocation();
-//			}
 		}
 		return toReturn;
 	}

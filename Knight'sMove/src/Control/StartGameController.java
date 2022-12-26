@@ -388,7 +388,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											System.out.println(game.getKnight().getLocation());
 											GridPane.setColumnIndex(imageK,sq.getLocation().getX());
 											GridPane.setRowIndex(imageK,sq.getLocation().getY() );
-											
 											ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
 											QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
 							
