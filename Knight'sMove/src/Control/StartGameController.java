@@ -98,10 +98,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		// TODO Auto-generated method stub
 
 		//Location loc =new Location(0,0);
-		Knight knight = new Knight(false);
-		ArrayList<Location> trya = new ArrayList<Location>();
-		trya= game.getKnight().allValidMovesLevel2(knight);
-		System.out.println(trya);
 		fillNotVisitedArray(notVisited);
 		Location locFirst = new Location(0,0);
 		game.getKnight().setLocation(locFirst);
@@ -114,37 +110,30 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		
 		rand = new Random();
 		node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-		
 		node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-		
 		while(node1Q==node2Q ) {
 			node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-			
 		}
 		node2Q.setStyle("-fx-background-color: yellow; ");
 		node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		while(node2Q==node3Q ||node3Q==node1Q) {
 			node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-			
 		}
 		node3Q.setStyle("-fx-background-color: red; ");
 		nodeRandomJump1=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		while(node3Q==nodeRandomJump1 ||node1Q==nodeRandomJump1||node2Q==nodeRandomJump1 ) {
 			nodeRandomJump1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-			
 		}
 		nodeRandomJump1.setStyle("-fx-background-color: blue; ");
 		nodeRandomJump2=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		while(nodeRandomJump1==nodeRandomJump2 ||node3Q==nodeRandomJump2 ||node2Q==nodeRandomJump2 ||node1Q==nodeRandomJump2 ) {
-			nodeRandomJump2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-			
+			nodeRandomJump2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));	
 		}
 		nodeRandomJump2.setStyle("-fx-background-color: pink; ");
 		nodeRandomJump3=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		while(nodeRandomJump2==nodeRandomJump3 ||nodeRandomJump1==nodeRandomJump3 ||node2Q==nodeRandomJump3
 				||node1Q==nodeRandomJump3 ||node3Q==nodeRandomJump3) {
 			nodeRandomJump3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-			
 		}
 		nodeRandomJump3.setStyle("-fx-background-color: purple; ");
 		while(node1Q== node2Q||node1Q== node3Q||node1Q== nodeRandomJump3||node1Q==nodeRandomJump2 ||node1Q==nodeRandomJump1 ) {
@@ -170,7 +159,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		// method that start timer in long one minute to every level in the game 
 		public void setTimer(){
 	
-			totalSec=60;
+			totalSec=10;
 				timer = new Timer();
 				TimerTask timerTask = new TimerTask() {
 					@Override
@@ -569,9 +558,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 								if(boardGame.getSquares()[i][j].isVisited() == true) {
 									points--;
-									System.out.println(notVisited);
 									String str = "b"+boardGame.getSquares()[i][j].getLocation().getY()+boardGame.getSquares()[i][j].getLocation().getX();
-									System.out.println(str);
 									for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 										if(board.getChildren().get(node).getId().toString().equals(str)) {
 											board.getChildren().get(node).setStyle("-fx-background-color: defult;");
@@ -610,6 +597,44 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									game.getKnight().setLocation(loc);
 									GridPane.setColumnIndex(imageK,j);
 									GridPane.setRowIndex(imageK,i );
+									ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
+									QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
+		
+									for(int k =0;k<QueenValidMoves.size();k++) {
+										if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
+											smallestDistance=game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k));
+											locQueen = QueenValidMoves.get(k);
+										}
+									}
+									
+									game.getQueen().setLocation(locQueen);
+									GridPane.setColumnIndex(imageQ,locQueen.getX());
+									GridPane.setRowIndex(imageQ,locQueen.getY());
+									if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
+										timer.cancel();
+										a.setAlertType(AlertType.ERROR);//if the user not enter data 
+										a.setContentText("you lose");
+										a.show();
+									}
+								}
+								
+								if(boardGame.getSquares()[i][j].isVisited() == true) {
+									points--;
+									String str = "b"+boardGame.getSquares()[i][j].getLocation().getY()+boardGame.getSquares()[i][j].getLocation().getX();
+									for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+										if(board.getChildren().get(node).getId().toString().equals(str)) {
+											board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+											board.getChildren().get(node).setStyle("-fx-border-color : black;");
+										}
+									}
+									notVisited.add(boardGame.getSquares()[i][j]);
+									// boardGame.getSquares()[i][j].setVisited(false);
+								}else {
+									points++;
+									System.out.println(notVisited);
+									boardGame.getSquares()[i][j].setVisited(true);
+									notVisited.remove(boardGame.getSquares()[i][j]);
+									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
 								}
 							}
 						}
@@ -669,15 +694,50 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 			public void nextLevel() throws IOException {
 				
-				if(points>15 && finish==1) {
+				if(points>=0 && finish==1) {
+					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+						board.getChildren().get(node).setStyle("-fx-border-color : black;");
+					}
+					node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(node1Q==node2Q ) {
+						node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					node2Q.setStyle("-fx-background-color: yellow; ");
+					node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(node2Q==node3Q ||node3Q==node1Q) {
+						node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					node3Q.setStyle("-fx-background-color: red; ");
+					node1Q.setStyle("-fx-background-color: green; ");
+					
 					points=0;
 					levelsMoves();
 					setTimer();
 					displayLevel("LEVEL 2");
+					fillNotVisitedArray(notVisited);
+					for(int i = 0 ; i < 8 ; i++) {
+						for(int j = 0 ; j < 8 ; j ++) {
+							boardGame.getSquares()[i][j].setVisited(false);;
+						}
+						
+					}
+					Location locFirst = new Location(0,0);
+					game.getKnight().setLocation(locFirst);
+					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
+					boardGame.getSquares()[0][0].setVisited(true);
+					notVisited.remove(boardGame.getSquares()[0][0]);
+					GridPane.setColumnIndex(imageK, 0);
+					GridPane.setRowIndex(imageK, 0);
+					pointsT.setText(String.valueOf(points));
+					game.getQueen().setLocation(new Location(7,0));
+					GridPane.setColumnIndex(imageQ,7);
+					GridPane.setRowIndex(imageQ,0);
+					
 				}
 				else if(points<15){
 					timer.cancel();
-					System.out.println("you lose !!");	
 				}
 				if(points>15 && finish==2) {
 					points=0;
