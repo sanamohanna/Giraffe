@@ -159,7 +159,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		// method that start timer in long one minute to every level in the game 
 		public void setTimer(){
 	
-			totalSec=10;
+			totalSec=60;
 				timer = new Timer();
 				TimerTask timerTask = new TimerTask() {
 					@Override
