@@ -95,6 +95,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	private ImageView leftdown;
 	@FXML
 	private ImageView knight;
+	@FXML
+	private ImageView imageKing;
 	
 	Timer timer;
 	Alert a = new Alert(AlertType.NONE);
@@ -117,6 +119,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		// TODO Auto-generated method stub
 	
 		//Location loc =new Location(0,0);
+		imageKing.setVisible(false);
 		fillNotVisitedArray(notVisited);
 		Location locFirst = new Location(0,0);
 		game.getKnight().setLocation(locFirst);
@@ -175,7 +178,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		// method that start timer in long one minute to every level in the game 
 		public void setTimer(){
 	
-			totalSec=60;
+			totalSec=10;
 				timer = new Timer();
 				TimerTask timerTask = new TimerTask() {
 					@Override
@@ -277,7 +280,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	
 		public void levelsMoves() throws IOException {
 		
-			for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+			for(int node = 0 ; node < board.getChildren().size()-3 ; node++) {
 				
 				((ButtonBase) board.getChildren().get(node)).setOnAction(this);
 			}
@@ -287,7 +290,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		
 		int k = 0 , n = 0 ;
 		int flag1 = 0  , flag2 = 0 , flag3 = 0;
-
+		int flag4 = 0  , flag5 = 0 , flag6 = 0;
+		int flag7 = 0  , flag8 = 0 , flag9 = 0;
+		int flag10 = 0  , flag11 = 0 , flag12 = 0;
 		@Override
 		public void handle(ActionEvent arg0) {
 			ArrayList<Location> validsMovesLevel1 =new ArrayList<Location>();
@@ -300,10 +305,13 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			Queue<Squares>  lastThreeMoves = new LinkedList();
 			
 			if(arg0.getSource()==node1Q) {
+				
 				Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
+				
 				if(validsMovesLevel1.contains(locNode1) && flag1 == 0) {
 					try {
 						flag1++;
+						System.out.println("easy level1");
 						popEasy();
 						node1Q.setStyle("-fx-background-color: defult; ");
 						node1Q.setStyle("-fx-border-color : black");
@@ -312,6 +320,43 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						e.printStackTrace();
 					}
 				}
+				
+				else if(validsMovesLevel2.contains(locNode1) && flag4 == 0) {
+					try {
+						flag4++;
+						System.out.println("easy level2");
+						popEasy();
+						node1Q.setStyle("-fx-background-color: defult ; ");
+						node1Q.setStyle("-fx-border-color : black");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else if(validsMovesLevel3and4.contains(locNode1) && flag5 == 0) {
+					try {
+						System.out.println("easy level3");
+						flag5++;
+						popEasy();
+						node1Q.setStyle("-fx-background-color: defult ; ");
+						node1Q.setStyle("-fx-border-color : black");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else if(validsMovesLevel3and4.contains(locNode1) && flag10 == 0) {
+					try {
+						System.out.println("easy level4");
+						flag10++;
+						popEasy();
+						node1Q.setStyle("-fx-background-color: defult ; ");
+						node1Q.setStyle("-fx-border-color : black");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			}
 					
 			}
 			if(arg0.getSource()==node2Q) {
@@ -327,6 +372,39 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							e.printStackTrace();
 						}
 				}
+				else if(validsMovesLevel2.contains(locNode2) && flag6 == 0) {
+					try {
+						flag6++;
+						popMediocre();
+						node2Q.setStyle("-fx-background-color: defult ; ");
+						node2Q.setStyle("-fx-border-color : black");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else if(validsMovesLevel3and4.contains(locNode2) && flag7 == 0) {
+					try {
+						flag7++;
+						popMediocre();
+						node2Q.setStyle("-fx-background-color: defult ; ");
+						node2Q.setStyle("-fx-border-color : black");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			}
+				else if(validsMovesLevel3and4.contains(locNode2) && flag11 == 0) {
+					try {
+						flag11++;
+						popMediocre();
+						node2Q.setStyle("-fx-background-color: defult ; ");
+						node2Q.setStyle("-fx-border-color : black");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			}
 			}
 			if(arg0.getSource()==node3Q) {
 				Location locNode3 = new Location(GridPane.getColumnIndex(node3Q),GridPane.getRowIndex(node3Q));
@@ -341,6 +419,40 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							e.printStackTrace();
 						}
 				}
+				else if(validsMovesLevel2.contains(locNode3) && flag8 == 0) {
+					try {
+						flag8++;
+						popHard();
+						node3Q.setStyle("-fx-background-color: defult ; ");
+						node3Q.setStyle("-fx-border-color : black");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else if(validsMovesLevel3and4.contains(locNode3) && flag9 == 0) {
+					try {
+						flag9++;
+						popHard();
+						node3Q.setStyle("-fx-background-color: defult ; ");
+						node3Q.setStyle("-fx-border-color : black");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else if(validsMovesLevel3and4.contains(locNode3) && flag12 == 0) {
+					try {
+						flag12++;
+						System.out.println("te3bat nafseyte");
+						popHard();
+						node3Q.setStyle("-fx-background-color: defult ; ");
+						node3Q.setStyle("-fx-border-color : black");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 			Location locQueen = new Location();
 			double smallestDistance = 11;
@@ -351,6 +463,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							Location loc = new Location(j,i);
 							
 							if(validsMovesLevel1.contains(loc) ) {
+								
 								game.getKnight().setLocation(loc);
 								GridPane.setColumnIndex(imageK,j);
 								GridPane.setRowIndex(imageK,i );
@@ -632,26 +745,33 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										a.setContentText("you lose");
 										a.show();
 									}
+									if(boardGame.getSquares()[i][j].isVisited() == true) {
+										points--;
+										String str = "b"+boardGame.getSquares()[i][j].getLocation().getY()+boardGame.getSquares()[i][j].getLocation().getX();
+										for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+											if(board.getChildren().get(node).getId().toString().equals(str)) {
+												board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+												board.getChildren().get(node).setStyle("-fx-border-color : black;");
+											}
+										}
+										notVisited.add(boardGame.getSquares()[i][j]);
+										// boardGame.getSquares()[i][j].setVisited(false);
+									}else {
+										points++;
+										System.out.println(notVisited);
+										boardGame.getSquares()[i][j].setVisited(true);
+										notVisited.remove(boardGame.getSquares()[i][j]);
+										((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+									}
+								}
+								else {
+									//ColorChange(loc,validsPrevious,b00);
+									a.setAlertType(AlertType.ERROR);//if the user not enter data 
+									a.setContentText("invalid move try again");
+									a.show();	
 								}
 								
-								if(boardGame.getSquares()[i][j].isVisited() == true) {
-									points--;
-									String str = "b"+boardGame.getSquares()[i][j].getLocation().getY()+boardGame.getSquares()[i][j].getLocation().getX();
-									for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-										if(board.getChildren().get(node).getId().toString().equals(str)) {
-											board.getChildren().get(node).setStyle("-fx-background-color: defult;");
-											board.getChildren().get(node).setStyle("-fx-border-color : black;");
-										}
-									}
-									notVisited.add(boardGame.getSquares()[i][j]);
-									// boardGame.getSquares()[i][j].setVisited(false);
-								}else {
-									points++;
-									System.out.println(notVisited);
-									boardGame.getSquares()[i][j].setVisited(true);
-									notVisited.remove(boardGame.getSquares()[i][j]);
-									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
-								}
+								
 							}
 						}
 					else if(finish == 2)
@@ -710,8 +830,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 			public void nextLevel() throws IOException {
 				
-				if(points>=15 && finish==1) {
-					
+				if(points>=0 && finish==1) {
+					imageKing.setVisible(false);
 					upleft.setVisible(false);
 					upright.setVisible(false);
 					leftup.setVisible(false);
@@ -770,6 +890,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					timer.cancel();
 				}
 				if(points>=0 && finish==2) {
+					imageKing.setVisible(true);
 					imageQ.setVisible(false);
 					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
@@ -808,6 +929,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					GridPane.setColumnIndex(imageK, 0);
 					GridPane.setRowIndex(imageK, 0);
 					pointsT.setText(String.valueOf(points));
+					game.getKing().setLocation(new Location(7,0));
+					GridPane.setColumnIndex(imageKing,7);
+					GridPane.setRowIndex(imageKing,0);
+					
 				}
 				if(points>=0 && finish==3) {
 					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
@@ -847,6 +972,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					GridPane.setColumnIndex(imageK, 0);
 					GridPane.setRowIndex(imageK, 0);
 					pointsT.setText(String.valueOf(points));
+					game.getKing().setLocation(new Location(7,0));
+					GridPane.setColumnIndex(imageKing,7);
+					GridPane.setRowIndex(imageKing,0);
 				}
 
 			}
