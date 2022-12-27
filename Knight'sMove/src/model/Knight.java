@@ -151,17 +151,26 @@ public class Knight extends Piece {
 	/*in this two levels the knight move how ever it wants , so
 	  we check if the move is a straight move or a diagonally move
 	  then we use the right method*/
-    public void level3and4Move(Directions dir){
+    public Location level3and4Move(Directions dir, String x, String y){
+    	
+    	Location loc = new Location(Integer.parseInt(x), Integer.parseInt(y));
+		Knight knight1 = new Knight(loc);
+		Location newLoc = new Location();
+    	
     	switch(dir) {
 	    	case UP , DOWN , RIGHT , LEFT:{
-				this.StrightMove(dir);
-				break;
+				knight1.StrightMove(dir);
+				newLoc=knight1.getLocation();
+				return newLoc;
 			}
 			case UP_LEFT,UP_RIGHT , DOWN_LEFT,DOWN_RIGHT:{
-				this.DiagonallyMove(dir);
-				break;
+				knight1.DiagonallyMove(dir);
+				newLoc=knight1.getLocation();
+				return newLoc;
 			}
 		}
+    	
+    	return null;
 	}
     public ArrayList<Location> allValidMovesLevel1(Knight knight){
 		ArrayList<Location> toReturn =new ArrayList<Location>();
@@ -338,6 +347,38 @@ public class Knight extends Piece {
 		Location loc32 = new Location();
 		loc32 = level2Move( Directions.UP_RIGHT, Directions.UP_RIGHT, Directions.UP,strX , strY);
 		toReturn.add(loc32);
+		return toReturn;
+	}
+	
+	public ArrayList<Location> allValidMovesLevel3and4(Knight knight){
+		ArrayList<Location> toReturn =new ArrayList<Location>();
+		 Location KnightLocation = knight.getLocation();
+		 String strX = KnightLocation.getX().toString();
+		 String strY = KnightLocation.getY().toString();
+		 Location loc1 = new Location();
+		 loc1=level3and4Move(Directions.DOWN, strX, strY);
+		 toReturn.add(loc1);
+		 Location loc2 = new Location();
+		 loc2=level3and4Move(Directions.DOWN_LEFT, strX, strY);
+		 toReturn.add(loc2);
+		 Location loc3 = new Location();
+		 loc3=level3and4Move(Directions.DOWN_RIGHT, strX, strY);
+		 toReturn.add(loc3);
+		 Location loc4 = new Location();
+		 loc4=level3and4Move(Directions.LEFT, strX, strY);
+		 toReturn.add(loc4);
+		 Location loc5 = new Location();
+		 loc5=level3and4Move(Directions.RIGHT, strX, strY);
+		 toReturn.add(loc5);
+		 Location loc6 = new Location();
+		 loc6=level3and4Move(Directions.UP, strX, strY);
+		 toReturn.add(loc6);
+		 Location loc7 = new Location();
+		 loc7=level3and4Move(Directions.UP_LEFT, strX, strY);
+		 toReturn.add(loc7);
+		 Location loc8 = new Location();
+		 loc8=level3and4Move(Directions.UP_RIGHT, strX, strY);
+		 toReturn.add(loc8);
 		return toReturn;
 	}
 	}

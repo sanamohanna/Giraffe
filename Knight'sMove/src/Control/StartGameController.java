@@ -294,15 +294,18 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 
 		@Override
 		public void handle(ActionEvent arg0) {
-			ArrayList<Location> validsPrevious =new ArrayList<Location>();
-			validsPrevious = game.getKnight().allValidMovesLevel1(game.getKnight());
+			ArrayList<Location> validsMovesLevel1 =new ArrayList<Location>();
+			validsMovesLevel1 = game.getKnight().allValidMovesLevel1(game.getKnight());
 			ArrayList<Location> validsMovesLevel2 =new ArrayList<Location>();
 			validsMovesLevel2 = game.getKnight().allValidMovesLevel2(game.getKnight());
+			ArrayList<Location>  validsMovesLevel3and4 = new ArrayList<Location>();
+			validsMovesLevel3and4 = game.getKnight().allValidMovesLevel3and4(game.getKnight());
+		//	System.out.println(validsMovesLevel3and4);
 			Queue<Squares>  lastThreeMoves = new LinkedList();
 			
 			if(arg0.getSource()==node1Q) {
 				Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
-				if(validsPrevious.contains(locNode1) && flag1 == 0) {
+				if(validsMovesLevel1.contains(locNode1) && flag1 == 0) {
 					try {
 						flag1++;
 						popEasy();
@@ -316,7 +319,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 			if(arg0.getSource()==node2Q) {
 				Location locNode2 = new Location(GridPane.getColumnIndex(node2Q),GridPane.getRowIndex(node2Q));
-				if(validsPrevious.contains(locNode2) && flag2 == 0) {
+				if(validsMovesLevel1.contains(locNode2) && flag2 == 0) {
 						try {
 							flag2++;
 							popMediocre();
@@ -330,7 +333,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 			if(arg0.getSource()==node3Q) {
 				Location locNode3 = new Location(GridPane.getColumnIndex(node3Q),GridPane.getRowIndex(node3Q));
-				if(validsPrevious.contains(locNode3) && flag3 == 0) {
+				if(validsMovesLevel1.contains(locNode3) && flag3 == 0) {
 				try {
 					       flag3++;
 							popHard();
@@ -350,7 +353,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 							Location loc = new Location(j,i);
 							
-							if(validsPrevious.contains(loc) ) {
+							if(validsMovesLevel1.contains(loc) ) {
 								game.getKnight().setLocation(loc);
 								GridPane.setColumnIndex(imageK,j);
 								GridPane.setRowIndex(imageK,i );
@@ -376,14 +379,12 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									}
 								}else {
 									if(arg0.getSource()==nodeRandomJump1) {
-										System.out.println(validsPrevious);
+										
 										Squares sq= notVisited.get(rand.nextInt(notVisited.size())); 
 										Location loc0 = new Location(sq.getLocation().getX(),sq.getLocation().getY());
-										System.out.println(validsPrevious);
-						                System.out.println(game.getKnight().getLocation());
+										
 										//if(validsPrevious.contains(loc) ) {
 											game.getKnight().setLocation(loc0);
-											System.out.println(game.getKnight().getLocation());
 											GridPane.setColumnIndex(imageK,sq.getLocation().getX());
 											GridPane.setRowIndex(imageK,sq.getLocation().getY() );
 											
@@ -446,7 +447,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									if(arg0.getSource()==nodeRandomJump2) {
 										Squares sq= notVisited.get(rand.nextInt(notVisited.size()));
 										Location loc1 = new Location(sq.getLocation().getX(),sq.getLocation().getY());
-										System.out.println(validsPrevious);
+				
 						              
 										//if(validsPrevious.contains(loc) ) {
 											game.getKnight().setLocation(loc1);
@@ -513,7 +514,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									if(arg0.getSource()==nodeRandomJump3) {
 										Squares sq= notVisited.get(rand.nextInt(notVisited.size()));
 										Location loc2 = new Location(sq.getLocation().getX(),sq.getLocation().getY());
-										System.out.println(validsPrevious);
 						                System.out.println();
 										//if(validsPrevious.contains(loc) ) {
 											game.getKnight().setLocation(loc2);
@@ -662,7 +662,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 							Location loc = new Location(j,i);
 							
-							if(validsMovesLevel2.contains(loc) ) {
+							if(validsMovesLevel3and4.contains(loc) ) {
 								game.getKnight().setLocation(loc);
 								GridPane.setColumnIndex(imageK,j);
 								GridPane.setRowIndex(imageK,i );
@@ -674,7 +674,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 							Location loc = new Location(j,i);
 							
-							if(validsMovesLevel2.contains(loc) ) {
+							if(validsMovesLevel3and4.contains(loc) ) {
 								game.getKnight().setLocation(loc);
 								GridPane.setColumnIndex(imageK,j);
 								GridPane.setRowIndex(imageK,i );
@@ -767,20 +767,86 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				else if(points<15){
 					timer.cancel();
 				}
-				if(points>15 && finish==2) {
+				if(points>=0 && finish==2) {
+					imageQ.setVisible(false);
+					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+						board.getChildren().get(node).setStyle("-fx-border-color : black;");
+					}
+					node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(node1Q==node2Q ) {
+						node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					node2Q.setStyle("-fx-background-color: yellow; ");
+					node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(node2Q==node3Q ||node3Q==node1Q) {
+						node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					node3Q.setStyle("-fx-background-color: red; ");
+					node1Q.setStyle("-fx-background-color: green; ");
 					points=0;
+					
 					levelsMoves();
 					setTimer();
 					displayLevel("LEVEL 3");
+					
+					fillNotVisitedArray(notVisited);
+					for(int i = 0 ; i < 8 ; i++) {
+						for(int j = 0 ; j < 8 ; j ++) {
+							boardGame.getSquares()[i][j].setVisited(false);;
+						}
+						
+					}
+					Location locFirst = new Location(0,0);
+					game.getKnight().setLocation(locFirst);
+					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
+					boardGame.getSquares()[0][0].setVisited(true);
+					notVisited.remove(boardGame.getSquares()[0][0]);
+					GridPane.setColumnIndex(imageK, 0);
+					GridPane.setRowIndex(imageK, 0);
+					pointsT.setText(String.valueOf(points));
 				}
-//				Parent root = FXMLLoader.load(getClass().getResource("/View/pause.fxml"));
-//				Stage stage = new Stage(); 
-//				Scene scene = new Scene(root);
-//				stage.setAlwaysOnTop(true);
-//				stage.setResizable(false);
-//				scene.getStylesheets().add(getClass().getResource("/View/editQuestion.css").toExternalForm());
-//				stage.setScene(scene);
-//				stage.show();
+				if(points>=0 && finish==3) {
+					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+						board.getChildren().get(node).setStyle("-fx-border-color : black;");
+					}
+					node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(node1Q==node2Q ) {
+						node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					node2Q.setStyle("-fx-background-color: yellow; ");
+					node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(node2Q==node3Q ||node3Q==node1Q) {
+						node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					node3Q.setStyle("-fx-background-color: red; ");
+					node1Q.setStyle("-fx-background-color: green; ");
+					points=0;
+					
+					levelsMoves();
+					setTimer();
+					displayLevel("LEVEL 4");
+					
+					fillNotVisitedArray(notVisited);
+					for(int i = 0 ; i < 8 ; i++) {
+						for(int j = 0 ; j < 8 ; j ++) {
+							boardGame.getSquares()[i][j].setVisited(false);;
+						}
+						
+					}
+					Location locFirst = new Location(0,0);
+					game.getKnight().setLocation(locFirst);
+					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
+					boardGame.getSquares()[0][0].setVisited(true);
+					notVisited.remove(boardGame.getSquares()[0][0]);
+					GridPane.setColumnIndex(imageK, 0);
+					GridPane.setRowIndex(imageK, 0);
+					pointsT.setText(String.valueOf(points));
+				}
+
 			}
 			
 			
