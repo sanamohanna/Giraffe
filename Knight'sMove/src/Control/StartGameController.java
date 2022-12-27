@@ -115,7 +115,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-
+	
 		//Location loc =new Location(0,0);
 		fillNotVisitedArray(notVisited);
 		Location locFirst = new Location(0,0);
@@ -168,17 +168,14 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-			//Thread.sleep(7000);
-	
-		//setTimer();
+
 		
 		
 	}
 		// method that start timer in long one minute to every level in the game 
 		public void setTimer(){
 	
-			totalSec=10;
+			totalSec=60;
 				timer = new Timer();
 				TimerTask timerTask = new TimerTask() {
 					@Override
@@ -198,8 +195,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									e.printStackTrace();
 								}
 								timer.cancel();
-								
-								}
+							}
 					}
 				};   
 				timer.schedule(timerTask,0,1000);
@@ -311,7 +307,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						popEasy();
 						node1Q.setStyle("-fx-background-color: defult; ");
 						node1Q.setStyle("-fx-border-color : black");
-					} catch (IOException e) {
+					}
+					catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
@@ -713,7 +710,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 			public void nextLevel() throws IOException {
 				
-				if(points>=0 && finish==1) {
+				if(points>=15 && finish==1) {
+					
 					upleft.setVisible(false);
 					upright.setVisible(false);
 					leftup.setVisible(false);
@@ -723,17 +721,21 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					downright.setVisible(false);
 					downleft.setVisible(false);
 					knight.setVisible(false);
+					
 					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
 						board.getChildren().get(node).setStyle("-fx-border-color : black;");
 					}
+					
 					node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					
 					while(node1Q==node2Q ) {
 						node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					node2Q.setStyle("-fx-background-color: yellow; ");
 					node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					
 					while(node2Q==node3Q ||node3Q==node1Q) {
 						node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
@@ -764,7 +766,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					GridPane.setRowIndex(imageQ,0);
 					
 				}
-				else if(points<15){
+				else if(points<15&& finish==1){
 					timer.cancel();
 				}
 				if(points>=0 && finish==2) {
