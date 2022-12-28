@@ -111,6 +111,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	Board boardGame = new Board();
 	Node node1Q,node2Q ,node3Q;
 	Node nodeRandomJump1,nodeRandomJump2 ,nodeRandomJump3;
+	Node Forget1 ,Forget2 , Forget3;
 	ArrayList<Squares> notVisited = new ArrayList<Squares>();
 
 	public static final PseudoClass PSEUDO_CLASS_VALID = PseudoClass.getPseudoClass("valid");
@@ -327,7 +328,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			ArrayList<Location>  validsMovesLevel3and4 = new ArrayList<Location>();
 			validsMovesLevel3and4 = game.getKnight().allValidMovesLevel3and4(game.getKnight());
 		//	System.out.println(validsMovesLevel3and4);
-			Queue<Squares>  lastThreeMoves = new LinkedList();
+			ArrayList<Squares>  forgetsSquares = new ArrayList<Squares>();
 			
 			if(arg0.getSource()==node1Q) {
 				
@@ -582,11 +583,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									if(arg0.getSource()==nodeRandomJump2) {
 										Squares sq= notVisited.get(rand.nextInt(notVisited.size()));
 										Location loc1 = new Location(sq.getLocation().getX(),sq.getLocation().getY());
-				
-						              
-										//if(validsPrevious.contains(loc) ) {
 											game.getKnight().setLocation(loc1);
-											System.out.println(game.getKnight().getLocation());
 											GridPane.setColumnIndex(imageK,sq.getLocation().getX());
 											GridPane.setRowIndex(imageK,sq.getLocation().getY() );
 											notVisited.remove(sq);
@@ -649,10 +646,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									if(arg0.getSource()==nodeRandomJump3) {
 										Squares sq= notVisited.get(rand.nextInt(notVisited.size()));
 										Location loc2 = new Location(sq.getLocation().getX(),sq.getLocation().getY());
-						                System.out.println();
+						                
 										//if(validsPrevious.contains(loc) ) {
 											game.getKnight().setLocation(loc2);
-											System.out.println(game.getKnight().getLocation());
+										
 											GridPane.setColumnIndex(imageK,sq.getLocation().getX());
 											GridPane.setRowIndex(imageK,sq.getLocation().getY() );
 											ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
@@ -712,18 +709,18 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 								if(boardGame.getSquares()[i][j].isVisited() == true) {
 									points--;
-									String str = "b"+boardGame.getSquares()[i][j].getLocation().getY()+boardGame.getSquares()[i][j].getLocation().getX();
-									for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-										if(board.getChildren().get(node).getId().toString().equals(str)) {
-											board.getChildren().get(node).setStyle("-fx-background-color: defult;");
-											board.getChildren().get(node).setStyle("-fx-border-color : black;");
-										}
-									}
-									notVisited.add(boardGame.getSquares()[i][j]);
-									// boardGame.getSquares()[i][j].setVisited(false);
+									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);
+//									String str = "b"+boardGame.getSquares()[i][j].getLocation().getY()+boardGame.getSquares()[i][j].getLocation().getX();
+//									for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+//										if(board.getChildren().get(node).getId().toString().equals(str)) {
+//											board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+//											board.getChildren().get(node).setStyle("-fx-border-color : black;");
+//										}
+//									}
+//									notVisited.add(boardGame.getSquares()[i][j]);
 								}else {
 									points++;
-									System.out.println(notVisited);
+									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);
 									boardGame.getSquares()[i][j].setVisited(true);
 									notVisited.remove(boardGame.getSquares()[i][j]);
 									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
@@ -751,6 +748,95 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									game.getKnight().setLocation(loc);
 									GridPane.setColumnIndex(imageK,j);
 									GridPane.setRowIndex(imageK,i );
+									if(arg0.getSource()==Forget1 ) {
+										System.out.println("klara");
+										if(forgetsSquares.size()!=0) {
+											System.out.println("nada");
+											if(forgetsSquares.size()==1) {
+												int x =GridPane.getColumnIndex(Forget1);
+												int y =GridPane.getRowIndex(Forget1);
+												if(forgetsSquares.get(0).getNumVisits()==1) {
+													boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
+													String str = "b"+forgetsSquares.get(0).getLocation().getY()+forgetsSquares.get(0).getLocation().getX();
+													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+														if(board.getChildren().get(node).getId().toString().equals(str)) {
+															board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+															board.getChildren().get(node).setStyle("-fx-border-color : black;");
+														}
+													}
+													notVisited.add(forgetsSquares.get(0));
+													points--;
+													forgetsSquares.remove(0);
+												}
+												else {
+													points++;
+													forgetsSquares.remove(0);
+												}
+											}
+											else if(forgetsSquares.size()==2) {
+												
+												if(forgetsSquares.get(1).getNumVisits()==1) {
+													boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
+													points--;
+													String str = "b"+forgetsSquares.get(1).getLocation().getY()+forgetsSquares.get(1).getLocation().getX();
+													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+														if(board.getChildren().get(node).getId().toString().equals(str)) {
+															board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+															board.getChildren().get(node).setStyle("-fx-border-color : black;");
+														}
+													}
+													notVisited.add(forgetsSquares.get(1));
+													forgetsSquares.remove(1);
+												}
+												else {
+													points++;
+													forgetsSquares.remove(1);
+												}
+												if(forgetsSquares.get(0).getNumVisits()==1) {
+													boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
+													points--;
+													String str = "b"+forgetsSquares.get(0).getLocation().getY()+forgetsSquares.get(0).getLocation().getX();
+													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+														if(board.getChildren().get(node).getId().toString().equals(str)) {
+															board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+															board.getChildren().get(node).setStyle("-fx-border-color : black;");
+														}
+													}
+													notVisited.add(forgetsSquares.get(0));
+													forgetsSquares.remove(0);
+												}
+												else {
+													points++;
+													forgetsSquares.remove(0);
+												}
+												
+												
+											}
+											else if(forgetsSquares.size()>=3) {
+												for(int square = forgetsSquares.size()-1 ;square>=forgetsSquares.size()-4;square-- ) {
+													if(forgetsSquares.get(square).getNumVisits()==1) {
+														boardGame.getSquares()[forgetsSquares.get(square).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
+														String str = "b"+forgetsSquares.get(square).getLocation().getY()+forgetsSquares.get(square).getLocation().getX();
+														for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+															if(board.getChildren().get(node).getId().toString().equals(str)) {
+																board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+																board.getChildren().get(node).setStyle("-fx-border-color : black;");
+															}
+														}
+														notVisited.add(forgetsSquares.get(square));
+														points--;
+														forgetsSquares.remove(square);
+													}
+													else {
+														points++;
+														forgetsSquares.remove(square);
+													}
+												}
+											}
+										}
+									}
+									forgetsSquares.add(boardGame.getSquares()[i][j]);
+									
 									ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
 									QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
 		
@@ -772,18 +858,21 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									}
 									if(boardGame.getSquares()[i][j].isVisited() == true) {
 										points--;
-										String str = "b"+boardGame.getSquares()[i][j].getLocation().getY()+boardGame.getSquares()[i][j].getLocation().getX();
-										for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-											if(board.getChildren().get(node).getId().toString().equals(str)) {
-												board.getChildren().get(node).setStyle("-fx-background-color: defult;");
-												board.getChildren().get(node).setStyle("-fx-border-color : black;");
-											}
-										}
-										notVisited.add(boardGame.getSquares()[i][j]);
+										int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
+										boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
+//										String str = "b"+boardGame.getSquares()[i][j].getLocation().getY()+boardGame.getSquares()[i][j].getLocation().getX();
+//										for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+//											if(board.getChildren().get(node).getId().toString().equals(str)) {
+//												board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+//												board.getChildren().get(node).setStyle("-fx-border-color : black;");
+//											}
+//										}
+//										notVisited.add(boardGame.getSquares()[i][j]);
 										// boardGame.getSquares()[i][j].setVisited(false);
 									}else {
 										points++;
-										System.out.println(notVisited);
+										int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
+										boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
 										boardGame.getSquares()[i][j].setVisited(true);
 										notVisited.remove(boardGame.getSquares()[i][j]);
 										((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
@@ -886,7 +975,19 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					}
 					node3Q.setStyle("-fx-background-color: red; ");
 					node1Q.setStyle("-fx-background-color: green; ");
-					
+
+					Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					Forget1.setStyle("-fx-background-color: lightblue; ");
+					Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(Forget1==Forget2 ) {
+						Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					Forget2.setStyle("-fx-background-color: orange; ");
+					Forget3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(Forget2==Forget3 || Forget1==Forget3) {
+						Forget3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					Forget3.setStyle("-fx-background-color: orange; ");
 					points=0;
 					levelsMoves();
 					setTimer();
@@ -933,6 +1034,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					}
 					node3Q.setStyle("-fx-background-color: red; ");
 					node1Q.setStyle("-fx-background-color: green; ");
+					
+
 					points=0;
 					
 					levelsMoves();

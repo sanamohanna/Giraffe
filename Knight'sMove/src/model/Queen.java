@@ -191,8 +191,6 @@ public class Queen extends Piece {
 		ArrayList<Location> toReturn =new ArrayList<Location>();
 		Location loc2 = new Location();
 		int X = 0 , Y = 0 ;
-	//	loc2 = queen.getLocation();
-		System.out.println(queen.getLocation()+" queen class");
 		X = queen.getLocation().getX();
 		Y = queen.getLocation().getY();
 		for(int i= 1;i<=8 ; i++) {

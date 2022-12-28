@@ -5,12 +5,16 @@ import Enum.Color;
 public class Squares {
 	private Location location;
 	private boolean isVisited;
+	private int numVisits; 
+
+	
 
 	// constructor
 	public Squares() {
 		super();
 		this.isVisited = false;
 		location=new Location();
+		numVisits=0;
 		//this.location = location;
 	}
 
@@ -21,7 +25,13 @@ public class Squares {
 		
 	}
 	// getters setters
+	public int getNumVisits() {
+		return numVisits;
+	}
 
+	public void setNumVisits(int numVisits) {
+		this.numVisits = numVisits;
+	}
 	public Location getLocation() {
 		return location;
 	}

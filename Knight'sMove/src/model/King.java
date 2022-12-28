@@ -169,8 +169,6 @@ return 1;
 		ArrayList<Location> toReturn =new ArrayList<Location>();
 		Location loc2 = new Location();
 		int X = 0 , Y = 0 ;
-	//	loc2 = king.getLocation();
-		System.out.println(king.getLocation()+" king class");
 		X = king.getLocation().getX();
 		Y = king.getLocation().getY();
 			if(kingMove(Directions.LEFT)==1) {
