@@ -97,7 +97,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	private ImageView knight;
 	@FXML
 	private ImageView imageKing;
-	
+	int speed=3;
 	Timer timer;
 	Alert a = new Alert(AlertType.NONE);
 	//timer fields;
@@ -175,6 +175,28 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		
 		
 	}
+		public void kingMove(long totalSec) {
+			Location locKing = new Location();
+			double smallestDistance = 11;
+			if(totalSec%speed == 0) {
+				ArrayList<Location> KingValidMoves = new ArrayList<Location>();
+				KingValidMoves = game.getKing().validMovesForKing(game.getKing());
+
+				for(int k =0;k<KingValidMoves.size();k++) {
+					if(game.getQueen().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k))<smallestDistance) {
+						smallestDistance=game.getKing().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k));
+						locKing = KingValidMoves.get(k);
+					}
+				}
+				game.getKing().setLocation(locKing);
+				GridPane.setColumnIndex(imageKing,locKing.getX());
+				GridPane.setRowIndex(imageKing,locKing.getY());
+			}
+			if(totalSec%5==0) {
+				if(speed!=1)
+				speed--;
+			}
+		}
 		// method that start timer in long one minute to every level in the game 
 		public void setTimer(){
 	
@@ -184,7 +206,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					@Override
 					public void run(){					
 							convertTime();
-							
+							if(finish == 2 || finish == 3) {
+								kingMove(totalSec);
+								
+							}
 							// we added the points text just for checking we will change it when we finish the game
 							pointsT.setText("Points: " +String.valueOf(points));
 							
