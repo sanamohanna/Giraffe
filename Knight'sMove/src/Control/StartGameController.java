@@ -97,7 +97,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	private ImageView knight;
 	@FXML
 	private ImageView imageKing;
-	int speed=3;
+	int speed=5;
 	Timer timer;
 	Alert a = new Alert(AlertType.NONE);
 	//timer fields;
@@ -200,7 +200,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		// method that start timer in long one minute to every level in the game 
 		public void setTimer(){
 	
-			totalSec=10;
+			totalSec=60;
 				timer = new Timer();
 				TimerTask timerTask = new TimerTask() {
 					@Override
@@ -960,6 +960,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					
 				}
 				if(points>=0 && finish==3) {
+					speed=5;
 					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
 						board.getChildren().get(node).setStyle("-fx-border-color : black;");
