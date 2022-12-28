@@ -112,6 +112,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	Node node1Q,node2Q ,node3Q;
 	Node nodeRandomJump1,nodeRandomJump2 ,nodeRandomJump3;
 	Node Forget1 ,Forget2 , Forget3;
+	Node block1, block2, block3, block4, block5, block6, block7, block8;
 	ArrayList<Squares> notVisited = new ArrayList<Squares>();
 
 	public static final PseudoClass PSEUDO_CLASS_VALID = PseudoClass.getPseudoClass("valid");
@@ -748,8 +749,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									game.getKnight().setLocation(loc);
 									GridPane.setColumnIndex(imageK,j);
 									GridPane.setRowIndex(imageK,i );
-									if(arg0.getSource()==Forget1 ) {
+									if(arg0.getSource().equals(Forget1) ) {
 										System.out.println("klara");
+									//	forgetsSquares.add(game.getBoard().getSquares()[loc.getX()][loc.getY()]);
 										if(forgetsSquares.size()!=0) {
 											System.out.println("nada");
 											if(forgetsSquares.size()==1) {
@@ -786,10 +788,12 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 														}
 													}
 													notVisited.add(forgetsSquares.get(1));
+													forgetsSquares.get(1).setNumVisits(0);
 													forgetsSquares.remove(1);
 												}
 												else {
 													points++;
+													forgetsSquares.get(1).setNumVisits(forgetsSquares.get(1).getNumVisits()+1);
 													forgetsSquares.remove(1);
 												}
 												if(forgetsSquares.get(0).getNumVisits()==1) {
@@ -906,6 +910,12 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							Location loc = new Location(j,i);
 							
 							if(validsMovesLevel3and4.contains(loc) ) {
+								if(arg0.getSource().equals(block1)||arg0.getSource().equals(block2)||arg0.getSource().equals(block3)|| arg0.getSource().equals(block4)||arg0.getSource().equals(block5)||arg0.getSource().equals(block6)||arg0.getSource().equals(block6)||arg0.getSource().equals(block7)||arg0.getSource().equals(block8))
+								{
+									a.setAlertType(AlertType.ERROR);//if the user not enter data 
+									a.setContentText("block square");
+									a.show();
+								}
 								game.getKnight().setLocation(loc);
 								GridPane.setColumnIndex(imageK,j);
 								GridPane.setRowIndex(imageK,i );
@@ -1080,6 +1090,44 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					}
 					node3Q.setStyle("-fx-background-color: red; ");
 					node1Q.setStyle("-fx-background-color: green; ");
+					
+					block1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					block1.setStyle("-fx-background-color: blue; ");
+					block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(block1==block2 ) {
+						block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					block2.setStyle("-fx-background-color: blue; ");
+					block3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(block3==block2  || block3 == block1) {
+						block3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					block3.setStyle("-fx-background-color: blue; ");
+					block4 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(block4==block1 || block4==block2 || block4==block3 ) {
+						block4 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					block4.setStyle("-fx-background-color: blue; ");
+					block5 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(block4==block5 || block5==block2 || block5==block3 || block5==block1 ) {
+						block5 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					block5.setStyle("-fx-background-color: blue; ");
+					block6 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(block6==block5 || block6==block2 || block6==block3 || block6==block1 || block6==block4) {
+						block6 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					block6.setStyle("-fx-background-color: blue; ");
+					block7 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(block7==block5|| block7==block6 || block7==block4 || block7==block2 || block7==block3 || block7==block1 ) {
+						block7 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					block7.setStyle("-fx-background-color: blue; ");
+					block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(block8==block7|| block8==block6  || block5==block8|| block8==block4 || block8==block3|| block8==block2 || block8==block1 ) {
+						block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					block8.setStyle("-fx-background-color: blue; ");
 					points=0;
 					
 					levelsMoves();
