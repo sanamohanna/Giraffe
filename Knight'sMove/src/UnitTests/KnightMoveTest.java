@@ -14,10 +14,14 @@ class KnightMoveTest {
 
 	@Test
 	void level1KnightMoveRRDTest() {
-		Knight knight = new Knight(new Location(0, 0));
-		Location actualLocation = knight.level1Move(Directions.RIGHT, Directions.RIGHT, Directions.DOWN, "0", "0");
-		Location expectedLocation = new Location(2, 1);
-		assertEquals(expectedLocation, actualLocation);
+		Throwable exception = assertThrows(
+	            IllegalArgumentException.class, () -> {
+	              Knight knight = new Knight(new Location(0, 0));
+	    knight.level1Move(Directions.LEFT, Directions.RIGHT, Directions.DOWN, "0", "0");
+	            }
+	    );
+		
+			assertEquals("illegal Move", exception.getMessage());
 	}
 
 	@Test
