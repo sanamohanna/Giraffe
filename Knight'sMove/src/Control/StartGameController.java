@@ -1288,42 +1288,42 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					node1Q.setStyle("-fx-background-color: green; ");
 					
 					block1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					block1.setStyle("-fx-background-color: pink; ");
+					block1.setStyle("-fx-background-color: dark red; ");
 					block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					while(block1==block2 || block2 == node1Q  ||block2 == node2Q ||block2 == node3Q ) {
 						block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
-					block2.setStyle("-fx-background-color: blue; ");
+					block2.setStyle("-fx-background-color: darkred; ");
 					block3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					while(block3==block2  || block3 == block1 || block3 == node1Q  ||block3 == node2Q ||block3 == node3Q) {
 						block3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
-					block3.setStyle("-fx-background-color: blue; ");
+					block3.setStyle("-fx-background-color: darkred; ");
 					block4 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					while(block4==block1 || block4==block2 || block4==block3 || block4 == node1Q  ||block4 == node2Q ||block4 == node3Q) {
 						block4 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
-					block4.setStyle("-fx-background-color: blue; ");
+					block4.setStyle("-fx-background-color: darkred; ");
 					block5 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					while(block4==block5 || block5==block2 || block5==block3 || block5==block1 ||block5 == node1Q  ||block5 == node2Q ||block5 == node3Q) {
 						block5 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
-					block5.setStyle("-fx-background-color: blue; ");
+					block5.setStyle("-fx-background-color: darkred; ");
 					block6 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					while(block6==block5 || block6==block2 || block6==block3 || block6==block1 || block6==block4 ||block6 == node1Q  ||block6 == node2Q ||block6 == node3Q) {
 						block6 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
-					block6.setStyle("-fx-background-color: blue; ");
+					block6.setStyle("-fx-background-color: darkred; ");
 					block7 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					while(block7==block5|| block7==block6 || block7==block4 || block7==block2 || block7==block3 || block7==block1 || block7 == node1Q  ||block7 == node2Q ||block7 == node3Q) {
 						block7 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
-					block7.setStyle("-fx-background-color: blue; ");
+					block7.setStyle("-fx-background-color: darkred; ");
 					block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					while(block8==block7|| block8==block6  || block5==block8|| block8==block4 || block8==block3|| block8==block2 || block8==block1 || block8 == node1Q  ||block8 == node2Q ||block8 == node3Q) {
 						block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
-					block8.setStyle("-fx-background-color: blue; ");
+					block8.setStyle("-fx-background-color: darkred; ");
 					points=0;
 					
 					levelsMoves();
