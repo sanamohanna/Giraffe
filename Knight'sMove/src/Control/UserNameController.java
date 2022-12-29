@@ -38,10 +38,11 @@ public class UserNameController {
 			}
 		String UserName =nameTextField.getText();
 		Player player = new Player(UserName);
-		if(!SysData.getPlayers().contains(player)) {
+		if(!SysData.getInstance().getPlayers().contains(player)) {
 			flag = true;
 			throw new Exception();
 		}else {
+
 		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/StartGame.fxml"));
 		Parent root = loader.load();
 		StartGameController sgc1 = loader.getController();
@@ -112,8 +113,9 @@ public class UserNameController {
 			}
 		String newUserName =newUser.getText();
 		Player NewPlayer = new Player(newUserName);
-		if(!SysData.getPlayers().contains(NewPlayer))
-	    SysData.getPlayers().add(NewPlayer);
+		if(!SysData.getInstance().getPlayers().contains(NewPlayer)) {
+	    SysData.getInstance().getPlayers().add(NewPlayer);
+		}
 		else {
 			flag = true;
 			throw new Exception();
