@@ -183,7 +183,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		public void kingMove(long totalSec) {
 			Location locKing = new Location();
 			Location locKing2 = new Location();
-			double smallestDistance = 11 , smallestDistance2;
+			Location locKing3 = new Location();
+			double smallestDistance = 11 , smallestDistance2 = 11,smallestDistance3=11;
 			if(totalSec%speed == 0) {
 				ArrayList<Location> KingValidMoves = new ArrayList<Location>();
 				KingValidMoves = game.getKing().validMovesForKing(game.getKing());
@@ -209,23 +210,48 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //				}
 				for(int k =0;k<KingValidMoves.size();k++) {
 					if(game.getQueen().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k))<smallestDistance) {
+						smallestDistance3= smallestDistance2;
 						smallestDistance2= smallestDistance;
 						smallestDistance=game.getKing().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k));
+						locKing3=locKing2;
 						locKing2=locKing;
 						locKing = KingValidMoves.get(k);
 					}
 				}
-				if(locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
-						locKing.getX().equals(GridPane.getColumnIndex(block2)) && locKing.getY().equals(GridPane.getRowIndex(block2))||
-						locKing.getX().equals(GridPane.getColumnIndex(block3)) && locKing.getY().equals(GridPane.getRowIndex(block3))||
-						locKing.getX().equals(GridPane.getColumnIndex(block4)) && locKing.getY().equals(GridPane.getRowIndex(block4))||
-						locKing.getX().equals(GridPane.getColumnIndex(block5)) && locKing.getY().equals(GridPane.getRowIndex(block5))||
-						locKing.getX().equals(GridPane.getColumnIndex(block6)) && locKing.getY().equals(GridPane.getRowIndex(block6))||								locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
-						locKing.getX().equals(GridPane.getColumnIndex(block7)) && locKing.getY().equals(GridPane.getRowIndex(block7))||
-						locKing.getX().equals(GridPane.getColumnIndex(block8)) && locKing.getY().equals(GridPane.getRowIndex(block8))) {
-					game.getKing().setLocation(locKing2);
-					GridPane.setColumnIndex(imageKing,locKing2.getX());
-					GridPane.setRowIndex(imageKing,locKing2.getY());
+				if(finish == 3) {
+					if(locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
+							locKing.getX().equals(GridPane.getColumnIndex(block2)) && locKing.getY().equals(GridPane.getRowIndex(block2))||
+							locKing.getX().equals(GridPane.getColumnIndex(block3)) && locKing.getY().equals(GridPane.getRowIndex(block3))||
+							locKing.getX().equals(GridPane.getColumnIndex(block4)) && locKing.getY().equals(GridPane.getRowIndex(block4))||
+							locKing.getX().equals(GridPane.getColumnIndex(block5)) && locKing.getY().equals(GridPane.getRowIndex(block5))||
+							locKing.getX().equals(GridPane.getColumnIndex(block6)) && locKing.getY().equals(GridPane.getRowIndex(block6))||								locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
+							locKing.getX().equals(GridPane.getColumnIndex(block7)) && locKing.getY().equals(GridPane.getRowIndex(block7))||
+							locKing.getX().equals(GridPane.getColumnIndex(block8)) && locKing.getY().equals(GridPane.getRowIndex(block8))) {
+						if(locKing2.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
+								locKing2.getX().equals(GridPane.getColumnIndex(block2)) && locKing2.getY().equals(GridPane.getRowIndex(block2))||
+								locKing2.getX().equals(GridPane.getColumnIndex(block3)) && locKing2.getY().equals(GridPane.getRowIndex(block3))||
+								locKing2.getX().equals(GridPane.getColumnIndex(block4)) && locKing2.getY().equals(GridPane.getRowIndex(block4))||
+								locKing2.getX().equals(GridPane.getColumnIndex(block5)) && locKing2.getY().equals(GridPane.getRowIndex(block5))||
+								locKing2.getX().equals(GridPane.getColumnIndex(block6)) && locKing2.getY().equals(GridPane.getRowIndex(block6))||								locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
+								locKing2.getX().equals(GridPane.getColumnIndex(block7)) && locKing2.getY().equals(GridPane.getRowIndex(block7))||
+								locKing2.getX().equals(GridPane.getColumnIndex(block8)) && locKing2.getY().equals(GridPane.getRowIndex(block8))) {
+							
+							game.getKing().setLocation(locKing3);
+							GridPane.setColumnIndex(imageKing,locKing3.getX());
+							GridPane.setRowIndex(imageKing,locKing3.getY());
+						}else {
+							game.getKing().setLocation(locKing2);
+							GridPane.setColumnIndex(imageKing,locKing2.getX());
+							GridPane.setRowIndex(imageKing,locKing2.getY());
+							System.out.println("ya3ne wba3deeen");
+						}
+						
+					}
+					else {
+						game.getKing().setLocation(locKing);
+						GridPane.setColumnIndex(imageKing,locKing.getX());
+						GridPane.setRowIndex(imageKing,locKing.getY());
+					}
 				}
 				else {
 					game.getKing().setLocation(locKing);
@@ -1161,7 +1187,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					timer.cancel();
 				}
 				if(points>=0 && finish==2) {
-					totalSec=4;
+					totalSec=5;
 					imageKing.setVisible(true);
 					imageQ.setVisible(false);
 					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
