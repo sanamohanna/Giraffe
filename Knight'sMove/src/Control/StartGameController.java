@@ -820,6 +820,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 														}
 													}
 													notVisited.add(forgetsSquares.get(0));
+													forgetsSquares.get(0).setNumVisits(0);
 													points--;
 													forgetsSquares.remove(0);
 												}
@@ -832,6 +833,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												
 												if(forgetsSquares.get(1).getNumVisits()==1) {
 													boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
+													forgetsSquares.get(1).setNumVisits(0);
 													System.out.println(boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].isVisited());
 													points--;
 													String str = "b"+forgetsSquares.get(1).getLocation().getY()+forgetsSquares.get(1).getLocation().getX();
@@ -842,7 +844,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 														}
 													}
 													notVisited.add(forgetsSquares.get(1));
-													forgetsSquares.get(1).setNumVisits(0);
+													//forgetsSquares.get(1).setNumVisits(0);
 													forgetsSquares.remove(1);
 												}
 												else {
@@ -852,6 +854,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												}
 												if(forgetsSquares.get(0).getNumVisits()==1) {
 													boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
+													forgetsSquares.get(0).setNumVisits(0);
 													points--;
 													String str = "b"+forgetsSquares.get(0).getLocation().getY()+forgetsSquares.get(0).getLocation().getX();
 													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
@@ -865,6 +868,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												}
 												else {
 													points++;
+												//	forgetsSquares.get(0).setNumVisits(forgetsSquares.get(0).getNumVisits()-1);
 													forgetsSquares.remove(0);
 												}
 												
@@ -874,6 +878,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												for(int square = forgetsSquares.size()-1 ;square>=forgetsSquares.size()-3;square-- ) {
 													if(forgetsSquares.get(square).getNumVisits()==1) {
 														boardGame.getSquares()[forgetsSquares.get(square).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
+														forgetsSquares.get(square).setNumVisits(0);
 														String str = "b"+forgetsSquares.get(square).getLocation().getY()+forgetsSquares.get(square).getLocation().getX();
 														for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 															if(board.getChildren().get(node).getId().toString().equals(str)) {
@@ -887,6 +892,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 													}
 													else {
 														points++;
+//														forgetsSquares.get(square).setNumVisits(forgetsSquares.get(square).getNumVisits()-1);
 														
 													}
 												}
