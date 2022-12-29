@@ -216,12 +216,13 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					}
 				}
 				if(locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
-						locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)||
-						locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1))||
-						locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1))||
-						locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1))||
-						locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1))||								locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
-						locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)))) {
+						locKing.getX().equals(GridPane.getColumnIndex(block2)) && locKing.getY().equals(GridPane.getRowIndex(block2))||
+						locKing.getX().equals(GridPane.getColumnIndex(block3)) && locKing.getY().equals(GridPane.getRowIndex(block3))||
+						locKing.getX().equals(GridPane.getColumnIndex(block4)) && locKing.getY().equals(GridPane.getRowIndex(block4))||
+						locKing.getX().equals(GridPane.getColumnIndex(block5)) && locKing.getY().equals(GridPane.getRowIndex(block5))||
+						locKing.getX().equals(GridPane.getColumnIndex(block6)) && locKing.getY().equals(GridPane.getRowIndex(block6))||								locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
+						locKing.getX().equals(GridPane.getColumnIndex(block7)) && locKing.getY().equals(GridPane.getRowIndex(block7))||
+						locKing.getX().equals(GridPane.getColumnIndex(block8)) && locKing.getY().equals(GridPane.getRowIndex(block8))) {
 					game.getKing().setLocation(locKing2);
 					GridPane.setColumnIndex(imageKing,locKing2.getX());
 					GridPane.setRowIndex(imageKing,locKing2.getY());
@@ -1087,7 +1088,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			public void nextLevel() throws IOException {
 				
 				if(points>=0 && finish==1) {
-					totalSec=100;
+					totalSec=40;
 					
 					imageKing.setVisible(false);
 					upleft.setVisible(false);
