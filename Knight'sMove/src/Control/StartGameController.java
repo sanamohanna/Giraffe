@@ -832,6 +832,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												
 												if(forgetsSquares.get(1).getNumVisits()==1) {
 													boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
+													System.out.println(boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].isVisited());
 													points--;
 													String str = "b"+forgetsSquares.get(1).getLocation().getY()+forgetsSquares.get(1).getLocation().getX();
 													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
