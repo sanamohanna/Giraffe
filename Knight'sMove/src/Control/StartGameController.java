@@ -98,6 +98,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	@FXML
 	private ImageView imageKing;
 	int speed=5;
+	int counter = 0;
 	Timer timer;
 	Alert a = new Alert(AlertType.NONE);
 	//timer fields;
@@ -106,6 +107,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	static String buttonId;
 	//Board boardGame = new Board();
 	int finish=0;
+	ArrayList<Squares>  forgetsSquares = new ArrayList<Squares>();
+	
 	Random rand;
 	Game game = new Game();
 	Board boardGame = new Board();
@@ -119,7 +122,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-	
+		totalSec=4;
 		//Location loc =new Location(0,0);
 		imageKing.setVisible(false);
 		fillNotVisitedArray(notVisited);
@@ -183,13 +186,33 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			if(totalSec%speed == 0) {
 				ArrayList<Location> KingValidMoves = new ArrayList<Location>();
 				KingValidMoves = game.getKing().validMovesForKing(game.getKing());
-
+				ArrayList<Location> KingValidMoves2 = new ArrayList<Location>();
+//				if(finish==3) {
+//					System.out.println(GridPane.getColumnIndex(block1));
+//					System.out.println(GridPane.getRowIndex(block1));
+//					for(int square=0 ; square<KingValidMoves.size();square++) {
+//						//System.out.println(KingValidMoves.get(square).getX()==(GridPane.getColumnIndex(block1)));
+//						if(KingValidMoves.get(square).getX()!=(GridPane.getColumnIndex(block1)) && KingValidMoves.get(square).getY()!=(GridPane.getRowIndex(block1)) || 
+//								KingValidMoves.get(square).getX()!=(GridPane.getColumnIndex(block2)) && KingValidMoves.get(square).getY()!=(GridPane.getRowIndex(block2)) &&
+//								KingValidMoves.get(square).getX()!=(GridPane.getColumnIndex(block3)) && KingValidMoves.get(square).getY()!=(GridPane.getRowIndex(block3)) &&
+//								KingValidMoves.get(square).getX()!=(GridPane.getColumnIndex(block4)) && KingValidMoves.get(square).getY()!=(GridPane.getRowIndex(block4)) &&
+//								KingValidMoves.get(square).getX()!=(GridPane.getColumnIndex(block5)) && KingValidMoves.get(square).getY()!=(GridPane.getRowIndex(block5)) &&
+//								KingValidMoves.get(square).getX()!=(GridPane.getColumnIndex(block6)) && KingValidMoves.get(square).getY()!=(GridPane.getRowIndex(block6)) &&
+//								KingValidMoves.get(square).getX()!=(GridPane.getColumnIndex(block7)) && KingValidMoves.get(square).getY()!=(GridPane.getRowIndex(block7)) &&
+//								KingValidMoves.get(square).getX()!=(GridPane.getColumnIndex(block8)) && KingValidMoves.get(square).getY()!=(GridPane.getRowIndex(block8))) {
+//							KingValidMoves2.add(KingValidMoves.get(square));
+//						}
+//					}
+//					
+//					
+//				}
 				for(int k =0;k<KingValidMoves.size();k++) {
 					if(game.getQueen().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k))<smallestDistance) {
 						smallestDistance=game.getKing().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k));
 						locKing = KingValidMoves.get(k);
 					}
 				}
+				
 				game.getKing().setLocation(locKing);
 				GridPane.setColumnIndex(imageKing,locKing.getX());
 				GridPane.setRowIndex(imageKing,locKing.getY());
@@ -201,15 +224,14 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		}
 		// method that start timer in long one minute to every level in the game 
 		public void setTimer(){
-	
-			totalSec=10;
 				timer = new Timer();
 				TimerTask timerTask = new TimerTask() {
 					@Override
 					public void run(){					
 							convertTime();
 							if(finish == 2 || finish == 3) {
-								kingMove(totalSec);
+								
+									kingMove(totalSec);
 								
 							}
 							// we added the points text just for checking we will change it when we finish the game
@@ -329,7 +351,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			ArrayList<Location>  validsMovesLevel3and4 = new ArrayList<Location>();
 			validsMovesLevel3and4 = game.getKnight().allValidMovesLevel3and4(game.getKnight());
 		//	System.out.println(validsMovesLevel3and4);
-			ArrayList<Squares>  forgetsSquares = new ArrayList<Squares>();
+			
 			
 			if(arg0.getSource()==node1Q) {
 				
@@ -711,14 +733,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								if(boardGame.getSquares()[i][j].isVisited() == true) {
 									points--;
 									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);
-//									String str = "b"+boardGame.getSquares()[i][j].getLocation().getY()+boardGame.getSquares()[i][j].getLocation().getX();
-//									for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-//										if(board.getChildren().get(node).getId().toString().equals(str)) {
-//											board.getChildren().get(node).setStyle("-fx-background-color: defult;");
-//											board.getChildren().get(node).setStyle("-fx-border-color : black;");
-//										}
-//									}
-//									notVisited.add(boardGame.getSquares()[i][j]);
 								}else {
 									points++;
 									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);
@@ -744,11 +758,33 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						{
 							if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 								Location loc = new Location(j,i);
-								System.out.println(forgetsSquares.size());
+								
 								if(validsMovesLevel2.contains(loc) ) {
 									game.getKnight().setLocation(loc);
 									GridPane.setColumnIndex(imageK,j);
 									GridPane.setRowIndex(imageK,i );
+									if(!forgetsSquares.contains(boardGame.getSquares()[0][0])) {
+										forgetsSquares.add(boardGame.getSquares()[0][0]);
+										
+									}
+									if(!forgetsSquares.contains(boardGame.getSquares()[i][j])) {
+										forgetsSquares.add(boardGame.getSquares()[i][j]);
+										
+									}
+								
+									if(boardGame.getSquares()[i][j].isVisited() == true) {
+										points--;
+										int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
+										boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
+									}else {
+										points++;
+										int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
+										boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
+										boardGame.getSquares()[i][j].setVisited(true);
+										notVisited.remove(boardGame.getSquares()[i][j]);
+										((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+									}
+									System.out.println(forgetsSquares);
 									ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
 									QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
 		
@@ -763,17 +799,16 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setColumnIndex(imageQ,locQueen.getX());
 									GridPane.setRowIndex(imageQ,locQueen.getY());
 									if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
-										timer.cancel();
-										a.setAlertType(AlertType.ERROR);//if the user not enter data 
-										a.setContentText("you lose");
-										a.show();
+//										timer.cancel();
+//										a.setAlertType(AlertType.ERROR);//if the user not enter data 
+//										a.setContentText("you lose");
+//										a.show();
 									}
-									forgetsSquares.add(boardGame.getSquares()[i][j]);
+									
 									if(arg0.getSource().equals(Forget1) || arg0.getSource().equals(Forget2) || arg0.getSource().equals(Forget3) ) {
-										System.out.println("klara");
-									//	forgetsSquares.add(game.getBoard().getSquares()[loc.getX()][loc.getY()]);
+								
 										if(forgetsSquares.size()!=0) {
-											System.out.println("nada");
+											
 											if(forgetsSquares.size()==1) {
 												if(forgetsSquares.get(0).getNumVisits()==1) {
 													boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
@@ -835,7 +870,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												
 											}
 											else if(forgetsSquares.size()>=3) {
-												for(int square = forgetsSquares.size()-1 ;square>=forgetsSquares.size()-4;square-- ) {
+												for(int square = forgetsSquares.size()-1 ;square>=forgetsSquares.size()-3;square-- ) {
 													if(forgetsSquares.get(square).getNumVisits()==1) {
 														boardGame.getSquares()[forgetsSquares.get(square).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
 														String str = "b"+forgetsSquares.get(square).getLocation().getY()+forgetsSquares.get(square).getLocation().getX();
@@ -847,31 +882,24 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 														}
 														notVisited.add(forgetsSquares.get(square));
 														points--;
-														forgetsSquares.remove(square);
+														
 													}
 													else {
 														points++;
-														forgetsSquares.remove(square);
+														
 													}
 												}
+												forgetsSquares.remove(forgetsSquares.size()-1);
+												forgetsSquares.remove(forgetsSquares.size()-1);
+												forgetsSquares.remove(forgetsSquares.size()-1);
+												
 											}
 										}
 									}
 									
 									
 									
-									if(boardGame.getSquares()[i][j].isVisited() == true) {
-										points--;
-										int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
-										boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
-									}else {
-										points++;
-										int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
-										boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
-										boardGame.getSquares()[i][j].setVisited(true);
-										notVisited.remove(boardGame.getSquares()[i][j]);
-										((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
-									}
+									
 								}
 								else {
 									a.setAlertType(AlertType.ERROR);//if the user not enter data 
@@ -978,11 +1006,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
 									}
 								}
-								else {
-									a.setAlertType(AlertType.ERROR);//if the user not enter data 
-									a.setContentText("block square");
-									a.show();
-								}
+								
 							}
 							else {
 								a.setAlertType(AlertType.ERROR);//if the user not enter data 
@@ -1013,6 +1037,23 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				}
 				
 			}
+			public void pause(ActionEvent event) throws IOException {
+				//Parent root = FXMLLoader.load(getClass().getResource("/View/pause.fxml"));
+				timer.cancel();
+				Stage stage = new Stage();
+				
+				
+				FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/pause.fxml"));
+				Parent root = loader.load();
+				Scene scene = new Scene(root);
+				//Parent root = loader.load();
+				pauseController pc = loader.getController();
+				pc.setX(totalSec);
+				stage.setResizable(false);
+				scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+				stage.setScene(scene);			
+				stage.show();
+			}
 			public void fillNotVisitedArray(ArrayList<Squares> array) {					
 				for(int i = 0 ; i < 8 ; i++) {
 					for(int j = 0 ; j < 8 ; j ++) {
@@ -1024,6 +1065,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			public void nextLevel() throws IOException {
 				
 				if(points>=0 && finish==1) {
+					totalSec=100;
+					
 					imageKing.setVisible(false);
 					upleft.setVisible(false);
 					upright.setVisible(false);
@@ -1095,6 +1138,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					timer.cancel();
 				}
 				if(points>=0 && finish==2) {
+					totalSec=4;
 					imageKing.setVisible(true);
 					imageQ.setVisible(false);
 					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
@@ -1151,6 +1195,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					
 				}
 				if(points>=0 && finish==3) {
+					totalSec=60;
 					speed=5;
 					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
@@ -1170,7 +1215,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					node1Q.setStyle("-fx-background-color: green; ");
 					
 					block1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					block1.setStyle("-fx-background-color: blue; ");
+					block1.setStyle("-fx-background-color: pink; ");
 					block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					while(block1==block2 || block2 == node1Q  ||block2 == node2Q ||block2 == node3Q ) {
 						block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
