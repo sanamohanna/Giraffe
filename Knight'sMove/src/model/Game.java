@@ -17,7 +17,7 @@ public class Game {
 	private GameStatus gameStatus;
 	private ArrayList<Question> availableQuestions;
 	private ArrayList<Question> unavailableQuestions;
-	private Integer Points;
+	private int Points;
 	final int WIN_POINT = 1;
 	final int LOSE_POINT = 1;
 	private LocalDate date ;
@@ -58,10 +58,10 @@ public class Game {
 		return knight;
 	}
 
-	public Integer getPoints() {
+	public int getPoints() {
 		return Points;
 	}
-	public void setPoints(Integer points) {
+	public void setPoints(int points) {
 		Points = points;
 	}
 	public LocalDate getDate() {
@@ -124,7 +124,7 @@ public class Game {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + LOSE_POINT;
-		result = prime * result + ((Points == null) ? 0 : Points.hashCode());
+		result = prime * result + Points;
 		result = prime * result + WIN_POINT;
 		result = prime * result + ((availableQuestions == null) ? 0 : availableQuestions.hashCode());
 		result = prime * result + ((board == null) ? 0 : board.hashCode());
@@ -148,10 +148,7 @@ public class Game {
 		Game other = (Game) obj;
 		if (LOSE_POINT != other.LOSE_POINT)
 			return false;
-		if (Points == null) {
-			if (other.Points != null)
-				return false;
-		} else if (!Points.equals(other.Points))
+		if (Points != other.Points)
 			return false;
 		if (WIN_POINT != other.WIN_POINT)
 			return false;

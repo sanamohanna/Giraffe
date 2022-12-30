@@ -116,6 +116,7 @@ public class MediocreQuestionWindowController  implements Initializable{
 
 			}
 			else {
+				
 			    	StartGameController.points-=2;	
 			    
 			}

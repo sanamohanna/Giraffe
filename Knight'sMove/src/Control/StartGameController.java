@@ -43,6 +43,7 @@ import model.Game;
 import model.Knight;
 import model.Location;
 import model.Question;
+import model.RandomJump;
 import model.Squares;
 import model.SysData;
 
@@ -102,8 +103,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	Timer timer;
 	Alert a = new Alert(AlertType.NONE);
 	//timer fields;
-	static long min,hr, sec,totalSec,points=0;
-	
+	static long min,hr, sec,totalSec;
+	static int points=0;
 	static String buttonId;
 	//Board boardGame = new Board();
 	int finish=0;
@@ -740,7 +741,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					else if(finish == 1)
 						{
 						
-if(arg0.getSource()==node1Q) {
+							if(arg0.getSource()==node1Q) {
 							
 							Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
 							
@@ -1011,6 +1012,27 @@ if(arg0.getSource()==node1Q) {
 								game.getKnight().setLocation(loc);
 								GridPane.setColumnIndex(imageK,j);
 								GridPane.setRowIndex(imageK,i );
+								
+								if(!forgetsSquares.contains(boardGame.getSquares()[0][0]) && flagtest==0) {
+									forgetsSquares.add(boardGame.getSquares()[0][0]);
+									int visitsTime =boardGame.getSquares()[0][0].getNumVisits();
+									boardGame.getSquares()[0][0].setNumVisits(visitsTime+1);
+									flagtest++;
+									
+								}
+								
+								if(boardGame.getSquares()[i][j].isVisited() == true) {
+									points--;
+									int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
+									boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
+								}else {
+									points++;
+									int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
+									boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
+									boardGame.getSquares()[i][j].setVisited(true);
+									notVisited.remove(boardGame.getSquares()[i][j]);
+									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+								}
 								if(arg0.getSource()==nodeRandomJump1 ||arg0.getSource()==nodeRandomJump2) {
 									Squares sq= notVisited.get(rand.nextInt(notVisited.size()));
 									Location loc2 = new Location(sq.getLocation().getX(),sq.getLocation().getY());
@@ -1054,18 +1076,113 @@ if(arg0.getSource()==node1Q) {
 										}
 									}
 								}
-								if(boardGame.getSquares()[i][j].isVisited() == true) {
-									points--;
-									int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
-									boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
-								}else {
-									points++;
-									int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
-									boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
-									boardGame.getSquares()[i][j].setVisited(true);
-									notVisited.remove(boardGame.getSquares()[i][j]);
-									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+								
+								if(arg0.getSource().equals(Forget1) || arg0.getSource().equals(Forget2)) {
+									
+									if(forgetsSquares.size()!=0) {
+										System.out.println(forgetsSquares.size());
+										if(forgetsSquares.size()==1) {
+											if(forgetsSquares.get(0).getNumVisits()==1) {
+												boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
+												String str = "b"+forgetsSquares.get(0).getLocation().getY()+forgetsSquares.get(0).getLocation().getX();
+												for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+													if(board.getChildren().get(node).getId().toString().equals(str)) {
+														board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+														board.getChildren().get(node).setStyle("-fx-border-color : black;");
+													}
+												}
+												notVisited.add(forgetsSquares.get(0));
+												forgetsSquares.get(0).setNumVisits(0);
+												points--;
+												forgetsSquares.remove(0);
+											}
+											else {
+												points++;
+												int numVisits=forgetsSquares.get(0).getNumVisits();
+												forgetsSquares.get(0).setNumVisits(numVisits-1);
+												forgetsSquares.remove(0);
+											}
+										}
+										else if(forgetsSquares.size()==2) {
+											
+											if(forgetsSquares.get(1).getNumVisits()==1) {
+												boardGame.getSquares()[forgetsSquares.get(1).getLocation().getY()][forgetsSquares.get(1).getLocation().getX()].setVisited(false);
+												forgetsSquares.get(1).setNumVisits(0);
+												points--;
+												String str = "b"+forgetsSquares.get(1).getLocation().getY()+forgetsSquares.get(1).getLocation().getX();
+												for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+													if(board.getChildren().get(node).getId().toString().equals(str)) {
+														board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+														board.getChildren().get(node).setStyle("-fx-border-color : black;");
+													}
+												}
+												notVisited.add(forgetsSquares.get(1));
+												forgetsSquares.remove(1);
+											}
+											else {
+												points++;
+												int numVisits=forgetsSquares.get(1).getNumVisits();
+												forgetsSquares.get(1).setNumVisits(numVisits-1);
+												forgetsSquares.remove(1);
+											}
+											if(forgetsSquares.get(0).getNumVisits()==1) {
+												boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
+												forgetsSquares.get(0).setNumVisits(0);
+												String str = "b"+forgetsSquares.get(0).getLocation().getY()+forgetsSquares.get(0).getLocation().getX();
+												for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+													if(board.getChildren().get(node).getId().toString().equals(str)) {
+														board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+														board.getChildren().get(node).setStyle("-fx-border-color : black;");
+													}
+												}
+												points--;
+												notVisited.add(forgetsSquares.get(0));
+												forgetsSquares.remove(0);
+											}
+											else {
+												points++;
+												int numVisits=forgetsSquares.get(0).getNumVisits();
+												forgetsSquares.get(0).setNumVisits(numVisits-1);
+												forgetsSquares.remove(0);
+											}
+											
+											
+										}
+										else
+											if(forgetsSquares.size()>=3) {
+											for(int square = forgetsSquares.size()-1 ;square>forgetsSquares.size()-4;square-- ) {
+												if(forgetsSquares.get(square).getNumVisits()==1) {
+													boardGame.getSquares()[forgetsSquares.get(square).getLocation().getY()][forgetsSquares.get(square).getLocation().getX()].setVisited(false);
+													forgetsSquares.get(square).setNumVisits(0);
+													String str = "b"+forgetsSquares.get(square).getLocation().getY()+forgetsSquares.get(square).getLocation().getX();
+													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+														if(board.getChildren().get(node).getId().toString().equals(str)) {
+															board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+															board.getChildren().get(node).setStyle("-fx-border-color : black;");
+														}
+													}
+													notVisited.add(forgetsSquares.get(square));
+													points--;
+													
+												}
+												else {
+													points++;
+													int numVisits=forgetsSquares.get(square).getNumVisits();
+													forgetsSquares.get(square).setNumVisits(numVisits-1);
+												}
+											}
+											forgetsSquares.remove(forgetsSquares.size()-1);
+											forgetsSquares.remove(forgetsSquares.size()-1);
+											forgetsSquares.remove(forgetsSquares.size()-1);
+											
+										}
+									}
 								}
+								if(!forgetsSquares.contains(boardGame.getSquares()[i][j])) {
+									forgetsSquares.add(boardGame.getSquares()[i][j]);
+									
+								}
+								
 							}
 							else {
 								a.setAlertType(AlertType.ERROR);//if the user not enter data 
@@ -1242,6 +1359,9 @@ if(arg0.getSource()==node1Q) {
 					node1Q.setStyle("-fx-background-color: green; ");
 
 					Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(Forget1==node1Q ||Forget1==node2Q || Forget1==node3Q) {
+						Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
 					Forget1.setStyle("-fx-background-color: lightblue; ");
 					Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					while(Forget1==Forget2 || Forget2==node1Q ||Forget2==node2Q || Forget2==node3Q) {
@@ -1253,6 +1373,8 @@ if(arg0.getSource()==node1Q) {
 						Forget3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					Forget3.setStyle("-fx-background-color: orange; ");
+					int totalPoints = game.getPoints() + points;
+					game.setPoints(totalPoints);
 					points=0;
 					levelsMoves();
 					setTimer();
@@ -1316,6 +1438,18 @@ if(arg0.getSource()==node1Q) {
 					}
 					nodeRandomJump2.setStyle("-fx-background-color: pink; ");
 
+					Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(Forget1 == nodeRandomJump1 || Forget1 == nodeRandomJump2 || Forget1==node1Q ||Forget1==node2Q || Forget1==node3Q) {
+						Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}		
+					Forget1.setStyle("-fx-background-color: lightblue; ");
+					Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					while(Forget1==Forget2 || Forget2==node1Q ||Forget2==node2Q || Forget2==node3Q || Forget2 == nodeRandomJump1 || Forget2 == nodeRandomJump2) {
+						Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
+					Forget2.setStyle("-fx-background-color: orange; ");
+					int totalPoints = game.getPoints() + points;
+					game.setPoints(totalPoints);
 					points=0;
 					
 					levelsMoves();
@@ -1367,7 +1501,7 @@ if(arg0.getSource()==node1Q) {
 					node1Q.setStyle("-fx-background-color: green; ");
 					
 					block1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					block1.setStyle("-fx-background-color: dark red; ");
+					block1.setStyle("-fx-background-color: darkred; ");
 					block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					while(block1==block2 || block2 == node1Q  ||block2 == node2Q ||block2 == node3Q ) {
 						block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
@@ -1403,6 +1537,8 @@ if(arg0.getSource()==node1Q) {
 						block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					block8.setStyle("-fx-background-color: darkred; ");
+					int totalPoints = game.getPoints() + points;
+					game.setPoints(totalPoints);
 					points=0;
 					
 					levelsMoves();
