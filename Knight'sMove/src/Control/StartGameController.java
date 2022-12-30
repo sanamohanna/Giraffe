@@ -830,11 +830,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									game.getKnight().setLocation(loc);
 									GridPane.setColumnIndex(imageK,j);
 									GridPane.setRowIndex(imageK,i );
-									if(!forgetsSquares.contains(boardGame.getSquares()[0][0]) && flagtest==0) {
-										forgetsSquares.add(boardGame.getSquares()[0][0]);
-										flagtest++;
-										
-									}
+//									if(!forgetsSquares.contains(boardGame.getSquares()[0][0]) && flagtest==0) {
+//										forgetsSquares.add(boardGame.getSquares()[0][0]);
+//										flagtest++;
+//										
+//									}
 								
 									if(boardGame.getSquares()[i][j].isVisited() == true) {
 										points--;
@@ -872,7 +872,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									if(arg0.getSource().equals(Forget1) || arg0.getSource().equals(Forget2) || arg0.getSource().equals(Forget3) ) {
 								
 										if(forgetsSquares.size()!=0) {
-//											
+											System.out.println(forgetsSquares.size());
 											if(forgetsSquares.size()==1) {
 												if(forgetsSquares.get(0).getNumVisits()==1) {
 													boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
