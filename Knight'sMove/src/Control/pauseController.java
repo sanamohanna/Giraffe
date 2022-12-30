@@ -16,10 +16,6 @@ public class pauseController {
 	}
 	public void startTheGameAgain() throws IOException{
 		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/StartGame.fxml"));
-		//FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/pause.fxml"));
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-		//Parent root = loader.load();
 		StartGameController str = loader.getController();
 		StartGameController.totalSec=this.x;
 		str.setTimer();
