@@ -115,6 +115,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	Node node1Q,node2Q ,node3Q;
 	Node nodeRandomJump1,nodeRandomJump2 ,nodeRandomJump3;
 	int flagtest=0;
+	int k = 0 , n = 0 ;
+	int flag1 = 0  , flag2 = 0 , flag3 = 0;
 	Node Forget1 ,Forget2 , Forget3;
 	Node block1, block2, block3, block4, block5, block6, block7, block8;
 	ArrayList<Squares> notVisited = new ArrayList<Squares>();
@@ -130,7 +132,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		totalSec=4;
+		totalSec=0;
 		//Location loc =new Location(0,0);
 		imageKing.setVisible(false);
 		fillNotVisitedArray(notVisited);
@@ -138,6 +140,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		game.getKnight().setLocation(locFirst);
 		b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
 		boardGame.getSquares()[0][0].setVisited(true);
+		points++;
 		notVisited.remove(boardGame.getSquares()[0][0]);
 		
 		GridPane.setColumnIndex(imageK, 0);
@@ -216,75 +219,85 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //					
 //					
 //				}
-				for(int k =0;k<KingValidMoves.size();k++) {
-					if(game.getQueen().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k))<smallestDistance) {
-						smallestDistance4=smallestDistance3;
-						smallestDistance3= smallestDistance2;
-						smallestDistance2= smallestDistance;
-						smallestDistance=game.getKing().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k));
-						locKing4=locKing3;
-						locKing3=locKing2;
-						locKing2=locKing;
-						locKing = KingValidMoves.get(k);
-					}
-				}
-				if(finish == 3) {
-					if(locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
-							locKing.getX().equals(GridPane.getColumnIndex(block2)) && locKing.getY().equals(GridPane.getRowIndex(block2))||
-							locKing.getX().equals(GridPane.getColumnIndex(block3)) && locKing.getY().equals(GridPane.getRowIndex(block3))||
-							locKing.getX().equals(GridPane.getColumnIndex(block4)) && locKing.getY().equals(GridPane.getRowIndex(block4))||
-							locKing.getX().equals(GridPane.getColumnIndex(block5)) && locKing.getY().equals(GridPane.getRowIndex(block5))||
-							locKing.getX().equals(GridPane.getColumnIndex(block6)) && locKing.getY().equals(GridPane.getRowIndex(block6))||								
-							locKing.getX().equals(GridPane.getColumnIndex(block7)) && locKing.getY().equals(GridPane.getRowIndex(block7))||
-							locKing.getX().equals(GridPane.getColumnIndex(block8)) && locKing.getY().equals(GridPane.getRowIndex(block8))) {
-						if(locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block1)) && locKing2.getY().equals(GridPane.getRowIndex(block1)) ||
-								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block2)) && locKing2.getY().equals(GridPane.getRowIndex(block2))||
-								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block3)) && locKing2.getY().equals(GridPane.getRowIndex(block3))||
-								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block4)) && locKing2.getY().equals(GridPane.getRowIndex(block4))||
-								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block5)) && locKing2.getY().equals(GridPane.getRowIndex(block5))||
-								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block6)) && locKing2.getY().equals(GridPane.getRowIndex(block6))||								locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
-								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block7)) && locKing2.getY().equals(GridPane.getRowIndex(block7))||
-								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block8)) && locKing2.getY().equals(GridPane.getRowIndex(block8))) {
-							
-							if(locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block1)) && locKing3.getY().equals(GridPane.getRowIndex(block1)) ||
-									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block2)) && locKing3.getY().equals(GridPane.getRowIndex(block2))||
-									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block3)) && locKing3.getY().equals(GridPane.getRowIndex(block3))||
-									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block4)) && locKing3.getY().equals(GridPane.getRowIndex(block4))||
-									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block5)) && locKing3.getY().equals(GridPane.getRowIndex(block5))||
-									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block6)) && locKing3.getY().equals(GridPane.getRowIndex(block6))||								locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
-									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block7)) && locKing3.getY().equals(GridPane.getRowIndex(block7))||
-									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block8)) && locKing3.getY().equals(GridPane.getRowIndex(block8))) {
-								game.getKing().setLocation(locKing4);
-								GridPane.setColumnIndex(imageKing,locKing4.getX());
-								GridPane.setRowIndex(imageKing,locKing4.getY());
-							}
-							else {
-								game.getKing().setLocation(locKing3);
-								GridPane.setColumnIndex(imageKing,locKing3.getX());
-								GridPane.setRowIndex(imageKing,locKing3.getY());
-							} 
-						}else {
-							System.out.print(locKing2);
-							game.getKing().setLocation(locKing2);
-							GridPane.setColumnIndex(imageKing,locKing2.getX());
-							GridPane.setRowIndex(imageKing,locKing2.getY());
-							System.out.println("ya3ne wba3deeen");
+//				if(finish == 3) {
+//					for(int k =0;k<KingValidMoves.size();k++) {
+//						if(game.getQueen().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k))<smallestDistance) {
+//							smallestDistance4=smallestDistance3;
+//							smallestDistance3= smallestDistance2;
+//							smallestDistance2= smallestDistance;
+//							smallestDistance=game.getKing().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k));
+//							locKing4=locKing3;
+//							locKing3=locKing2;
+//							locKing2=locKing;
+//							locKing = KingValidMoves.get(k);
+//						}
+//					}
+//				
+//					if(locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
+//							locKing.getX().equals(GridPane.getColumnIndex(block2)) && locKing.getY().equals(GridPane.getRowIndex(block2))||
+//							locKing.getX().equals(GridPane.getColumnIndex(block3)) && locKing.getY().equals(GridPane.getRowIndex(block3))||
+//							locKing.getX().equals(GridPane.getColumnIndex(block4)) && locKing.getY().equals(GridPane.getRowIndex(block4))||
+//							locKing.getX().equals(GridPane.getColumnIndex(block5)) && locKing.getY().equals(GridPane.getRowIndex(block5))||
+//							locKing.getX().equals(GridPane.getColumnIndex(block6)) && locKing.getY().equals(GridPane.getRowIndex(block6))||								
+//							locKing.getX().equals(GridPane.getColumnIndex(block7)) && locKing.getY().equals(GridPane.getRowIndex(block7))||
+//							locKing.getX().equals(GridPane.getColumnIndex(block8)) && locKing.getY().equals(GridPane.getRowIndex(block8))) {
+//						if(locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block1)) && locKing2.getY().equals(GridPane.getRowIndex(block1)) ||
+//								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block2)) && locKing2.getY().equals(GridPane.getRowIndex(block2))||
+//								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block3)) && locKing2.getY().equals(GridPane.getRowIndex(block3))||
+//								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block4)) && locKing2.getY().equals(GridPane.getRowIndex(block4))||
+//								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block5)) && locKing2.getY().equals(GridPane.getRowIndex(block5))||
+//								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block6)) && locKing2.getY().equals(GridPane.getRowIndex(block6))||								locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
+//								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block7)) && locKing2.getY().equals(GridPane.getRowIndex(block7))||
+//								locKing2.getX()!=null && locKing2.getY()!=null && locKing2.getX().equals(GridPane.getColumnIndex(block8)) && locKing2.getY().equals(GridPane.getRowIndex(block8))) {
+//							
+//							if(locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block1)) && locKing3.getY().equals(GridPane.getRowIndex(block1)) ||
+//									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block2)) && locKing3.getY().equals(GridPane.getRowIndex(block2))||
+//									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block3)) && locKing3.getY().equals(GridPane.getRowIndex(block3))||
+//									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block4)) && locKing3.getY().equals(GridPane.getRowIndex(block4))||
+//									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block5)) && locKing3.getY().equals(GridPane.getRowIndex(block5))||
+//									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block6)) && locKing3.getY().equals(GridPane.getRowIndex(block6))||								locKing.getX().equals(GridPane.getColumnIndex(block1)) && locKing.getY().equals(GridPane.getRowIndex(block1)) ||
+//									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block7)) && locKing3.getY().equals(GridPane.getRowIndex(block7))||
+//									locKing3.getX()!=null && locKing3.getY()!=null && locKing3.getX().equals(GridPane.getColumnIndex(block8)) && locKing3.getY().equals(GridPane.getRowIndex(block8))) {
+//								game.getKing().setLocation(locKing4);
+//								GridPane.setColumnIndex(imageKing,locKing4.getX());
+//								GridPane.setRowIndex(imageKing,locKing4.getY());
+//							}
+//							else {
+//								game.getKing().setLocation(locKing3);
+//								GridPane.setColumnIndex(imageKing,locKing3.getX());
+//								GridPane.setRowIndex(imageKing,locKing3.getY());
+//							} 
+//						}else {
+//							System.out.print(locKing2);
+//							game.getKing().setLocation(locKing2);
+//							GridPane.setColumnIndex(imageKing,locKing2.getX());
+//							GridPane.setRowIndex(imageKing,locKing2.getY());
+//							System.out.println("ya3ne wba3deeen");
+//						}
+//						
+//					}
+//					else {
+//						game.getKing().setLocation(locKing);
+//						GridPane.setColumnIndex(imageKing,locKing.getX());
+//						GridPane.setRowIndex(imageKing,locKing.getY());
+//					}
+//				}
+//				else {
+				Location locKnight = new Location() ;
+				locKnight =game.getKnight().getLocation();
+				
+					for(int k =0;k<KingValidMoves.size();k++) {
+						if(game.getKing().shortestDistance(locKnight, KingValidMoves.get(k))<smallestDistance) {
+							smallestDistance=game.getKing().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k));
+							locKing = KingValidMoves.get(k);
 						}
-						
 					}
-					else {
-						game.getKing().setLocation(locKing);
-						GridPane.setColumnIndex(imageKing,locKing.getX());
-						GridPane.setRowIndex(imageKing,locKing.getY());
-					}
-				}
-				else {
 					game.getKing().setLocation(locKing);
 					GridPane.setColumnIndex(imageKing,locKing.getX());
 					GridPane.setRowIndex(imageKing,locKing.getY());
 				}
-			}
-			if(totalSec%5==0) {
+			//}
+			if(totalSec%10==0) {
 				if(speed!=1)
 				speed--;
 			}
@@ -404,177 +417,69 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 
 		}
 		
-		int k = 0 , n = 0 ;
-		int flag1 = 0  , flag2 = 0 , flag3 = 0;
-		int flag4 = 0  , flag5 = 0 , flag6 = 0;
-		int flag7 = 0  , flag8 = 0 , flag9 = 0;
-		int flag10 = 0  , flag11 = 0 , flag12 = 0;
+		
+	
 		@Override
 		public void handle(ActionEvent arg0) {
 			ArrayList<Location> validsMovesLevel1 =new ArrayList<Location>();
 			validsMovesLevel1 = game.getKnight().allValidMovesLevel1(game.getKnight());
 			ArrayList<Location> validsMovesLevel2 =new ArrayList<Location>();
 			validsMovesLevel2 = game.getKnight().allValidMovesLevel2(game.getKnight());
-			ArrayList<Location>  validsMovesLevel3and4 = new ArrayList<Location>();
-			validsMovesLevel3and4 = game.getKnight().allValidMovesLevel3and4(game.getKnight());
-		//	System.out.println(validsMovesLevel3and4);
-			
-			
-			if(arg0.getSource()==node1Q) {
-				
-				Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
-				
-				if(validsMovesLevel1.contains(locNode1) && flag1 == 0) {
-					try {
-						flag1++;
-						System.out.println("easy level1");
-						popEasy();
-						node1Q.setStyle("-fx-background-color: defult; ");
-						node1Q.setStyle("-fx-border-color : black");
-					}
-					catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-				
-				else if(validsMovesLevel2.contains(locNode1) && flag4 == 0) {
-					try {
-						flag4++;
-						System.out.println("easy level2");
-						popEasy();
-						node1Q.setStyle("-fx-background-color: defult ; ");
-						node1Q.setStyle("-fx-border-color : black");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				else if(validsMovesLevel3and4.contains(locNode1) && flag5 == 0) {
-					try {
-						System.out.println("easy level3");
-						flag5++;
-						popEasy();
-						node1Q.setStyle("-fx-background-color: defult ; ");
-						node1Q.setStyle("-fx-border-color : black");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				else if(validsMovesLevel3and4.contains(locNode1) && flag10 == 0) {
-					try {
-						System.out.println("easy level4");
-						flag10++;
-						popEasy();
-						node1Q.setStyle("-fx-background-color: defult ; ");
-						node1Q.setStyle("-fx-border-color : black");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			}
-					
-			}
-			if(arg0.getSource()==node2Q) {
-				Location locNode2 = new Location(GridPane.getColumnIndex(node2Q),GridPane.getRowIndex(node2Q));
-				if(validsMovesLevel1.contains(locNode2) && flag2 == 0) {
-						try {
-							flag2++;
-							popMediocre();
-							node2Q.setStyle("-fx-background-color: defult ; ");
-							node2Q.setStyle("-fx-border-color : black");
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				}
-				else if(validsMovesLevel2.contains(locNode2) && flag6 == 0) {
-					try {
-						flag6++;
-						popMediocre();
-						node2Q.setStyle("-fx-background-color: defult ; ");
-						node2Q.setStyle("-fx-border-color : black");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				else if(validsMovesLevel3and4.contains(locNode2) && flag7 == 0) {
-					try {
-						flag7++;
-						popMediocre();
-						node2Q.setStyle("-fx-background-color: defult ; ");
-						node2Q.setStyle("-fx-border-color : black");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			}
-				else if(validsMovesLevel3and4.contains(locNode2) && flag11 == 0) {
-					try {
-						flag11++;
-						popMediocre();
-						node2Q.setStyle("-fx-background-color: defult ; ");
-						node2Q.setStyle("-fx-border-color : black");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			}
-			}
-			if(arg0.getSource()==node3Q) {
-				Location locNode3 = new Location(GridPane.getColumnIndex(node3Q),GridPane.getRowIndex(node3Q));
-				if(validsMovesLevel1.contains(locNode3) && flag3 == 0) {
-				try {
-					       flag3++;
-							popHard();
-							node3Q.setStyle("-fx-background-color: defult; ");
-							node3Q.setStyle("-fx-border-color : black");
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				}
-				else if(validsMovesLevel2.contains(locNode3) && flag8 == 0) {
-					try {
-						flag8++;
-						popHard();
-						node3Q.setStyle("-fx-background-color: defult ; ");
-						node3Q.setStyle("-fx-border-color : black");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				else if(validsMovesLevel3and4.contains(locNode3) && flag9 == 0) {
-					try {
-						flag9++;
-						popHard();
-						node3Q.setStyle("-fx-background-color: defult ; ");
-						node3Q.setStyle("-fx-border-color : black");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				else if(validsMovesLevel3and4.contains(locNode3) && flag12 == 0) {
-					try {
-						flag12++;
-						System.out.println("te3bat nafseyte");
-						popHard();
-						node3Q.setStyle("-fx-background-color: defult ; ");
-						node3Q.setStyle("-fx-border-color : black");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
+			ArrayList<Location>  validsMovesLevel3 = new ArrayList<Location>();
+			validsMovesLevel3 = game.getKnight().allValidMovesLevel2(game.getKnight());
+			ArrayList<Location>  validsMovesLevel4 = new ArrayList<Location>();
+			validsMovesLevel4 = game.getKnight().allValidMovesLevel2(game.getKnight());
 			Location locQueen = new Location();
 			double smallestDistance = 11;
 			for(int i = 0 ; i < 8 ; i++) {
 				for(int j = 0 ; j < 8 ; j ++) {
 					if(finish==0) {
+						if(arg0.getSource()==node1Q) {
+							
+							Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
+							
+							if(validsMovesLevel1.contains(locNode1) && flag1 == 0) {
+								try {
+									flag1++;
+									System.out.println("easy level1");
+									popEasy();
+									node1Q.setStyle("-fx-background-color: defult; ");
+									node1Q.setStyle("-fx-border-color : black");
+								}
+								catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+						}
+						else if(arg0.getSource()==node2Q) {
+							Location locNode2 = new Location(GridPane.getColumnIndex(node2Q),GridPane.getRowIndex(node2Q));
+							if(validsMovesLevel1.contains(locNode2) && flag2 == 0) {
+									try {
+										flag2++;
+										popMediocre();
+										node2Q.setStyle("-fx-background-color: defult ; ");
+										node2Q.setStyle("-fx-border-color : black");
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+							}
+						}
+						else if(arg0.getSource()==node3Q) {
+							Location locNode3 = new Location(GridPane.getColumnIndex(node3Q),GridPane.getRowIndex(node3Q));
+							if(validsMovesLevel1.contains(locNode3) && flag3 == 0) {
+								try {
+								       flag3++;
+
+										popHard();
+										node3Q.setStyle("-fx-background-color: defult; ");
+										node3Q.setStyle("-fx-border-color : black");
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+							}
+						}
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 							Location loc = new Location(j,i);
 							
@@ -598,10 +503,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setColumnIndex(imageQ,locQueen.getX());
 									GridPane.setRowIndex(imageQ,locQueen.getY());
 									if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
-										timer.cancel();
-										a.setAlertType(AlertType.ERROR);//if the user not enter data 
-										a.setContentText("you lose");
-										a.show();
+//										timer.cancel();
+//										a.setAlertType(AlertType.ERROR);//if the user not enter data 
+//										a.setContentText("you lose");
+//										a.show();
 									}
 								}else {
 									if(arg0.getSource()==nodeRandomJump1) {
@@ -627,14 +532,15 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											GridPane.setColumnIndex(imageQ,locQueen.getX());
 											GridPane.setRowIndex(imageQ,locQueen.getY());
 											if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
-												timer.cancel();
-												a.setAlertType(AlertType.ERROR);//if the user not enter data 
-												a.setContentText("you lose");
-												a.show();
+//												timer.cancel();
+//												a.setAlertType(AlertType.ERROR);//if the user not enter data 
+//												a.setContentText("you lose");
+//												a.show();
 											}
 											if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
 												try {
 													popEasy();
+													flag1++;
 												} catch (IOException e) {
 													// TODO Auto-generated catch block
 													e.printStackTrace();
@@ -644,6 +550,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												try {
 													
 													popMediocre();
+													flag2++;
 												} catch (IOException e) {
 													// TODO Auto-generated catch block
 													e.printStackTrace();
@@ -653,6 +560,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												try {
 													
 													popHard();
+													flag3++;
 												} catch (IOException e) {
 													// TODO Auto-generated catch block
 													e.printStackTrace();
@@ -660,6 +568,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 											boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
 											notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
+											((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
 											String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
 											for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 												if(board.getChildren().get(node).getId().toString().equals(str)) {
@@ -690,14 +599,15 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											GridPane.setColumnIndex(imageQ,locQueen.getX());
 											GridPane.setRowIndex(imageQ,locQueen.getY());
 											if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
-												timer.cancel();
-												a.setAlertType(AlertType.ERROR);//if the user not enter data 
-												a.setContentText("you lose");
-												a.show();
+//												timer.cancel();
+//												a.setAlertType(AlertType.ERROR);//if the user not enter data 
+//												a.setContentText("you lose");
+//												a.show();
 											}
 											if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
 												try {
 													popEasy();
+													flag1++;
 												} catch (IOException e) {
 													// TODO Auto-generated catch block
 													e.printStackTrace();
@@ -707,6 +617,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												try {
 													
 													popMediocre();
+													flag2++;
 												} catch (IOException e) {
 													// TODO Auto-generated catch block
 													e.printStackTrace();
@@ -716,6 +627,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												try {
 													
 													popHard();
+													flag3++;
 												} catch (IOException e) {
 													// TODO Auto-generated catch block
 													e.printStackTrace();
@@ -723,6 +635,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 											boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
 											notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
+											((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
 											String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
 											for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 												if(board.getChildren().get(node).getId().toString().equals(str)) {
@@ -755,14 +668,15 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											GridPane.setColumnIndex(imageQ,locQueen.getX());
 											GridPane.setRowIndex(imageQ,locQueen.getY());
 											if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
-												timer.cancel();
-												a.setAlertType(AlertType.ERROR);//if the user not enter data 
-												a.setContentText("you lose");
-												a.show();
+//												timer.cancel();
+//												a.setAlertType(AlertType.ERROR);//if the user not enter data 
+//												a.setContentText("you lose");
+////												a.show();
 											}
 											if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
 												try {
 													popEasy();
+													flag1++;
 												} catch (IOException e) {
 													// TODO Auto-generated catch block
 													e.printStackTrace();
@@ -772,6 +686,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												try {
 													
 													popMediocre();
+													flag2++;
 												} catch (IOException e) {
 													// TODO Auto-generated catch block
 													e.printStackTrace();
@@ -781,6 +696,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												try {
 													
 													popHard();
+													flag3++;
 												} catch (IOException e) {
 													// TODO Auto-generated catch block
 													e.printStackTrace();
@@ -788,7 +704,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 											boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
 											notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
-											((Button)arg0.getSource()).setStyle("-fx-background-color: grey;");
+											((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
 											String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
 											for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 												if(board.getChildren().get(node).getId().toString().equals(str)) {
@@ -823,6 +739,55 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				}
 					else if(finish == 1)
 						{
+						
+if(arg0.getSource()==node1Q) {
+							
+							Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
+							
+							if(validsMovesLevel1.contains(locNode1) && flag1 == 0) {
+								try {
+									flag1++;
+									System.out.println("easy level1");
+									popEasy();
+									node1Q.setStyle("-fx-background-color: defult; ");
+									node1Q.setStyle("-fx-border-color : black");
+								}
+								catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+						}
+						else if(arg0.getSource()==node2Q) {
+							Location locNode2 = new Location(GridPane.getColumnIndex(node2Q),GridPane.getRowIndex(node2Q));
+							if(validsMovesLevel1.contains(locNode2) && flag2 == 0) {
+									try {
+										flag2++;
+										popMediocre();
+										node2Q.setStyle("-fx-background-color: defult ; ");
+										node2Q.setStyle("-fx-border-color : black");
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+							}
+						}
+						else if(arg0.getSource()==node3Q) {
+							Location locNode3 = new Location(GridPane.getColumnIndex(node3Q),GridPane.getRowIndex(node3Q));
+							if(validsMovesLevel1.contains(locNode3) && flag3 == 0) {
+								try {
+								       flag3++;
+
+										popHard();
+										node3Q.setStyle("-fx-background-color: defult; ");
+										node3Q.setStyle("-fx-border-color : black");
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+							}
+						}
+						
+						
 							if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 								Location loc = new Location(j,i);
 								
@@ -830,11 +795,13 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									game.getKnight().setLocation(loc);
 									GridPane.setColumnIndex(imageK,j);
 									GridPane.setRowIndex(imageK,i );
-//									if(!forgetsSquares.contains(boardGame.getSquares()[0][0]) && flagtest==0) {
-//										forgetsSquares.add(boardGame.getSquares()[0][0]);
-//										flagtest++;
-//										
-//									}
+									if(!forgetsSquares.contains(boardGame.getSquares()[0][0]) && flagtest==0) {
+										forgetsSquares.add(boardGame.getSquares()[0][0]);
+										int visitsTime =boardGame.getSquares()[0][0].getNumVisits();
+										boardGame.getSquares()[0][0].setNumVisits(visitsTime+1);
+										flagtest++;
+										
+									}
 								
 									if(boardGame.getSquares()[i][j].isVisited() == true) {
 										points--;
@@ -890,6 +857,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												}
 												else {
 													points++;
+													int numVisits=forgetsSquares.get(0).getNumVisits();
+													forgetsSquares.get(0).setNumVisits(numVisits-1);
 													forgetsSquares.remove(0);
 												}
 											}
@@ -898,7 +867,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												if(forgetsSquares.get(1).getNumVisits()==1) {
 													boardGame.getSquares()[forgetsSquares.get(1).getLocation().getY()][forgetsSquares.get(1).getLocation().getX()].setVisited(false);
 													forgetsSquares.get(1).setNumVisits(0);
-													System.out.println(boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].isVisited());
 													points--;
 													String str = "b"+forgetsSquares.get(1).getLocation().getY()+forgetsSquares.get(1).getLocation().getX();
 													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
@@ -908,12 +876,12 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 														}
 													}
 													notVisited.add(forgetsSquares.get(1));
-													//forgetsSquares.get(1).setNumVisits(0);
 													forgetsSquares.remove(1);
 												}
 												else {
 													points++;
-													forgetsSquares.get(1).setNumVisits(forgetsSquares.get(1).getNumVisits()+1);
+													int numVisits=forgetsSquares.get(1).getNumVisits();
+													forgetsSquares.get(1).setNumVisits(numVisits-1);
 													forgetsSquares.remove(1);
 												}
 												if(forgetsSquares.get(0).getNumVisits()==1) {
@@ -932,7 +900,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												}
 												else {
 													points++;
-												//	forgetsSquares.get(0).setNumVisits(forgetsSquares.get(0).getNumVisits()-1);
+													int numVisits=forgetsSquares.get(0).getNumVisits();
+													forgetsSquares.get(0).setNumVisits(numVisits-1);
 													forgetsSquares.remove(0);
 												}
 												
@@ -957,8 +926,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 													}
 													else {
 														points++;
-//														forgetsSquares.get(square).setNumVisits(forgetsSquares.get(square).getNumVisits()-1);
-														
+														int numVisits=forgetsSquares.get(square).getNumVisits();
+														forgetsSquares.get(square).setNumVisits(numVisits-1);
 													}
 												}
 												forgetsSquares.remove(forgetsSquares.size()-1);
@@ -989,10 +958,56 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						}
 					else if(finish == 2)
 					{
+						if(arg0.getSource()==node1Q) {
+							
+							Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
+							
+							if(validsMovesLevel1.contains(locNode1) && flag1 == 0) {
+								try {
+									flag1++;
+									System.out.println("easy level1");
+									popEasy();
+									node1Q.setStyle("-fx-background-color: defult; ");
+									node1Q.setStyle("-fx-border-color : black");
+								}
+								catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+						}
+						else if(arg0.getSource()==node2Q) {
+							Location locNode2 = new Location(GridPane.getColumnIndex(node2Q),GridPane.getRowIndex(node2Q));
+							if(validsMovesLevel1.contains(locNode2) && flag2 == 0) {
+									try {
+										flag2++;
+										popMediocre();
+										node2Q.setStyle("-fx-background-color: defult ; ");
+										node2Q.setStyle("-fx-border-color : black");
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+							}
+						}
+						else if(arg0.getSource()==node3Q) {
+							Location locNode3 = new Location(GridPane.getColumnIndex(node3Q),GridPane.getRowIndex(node3Q));
+							if(validsMovesLevel1.contains(locNode3) && flag3 == 0) {
+								try {
+								       flag3++;
+
+										popHard();
+										node3Q.setStyle("-fx-background-color: defult; ");
+										node3Q.setStyle("-fx-border-color : black");
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+							}
+						}
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 							Location loc = new Location(j,i);
 							
-							if(validsMovesLevel3and4.contains(loc) ) {
+							if(validsMovesLevel3.contains(loc) ) {
 								game.getKnight().setLocation(loc);
 								GridPane.setColumnIndex(imageK,j);
 								GridPane.setRowIndex(imageK,i );
@@ -1005,6 +1020,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
 										try {
 											popEasy();
+											flag1++;
 										} catch (IOException e) {
 											// TODO Auto-generated catch block
 											e.printStackTrace();
@@ -1013,6 +1029,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) ) {
 										try {												
 											popMediocre();
+											flag2++;
 										} catch (IOException e) {
 											// TODO Auto-generated catch block
 											e.printStackTrace();
@@ -1021,6 +1038,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
 										try {									
 											popHard();
+											flag3++;
 										} catch (IOException e) {
 											// TODO Auto-generated catch block
 											e.printStackTrace();
@@ -1058,11 +1076,56 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						}
 					}
 					else if(finish == 3)
-					{
+					{if(arg0.getSource()==node1Q) {
+						
+						Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
+						
+						if(validsMovesLevel1.contains(locNode1) && flag1 == 0) {
+							try {
+								flag1++;
+								System.out.println("easy level1");
+								popEasy();
+								node1Q.setStyle("-fx-background-color: defult; ");
+								node1Q.setStyle("-fx-border-color : black");
+							}
+							catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+					else if(arg0.getSource()==node2Q) {
+						Location locNode2 = new Location(GridPane.getColumnIndex(node2Q),GridPane.getRowIndex(node2Q));
+						if(validsMovesLevel1.contains(locNode2) && flag2 == 0) {
+								try {
+									flag2++;
+									popMediocre();
+									node2Q.setStyle("-fx-background-color: defult ; ");
+									node2Q.setStyle("-fx-border-color : black");
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					}
+					else if(arg0.getSource()==node3Q) {
+						Location locNode3 = new Location(GridPane.getColumnIndex(node3Q),GridPane.getRowIndex(node3Q));
+						if(validsMovesLevel1.contains(locNode3) && flag3 == 0) {
+							try {
+							       flag3++;
+
+									popHard();
+									node3Q.setStyle("-fx-background-color: defult; ");
+									node3Q.setStyle("-fx-border-color : black");
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					}
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 							Location loc = new Location(j,i);
 							
-							if(validsMovesLevel3and4.contains(loc) ) {
+							if(validsMovesLevel4.contains(loc) ) {
 								if(arg0.getSource()!=block1 &&arg0.getSource()!=block2 &&arg0.getSource()!=block3 &&
 									arg0.getSource()!=block4 &&arg0.getSource()!=block5 &&arg0.getSource()!=block6 &&
 									arg0.getSource()!=block7 &&arg0.getSource()!=block8) {
@@ -1142,7 +1205,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			public void nextLevel() throws IOException {
 				
 				if(points>=0 && finish==1) {
-					totalSec=60;
+					flag1=0;
+					flag2=0;
+					flag3=0;
+					totalSec=0;
 					
 					imageKing.setVisible(false);
 					upleft.setVisible(false);
@@ -1178,12 +1244,12 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					Forget1.setStyle("-fx-background-color: lightblue; ");
 					Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(Forget1==Forget2 ) {
+					while(Forget1==Forget2 || Forget2==node1Q ||Forget2==node2Q || Forget2==node3Q) {
 						Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					Forget2.setStyle("-fx-background-color: orange; ");
 					Forget3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(Forget2==Forget3 || Forget1==Forget3) {
+					while(Forget2==Forget3 || Forget1==Forget3 || Forget3==node1Q ||Forget3==node2Q || Forget3==node3Q) {
 						Forget3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					Forget3.setStyle("-fx-background-color: orange; ");
@@ -1202,6 +1268,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					game.getKnight().setLocation(locFirst);
 					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
 					boardGame.getSquares()[0][0].setVisited(true);
+					points++;
 					notVisited.remove(boardGame.getSquares()[0][0]);
 					GridPane.setColumnIndex(imageK, 0);
 					GridPane.setRowIndex(imageK, 0);
@@ -1215,7 +1282,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					timer.cancel();
 				}
 				if(points>=0 && finish==2) {
-					totalSec=5;
+					flag1=0;
+					flag2=0;
+					flag3=0;
+					totalSec=50;
+					speed=3;
 					imageKing.setVisible(true);
 					imageQ.setVisible(false);
 					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
@@ -1262,6 +1333,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					game.getKnight().setLocation(locFirst);
 					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
 					boardGame.getSquares()[0][0].setVisited(true);
+					points++;
 					notVisited.remove(boardGame.getSquares()[0][0]);
 					GridPane.setColumnIndex(imageK, 0);
 					GridPane.setRowIndex(imageK, 0);
@@ -1272,6 +1344,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					
 				}
 				if(points>=0 && finish==3) {
+					flag1=0;
+					flag2=0;
+					flag3=0;
 					totalSec=60;
 					speed=5;
 					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
@@ -1345,6 +1420,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					game.getKnight().setLocation(locFirst);
 					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
 					boardGame.getSquares()[0][0].setVisited(true);
+					points++;
 					notVisited.remove(boardGame.getSquares()[0][0]);
 					GridPane.setColumnIndex(imageK, 0);
 					GridPane.setRowIndex(imageK, 0);
