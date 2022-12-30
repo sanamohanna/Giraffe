@@ -24,11 +24,12 @@ public class gameStatusController {
 		points.setText("WITH "+points1+" POINTS");
 	}
 	public void letsPlayAgain(ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("/View/mainScreen.fxml"));
+		//StartGameController.points=0;
+		Parent root = FXMLLoader.load(getClass().getResource("/View/StartGame.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setResizable(false);
-		scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
 		stage.setScene(scene);			
 		stage.show();
 	}

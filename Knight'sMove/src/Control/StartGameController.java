@@ -3,16 +3,11 @@ package Control;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-
-import Enum.DifficultyLevel;
-import javafx.application.Application;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,24 +24,14 @@ import javafx.scene.control.ButtonBase;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Board;
 import model.Game;
-import model.Knight;
 import model.Location;
-import model.Player;
-import model.Question;
-import model.RandomJump;
 import model.Squares;
-import model.SysData;
 
 public class StartGameController implements Initializable,EventHandler<ActionEvent>{
 	@FXML
@@ -101,7 +86,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	private ImageView imageKing;
 	int speed=5;
 	int counter = 0;
-	Timer timer;
+	
 	Alert a = new Alert(AlertType.NONE);
 	//timer fields;
 	static long min,hr, sec,totalSec;
@@ -126,14 +111,19 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	Location locKing2 = new Location();
 	Location locKing3 = new Location();
 	Location locKing4 = new Location();
-
+	Timer timer1 =new Timer();
+	Timer timer2 =new Timer();
+	Timer timer3 =new Timer();
+	Timer timer4 =new Timer();
 	
 	double smallestDistance = 11 , smallestDistance2 = 11,smallestDistance3=11,smallestDistance4=11;
 	
 	public static final PseudoClass PSEUDO_CLASS_VALID = PseudoClass.getPseudoClass("valid");
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		totalSec=0;
+		
+		totalSec=20;
+		points=0;
 		//Location loc =new Location(0,0);
 		imageKing.setVisible(false);
 		fillNotVisitedArray(notVisited);
@@ -179,7 +169,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		}
 		node1Q.setStyle("-fx-background-color: green; ");
-		setTimer();
+		setTimer(timer1);
 		displayLevel("LEVEL 1");
 		pointsT.setText(String.valueOf(points));
 		try {
@@ -230,8 +220,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 		}
 		// method that start timer in long one minute to every level in the game 
-		public void setTimer(){
-				timer = new Timer();
+		public void setTimer(Timer timer){
 				TimerTask timerTask = new TimerTask() {
 					@Override
 					public void run(){					
@@ -428,7 +417,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setColumnIndex(imageQ,locQueen.getX());
 									GridPane.setRowIndex(imageQ,locQueen.getY());
 									if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
-										timer.cancel();
+										timer1.cancel();
 										
 										try {
 											gamestatus(arg0);
@@ -456,7 +445,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										GridPane.setColumnIndex(imageQ,locQueen.getX());
 										GridPane.setRowIndex(imageQ,locQueen.getY());
 										if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
-											timer.cancel();	
+											timer1.cancel();	
 											try {
 												gamestatus(arg0);
 											} catch (Exception e) {
@@ -620,7 +609,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setColumnIndex(imageQ,locQueen.getX());
 									GridPane.setRowIndex(imageQ,locQueen.getY());
 									if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
-										timer.cancel();
+										timer2.cancel();
 										try {
 											gamestatus(arg0);
 										} catch (Exception e) {
@@ -1087,7 +1076,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 			public void pause(ActionEvent event) throws IOException {
 				//Parent root = FXMLLoader.load(getClass().getResource("/View/pause.fxml"));
-				timer.cancel();
+				//timer.cancel();
 				Stage stage = new Stage();
 				
 				
@@ -1116,7 +1105,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					flag1=0;
 					flag2=0;
 					flag3=0;
-					totalSec=0;
+					totalSec=20;
 					
 					imageKing.setVisible(false);
 					upleft.setVisible(false);
@@ -1168,7 +1157,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					game.setPoints(totalPoints);
 					points=0;
 					levelsMoves();
-					setTimer();
+					setTimer(timer2);
 					displayLevel("LEVEL 2");
 					fillNotVisitedArray(notVisited);
 					for(int i = 0 ; i < 8 ; i++) {
@@ -1192,7 +1181,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					
 				}
 				else if(points<15&& finish==1){
-					timer.cancel();
+					timer2.cancel();
+					
 				}
 				if(points>=0 && finish==2) {
 					flag1=0;
@@ -1244,7 +1234,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					points=0;
 					
 					levelsMoves();
-					setTimer();
+					setTimer(timer3);
 					displayLevel("LEVEL 3");
 					
 					fillNotVisitedArray(notVisited);
@@ -1252,7 +1242,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						for(int j = 0 ; j < 8 ; j ++) {
 							boardGame.getSquares()[i][j].setVisited(false);;
 						}
-						
 					}
 					Location locFirst = new Location(0,0);
 					game.getKnight().setLocation(locFirst);
@@ -1331,17 +1320,15 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					int totalPoints = game.getPoints() + points;
 					game.setPoints(totalPoints);
 					points=0;
-					
 					levelsMoves();
-					setTimer();
+					setTimer(timer4);
 					displayLevel("LEVEL 4");
 					
 					fillNotVisitedArray(notVisited);
 					for(int i = 0 ; i < 8 ; i++) {
 						for(int j = 0 ; j < 8 ; j ++) {
 							boardGame.getSquares()[i][j].setVisited(false);;
-						}
-						
+						}		
 					}
 					Location locFirst = new Location(0,0);
 					game.getKnight().setLocation(locFirst);
@@ -1356,9 +1343,5 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					GridPane.setColumnIndex(imageKing,7);
 					GridPane.setRowIndex(imageKing,0);
 				}
-
 			}
-			
-			
 		}
-		
