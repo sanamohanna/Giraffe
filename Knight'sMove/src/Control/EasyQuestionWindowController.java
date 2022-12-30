@@ -119,9 +119,10 @@ public class EasyQuestionWindowController  implements Initializable{
 		if(selected == false) {
 			throw new Exception();
 		}
-	    stage.close();
+	    
 
 	    }
+		stage.close();
 		}catch (Exception e) {
 	   
 			warningBT.setVisible(true);

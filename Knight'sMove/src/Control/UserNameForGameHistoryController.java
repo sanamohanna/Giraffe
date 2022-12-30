@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class UserNameForGameHistoryController {
 	@FXML
 	private TextField userName;
-	
+	static String Name;
 	 Alert a = new Alert(AlertType.NONE);
 	
 	
@@ -33,13 +33,13 @@ public class UserNameForGameHistoryController {
 		// button to enter to the history list for  player
 		public void seeHistory(ActionEvent event) throws IOException {
 			try {
-				if(userName.getText().isEmpty() || userName.getText() == " ")
+				Name =userName.getText();
+				if(userName.getText().isEmpty() || userName.getText() == " ") {
 					throw new Exception();
+				}
+				
 				Parent root = FXMLLoader.load(getClass().getResource("/View/gamesHistory.fxml"));
-//				FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/gamesHistory.fxml"));
-//				Parent root = loader.load();
-//				GameHistoryController ghc = loader.getController();
-//				ghc.returnUserName(userName.getText());
+
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				Scene scene = new Scene(root);
 				scene.getStylesheets().add(getClass().getResource("/View/gameHistory.css").toExternalForm());

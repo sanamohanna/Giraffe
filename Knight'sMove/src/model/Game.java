@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import Enum.GameStatus;
 
 public class Game {
+	@Override
+	public String toString() {
+		return "Game [player=" + player + ", Points=" + Points + ", date=" + date + "]";
+	}
 	private static Game instance;
 
 	private Board board;

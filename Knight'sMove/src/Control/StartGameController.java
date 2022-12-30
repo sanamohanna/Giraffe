@@ -32,6 +32,7 @@ import model.Board;
 import model.Game;
 import model.Location;
 import model.Squares;
+import model.SysData;
 
 public class StartGameController implements Initializable,EventHandler<ActionEvent>{
 	@FXML
@@ -115,14 +116,15 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	Timer timer2 =new Timer();
 	Timer timer3 =new Timer();
 	Timer timer4 =new Timer();
-	
+	Location locKnight = new Location(0,0) ;
+	ArrayList<Location> KingValidMoves = new ArrayList<Location>();
 	double smallestDistance = 11 , smallestDistance2 = 11,smallestDistance3=11,smallestDistance4=11;
 	
 	public static final PseudoClass PSEUDO_CLASS_VALID = PseudoClass.getPseudoClass("valid");
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		totalSec=0;
+		totalSec=60;
 		points=0;
 		//Location loc =new Location(0,0);
 		imageKing.setVisible(false);
@@ -132,6 +134,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
 		boardGame.getSquares()[0][0].setVisited(true);
 		points++;
+		game.setPoints(points);
+		
 		notVisited.remove(boardGame.getSquares()[0][0]);
 		
 		GridPane.setColumnIndex(imageK, 0);
@@ -188,8 +192,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		gameStatusController status = loader.getController();
 		//send the username to start game controller to display
 		status.displayLevel("LEVEL1");
-		int total = game.getPoints()+points;
-		status.displayPoints(total);
+		//int total = game.getPoints()+points;
+		status.displayPoints(game.getPoints());
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		//Stage stage = new Stage();
 		Scene scene = new Scene(root);
@@ -200,12 +204,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		}
 		public void kingMove(long totalSec){
 			if(totalSec%speed == 0) {
-				ArrayList<Location> KingValidMoves = new ArrayList<Location>();
+				KingValidMoves= null;
 				KingValidMoves = game.getKing().validMovesForKing(game.getKing());
-				Location locKnight = new Location() ;
-				locKnight =game.getKnight().getLocation();
 				for(int k =0;k<KingValidMoves.size();k++) {
-					if(game.getKing().shortestDistance(locKnight, KingValidMoves.get(k))<smallestDistance) {
+					if(game.getKing().shortestDistance(locKnight, KingValidMoves.get(k)) < smallestDistance ) {
 						smallestDistance=game.getKing().shortestDistance(game.getKnight().getLocation(), KingValidMoves.get(k));
 						locKing = KingValidMoves.get(k);
 					}
@@ -214,7 +216,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				GridPane.setColumnIndex(imageKing,locKing.getX());
 				GridPane.setRowIndex(imageKing,locKing.getY());
 			}
-			if(totalSec%3==0) {
+			if(totalSec%10==0) {
 				if(speed!=1)
 				speed--;
 			}
@@ -226,8 +228,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					public void run(){					
 							convertTime();
 							if(finish == 2 || finish == 3) {
-								
+								if(totalSec%speed == 0) {
 									kingMove(totalSec);
+								}
 								
 							}
 							// we added the points text just for checking we will change it when we finish the game
@@ -349,51 +352,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			for(int i = 0 ; i < 8 ; i++) {
 				for(int j = 0 ; j < 8 ; j ++) {
 					if(finish==0) {
-						if(arg0.getSource()==node1Q) {
-							
-							Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
-							
-							if(validsMovesLevel1.contains(locNode1) && flag1 == 0) {
-								try {
-									flag1++;
-									System.out.println("easy level1");
-									popEasy();
-									node1Q.setStyle("-fx-background-color: defult; ");
-									node1Q.setStyle("-fx-border-color : black");
-								}
-								catch (IOException e) {
-									e.printStackTrace();
-								}
-							}
-						}
-						else if(arg0.getSource()==node2Q) {
-							Location locNode2 = new Location(GridPane.getColumnIndex(node2Q),GridPane.getRowIndex(node2Q));
-							if(validsMovesLevel1.contains(locNode2) && flag2 == 0) {
-									try {
-										flag2++;
-										popMediocre();
-										node2Q.setStyle("-fx-background-color: defult ; ");
-										node2Q.setStyle("-fx-border-color : black");
-									} catch (IOException e) {
-										e.printStackTrace();
-									}
-							}
-						}
-						else if(arg0.getSource()==node3Q) {
-							Location locNode3 = new Location(GridPane.getColumnIndex(node3Q),GridPane.getRowIndex(node3Q));
-							if(validsMovesLevel1.contains(locNode3) && flag3 == 0) {
-								try {
-								       flag3++;
 
-										popHard();
-										node3Q.setStyle("-fx-background-color: defult; ");
-										node3Q.setStyle("-fx-border-color : black");
-									} catch (IOException e) {
-										
-										e.printStackTrace();
-									}
-							}
-						}
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 							Location loc = new Location(j,i);
 							
@@ -402,6 +361,34 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								game.getKnight().setLocation(loc);
 								GridPane.setColumnIndex(imageK,j);
 								GridPane.setRowIndex(imageK,i );
+								if(arg0.getSource()==node1Q && flag1==0) {
+									try {
+										popEasy();
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+									game.setPoints(points);
+									flag1++;
+								}
+								 if(arg0.getSource()==node2Q && flag2==0) {
+									flag2++;
+									try {
+										popMediocre();
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+									game.setPoints(points);
+								 }
+								 if(arg0.getSource()==node3Q && flag3==0) {
+										flag3++;
+										try {
+											popHard();
+										} catch (IOException e) {
+											e.printStackTrace();
+										}
+										game.setPoints(points);
+								 }
+								 
 								if(!arg0.getSource().equals(nodeRandomJump1)&&!arg0.getSource().equals(nodeRandomJump2)&&!arg0.getSource().equals(nodeRandomJump3)) {
 									ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
 									QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
@@ -418,7 +405,15 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setRowIndex(imageQ,locQueen.getY());
 									if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
 										timer1.cancel();
-										
+										for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+											if(SysData.getInstance().getPlayers().get(player).getNickname()==UserNameController.Name) {
+												System.out.println(game.getPoints());
+
+												game.setPlayer(SysData.getInstance().getPlayers().get(player));
+												SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);
+												System.out.println(SysData.getInstance().getPlayers().get(player).getGamesHistory());
+											}
+										}
 										try {
 											gamestatus(arg0);
 										} catch (Exception e) {
@@ -494,9 +489,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 								if(boardGame.getSquares()[i][j].isVisited() == true) {
 									points--;
+									game.setPoints(points);
 									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);
 								}else {
 									points++;
+									game.setPoints(points);
 									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);
 									boardGame.getSquares()[i][j].setVisited(true);
 									notVisited.remove(boardGame.getSquares()[i][j]);
@@ -519,54 +516,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					else if(finish == 1)
 						{
 						
-							if(arg0.getSource()==node1Q) {
-							
-							Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
-							
-							if(validsMovesLevel1.contains(locNode1) && flag1 == 0) {
-								try {
-									flag1++;
-									System.out.println("easy level1");
-									popEasy();
-									node1Q.setStyle("-fx-background-color: defult; ");
-									node1Q.setStyle("-fx-border-color : black");
-								}
-								catch (IOException e) {
-									e.printStackTrace();
-								}
-							}
-						}
-						else if(arg0.getSource()==node2Q) {
-							Location locNode2 = new Location(GridPane.getColumnIndex(node2Q),GridPane.getRowIndex(node2Q));
-							if(validsMovesLevel1.contains(locNode2) && flag2 == 0) {
-									try {
-										flag2++;
-										popMediocre();
-										node2Q.setStyle("-fx-background-color: defult ; ");
-										node2Q.setStyle("-fx-border-color : black");
-									} catch (IOException e) {
-										
-										e.printStackTrace();
-									}
-							}
-						}
-						else if(arg0.getSource()==node3Q) {
-							Location locNode3 = new Location(GridPane.getColumnIndex(node3Q),GridPane.getRowIndex(node3Q));
-							if(validsMovesLevel1.contains(locNode3) && flag3 == 0) {
-								try {
-								       flag3++;
-
-										popHard();
-										node3Q.setStyle("-fx-background-color: defult; ");
-										node3Q.setStyle("-fx-border-color : black");
-									} catch (IOException e) {
-										
-										e.printStackTrace();
-									}
-							}
-						}
-						
-						
 							if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 								Location loc = new Location(j,i);
 								
@@ -574,6 +523,32 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									game.getKnight().setLocation(loc);
 									GridPane.setColumnIndex(imageK,j);
 									GridPane.setRowIndex(imageK,i );
+									if(arg0.getSource()==node1Q && flag1==0) {
+										try {
+											popEasy();
+										} catch (IOException e) {
+											e.printStackTrace();
+										}
+										flag1++;
+									}
+									 if(arg0.getSource()==node2Q && flag2==0) {
+										flag2++;
+										try {
+											popMediocre();
+										} catch (IOException e) {
+											
+											e.printStackTrace();
+										}
+									 }
+									 if(arg0.getSource()==node3Q && flag3==0) {
+											flag3++;
+											try {
+												popHard();
+											} catch (IOException e) {
+												
+												e.printStackTrace();
+											}
+									 }
 									if(!forgetsSquares.contains(boardGame.getSquares()[0][0]) && flagtest==0) {
 										forgetsSquares.add(boardGame.getSquares()[0][0]);
 										int visitsTime =boardGame.getSquares()[0][0].getNumVisits();
@@ -594,7 +569,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										notVisited.remove(boardGame.getSquares()[i][j]);
 										((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
 									}
-									System.out.println(forgetsSquares);
 									ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
 									QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
 		
@@ -740,52 +714,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						}
 					else if(finish == 2)
 					{
-						if(arg0.getSource()==node1Q) {
-							
-							Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
-							
-							if(validsMovesLevel1.contains(locNode1) && flag1 == 0) {
-								try {
-									flag1++;
-									System.out.println("easy level1");
-									popEasy();
-									node1Q.setStyle("-fx-background-color: defult; ");
-									node1Q.setStyle("-fx-border-color : black");
-								}
-								catch (IOException e) {
-									e.printStackTrace();
-								}
-							}
-						}
-						else if(arg0.getSource()==node2Q) {
-							Location locNode2 = new Location(GridPane.getColumnIndex(node2Q),GridPane.getRowIndex(node2Q));
-							if(validsMovesLevel1.contains(locNode2) && flag2 == 0) {
-									try {
-										flag2++;
-										popMediocre();
-										node2Q.setStyle("-fx-background-color: defult ; ");
-										node2Q.setStyle("-fx-border-color : black");
-									} catch (IOException e) {
-										
-										e.printStackTrace();
-									}
-							}
-						}
-						else if(arg0.getSource()==node3Q) {
-							Location locNode3 = new Location(GridPane.getColumnIndex(node3Q),GridPane.getRowIndex(node3Q));
-							if(validsMovesLevel1.contains(locNode3) && flag3 == 0) {
-								try {
-								       flag3++;
-
-										popHard();
-										node3Q.setStyle("-fx-background-color: defult; ");
-										node3Q.setStyle("-fx-border-color : black");
-									} catch (IOException e) {
-									
-										e.printStackTrace();
-									}
-							}
-						}
+					
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 							Location loc = new Location(j,i);
 							
@@ -793,7 +722,32 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								game.getKnight().setLocation(loc);
 								GridPane.setColumnIndex(imageK,j);
 								GridPane.setRowIndex(imageK,i );
-								
+								if(arg0.getSource()==node1Q && flag1==0) {
+									try {
+										popEasy();
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+									flag1++;
+								}
+								 if(arg0.getSource()==node2Q && flag2==0) {
+									flag2++;
+									try {
+										popMediocre();
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								 }
+								 if(arg0.getSource()==node3Q && flag3==0) {
+										flag3++;
+										try {
+											popHard();
+										} catch (IOException e) {
+											
+											e.printStackTrace();
+										}
+								 }
+								locKnight =loc;
 								if(!forgetsSquares.contains(boardGame.getSquares()[0][0]) && flagtest==0) {
 									forgetsSquares.add(boardGame.getSquares()[0][0]);
 									int visitsTime =boardGame.getSquares()[0][0].getNumVisits();
@@ -974,51 +928,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						}
 					}
 					else if(finish == 3)
-					{if(arg0.getSource()==node1Q) {
-						
-						Location locNode1 = new Location(GridPane.getColumnIndex(node1Q),GridPane.getRowIndex(node1Q));
-						
-						if(validsMovesLevel1.contains(locNode1) && flag1 == 0) {
-							try {
-								flag1++;
-								System.out.println("easy level1");
-								popEasy();
-								node1Q.setStyle("-fx-background-color: defult; ");
-								node1Q.setStyle("-fx-border-color : black");
-							}
-							catch (IOException e) {
-								e.printStackTrace();
-							}
-						}
-					}
-					else if(arg0.getSource()==node2Q) {
-						Location locNode2 = new Location(GridPane.getColumnIndex(node2Q),GridPane.getRowIndex(node2Q));
-						if(validsMovesLevel1.contains(locNode2) && flag2 == 0) {
-								try {
-									flag2++;
-									popMediocre();
-									node2Q.setStyle("-fx-background-color: defult ; ");
-									node2Q.setStyle("-fx-border-color : black");
-								} catch (IOException e) {
-									
-									e.printStackTrace();
-								}
-						}
-					}
-					else if(arg0.getSource()==node3Q) {
-						Location locNode3 = new Location(GridPane.getColumnIndex(node3Q),GridPane.getRowIndex(node3Q));
-						if(validsMovesLevel1.contains(locNode3) && flag3 == 0) {
-							try {
-							       flag3++;
-
-									popHard();
-									node3Q.setStyle("-fx-background-color: defult; ");
-									node3Q.setStyle("-fx-border-color : black");
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
-						}
-					}
+					{
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
 							Location loc = new Location(j,i);
 							
@@ -1030,6 +940,30 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									game.getKnight().setLocation(loc);
 									GridPane.setColumnIndex(imageK,j);
 									GridPane.setRowIndex(imageK,i );
+									if(arg0.getSource()==node1Q && flag1==0) {
+										try {
+											popEasy();
+										} catch (IOException e) {
+											e.printStackTrace();
+										}
+										flag1++;
+									}
+									 if(arg0.getSource()==node2Q && flag2==0) {
+										flag2++;
+										try {
+											popMediocre();
+										} catch (IOException e) {
+											e.printStackTrace();
+										}
+									 }
+									 if(arg0.getSource()==node3Q && flag3==0) {
+											flag3++;
+											try {
+												popHard();
+											} catch (IOException e) {
+												e.printStackTrace();
+											}
+									 }
 									if(boardGame.getSquares()[i][j].isVisited() == true) {
 										points--;
 										int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
@@ -1105,8 +1039,25 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					flag1=0;
 					flag2=0;
 					flag3=0;
-					totalSec=0;
-					
+					totalSec=60;
+					for(int i = 0 ; i < 8 ; i++) {
+						for(int j = 0 ; j < 8 ; j ++) {
+							boardGame.getSquares()[i][j].setVisited(false);;
+						}
+						
+					}
+					Location locFirst = new Location(0,0);
+					game.getKnight().setLocation(locFirst);
+					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
+					boardGame.getSquares()[0][0].setVisited(true);
+					points++;
+					notVisited.remove(boardGame.getSquares()[0][0]);
+					GridPane.setColumnIndex(imageK, 0);
+					GridPane.setRowIndex(imageK, 0);
+					pointsT.setText(String.valueOf(points));
+					game.getQueen().setLocation(new Location(7,0));
+					GridPane.setColumnIndex(imageQ,7);
+					GridPane.setRowIndex(imageQ,0);
 					imageKing.setVisible(false);
 					upleft.setVisible(false);
 					upright.setVisible(false);
@@ -1160,12 +1111,15 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					setTimer(timer2);
 					displayLevel("LEVEL 2");
 					fillNotVisitedArray(notVisited);
-					for(int i = 0 ; i < 8 ; i++) {
-						for(int j = 0 ; j < 8 ; j ++) {
-							boardGame.getSquares()[i][j].setVisited(false);;
-						}
-						
-					}
+					
+					
+				}
+				else if(points<15&& finish==1){
+			//		timer2.cancel();
+					
+					
+				}
+				if(points>=0 && finish==2) {
 					Location locFirst = new Location(0,0);
 					game.getKnight().setLocation(locFirst);
 					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
@@ -1175,23 +1129,17 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					GridPane.setColumnIndex(imageK, 0);
 					GridPane.setRowIndex(imageK, 0);
 					pointsT.setText(String.valueOf(points));
-					game.getQueen().setLocation(new Location(7,0));
-					GridPane.setColumnIndex(imageQ,7);
-					GridPane.setRowIndex(imageQ,0);
-					
-				}
-				else if(points<15&& finish==1){
-					timer2.cancel();
-					
-				}
-				if(points>=0 && finish==2) {
+					game.getKing().setLocation(new Location(7,0));
+					GridPane.setColumnIndex(imageKing,7);
+					GridPane.setRowIndex(imageKing,0);
 					flag1=0;
 					flag2=0;
 					flag3=0;
-					totalSec=50;
-					speed=3;
+					totalSec=60;
+					speed=7;
 					imageKing.setVisible(true);
 					imageQ.setVisible(false);
+					
 					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
 						board.getChildren().get(node).setStyle("-fx-border-color : black;");
@@ -1234,7 +1182,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					points=0;
 					
 					levelsMoves();
-					setTimer(timer3);
+					
 					displayLevel("LEVEL 3");
 					
 					fillNotVisitedArray(notVisited);
@@ -1243,6 +1191,16 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							boardGame.getSquares()[i][j].setVisited(false);;
 						}
 					}
+					
+					setTimer(timer3);
+					
+				}
+				if(points>=0 && finish==3) {
+					flag1=0;
+					flag2=0;
+					flag3=0;
+					totalSec=60;
+					speed=5;
 					Location locFirst = new Location(0,0);
 					game.getKnight().setLocation(locFirst);
 					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
@@ -1255,14 +1213,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					game.getKing().setLocation(new Location(7,0));
 					GridPane.setColumnIndex(imageKing,7);
 					GridPane.setRowIndex(imageKing,0);
-					
-				}
-				if(points>=0 && finish==3) {
-					flag1=0;
-					flag2=0;
-					flag3=0;
-					totalSec=60;
-					speed=5;
 					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
 						board.getChildren().get(node).setStyle("-fx-border-color : black;");
@@ -1321,7 +1271,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					game.setPoints(totalPoints);
 					points=0;
 					levelsMoves();
-					setTimer(timer4);
+					
 					displayLevel("LEVEL 4");
 					
 					fillNotVisitedArray(notVisited);
@@ -1330,18 +1280,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							boardGame.getSquares()[i][j].setVisited(false);;
 						}		
 					}
-					Location locFirst = new Location(0,0);
-					game.getKnight().setLocation(locFirst);
-					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
-					boardGame.getSquares()[0][0].setVisited(true);
-					points++;
-					notVisited.remove(boardGame.getSquares()[0][0]);
-					GridPane.setColumnIndex(imageK, 0);
-					GridPane.setRowIndex(imageK, 0);
-					pointsT.setText(String.valueOf(points));
-					game.getKing().setLocation(new Location(7,0));
-					GridPane.setColumnIndex(imageKing,7);
-					GridPane.setRowIndex(imageKing,0);
+					
+					setTimer(timer4);
 				}
 			}
 		}

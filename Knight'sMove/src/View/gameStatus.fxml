@@ -21,5 +21,10 @@
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
          </font></Button>
+      <Button layoutX="28.0" layoutY="33.0" mnemonicParsing="false" onAction="#backButton" text="EXIT">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

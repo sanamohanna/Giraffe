@@ -26,7 +26,7 @@ public class UserNameController {
 	TextField nameTextField;
 	@FXML
 	TextField newUser;
-	
+	static String Name;
     Alert a = new Alert(AlertType.NONE);
     //button that open startGame screen to to play
 	public void letsPlay(ActionEvent event) throws Exception {
@@ -112,6 +112,7 @@ public class UserNameController {
 				throw new Exception();
 			}
 		String newUserName =newUser.getText();
+		Name=newUserName;
 		Player NewPlayer = new Player(newUserName);
 		if(!SysData.getInstance().getPlayers().contains(NewPlayer)) {
 	    SysData.getInstance().getPlayers().add(NewPlayer);

@@ -14,31 +14,13 @@ public class MainScreen extends Application {
 		Application.launch(args);
 	}
 	// this method display the main screen 
-	public void start(Stage primaryStage) throws IOException {
-
-		try {
-
-			Parent root = FXMLLoader.load(getClass().getResource("/View/StartGame.fxml"));
-			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
-			Image icon = new Image("/View/Images/6808582.png"); 
-			primaryStage.setResizable(false);
-			primaryStage.getIcons().add(icon);
-			primaryStage.setTitle("KNIGHT'S MOVE GAME");
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-	}
 //	public void start(Stage primaryStage) throws IOException {
 //
 //		try {
 //
-//			Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+//			Parent root = FXMLLoader.load(getClass().getResource("/View/StartGame.fxml"));
 //			Scene scene = new Scene(root);
-//			scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+//			scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
 //			Image icon = new Image("/View/Images/6808582.png"); 
 //			primaryStage.setResizable(false);
 //			primaryStage.getIcons().add(icon);
@@ -50,5 +32,23 @@ public class MainScreen extends Application {
 //			e.printStackTrace();
 //		}
 //	}
+	public void start(Stage primaryStage) throws IOException {
+
+		try {
+
+			Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+			Image icon = new Image("/View/Images/6808582.png"); 
+			primaryStage.setResizable(false);
+			primaryStage.getIcons().add(icon);
+			primaryStage.setTitle("KNIGHT'S MOVE GAME");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+	}
 
 }
