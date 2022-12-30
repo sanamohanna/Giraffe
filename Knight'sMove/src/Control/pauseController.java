@@ -18,7 +18,5 @@ public class pauseController {
 		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/StartGame.fxml"));
 		StartGameController str = loader.getController();
 		StartGameController.totalSec=this.x;
-		//str.setTimer();
-		
 	}
 }

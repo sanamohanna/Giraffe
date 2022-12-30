@@ -122,7 +122,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		totalSec=20;
+		totalSec=0;
 		points=0;
 		//Location loc =new Location(0,0);
 		imageKing.setVisible(false);
@@ -214,7 +214,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				GridPane.setColumnIndex(imageKing,locKing.getX());
 				GridPane.setRowIndex(imageKing,locKing.getY());
 			}
-			if(totalSec%10==0) {
+			if(totalSec%3==0) {
 				if(speed!=1)
 				speed--;
 			}
@@ -1105,7 +1105,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					flag1=0;
 					flag2=0;
 					flag3=0;
-					totalSec=20;
+					totalSec=0;
 					
 					imageKing.setVisible(false);
 					upleft.setVisible(false);
