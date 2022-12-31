@@ -1370,5 +1370,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					
 					setTimer(timer4);
 				}
+				if(points>=15 && finish==4) {
+					
+				}
 			}
 		}
