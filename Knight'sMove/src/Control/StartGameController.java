@@ -1069,6 +1069,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 											
 									 }
+									 locKnight =loc;
 									if(boardGame.getSquares()[i][j].isVisited() == true) {
 										points--;
 										
