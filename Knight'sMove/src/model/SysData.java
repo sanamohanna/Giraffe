@@ -23,8 +23,10 @@ public class SysData {
 	private static SysData instance = null;
 	private ArrayList<Game> gamesHistory = new ArrayList<Game>();
 	private ArrayList<Question> questions = new ArrayList<Question>();
-    private   ArrayList<Player> players = new ArrayList<Player>();
-
+    private   ArrayList<Player> players = new ArrayList<Player>() {{
+    	add(new Player("klara"));
+    }};
+    
 
 	// QuestionMngController Singleton Instance
 	public static SysData getInstance() {

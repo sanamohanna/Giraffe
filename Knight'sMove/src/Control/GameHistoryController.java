@@ -53,9 +53,7 @@ public class GameHistoryController implements Initializable{
 		for(int i=0; i < SysData.getInstance().getPlayers().size();i++) {
 			
 			if(SysData.getInstance().getPlayers().get(i).getNickname().equals(UserNameForGameHistoryController.Name)) {
-				System.out.println("ghjk");
 				playerGames=SysData.getInstance().getPlayers().get(i).getGamesHistory();
-				System.out.println(SysData.getInstance().getPlayers().get(i).getGamesHistory());
 			}
 		}
 		

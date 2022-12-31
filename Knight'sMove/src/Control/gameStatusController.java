@@ -25,7 +25,11 @@ public class gameStatusController {
 	}
 	public void letsPlayAgain(ActionEvent event) throws IOException {
 		//StartGameController.points=0;
-		Parent root = FXMLLoader.load(getClass().getResource("/View/StartGame.fxml"));
+		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/StartGame.fxml"));
+		Parent root = loader.load();
+		StartGameController sgc1 = loader.getController();
+		sgc1.displayName(UserNameController.Name);
+		//Parent root = FXMLLoader.load(getClass().getResource("/View/StartGame.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setResizable(false);
@@ -40,6 +44,18 @@ public class gameStatusController {
 			Scene scene = new Scene(root);
 			stage.setResizable(false);
 			scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+			stage.setScene(scene);
+		
+			stage.show();
+
+		}
+		// method to show player game history
+		public void gameHistory(ActionEvent event) throws IOException {
+			Parent root = FXMLLoader.load(getClass().getResource("/View/usernameForHistory.fxml"));
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			stage.setResizable(false);
+			scene.getStylesheets().add(getClass().getResource("/View/usernameForHistory.css").toExternalForm());
 			stage.setScene(scene);
 		
 			stage.show();

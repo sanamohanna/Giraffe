@@ -37,6 +37,7 @@ public class UserNameController {
 				throw new Exception();
 			}
 		String UserName =nameTextField.getText();
+		Name=UserName;
 		Player player = new Player(UserName);
 		if(!SysData.getInstance().getPlayers().contains(player)) {
 			flag = true;
