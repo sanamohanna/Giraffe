@@ -794,7 +794,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											System.out.println(forgetsSquares.size());
 											//check if the forget squares array is contain one square, first square
 											if(forgetsSquares.size()==1) {
-												//check if the number of visit is 1, the player visit the square
+												//check if the number of visit is 1, the player visit the square once
 												if(forgetsSquares.get(0).getNumVisits()==1) {
 													//set the square as not visited square
 													boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
@@ -803,7 +803,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 														//check if the square is equal to the square on board 
 														if(board.getChildren().get(node).getId().toString().equals(str)) {
-															//set the color of the square
+															//change the color of the square 
 															board.getChildren().get(node).setStyle("-fx-background-color: defult;");
 															board.getChildren().get(node).setStyle("-fx-border-color : black;");
 														}
@@ -814,63 +814,76 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 													forgetsSquares.remove(0); //remove the square from the forget squares array
 												}
 												else { // if the player visit the square more than one time
-													points++; // win point
+													points++; // win point that he lose
 													int numVisits=forgetsSquares.get(0).getNumVisits();//save the number of visit for the square
-													forgetsSquares.get(0).setNumVisits(numVisits-1);// Change the number of visit of the square
+													forgetsSquares.get(0).setNumVisits(numVisits-1);// Change the number of visit of the square to less one
 													forgetsSquares.remove(0);//remove the square from the forget squares array
 												}
 											}
-											else if(forgetsSquares.size()==2) {
+											else if(forgetsSquares.size()==2) {//check if the forget squares array is contain two square
+												//loop in the forget squares array from the last square in the array to the first square
 												for(int square = forgetsSquares.size()-1 ;square>forgetsSquares.size()-3;square-- ) {
+													//check if the number of visit is 1, the player visit the square once
 													if(forgetsSquares.get(square).getNumVisits()==1) {
+														//set the square as not visited square
 														boardGame.getSquares()[forgetsSquares.get(square).getLocation().getY()][forgetsSquares.get(square).getLocation().getX()].setVisited(false);
-														forgetsSquares.get(square).setNumVisits(0);
+														forgetsSquares.get(square).setNumVisits(0); //set the number of visit to 0
 														String str = "b"+forgetsSquares.get(square).getLocation().getY()+forgetsSquares.get(square).getLocation().getX();
+														//loop on the board squares
 														for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+															//check if the square is equal to the square on board
 															if(board.getChildren().get(node).getId().toString().equals(str)) {
+																//change the color of the square
 																board.getChildren().get(node).setStyle("-fx-background-color: defult;");
 																board.getChildren().get(node).setStyle("-fx-border-color : black;");
 															}
 														}
-														notVisited.add(forgetsSquares.get(square));
-														points--;
+														notVisited.add(forgetsSquares.get(square));//add the square to the not visited squares array
+														points--; //lose the point that the player win from this square
 														
 													}
-													else {
-														points++;
-														
-														int numVisits=forgetsSquares.get(square).getNumVisits();
-														forgetsSquares.get(square).setNumVisits(numVisits-1);
+													else {// if the player visit the square more than one time
+														points++; // win the point that he lose
+														int numVisits=forgetsSquares.get(square).getNumVisits();//save the number of visit for the square
+														forgetsSquares.get(square).setNumVisits(numVisits-1);// Change the number of visit of the square to less one
 													}
 												}
+												//remove the squares from the forget squares array
 												forgetsSquares.remove(forgetsSquares.size()-1);
 												forgetsSquares.remove(forgetsSquares.size()-1);
 
 											}
 											else
-												if(forgetsSquares.size()>=3) {
+												if(forgetsSquares.size()>=3) { //check if the forget squares array is contain three square or more
+													//loop in the forget squares array from the last square in the array to the third last square	
 												for(int square = forgetsSquares.size()-1 ;square>forgetsSquares.size()-4;square-- ) {
+													//check if the number of visit is 1, the player visit the square once
 													if(forgetsSquares.get(square).getNumVisits()==1) {
+														//set the square as not visited square
 														boardGame.getSquares()[forgetsSquares.get(square).getLocation().getY()][forgetsSquares.get(square).getLocation().getX()].setVisited(false);
-														forgetsSquares.get(square).setNumVisits(0);
+														forgetsSquares.get(square).setNumVisits(0);//set the number of visited to 0
 														String str = "b"+forgetsSquares.get(square).getLocation().getY()+forgetsSquares.get(square).getLocation().getX();
+														//loop on the board squares
 														for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+															//check if the square is equal to the square on board
 															if(board.getChildren().get(node).getId().toString().equals(str)) {
+																//change the color of the squares
 																board.getChildren().get(node).setStyle("-fx-background-color: defult;");
 																board.getChildren().get(node).setStyle("-fx-border-color : black;");
 															}
 														}
-														notVisited.add(forgetsSquares.get(square));
-														points--;
+														notVisited.add(forgetsSquares.get(square)); //add the square to the not visited squares array
+														points--; //lost the point that the player win from the square
 														
 													}
-													else {
-														points++;
+													else {// if the player visit the square more than one time
+														points++;//win the point that he lose
 														
-														int numVisits=forgetsSquares.get(square).getNumVisits();
-														forgetsSquares.get(square).setNumVisits(numVisits-1);
+														int numVisits=forgetsSquares.get(square).getNumVisits();//save the number of visit for the square
+														forgetsSquares.get(square).setNumVisits(numVisits-1);// Change the number of visit of the square to less one
 													}
 												}
+												//remove the last three squares from the forget squares array
 												forgetsSquares.remove(forgetsSquares.size()-1);
 												forgetsSquares.remove(forgetsSquares.size()-1);
 												forgetsSquares.remove(forgetsSquares.size()-1);
@@ -878,9 +891,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 										}
 									}
-									
+									//check if the forget squares array not contain the square
 									if(!forgetsSquares.contains(boardGame.getSquares()[i][j])) {
-										forgetsSquares.add(boardGame.getSquares()[i][j]);
+										forgetsSquares.add(boardGame.getSquares()[i][j]); //add the square to the forget squares array
 										
 									}
 									
@@ -889,7 +902,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									
 								}
 								else {
-									a.setAlertType(AlertType.ERROR);//if the user not enter data 
+									a.setAlertType(AlertType.ERROR);//if the player chose square not valid to move on  
 									a.setContentText("invalid move try again");
 									a.show();	
 								}
@@ -897,115 +910,123 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								
 							}
 						}
-					else if(finish == 2)
+					else if(finish == 2) //level 3
 					{
-						
+						//check if the square that the knight chose to move is equal to the square b[i][j]
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
-							Location loc = new Location(j,i);
-							
+							Location loc = new Location(j,i); //create a location and save it on b[j][i] place
+							//check if the valid moves for level 3 contain the location that the player chose
 							if(validsMovesLevel3.contains(loc) ) {
+								//put the knight on the location that the player chose
 								game.getKnight().setLocation(loc);
 								GridPane.setColumnIndex(imageK,j);
 								GridPane.setRowIndex(imageK,i );
+								//check if the king and the knight is on the same square
 								if(check==1) {
-									timer3.cancel();
-									check=0;
-									int total = game.getPoints()+points;
-									game.setPoints(total);
-									
+									timer3.cancel(); //stop timer
+									check=0; //set the check 0 - as not on the same square
+									int total = game.getPoints()+points; //add the point of the level to the points score
+									game.setPoints(total); //set the points score
+									//loop on the players of the sysData
 									for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+										//check if the player is on the sysData
 										if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name)) {
-											game.setPlayer(SysData.getInstance().getPlayers().get(player));
+											game.setPlayer(SysData.getInstance().getPlayers().get(player)); 
 											Game gamex = new Game();
 											gamex=game;
-											SysData.getInstance().getPlayers().get(player).getGamesHistory().add(gamex);
+											SysData.getInstance().getPlayers().get(player).getGamesHistory().add(gamex);//add the game to the games history
 										}
 									}
 									try {
-										gamestatusLose(arg0);
+										gamestatusLose(arg0); // show game status lose screen
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
 								}
+								//check if the square that the knight moved on is a easy question square
 								if(arg0.getSource()==node1Q && flag1==0) {
 									try {
-										popEasy();
+										popEasy(); //show easy question
 									} catch (IOException e) {
 										e.printStackTrace();
 									}
 									flag1++;
 									
-								}
+								}//check if the square that the knight moved on is a medium question square
 								 if(arg0.getSource()==node2Q && flag2==0) {
 									flag2++;
 									try {
-										popMediocre();
+										popMediocre(); //show medium question
 									} catch (IOException e) {
 										e.printStackTrace();
 									}
-								 }
+								 }//check if the square that the knight moved on is a hard question square
 								 if(arg0.getSource()==node3Q && flag3==0) {
 										flag3++;
 										try {
-											popHard();
+											popHard();//show hard question
 										} catch (IOException e) {
 											
 											e.printStackTrace();
 										}
 										
 								 }
-								locKnight =loc;
+								locKnight =loc; //put the knight in the location that the player chose
+								 //check if the array of the forget square is not contain the first place in the game
 								if(!forgetsSquares.contains(boardGame.getSquares()[0][0]) && flagtest==0) {
-									forgetsSquares.add(boardGame.getSquares()[0][0]);
-									int visitsTime =boardGame.getSquares()[0][0].getNumVisits();
-									boardGame.getSquares()[0][0].setNumVisits(visitsTime+1);
+									forgetsSquares.add(boardGame.getSquares()[0][0]);//add the first place to the forgets squares array
+									int visitsTime =boardGame.getSquares()[0][0].getNumVisits();//save the visits number of the first place
+									boardGame.getSquares()[0][0].setNumVisits(visitsTime+1);//set the number of visited for the first place, add 1 to the number 
 									flagtest++;
 									
 								}
-								
+								//check if the square that the player chose is visited square
 								if(boardGame.getSquares()[i][j].isVisited() == true) {
-									points--;
-									
+									points--;//lose one point 
+									//set number of visits, add one to the number
 									int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
 									boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
-								}else {
-									points++;
-									
+								}else {//if the square that the player chose is not visited square
+									points++; //add one point
+									//set number of visits, add one to the number
 									int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
 									boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
-									boardGame.getSquares()[i][j].setVisited(true);
-									notVisited.remove(boardGame.getSquares()[i][j]);
-									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+									boardGame.getSquares()[i][j].setVisited(true); //sat the square as a visited square
+									notVisited.remove(boardGame.getSquares()[i][j]);//remove the square from the not visited squares array
+									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;"); //change the color of the square
 								}
+								//check if the square that the player chose is a random jump square
 								if(arg0.getSource()==nodeRandomJump1 ||arg0.getSource()==nodeRandomJump2) {
+									//square that  will knight jump in the random jump from the squares that isn't visited
 									Squares sq= notVisited.get(rand.nextInt(notVisited.size()));
-									Location loc2 = new Location(sq.getLocation().getX(),sq.getLocation().getY());
-									game.getKnight().setLocation(loc2);
+									Location loc2 = new Location(sq.getLocation().getX(),sq.getLocation().getY());//save the location 
+									game.getKnight().setLocation(loc2);//let the knight jump to the location
 									GridPane.setColumnIndex(imageK,sq.getLocation().getX());
 									GridPane.setRowIndex(imageK,sq.getLocation().getY() );
+									//check if the square that the knight moved on is a easy  question square
 									if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
 										try {
-											popEasy();
+											popEasy();//show easy question
 											flag1++;
 										} catch (IOException e) {
 											
 											e.printStackTrace();
 										}
 										
-									}
+									}///check if the square that the knight moved on is a medium  question square
 									else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) ) {
 										try {												
-											popMediocre();
+											popMediocre();//show medium question
 											flag2++;
 										} catch (IOException e) {
 											
 											e.printStackTrace();
 										}
 									
-									}
+									} //check if the square that the knight moved on is a hard  question square
 									else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
 										try {									
-											popHard();
+											popHard();//show hard question
 											flag3++;
 										} catch (IOException e) {
 											
@@ -1013,95 +1034,113 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 										
 									}
-									boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
-									notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
-									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;");
+									boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);//set the square as a visited square
+									notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);//remove the square from the not visited squares array
+									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;"); //change the color of the square
 									String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
+									//loop on the board squares
 									for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+										//check if the board squares equal to the square that the knight move
 										if(board.getChildren().get(node).getId().toString().equals(str)) {
-											board.getChildren().get(node).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+											board.getChildren().get(node).setStyle("-fx-background-color: grey;-fx-border-color : black;");//change the color of the square
 										}
 									}
 								}
-								
+								//check if the square that the knight is on is a forget square
 								if(arg0.getSource().equals(Forget1) || arg0.getSource().equals(Forget2)) {
-									
+									// check if the length of the forget square isn't 0
 									if(forgetsSquares.size()!=0) {
-										
+										//check if the length of the forget squares is 1
 										if(forgetsSquares.size()==1) {
+											//check if the number of visits of the first square on the forget squares array is 1
 											if(forgetsSquares.get(0).getNumVisits()==1) {
-												boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
+												boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);//set the square as not visited
 												String str = "b"+forgetsSquares.get(0).getLocation().getY()+forgetsSquares.get(0).getLocation().getX();
+												//loop on the board squares
 												for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+													//check if the board square on the place b[j][i] equals to the square 
 													if(board.getChildren().get(node).getId().toString().equals(str)) {
+														//change the color of the square
 														board.getChildren().get(node).setStyle("-fx-background-color: defult;");
 														board.getChildren().get(node).setStyle("-fx-border-color : black;");
 													}
 												}
-												notVisited.add(forgetsSquares.get(0));
-												forgetsSquares.get(0).setNumVisits(0);
-												points--;
+												notVisited.add(forgetsSquares.get(0));//add the first square to the not visited squares array
+												forgetsSquares.get(0).setNumVisits(0);//set the first square number of the visits as 0
+												points--; //lose the point that the player win from the square
 												
-												forgetsSquares.remove(0);
+												forgetsSquares.remove(0); //remove the first square from the forget squares array  
 											}
-											else {
-												points++;
-												
+											else { //if the number of visits of the first square on the forget squares array is more than 1
+												points++; //add the point that the player lose from the square
+												//set the number of visits, less one
 												int numVisits=forgetsSquares.get(0).getNumVisits();
 												forgetsSquares.get(0).setNumVisits(numVisits-1);
-												forgetsSquares.remove(0);
+												forgetsSquares.remove(0);//remove the square from forget squares array
 											}
-										}
+										}//check if the length of the forget squares is 2
 										else if(forgetsSquares.size()==2) {
+											//loop on the forget squares array, from the last square 
 											for(int square = forgetsSquares.size()-1 ;square>forgetsSquares.size()-3;square-- ) {
+												//check if the number of visits of the first square on the forget squares array is 1
 												if(forgetsSquares.get(square).getNumVisits()==1) {
-													boardGame.getSquares()[forgetsSquares.get(square).getLocation().getY()][forgetsSquares.get(square).getLocation().getX()].setVisited(false);
-													forgetsSquares.get(square).setNumVisits(0);
+													boardGame.getSquares()[forgetsSquares.get(square).getLocation().getY()][forgetsSquares.get(square).getLocation().getX()].setVisited(false);//set that the square is not visited
+													forgetsSquares.get(square).setNumVisits(0); //set the number of visit as 0
 													String str = "b"+forgetsSquares.get(square).getLocation().getY()+forgetsSquares.get(square).getLocation().getX();
+													//loop on the board squares
 													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+														//check if the board square on the place b[j][i] equals to the square
 														if(board.getChildren().get(node).getId().toString().equals(str)) {
+															//change square color
 															board.getChildren().get(node).setStyle("-fx-background-color: defult;");
 															board.getChildren().get(node).setStyle("-fx-border-color : black;");
 														}
 													}
-													notVisited.add(forgetsSquares.get(square));
-													points--;
+													notVisited.add(forgetsSquares.get(square));//add the square to the not visited squares array
+													points--; //lose the point from the square
 													
 												}
-												else {
-													points++;
-													
+												else {//if the number of visits square on the forget squares array is more than 1
+													points++; //add a point from the square
+													//set the number of visits, less 1
 													int numVisits=forgetsSquares.get(square).getNumVisits();
 													forgetsSquares.get(square).setNumVisits(numVisits-1);
 												}
 											}
+											//remove the squares from the forget squares array
 											forgetsSquares.remove(forgetsSquares.size()-1);
 											forgetsSquares.remove(forgetsSquares.size()-1);	
 										}
 										else
-											if(forgetsSquares.size()>=3) {
+											if(forgetsSquares.size()>=3) { //check if the length of the forget squares is 3 or more
+											//loop on the forget squares array, from the last square 	
 											for(int square = forgetsSquares.size()-1 ;square>forgetsSquares.size()-4;square-- ) {
+												//check if the number of visits of the first square on the forget squares array is 1
 												if(forgetsSquares.get(square).getNumVisits()==1) {
-													boardGame.getSquares()[forgetsSquares.get(square).getLocation().getY()][forgetsSquares.get(square).getLocation().getX()].setVisited(false);
-													forgetsSquares.get(square).setNumVisits(0);
+													boardGame.getSquares()[forgetsSquares.get(square).getLocation().getY()][forgetsSquares.get(square).getLocation().getX()].setVisited(false);//set the square as not visited
+													forgetsSquares.get(square).setNumVisits(0);//set the number of visits as 0
 													String str = "b"+forgetsSquares.get(square).getLocation().getY()+forgetsSquares.get(square).getLocation().getX();
+													//loop on the board squares
 													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+														//check if the board square on the place b[j][i] equals to the square
 														if(board.getChildren().get(node).getId().toString().equals(str)) {
+															//set the colors of the squares
 															board.getChildren().get(node).setStyle("-fx-background-color: defult;");
 															board.getChildren().get(node).setStyle("-fx-border-color : black;");
 														}
 													}
-													notVisited.add(forgetsSquares.get(square));
-													points--;
+													notVisited.add(forgetsSquares.get(square));// add the square to the not visited squares array
+													points--; //lose the point from the square
 													
 												}
-												else {
-													points++;
-													
+												else {//if the number of visits square on the forget squares array is more than 
+													points++;//add a point from the square
+													//set the number of visits, less 1
 													int numVisits=forgetsSquares.get(square).getNumVisits();
 													forgetsSquares.get(square).setNumVisits(numVisits-1);
 												}
 											}
+											//remove the last three squares from the forget squares array
 											forgetsSquares.remove(forgetsSquares.size()-1);
 											forgetsSquares.remove(forgetsSquares.size()-1);
 											forgetsSquares.remove(forgetsSquares.size()-1);
@@ -1109,100 +1148,105 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 									}
 								}
+								//check if the forget squares array is not contain the square that the player chose
 								if(!forgetsSquares.contains(boardGame.getSquares()[i][j])) {
-									forgetsSquares.add(boardGame.getSquares()[i][j]);
+									forgetsSquares.add(boardGame.getSquares()[i][j]);//add the squares to the forget squares array
 									
 								}
 								
 							}
-							else {
-								a.setAlertType(AlertType.ERROR);//if the user not enter data 
+							else { 
+								a.setAlertType(AlertType.ERROR);//if the player chose not valid square to move 
 								a.setContentText("invalid move try again");
 								a.show();	
 							}
 							
 						}
 					}
-					else if(finish == 3)
-					{
+					else if(finish == 3) //level 4
+					{//check if the square that the knight chose to move is equal to the square b[i][j]
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
-							Location loc = new Location(j,i);
-							
+							Location loc = new Location(j,i); //create new location 
+							//check if level 4 valid moves contain the location
 							if(validsMovesLevel4.contains(loc) ) {
+								//check if the square isn't a block square
 								if(arg0.getSource()!=block1 &&arg0.getSource()!=block2 &&arg0.getSource()!=block3 &&
 									arg0.getSource()!=block4 &&arg0.getSource()!=block5 &&arg0.getSource()!=block6 &&
 									arg0.getSource()!=block7 &&arg0.getSource()!=block8) {
-									
+									//put the knight on the location that the player chose
 									game.getKnight().setLocation(loc);
 									GridPane.setColumnIndex(imageK,j);
 									GridPane.setRowIndex(imageK,i );
+									//check if the knight and the king is on the same square
 									if(check==1) {
-										timer4.cancel();
-										check=0;
-										int total = game.getPoints()+points;
-										game.setPoints(total);
-										
+										timer4.cancel(); //stop timer
+										check=0;//put the check 0 - as the knight and the king isn't on the same place
+										int total = game.getPoints()+points; //add the level points to the points score
+										game.setPoints(total); //set the point score
+										//loop on the players of the sysData
 										for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+											//check if the player is on the sysData
 											if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name)) {
 												game.setPlayer(SysData.getInstance().getPlayers().get(player));
 												Game gamex = new Game();
 												gamex=game;
-												SysData.getInstance().getPlayers().get(player).getGamesHistory().add(gamex);
+												SysData.getInstance().getPlayers().get(player).getGamesHistory().add(gamex);//add the game to the player games history
 											}
 										}
 										try {
-											gamestatusLose(arg0);
+											gamestatusLose(arg0);//show game status lose screen
 										} catch (Exception e) {
 											e.printStackTrace();
 										}
-									}
+									}///check if the square that the knight moved on is an easy  question square
 									if(arg0.getSource()==node1Q && flag1==0) {
 										try {
-											popEasy();
+											popEasy();//show easy question
 										} catch (IOException e) {
 											e.printStackTrace();
 										}
 										flag1++;
 										
-									}
+									}///check if the square that the knight moved on is a medium  question square
 									 if(arg0.getSource()==node2Q && flag2==0) {
 										flag2++;
 										try {
-											popMediocre();
+											popMediocre();//show medium question 
 										} catch (IOException e) {
 											e.printStackTrace();
 										}
 										
-									 }
+									 }///check if the square that the knight moved on is a hard  question square
 									 if(arg0.getSource()==node3Q && flag3==0) {
 											flag3++;
 											try {
-												popHard();
+												popHard();//show hard question
 											} catch (IOException e) {
 												e.printStackTrace();
 											}
 											
 									 }
-									 locKnight =loc;
+									 locKnight =loc; //move the knight to the location
+									 //check if the square is visited 
 									if(boardGame.getSquares()[i][j].isVisited() == true) {
-										points--;
-										
+										points--; //lose one point
+										//set the number of visits, add one
 										int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
 										boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
-									}else {
-										points++;
-										
+									}else { //if the square is not visited
+										points++;//add one point
+										//set number of visits, add one
 										int visitsTime =boardGame.getSquares()[i][j].getNumVisits();
 										boardGame.getSquares()[i][j].setNumVisits(visitsTime+1);
-										boardGame.getSquares()[i][j].setVisited(true);
-										notVisited.remove(boardGame.getSquares()[i][j]);
-										((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+										boardGame.getSquares()[i][j].setVisited(true);//set the square as a visited square
+										notVisited.remove(boardGame.getSquares()[i][j]);//remove the square from the not visited squares array 
+										((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");//change the color of the square
 									}
 								}
 								
 							}
 							else {
-								a.setAlertType(AlertType.ERROR);//if the user not enter data 
+								a.setAlertType(AlertType.ERROR);//if the player chose a not valid square to move 
 								a.setContentText("invalid move try again");
 								a.show();	
 							}

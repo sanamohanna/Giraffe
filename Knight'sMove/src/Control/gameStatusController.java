@@ -18,7 +18,7 @@ public class gameStatusController {
 	private Label points;
 	
 	public void displayLevel(String level1){
-		level.setText("YOU LOSE IN "+level1);
+		level.setText("YOU LOST IN "+level1);
 	}
 	public void displayPoints(int points1){
 		points.setText("WITH "+points1+" POINTS");
