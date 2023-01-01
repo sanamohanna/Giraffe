@@ -157,29 +157,30 @@
       "team": "animal"
     },
     {
-      "question": "an Evolution is : ",
+      "question": "what is an Architectural Patterns? ",
       "answers": [
-        "The software may still be used but no further changes are made to it",
-        "It is to produce the same system but more innovative",
-        "a part of junit test",
-        "it's a software system’s life cycle where it is in operational use and is evolving"
+        "it's the process of determining a software system’s architecture ",
+        "it's an approach to software development",
+        "it's a part of junit test",
+        "it's a set of architectural design decisions that are applicable to a recurring design problem"
       ],
       "correct_ans": "4",
       "level": "1",
       "team": "animal"
     },
     {
-      "question": "Which of the answers is considered to a legacy system component?",
+      "question": "we can document an Architectures by ____?",
       "answers": [
-        "system hardware",
-        "support software",
-        "application data",
+        "conceptual view",
+        "logical view",
+        "process view",
         "4. All the answers is correct"
       ],
       "correct_ans": "4",
       "level": "2",
       "team": "animal"
-    }
-  ]
+
+
+    ]
 }
 
