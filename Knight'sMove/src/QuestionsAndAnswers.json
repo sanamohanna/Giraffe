@@ -1,122 +1,110 @@
 {
   "questions": [
     {
-      "question": "Software engineering is an engineering discipline that is concerned with:",
+      "question": "Agile processes is :",
       "answers": [
-        "1. Early stages of the system",
-        "2. the problems of the system after its use",
-        "3. User interface design of the system",
-        "4. all aspects of software production from the early stages of system specification through to maintaining "
-      ],
-      "correct_ans": "4",
-      "level": "1",
-      "team": "animal"
-    },
-    {
-      "question": "Why did the software fail in 2005?",
-      "answers": [
-        "1. The customers would always press the developers about the time",
-        "2. Inaccurate estimates of needed resources ",
-        "3. Unmanaged risks ",
-        "4. Answers 2 and 3 are correct"
-      ],
-      "correct_ans": "4",
-      "level": "2",
-      "team": "animal"
-    },
-    {
-      "question": "What differences has the web made to software engineering?",
-      "answers": [
-        "1. Computer science focuses on the software hardware and software engineering on design",
-        "2. Computer science focuses on theory, software engineering deals with the development and delivery of software",
-        "3. There is no difference",
-        "4. Answers 1 and 2 are correct"
-      ],
-      "correct_ans": "2",
-      "level": "3",
-      "team": "animal"
-    },
-    {
-      "question": "What is a prototype?",
-      "answers": [
-        "1. Initial display of user interface",
-        "2. Testing process",
-        "3. Name of the last stage in production",
-        "4. all answers is uncorrect"
-      ],
-      "correct_ans": "1",
-      "level": "1",
-      "team": "animal"
-    },
-    {
-      "question": "What is the cost of software engineering?",
-      "answers": [
-        "1. The cost of development is 60% of the cost and 40% of the cost of tests",
-        "2. The entire cost is a development cost",
-        "3. Development cost and test cost is the same",
-        "4. Development cost is 90% of the cost and the remaining 10% is a testing cost"
-      ],
-      "correct_ans": "1",
-      "level": "2",
-      "team": "animal"
-    },
-    {
-      "question": "Which of these are the activities of the software process",
-      "answers": [
-        "1. Development",
-        "2. Verification",
-        "3. evolution",
-        "4. All the answers are correct"
-      ],
-      "correct_ans": "4",
-      "level": "3",
-      "team": "animal"
-    },
-    {
-      "question": "What does a staff development program describe",
-      "answers": [
-        "1. How to divide the work between the employees",
-        "2. Deciding which of the team will work on the project and who will not",
-        "3. How to increase the number of employees in the team",
-        "4. How will the skills of the project team members be developed"
-      ],
-      "correct_ans": "4",
-      "level": "1",
-      "team": "animal"
-    },
-    {
-      "question": "Sequence Diagram:",
-      "answers": [
-        "1. Shows the sequence of all operations in the system",
-        "2. Shows the sequence of interactions between the actors and the objects within a system",
-        "3. Shows the sequence of interactions only of the players",
-        "4. Show the sequence of interactions only of the objects"
-      ],
-      "correct_ans": "2",
-      "level": "2",
-      "team": "animal"
-    },
-    {
-      "question": ": Model Driven Engineering is (MDE)",
-      "answers": [
-        "1. is the engineering of all the UML diagrams",
-        "2. from this type of Engineering they started to know what models are",
-        "3. Is the same as computer science engineering",
-        "4. An approach to software development in which the main products of the development process is models"
-      ],
-      "correct_ans": "4",
-      "level": "3",
-      "team": "animal"
-    },
-    {
-      "question": "which diagram is a UML diagram?",
-      "answers": [
-        "1. ERD : Entity Relationship Diagram",
-        "2. DFD: Data Flow Diagram",
-        "3. use case",
+        "1. never use formal inspection or peer review processes",
+        "2.always use formal inspection or peer review processes",
+        "3. rarely use formal inspection or peer review processes ",
         "4. all answers is uncorrect"
       ],
       "correct_ans": "3",
+      "level": "1",
+      "team": "animal"
+    },
+    {
+      "question": "Many agile methods argue that: ",
+      "answers": [
+        "1. The customers would always press the developers about the time",
+        "2. producing a requirements document is a waste of time",
+        "3. better to use incremental requirements engineering and express requirements as ‘user stories’. ",
+        "4. Answers 2 and 3 are correct"
+      ],
+      "correct_ans": "2",
+      "level": "2",
+      "team": "animal"
+    },
+    {
+      "question": "The software requirements document should be:",
+      "answers": [
+        "1. organized so that system customers can use it",
+        "2. organized so that software developers can use it ",
+        "3.  organized so that other systems can use it",
+        "4. Answers 1 and 2 are correct"
+      ],
+      "correct_ans": "4",
+      "level": "3",
+      "team": "animal"
+    },
+    {
+      "question": " system requirements that should describe the system services in detail is a :",
+      "answers": [
+        "1. Functional",
+        "2. Non-Functional",
+        "3. Domain",
+        "4. all requirements"
+      ],
+      "correct_ans": "1",
+      "level": "1",
+      "team": "animal"
+    },
+    {
+      "question": " what Factor affecting the extent of the review?",
+      "answers": [
+        "1. nothing affecting it.",
+        "2. developers",
+        "3. society",
+        "4. Project magnitude"
+      ],
+      "correct_ans": "4",
+      "level": "2",
+      "team": "animal"
+    },
+  {
+    "question": " In direct Reviews",
+    "answers": [
+      "1. Identify risks.",
+      "2. locate deviadions from conventions",
+      "3. product uproval.",
+      "4. record Errors"
+    ],
+    "correct_ans": "4",
+    "level": "2",
+    "team": "animal"
+  },
+  {
+    "question": "which one is NOT a  objectives type of review?",
+    "answers": [
+      "1. Finding and fixing code problems ",
+      "2. Checking the systematicity of code before entering it into the system ",
+      "3. Criticizing the programmer who wrote the code",
+      "4. Testing the coding ability of other programmers"
+    ],
+    "correct_ans": "1",
+    "level": "3",
+    "team": "animal"
+  },
+    {
+      "question": "Black Box tests is :",
+      "answers": [
+        "1. Access to unit testing manually or automatically",
+        "2.Shadow access to testing at all levels while looking at the system code",
+        "3. Access to functional system tests",
+        "4.Neither answer is correct"
+      ],
+      "correct_ans": "4",
+      "level": "2",
+      "team": "animal"
+    },
+    {
+      "question": " collecting requirements by:",
+      "answers": [
+        "1. Questionnaires",
+        "2. Observations",
+        "3.interviews",
+        "4. all answers are correct"
+      ],
+      "correct_ans": "4",
       "level": "1",
       "team": "animal"
     },
@@ -130,6 +118,30 @@
       ],
       "correct_ans": "2",
       "level": "2",
+      "team": "animal"
+    },
+    {
+      "question": ": Which of these is a Types of maintenance",
+      "answers": [
+        "1. Corrective Maintenance",
+        "2.  programmetive Maintenance",
+        "3. publicetive Maintenance",
+        "4. all answers are correct"
+      ],
+      "correct_ans": "1",
+      "level": "3",
+      "team": "animal"
+    },
+    {
+      "question": "what is a Maintenance?",
+      "answers": [
+        "to make efficient of the Development testing to make the system more effective",
+        "it is that with the finish of project we need to to make sure that all the system data is complate and correct ",
+        " it's to ensure the continuous and efficient operation of the system ",
+        "4. all answers is uncorrect"
+      ],
+      "correct_ans": "3",
+      "level": "3",
       "team": "animal"
     },
     {
@@ -166,18 +178,6 @@
       ],
       "correct_ans": "4",
       "level": "2",
-      "team": "animal"
-    },
-    {
-      "question": "what is a Maintenance?",
-      "answers": [
-        "to make efficient of the Development testing to make the system more effective",
-        "it is that with the finish of project we need to to make sure that all the system data is complate and correct ",
-        " it's to ensure the continuous and efficient operation of the system ",
-        "4. all answers is uncorrect"
-      ],
-      "correct_ans": "3",
-      "level": "3",
       "team": "animal"
     }
   ]
