@@ -122,6 +122,15 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	double smallestDistance = 11 , smallestDistance2 = 11,smallestDistance3=11,smallestDistance4=11;
 	
 	public static final PseudoClass PSEUDO_CLASS_VALID = PseudoClass.getPseudoClass("valid");
+	
+	/**
+	 * 
+	 * function that start the game in Level 1, put every piece in his place
+	 * for every move count the points and remove the visited square from the array of not visited squares
+	 * creating random three squares for the questions.
+	 * for every square that the player want's to visit, pop an alert of not available move
+	 * 
+	 * **/
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 //		for(int i = 0 ; i < 8 ; i++) {
@@ -189,6 +198,13 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		
 		
 	}
+	
+	/**
+	 * 
+	 * a function that check the game status of lose 
+	 *it will be open the lose screen with the lose status and the level and points
+	 * 
+	 * **/
 	public void gamestatusLose(ActionEvent event) throws Exception {
 
 		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
@@ -206,6 +222,13 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		stage.setScene(scene);
 		stage.show();
 		}
+	
+	/**
+	 * 
+	 * a function that check the game status of lose 
+	 * it will be open the lose screen with the lose status and the level and points
+	 * 
+	 * **/
 	public void gamestatuswon(ActionEvent event) throws Exception {
 
 		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
@@ -223,28 +246,37 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
-		}
-		public void kingMove(long totalSec){
-			knightLoc=locKnight;
-			smallestDistance=11;
-			if(totalSec%speed == 0) {
-				for(int k =0;k<KingValidMoves.size();k++) {
-					if(game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k)) < smallestDistance ) {
-						smallestDistance=game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k));
-						locKing = KingValidMoves.get(k);
-					}
+	}
+	
+	/**
+	 * 
+	 * method for the movement of the king
+	 * 
+	 * **/
+	public void kingMove(long totalSec){
+		knightLoc=locKnight;
+		smallestDistance=11;
+		if(totalSec%speed == 0) {
+			for(int k =0;k<KingValidMoves.size();k++) {
+				//check if the shortest distance between the king and knight is small than the smallest distance
+				if(game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k)) < smallestDistance ) {
+					smallestDistance=game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k));
+					locKing = KingValidMoves.get(k);
 				}
-				game.getKing().setLocation(locKing);
-				KingValidMoves=game.getKing().validMovesForKing(game.getKing());
-				GridPane.setColumnIndex(imageKing,locKing.getX());
-				GridPane.setRowIndex(imageKing,locKing.getY());
 			}
-			if(totalSec%10==0) {
-				if(speed!=2)
-				speed--;
-			}
+			//move the king to the smallest distance
+			game.getKing().setLocation(locKing);
+			//change the array of the valid moves to new array with the valid moves to the new place
+			KingValidMoves=game.getKing().validMovesForKing(game.getKing());
+			GridPane.setColumnIndex(imageKing,locKing.getX());
+			GridPane.setRowIndex(imageKing,locKing.getY());
+		} // let the king move accelerate
+		if(totalSec%10==0) {
+			if(speed!=2)
+			speed--;
 		}
-		// method that start timer in long one minute to every level in the game 
+	}
+		// method that start timer in one minute to every level in the game 
 		public void setTimer(Timer timer){
 				TimerTask timerTask = new TimerTask() {
 					@Override
@@ -294,9 +326,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		public void displayName(String userName) {
 			label1.setText("Player: "+userName);
 		}
+		//display level in status screen
 		public void displayLevel(String level1) {
 			level.setText(level1);
 		}
+		// display points in status screan
 		public void displaypoints(String points) {
 			pointsT.setText(points);
 		}
@@ -344,24 +378,26 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
 			stage.setScene(scene);			
 			stage.show();
-		}	
-
+		}
 		
-	
+		
 		public void levelsMoves() throws IOException {
 		
 			for(int node = 0 ; node < board.getChildren().size()-3 ; node++) {
 				
 				((ButtonBase) board.getChildren().get(node)).setOnAction(this);
 			}
-
-
 		}
 		
 		
-	
+		/**
+		 * 
+		 * method for the game
+		 * 
+		 * **/
 		@Override
 		public void handle(ActionEvent arg0) {
+			//save the valid moves of the knight in array list for each level
 			ArrayList<Location> validsMovesLevel1 =new ArrayList<Location>();
 			validsMovesLevel1 = game.getKnight().allValidMovesLevel1(game.getKnight());
 			ArrayList<Location> validsMovesLevel2 =new ArrayList<Location>();
@@ -370,139 +406,156 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			validsMovesLevel3 = game.getKnight().allValidMovesLevel2(game.getKnight());
 			ArrayList<Location>  validsMovesLevel4 = new ArrayList<Location>();
 			validsMovesLevel4 = game.getKnight().allValidMovesLevel2(game.getKnight());
-			Location locQueen = new Location();
+			Location locQueen = new Location();// create location for queen
 			double smallestDistance = 11;
+			//loop on the board
 			for(int i = 0 ; i < 8 ; i++) {
 				for(int j = 0 ; j < 8 ; j ++) {
-					if(finish==0) {
-
+					if(finish==0) { // level 1
+						//check if the square that the knight chose to move is equal to the square b[i][j]
 						if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
-							Location loc = new Location(j,i);
-							
+							Location loc = new Location(j,i); // create location and save it's place on square b[j][i]
+							//check if the valid moves for level 1 contain the location that the player chose
 							if(validsMovesLevel1.contains(loc) ) {
-								
+								//set the knight on the board
 								game.getKnight().setLocation(loc);
 								GridPane.setColumnIndex(imageK,j);
 								GridPane.setRowIndex(imageK,i );
+								//check if the square that the knight moved on is an easy question square
 								if(arg0.getSource()==node1Q && flag1==0) {
 									try {
-										popEasy();
+										popEasy(); //show easy question
 									} catch (IOException e) {
 										e.printStackTrace();
 									}
-									game.setPoints(points);
+									game.setPoints(points); //add question's points if the player answer is true
 									flag1++;
 								}
+								//check if the square that the knight moved on is a medium question square
 								 if(arg0.getSource()==node2Q && flag2==0) {
 									flag2++;
 									try {
-										popMediocre();
+										popMediocre();//show medium question
 									} catch (IOException e) {
 										e.printStackTrace();
 									}
-									game.setPoints(points);
+									game.setPoints(points);//add question's points if the player answer is tru
 								 }
+								//check if the square that the knight moved on is a hard question square
 								 if(arg0.getSource()==node3Q && flag3==0) {
 										flag3++;
 										try {
-											popHard();
+											popHard();//show hard question 
 										} catch (IOException e) {
 											e.printStackTrace();
 										}
-										game.setPoints(points);
-								 }
-								 
+										game.setPoints(points);//add question's points if the player answer is tru
+								}
+								//check if the square that the knight is moved on isn't a random jump square
 								if(!arg0.getSource().equals(nodeRandomJump1)&&!arg0.getSource().equals(nodeRandomJump2)&&!arg0.getSource().equals(nodeRandomJump3)) {
+									//creating array for queen valid moves and add all the squares that the queen can move to
 									ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
 									QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
-		
+									
 									for(int k =0;k<QueenValidMoves.size();k++) {
+										//check if the shortest distance between the queen and knight is small than the smallest distance
 										if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
 											smallestDistance=game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k));
 											locQueen = QueenValidMoves.get(k);
 										}
 									}
-									
+									//move the queen to the square that have the shortest distance between the queen and the knight
 									game.getQueen().setLocation(locQueen);
 									GridPane.setColumnIndex(imageQ,locQueen.getX());
 									GridPane.setRowIndex(imageQ,locQueen.getY());
+									//check if the square that the queen moved to is the square that the knight is on it
 									if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
 										
 										for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+											//check if the player is in the sysData
 											if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
 												game.setPlayer(SysData.getInstance().getPlayers().get(player));
-												SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);
+												SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
 											}
 										}
-										timer1.cancel();
+										timer1.cancel();//stop the timer
 										try {
-											gamestatusLose(arg0);
+											gamestatusLose(arg0); //show game status lose screen
 										} catch (Exception e) {
 											e.printStackTrace();
 										}
 									}
-								}else {
+								}else { //check if the square that the player chose is a random jump square
 									if(arg0.getSource()==nodeRandomJump1 || arg0.getSource()==nodeRandomJump2 ||arg0.getSource()==nodeRandomJump3) {
-										
+										//square that  will knight jump in the random jump from the squares that isn't visited
 										Squares sq= notVisited.get(rand.nextInt(notVisited.size())); 
-										Location loc0 = new Location(sq.getLocation().getX(),sq.getLocation().getY());
-										game.getKnight().setLocation(loc0);
+										Location loc0 = new Location(sq.getLocation().getX(),sq.getLocation().getY());// save location
+										game.getKnight().setLocation(loc0); //let the knight jump on the square
 										GridPane.setColumnIndex(imageK,sq.getLocation().getX());
-										GridPane.setRowIndex(imageK,sq.getLocation().getY() );	
+										GridPane.setRowIndex(imageK,sq.getLocation().getY() );
+										//create new valid moves to the queen 
 										ArrayList<Location> QueenValidMoves = new ArrayList<Location>();
 										QueenValidMoves = game.getQueen().validMovesForQueen(game.getQueen());
 										for(int k =0;k<QueenValidMoves.size();k++) {
+											//check if the shortest distance between the queen and knight is small than the smallest distance
 											if(game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k))<smallestDistance) {
 												smallestDistance=game.getQueen().shortestDistance(game.getKnight().getLocation(), QueenValidMoves.get(k));
 												locQueen = QueenValidMoves.get(k);
 											}
 										}
+										//move the queen to the shortest distance
 										game.getQueen().setLocation(locQueen);
 										GridPane.setColumnIndex(imageQ,locQueen.getX());
 										GridPane.setRowIndex(imageQ,locQueen.getY());
+										//check if the square that the queen moved to is the square that the knight is on it
 										if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
-											timer1.cancel();
+											timer1.cancel(); //stop the timer
 											for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+												//check if the player is on the sysData
 												if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name)) {
 													game.setPlayer(SysData.getInstance().getPlayers().get(player));
 													System.out.println(game);
-													SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);
+													SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the game history
 													//System.out.println(SysData.getInstance().getPlayers().get(player).getGamesHistory());
 												}
 											}
 											try {
-												gamestatusLose(arg0);
+												gamestatusLose(arg0); //show game status lose screen
 											} catch (Exception e) {
 												e.printStackTrace();
 											}
 										}
+										//check if the square that the knight moved on is a easy question square
 										if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
 											try {
-												popEasy();
+												popEasy();//show easy question
 												flag1++;
 											} catch (IOException e) {
 												e.printStackTrace();
 											}
-										}
+										}//check if the square that the knight moved on is a medium question square
 										else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) ) {
 											try {										
-												popMediocre();
+												popMediocre();//show medium question
 												flag2++;
 											} catch (IOException e) {
 												e.printStackTrace();
 											}
-										}
+										}//check if the square that the knight moved on is a hard question square
 										else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
 											try {									
-												popHard();
+												popHard();//show hard question
 												flag3++;
 											} catch (IOException e) {
 											
 												e.printStackTrace();
 											}
 										}
+										//set the square as a visited square
 										boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()].setVisited(true);
+										//remove the square from the not visited squares array list
 										notVisited.remove(boardGame.getSquares()[sq.getLocation().getY()][sq.getLocation().getX()]);
+										//change the color of the visited square
 										((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
 										String str = "b"+sq.getLocation().getY()+sq.getLocation().getX();
 										for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
@@ -516,17 +569,20 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									}
 									
 								}
+								//check if the player chose to move on a square that is visited
 								if(boardGame.getSquares()[i][j].isVisited() == true) {
-									points--;
-									game.setPoints(points);
-									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);
-								}else {
-									points++;
-									game.setPoints(points);
-									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);
-									boardGame.getSquares()[i][j].setVisited(true);
-									notVisited.remove(boardGame.getSquares()[i][j]);
-									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;");
+									points--;//lose point
+									game.setPoints(points);//set the points
+									//count the number of visits for the square
+									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);//set the number of visits for this square
+								}else { //if the square is not visited
+									points++;//win point
+									game.setPoints(points);//set points
+									//count the number of visits fir the square
+									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);//set the number of visits for this square
+									boardGame.getSquares()[i][j].setVisited(true);//change the square to visited
+									notVisited.remove(boardGame.getSquares()[i][j]);//remove the square from not visited squares array
+									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;"); //change the color of the square
 								}
 								
 								
@@ -542,7 +598,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	
 						}
 				}
-					else if(finish == 1)
+					else if(finish == 1) //level 2
 						{
 						
 							if(((Button)arg0.getSource()).getId().toString().equals("b"+""+i +""+j) ) {
