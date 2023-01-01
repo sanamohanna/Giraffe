@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
+
+import View.MainScreen;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -88,6 +90,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	int speed=5;
 	int counter = 0;
 	int check=0;
+	int kingMoveLevel4 = 0;
 	Alert a = new Alert(AlertType.NONE);
 	//timer fields;
 	static long min,hr, sec,totalSec;
@@ -109,9 +112,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	Node block1, block2, block3, block4, block5, block6, block7, block8;
 	ArrayList<Squares> notVisited = new ArrayList<Squares>();
 	Location locKing = new Location();
-	Location locKing2 = new Location();
-	Location locKing3 = new Location();
-	Location locKing4 = new Location();
 	Timer timer1 =new Timer();
 	Timer timer2 =new Timer();
 	Timer timer3 =new Timer();
@@ -119,7 +119,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	Location locKnight = new Location(0,0) ;
 	ArrayList<Location> KingValidMoves = new ArrayList<Location>();
 	
-	double smallestDistance = 11 , smallestDistance2 = 11,smallestDistance3=11,smallestDistance4=11;
+	double smallestDistance = 11 ;
 	
 	
 	/**
@@ -221,6 +221,24 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		stage.setScene(scene);
 		stage.show();
 		}
+	public void gamestatusLose1() throws Exception {
+
+		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
+		Parent root = loader.load();
+		gameStatusController status = loader.getController();
+		//send the username to start game controller to display
+		status.displayLevel(level.getText());
+		//int total = game.getPoints()+points;
+		status.displayPoints(game.getPoints());
+
+		Stage stage = MainScreen.stage;
+		//Stage stage = new Stage();
+		Scene scene = new Scene(root);
+		//scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
+		stage.setResizable(false);
+		stage.setScene(scene);
+		stage.show();
+		}
 	
 	/**
 	 * 
@@ -228,31 +246,31 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	 * it will be open the lose screen with the lose status and the level and points
 	 * 
 	 * **/
-	public void gamestatuswon(ActionEvent event) throws Exception {
-
-		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
-		Parent root = loader.load();
-		gameStatusController status = loader.getController();
-		//send the username to start game controller to display
-		status.displayLevel("YOU WON");
-		//int total = game.getPoints()+points;
-		status.displayPoints(game.getPoints());
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		//Stage stage = new Stage();
-		Scene scene = new Scene(root);
-		root.setStyle("-fx-background-color: green; ");
-		//scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
-		stage.setResizable(false);
-		stage.setScene(scene);
-		stage.show();
-	}
+//	public void gamestatuswon() throws Exception {
+//
+//		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
+//		Parent root = loader.load();
+//		gameStatusController status = loader.getController();
+//		//send the username to start game controller to display
+//		status.displayLevel("YOU WON");
+//		//int total = game.getPoints()+points;
+//		status.displayPoints(game.getPoints());
+//		Stage stage = Stage)((Node)event.getSource()).getScene().getWindow();
+//		//Stage stage = new Stage();
+//		Scene scene = new Scene(root);
+//		root.setStyle("-fx-background-color: green; ");
+//		//scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
+//		stage.setResizable(false);
+//		stage.setScene(scene);
+//		stage.show();
+//	}
 	
 	/**
 	 * 
 	 * method for the movement of the king
 	 * 
 	 * **/
-	public void kingMove(long totalSec){
+	public void kingMoveLevel3(long totalSec){
 		knightLoc=locKnight;
 		smallestDistance=11;
 		if(totalSec%speed == 0) {
@@ -269,9 +287,78 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			KingValidMoves=game.getKing().validMovesForKing(game.getKing());
 			GridPane.setColumnIndex(imageKing,locKing.getX());
 			GridPane.setRowIndex(imageKing,locKing.getY());
+//			if(game.getKing().getLocation().equals(game.getKnight().getLocation())) {
+//				timer3.cancel();
+//				try {
+//					gamestatusLose1();
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
 		}
 		if(game.getKing().getLocation().equals(game.getKnight().getLocation())) {
 			check=1;
+		}
+		// let the king move accelerate
+		if(totalSec%10==0) {
+			if(speed!=1)
+			speed--;
+		}
+	}
+	/**
+	 * 
+	 * method for the movement of the king
+	 * 
+	 * **/
+	Location toRemove1 = new Location();
+	Location toRemove2 = new Location();
+	public void kingMoveLevel4(long totalSec){
+		kingMoveLevel4 = 0;
+		knightLoc=locKnight;
+		smallestDistance=11;
+		//change the array of the valid moves to new array with the valid moves to the new place
+		KingValidMoves=game.getKing().validMovesForKing(game.getKing());
+		KingValidMoves.remove(toRemove2);
+		if(totalSec%speed == 0) {
+			while(kingMoveLevel4==0) {
+				smallestDistance=11;
+				//KingValidMoves.remove(toRemove2);
+				for(int k =0;k<KingValidMoves.size();k++) {
+					
+					//check if the shortest distance between the king and knight is small than the smallest distance
+					if(game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k)) < smallestDistance ) {
+						smallestDistance=game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k));
+						locKing = KingValidMoves.get(k);
+					}
+				}
+				//Squares kingLoc =boardGame.getSquares()[locKing.getY()][locKing.getX()];
+				if(locKing.getX()!=GridPane.getColumnIndex(block1) && locKing.getY()!=GridPane.getRowIndex(block1) 
+					&& locKing.getX()!=GridPane.getColumnIndex(block2) && locKing.getY()!=GridPane.getRowIndex(block2)
+					&& locKing.getX()!=GridPane.getColumnIndex(block3) && locKing.getY()!=GridPane.getRowIndex(block3)
+					&& locKing.getX()!=GridPane.getColumnIndex(block4) && locKing.getY()!=GridPane.getRowIndex(block4)
+					&& locKing.getX()!=GridPane.getColumnIndex(block5) && locKing.getY()!=GridPane.getRowIndex(block5)
+					&& locKing.getX()!=GridPane.getColumnIndex(block6) && locKing.getY()!=GridPane.getRowIndex(block6)
+					&& locKing.getX()!=GridPane.getColumnIndex(block7) && locKing.getY()!=GridPane.getRowIndex(block7)
+					&& locKing.getX()!=GridPane.getColumnIndex(block8) && locKing.getY()!=GridPane.getRowIndex(block8)) {
+					//move the king to the smallest distance
+					game.getKing().setLocation(locKing);
+					GridPane.setColumnIndex(imageKing,locKing.getX());
+					GridPane.setRowIndex(imageKing,locKing.getY());
+					kingMoveLevel4=1;
+						
+				}
+				else {
+					System.out.println("2");
+					KingValidMoves.remove(locKing);
+					System.out.println();
+				}
+				
+			}
+			
+			if(game.getKing().getLocation().equals(game.getKnight().getLocation())) {
+				check=1;
+			}
 		}
 		// let the king move accelerate
 		if(totalSec%10==0) {
@@ -285,10 +372,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					@Override
 					public void run(){					
 							convertTime();
-							if(finish == 2 || finish == 3) {
-								//if(totalSec%speed == 0) {
-									kingMove(totalSec);
-								//}	
+							if(finish == 2 ) {
+								kingMoveLevel3(totalSec);	
+							}
+							if(finish == 3) {
+								kingMoveLevel3(totalSec);
 							}
 							
 							// we added the points text just for checking we will change it when we finish the game
@@ -757,49 +845,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												}
 												forgetsSquares.remove(forgetsSquares.size()-1);
 												forgetsSquares.remove(forgetsSquares.size()-1);
-//												
-//												if(forgetsSquares.get(1).getNumVisits()==1) {
-//													boardGame.getSquares()[forgetsSquares.get(1).getLocation().getY()][forgetsSquares.get(1).getLocation().getX()].setVisited(false);
-//													forgetsSquares.get(1).setNumVisits(0);
-//													points--;
-//													String str = "b"+forgetsSquares.get(1).getLocation().getY()+forgetsSquares.get(1).getLocation().getX();
-//													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-//														if(board.getChildren().get(node).getId().toString().equals(str)) {
-//															board.getChildren().get(node).setStyle("-fx-background-color: defult;");
-//															board.getChildren().get(node).setStyle("-fx-border-color : black;");
-//														}
-//													}
-//													notVisited.add(forgetsSquares.get(1));
-//													forgetsSquares.remove(1);
-//												}
-//												else {
-//													points++;
-//													int numVisits=forgetsSquares.get(1).getNumVisits();
-//													forgetsSquares.get(1).setNumVisits(numVisits-1);
-//													forgetsSquares.remove(1);
-//												}
-//												if(forgetsSquares.get(0).getNumVisits()==1) {
-//													boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
-//													forgetsSquares.get(0).setNumVisits(0);
-//													String str = "b"+forgetsSquares.get(0).getLocation().getY()+forgetsSquares.get(0).getLocation().getX();
-//													for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-//														if(board.getChildren().get(node).getId().toString().equals(str)) {
-//															board.getChildren().get(node).setStyle("-fx-background-color: defult;");
-//															board.getChildren().get(node).setStyle("-fx-border-color : black;");
-//														}
-//													}
-//													points--;
-//													notVisited.add(forgetsSquares.get(0));
-//													forgetsSquares.remove(0);
-//												}
-//												else {
-//													points++;
-//													int numVisits=forgetsSquares.get(0).getNumVisits();
-//													forgetsSquares.get(0).setNumVisits(numVisits-1);
-//													forgetsSquares.remove(0);
-//												}
-												
-												
+
 											}
 											else
 												if(forgetsSquares.size()>=3) {
@@ -1030,53 +1076,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												}
 											}
 											forgetsSquares.remove(forgetsSquares.size()-1);
-											forgetsSquares.remove(forgetsSquares.size()-1);
-//											if(forgetsSquares.get(1).getNumVisits()==1) {
-//												boardGame.getSquares()[forgetsSquares.get(1).getLocation().getY()][forgetsSquares.get(1).getLocation().getX()].setVisited(false);
-//												forgetsSquares.get(1).setNumVisits(0);
-//												points--;
-//												
-//												String str = "b"+forgetsSquares.get(1).getLocation().getY()+forgetsSquares.get(1).getLocation().getX();
-//												for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-//													if(board.getChildren().get(node).getId().toString().equals(str)) {
-//														board.getChildren().get(node).setStyle("-fx-background-color: defult;");
-//														board.getChildren().get(node).setStyle("-fx-border-color : black;");
-//													}
-//												}
-//												notVisited.add(forgetsSquares.get(1));
-//												forgetsSquares.remove(1);
-//											}
-//											else {
-//												points++;
-//												
-//												int numVisits=forgetsSquares.get(1).getNumVisits();
-//												forgetsSquares.get(1).setNumVisits(numVisits-1);
-//												forgetsSquares.remove(1);
-//											}
-//											if(forgetsSquares.get(0).getNumVisits()==1) {
-//												boardGame.getSquares()[forgetsSquares.get(0).getLocation().getY()][forgetsSquares.get(0).getLocation().getX()].setVisited(false);
-//												forgetsSquares.get(0).setNumVisits(0);
-//												String str = "b"+forgetsSquares.get(0).getLocation().getY()+forgetsSquares.get(0).getLocation().getX();
-//												for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-//													if(board.getChildren().get(node).getId().toString().equals(str)) {
-//														board.getChildren().get(node).setStyle("-fx-background-color: defult;");
-//														board.getChildren().get(node).setStyle("-fx-border-color : black;");
-//													}
-//												}
-//												points--;
-//												
-//												notVisited.add(forgetsSquares.get(0));
-//												forgetsSquares.remove(0);
-//											}
-//											else {
-//												points++;
-//												
-//												int numVisits=forgetsSquares.get(0).getNumVisits();
-//												forgetsSquares.get(0).setNumVisits(numVisits-1);
-//												forgetsSquares.remove(0);
-//											}
-//											
-											
+											forgetsSquares.remove(forgetsSquares.size()-1);	
 										}
 										else
 											if(forgetsSquares.size()>=3) {
@@ -1137,7 +1137,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setColumnIndex(imageK,j);
 									GridPane.setRowIndex(imageK,i );
 									if(check==1) {
-										timer3.cancel();
+										timer4.cancel();
 										check=0;
 										int total = game.getPoints()+points;
 										game.setPoints(total);
@@ -1343,10 +1343,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
 						board.getChildren().get(node).setStyle("-fx-border-color : black;");
 					}
+					if(b00.getStyle()!="-fx-background-color: grey;-fx-border-color : black;")
+						b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
 					points=0;
 					Location locFirst = new Location(0,0);
 					game.getKnight().setLocation(locFirst);
-					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
 					boardGame.getSquares()[0][0].setVisited(true);
 					points++;
 					
@@ -1361,7 +1362,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					flag1=0;
 					flag2=0;
 					flag3=0;
-					totalSec=10;
+					totalSec=30;
 					speed=5;
 					imageKing.setVisible(true);
 					imageQ.setVisible(false);
@@ -1425,7 +1426,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					flag1=0;
 					flag2=0;
 					flag3=0;
-					totalSec=60;
+					totalSec=6;
 					speed=5;
 					
 					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
@@ -1453,39 +1454,43 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					node1Q.setStyle("-fx-background-color: green; ");
 					
 					block1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					
+					while(block1==b00 || block1==b07) {
+						block1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+					}
 					block1.setStyle("-fx-background-color: darkred; ");
 					block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block1==block2 || block2 == node1Q  ||block2 == node2Q ||block2 == node3Q ) {
+					while(block1==block2 || block2 == node1Q  ||block2 == node2Q ||block2 == node3Q || block2==b00 || block2==b07 ) {
 						block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					block2.setStyle("-fx-background-color: darkred; ");
 					block3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block3==block2  || block3 == block1 || block3 == node1Q  ||block3 == node2Q ||block3 == node3Q) {
+					while(block3==block2  || block3 == block1 || block3 == node1Q  ||block3 == node2Q ||block3 == node3Q || block3==b00 || block3==b07) {
 						block3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					block3.setStyle("-fx-background-color: darkred; ");
 					block4 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block4==block1 || block4==block2 || block4==block3 || block4 == node1Q  ||block4 == node2Q ||block4 == node3Q) {
+					while(block4==block1 || block4==block2 || block4==block3 || block4 == node1Q  ||block4 == node2Q ||block4 == node3Q || block4==b00 || block4==b07) {
 						block4 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					block4.setStyle("-fx-background-color: darkred; ");
 					block5 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block4==block5 || block5==block2 || block5==block3 || block5==block1 ||block5 == node1Q  ||block5 == node2Q ||block5 == node3Q) {
+					while(block4==block5 || block5==block2 || block5==block3 || block5==block1 ||block5 == node1Q  ||block5 == node2Q ||block5 == node3Q || block5==b00 || block5==b07) {
 						block5 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					block5.setStyle("-fx-background-color: darkred; ");
 					block6 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block6==block5 || block6==block2 || block6==block3 || block6==block1 || block6==block4 ||block6 == node1Q  ||block6 == node2Q ||block6 == node3Q) {
+					while(block6==block5 || block6==block2 || block6==block3 || block6==block1 || block6==block4 ||block6 == node1Q  ||block6 == node2Q ||block6 == node3Q || block6==b00 || block6==b07) {
 						block6 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					block6.setStyle("-fx-background-color: darkred; ");
 					block7 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block7==block5|| block7==block6 || block7==block4 || block7==block2 || block7==block3 || block7==block1 || block7 == node1Q  ||block7 == node2Q ||block7 == node3Q) {
+					while(block7==block5|| block7==block6 || block7==block4 || block7==block2 || block7==block3 || block7==block1 || block7 == node1Q  ||block7 == node2Q ||block7 == node3Q || block7==b00 || block7==b07) {
 						block7 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					block7.setStyle("-fx-background-color: darkred; ");
 					block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block8==block7|| block8==block6  || block5==block8|| block8==block4 || block8==block3|| block8==block2 || block8==block1 || block8 == node1Q  ||block8 == node2Q ||block8 == node3Q) {
+					while(block8==block7|| block8==block6  || block5==block8|| block8==block4 || block8==block3|| block8==block2 || block8==block1 || block8 == node1Q  ||block8 == node2Q ||block8 == node3Q || block8==b00 || block8==b07) {
 						block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 					}
 					block8.setStyle("-fx-background-color: darkred; ");
@@ -1494,7 +1499,12 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					setTimer(timer4);
 				}
 				if(points>=0 && finish==4) {
-					//gamestatusWon(last);
+//					try {
+//						gamestatuswon();
+//					} catch (Exception e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
 				}
 			}
 		}

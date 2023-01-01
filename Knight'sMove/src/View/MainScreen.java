@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 public class MainScreen extends Application {
-
+	 public static Stage stage;
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
@@ -35,7 +35,7 @@ public class MainScreen extends Application {
 	public void start(Stage primaryStage) throws IOException {
 
 		try {
-
+			stage=primaryStage;
 			Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
