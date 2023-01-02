@@ -1238,309 +1238,388 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 
 			
 		}
-			public void pause(ActionEvent event) throws IOException {
-				//Parent root = FXMLLoader.load(getClass().getResource("/View/pause.fxml"));
-				//timer.cancel();
-				Stage stage = new Stage();
-				
-				
-				FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/pause.fxml"));
-				Parent root = loader.load();
-				Scene scene = new Scene(root);
-				//Parent root = loader.load();
-				pauseController pc = loader.getController();
-				pc.setX(totalSec);
-				stage.setResizable(false);
-				scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
-				stage.setScene(scene);			
-				stage.show();
-			}
-			public void fillNotVisitedArray(ArrayList<Squares> array) {					
+		/**
+		 * 
+		 * method that pause the game with the pause click on the game screen in each level
+		 * and resume the game from the time that the player pause it
+		 * 
+		 * **/
+		public void pause(ActionEvent event) throws IOException {
+			//Parent root = FXMLLoader.load(getClass().getResource("/View/pause.fxml"));
+			//timer.cancel();
+			Stage stage = new Stage();
+			FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/pause.fxml"));
+			Parent root = loader.load();
+			Scene scene = new Scene(root);
+			//Parent root = loader.load();
+			pauseController pc = loader.getController();
+			pc.setX(totalSec);
+			stage.setResizable(false);
+			scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+			stage.setScene(scene);			
+			stage.show();
+		}
+		
+		/**
+		 * 
+		 * method that fill the not visited squares array with the squares that the player doesn't visit
+		 * with the enter of the game, all the squares in the board are fill into this array
+		 * 
+		 * **/
+		public void fillNotVisitedArray(ArrayList<Squares> array) {					
+			for(int i = 0 ; i < 8 ; i++) {
+				for(int j = 0 ; j < 8 ; j ++) {
+					array.add(boardGame.getSquares()[i][j]);
+				}	
+			}				
+		}
+		
+		/**
+		 * 
+		 * method that check the options of each level, and check if the player won or not 
+		 * chick if the player can play the next level.
+		 * the method start with level2 
+		 * 
+		 * **/
+		public void nextLevel() throws IOException {
+			//after finishing level 1, check the points if >= 0
+			if(points>=0 && finish==1) {//level 2
+				//checkers for the level, start with 0 
+				flag1=0;
+				flag2=0;
+				flag3=0;
+				totalSec=5; //the time for this level
+				//loop on the squares
 				for(int i = 0 ; i < 8 ; i++) {
 					for(int j = 0 ; j < 8 ; j ++) {
-						array.add(boardGame.getSquares()[i][j]);
+						//set the square as not visited and the number of visit as 0
+						boardGame.getSquares()[i][j].setVisited(false);
+						boardGame.getSquares()[i][j].setNumVisits(0);
 					}
-					
-				}				
-			}
-			public void nextLevel() throws IOException {
+				}//loop on the board squares
+				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+					//set the colors of the squares
+					board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+					board.getChildren().get(node).setStyle("-fx-border-color : black;");
+				}
+				fillNotVisitedArray(notVisited);//fill the array of not visited squares
+				points=1;//add point, for the first place of the knight
+				Location locFirst = new Location(0,0);//creating the first location of the knight
+				game.getKnight().setLocation(locFirst);//put the knight on his first location
 				
-				if(points>=0 && finish==1) {
-					flag1=0;
-					flag2=0;
-					flag3=0;
-					totalSec=5;
-					
-					for(int i = 0 ; i < 8 ; i++) {
-						for(int j = 0 ; j < 8 ; j ++) {
-							boardGame.getSquares()[i][j].setVisited(false);
-							boardGame.getSquares()[i][j].setNumVisits(0);
-						}
-						
-					}
-
-					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
-						board.getChildren().get(node).setStyle("-fx-border-color : black;");
-					}
-					fillNotVisitedArray(notVisited);
-					points=1;
-					Location locFirst = new Location(0,0);
-					game.getKnight().setLocation(locFirst);
-					
-					boardGame.getSquares()[0][0].setVisited(true);
-					notVisited.remove(boardGame.getSquares()[0][0]);
-					GridPane.setColumnIndex(imageK, 0);
-					GridPane.setRowIndex(imageK, 0);
-					pointsT.setText(String.valueOf(points));
-					game.getQueen().setLocation(new Location(7,0));
-					GridPane.setColumnIndex(imageQ,7);
-					GridPane.setRowIndex(imageQ,0);
-					imageKing.setVisible(false);
-					upleft.setVisible(false);
-					upright.setVisible(false);
-					leftup.setVisible(false);
-					rightup.setVisible(false);
-					rightdown.setVisible(false);
-					leftdown.setVisible(false);
-					downright.setVisible(false);
-					downleft.setVisible(false);
-					knight.setVisible(false);
-					
-					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
-					node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				boardGame.getSquares()[0][0].setVisited(true);//set the first place as visited
+				notVisited.remove(boardGame.getSquares()[0][0]);//remove the first place from the not visited squares array
+				//set the knight location on the board
+				GridPane.setColumnIndex(imageK, 0);
+				GridPane.setRowIndex(imageK, 0);
+				pointsT.setText(String.valueOf(points));//add the point to the player
+				game.getQueen().setLocation(new Location(7,0));
+				//set the queen location on the board
+				GridPane.setColumnIndex(imageQ,7);
+				GridPane.setRowIndex(imageQ,0);
+				imageKing.setVisible(false);//hide the king on the game for this level
+				//hide the shapes of move for level 1
+				upleft.setVisible(false);
+				upright.setVisible(false);
+				leftup.setVisible(false);
+				rightup.setVisible(false);
+				rightdown.setVisible(false);
+				leftdown.setVisible(false);
+				downright.setVisible(false);
+				downleft.setVisible(false);
+				knight.setVisible(false);
+				//set the color of the first place as visited	
+				b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
+				//creating three random squares for three questions
+				node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));	
+				//check if the square of question 1 equals to the square of question 2
+				while(node1Q==node2Q ) {
+					//creating new random square for question 2 that is not equal to question 1 square 
 					node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					
-					while(node1Q==node2Q ) {
-						node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					node2Q.setStyle("-fx-background-color: yellow; ");
+				}
+				node2Q.setStyle("-fx-background-color: yellow; ");//set the color of the question 2 square, medium question
+				//check if the square of question 3 equals to the square of question 1 or 2
+				while(node2Q==node3Q ||node3Q==node1Q) {
+					//creating new random square for question 3 that is not equal to question 1 or 2 square 
 					node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					
-					while(node2Q==node3Q ||node3Q==node1Q) {
-						node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					node3Q.setStyle("-fx-background-color: red; ");
-					node1Q.setStyle("-fx-background-color: green; ");
-
+				}
+				node3Q.setStyle("-fx-background-color: red; "); //set the color of question 3 square, hard question
+				node1Q.setStyle("-fx-background-color: green; ");//set the color of question 1 square, easy question
+				//creating three random forget squares
+				Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				Forget3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the forget square equals to the square of question 1 or 2 or 3
+				while(Forget1==node1Q ||Forget1==node2Q || Forget1==node3Q) {
+					//creating new random forget square that is not equal to the questions squares
 					Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(Forget1==node1Q ||Forget1==node2Q || Forget1==node3Q) {
-						Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					Forget1.setStyle("-fx-background-color: lightblue; ");
+				}
+				Forget1.setStyle("-fx-background-color: lightblue; ");//set the color of the forget square
+				//check if the forget square equals to the square of question 1 or 2 or 3 or to forget 1 square
+				while(Forget1==Forget2 || Forget2==node1Q ||Forget2==node2Q || Forget2==node3Q) {
+					//creating new random forget square that is not equal to the questions squares or forget square
 					Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(Forget1==Forget2 || Forget2==node1Q ||Forget2==node2Q || Forget2==node3Q) {
-						Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					Forget2.setStyle("-fx-background-color: orange; ");
+				}
+				Forget2.setStyle("-fx-background-color: orange; ");//set the color of the forget square
+				//check if the forget square equals to the square of question 1 or 2 or 3
+				while(Forget2==Forget3 || Forget1==Forget3 || Forget3==node1Q ||Forget3==node2Q || Forget3==node3Q) {
+					//creating new random forget square that is not equal to the questions squares or forget squares
 					Forget3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(Forget2==Forget3 || Forget1==Forget3 || Forget3==node1Q ||Forget3==node2Q || Forget3==node3Q) {
-						Forget3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					Forget3.setStyle("-fx-background-color: orange; ");
-					
-					levelsMoves();
-					setTimer(timer2);
-					displayLevel("LEVEL 2");
-					
-					
 				}
-				else if(points<15&& finish==1){
+				Forget3.setStyle("-fx-background-color: orange; ");//set the color of forget square
+					
+				levelsMoves();
+				setTimer(timer2); //set the timer of the level 2
+				displayLevel("LEVEL 2");//show the level
+					
+					
+			}
+			else if(points<15&& finish==1){ //if the player finish level 2 with less than 15 points , lose
 			//		timer2.cancel();
-					
-					
+			}
+			if(points>=0 && finish==2) { //level 3
+				int total = game.getPoints()+points;// add the points of the level to the points score
+				game.setPoints(total);//set the points score
+				//loop on the square
+				for(int i = 0 ; i < 8 ; i++) {
+					for(int j = 0 ; j < 8 ; j ++) {
+						//set the squares as not visited and the vist number as 0
+						boardGame.getSquares()[i][j].setVisited(false);;
+						boardGame.getSquares()[i][j].setNumVisits(0);
+					}
 				}
-				if(points>=0 && finish==2) {
-					int total = game.getPoints()+points;
-					game.setPoints(total);
-					for(int i = 0 ; i < 8 ; i++) {
-						for(int j = 0 ; j < 8 ; j ++) {
-							boardGame.getSquares()[i][j].setVisited(false);;
-							boardGame.getSquares()[i][j].setNumVisits(0);
-						}
-					}
-					fillNotVisitedArray(notVisited);
-					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
-						board.getChildren().get(node).setStyle("-fx-border-color : black;");
-					}
-					if(b00.getStyle()!="-fx-background-color: grey;-fx-border-color : black;")
-						b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
-					points=0;
-					Location locFirst = new Location(0,0);
-					game.getKnight().setLocation(locFirst);
-					boardGame.getSquares()[0][0].setVisited(true);
-					points++;
-					
-					notVisited.remove(boardGame.getSquares()[0][0]);
-					GridPane.setColumnIndex(imageK, 0);
-					GridPane.setRowIndex(imageK, 0);
-					pointsT.setText(String.valueOf(points));
-					game.getKing().setLocation(new Location(7,0));
-					GridPane.setColumnIndex(imageKing,7);
-					GridPane.setRowIndex(imageKing,0);
-					KingValidMoves=game.getKing().validMovesForKing(game.getKing());
-					flag1=0;
-					flag2=0;
-					flag3=0;
-					totalSec=5;
-					speed=5;
-					imageKing.setVisible(true);
-					imageQ.setVisible(false);
-					
-					node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				fillNotVisitedArray(notVisited);//add the squares to the not visited squares array
+				//loop on the board squares
+				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+					//set the color of the squares
+					board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+					board.getChildren().get(node).setStyle("-fx-border-color : black;");
+				}
+				//check if the first square color is not visited color - black
+				if(b00.getStyle()!="-fx-background-color: grey;-fx-border-color : black;")
+					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");//set the color as visited square color
+				points=0;//set the points as 0 to start count new points
+				Location locFirst = new Location(0,0);//creating new location for first place 
+				game.getKnight().setLocation(locFirst);//put the knight on first place
+				boardGame.getSquares()[0][0].setVisited(true);//set the first place as visited square
+				points++;//add point for the first visited square - first place	
+				notVisited.remove(boardGame.getSquares()[0][0]);//remove the first place from the not visited squares array
+				//set the location of the knight on the board
+				GridPane.setColumnIndex(imageK, 0);
+				GridPane.setRowIndex(imageK, 0);
+				pointsT.setText(String.valueOf(points));// show the point on the game screen
+				//set the king place on the board
+				game.getKing().setLocation(new Location(7,0));
+				GridPane.setColumnIndex(imageKing,7);
+				GridPane.setRowIndex(imageKing,0);
+				KingValidMoves=game.getKing().validMovesForKing(game.getKing());//save the move that the king can do
+				//checker of the level
+				flag1=0;
+				flag2=0;
+				flag3=0;
+				totalSec=5; //the time for this level
+				speed=5; //the speed of the king
+				imageKing.setVisible(true);//show the king on the board
+				imageQ.setVisible(false);//hide the queen 
+				//creating three random squares for questions	
+				node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the square of question 1 equals to the square of question 2
+				while(node1Q==node2Q ) {
+					//creating new random square for question 2 that is not equal to question 1
 					node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(node1Q==node2Q ) {
-						node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					node2Q.setStyle("-fx-background-color: yellow; ");
+				}
+				node2Q.setStyle("-fx-background-color: yellow; ");//set the color of question 2, medium question
+				//check if the square of question 3 equals to the square of question 1 or 2
+				while(node2Q==node3Q ||node3Q==node1Q) {
+					//creating new random square for question 3 that is not equal to question 1 or 2 square 
 					node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(node2Q==node3Q ||node3Q==node1Q) {
-						node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					node3Q.setStyle("-fx-background-color: red; ");
-					node1Q.setStyle("-fx-background-color: green; ");
-					nodeRandomJump1=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(node3Q==nodeRandomJump1 ||node1Q==nodeRandomJump1||node2Q==nodeRandomJump1 ) {
-						nodeRandomJump1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					nodeRandomJump1.setStyle("-fx-background-color: blue; ");
-					nodeRandomJump2=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(nodeRandomJump1==nodeRandomJump2 ||node3Q==nodeRandomJump2 ||node2Q==nodeRandomJump2 ||node1Q==nodeRandomJump2 ) {
-						nodeRandomJump2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));	
-					}
-					nodeRandomJump2.setStyle("-fx-background-color: pink; ");
-
+				}
+				node3Q.setStyle("-fx-background-color: red; "); //set the color of question 3, hard question
+				node1Q.setStyle("-fx-background-color: green; ");//set the color of question 1, easy question
+				//creating two random jump squares
+				nodeRandomJump1=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				nodeRandomJump2=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the first jump square equals to the square of questions 
+				while(node3Q==nodeRandomJump1 ||node1Q==nodeRandomJump1||node2Q==nodeRandomJump1 ) {
+					//creating new jump square that is not equal to the questions squares
+					nodeRandomJump1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				}
+				nodeRandomJump1.setStyle("-fx-background-color: blue; ");//set the color of the random jump
+				//check if the first jump square equals to the square of questions or the first random jump square
+				while(nodeRandomJump1==nodeRandomJump2 ||node3Q==nodeRandomJump2 ||node2Q==nodeRandomJump2 ||node1Q==nodeRandomJump2 ) {
+					//creating new jump square that is not equal to the questions squares and the first jump square
+					nodeRandomJump2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));	
+				}
+				nodeRandomJump2.setStyle("-fx-background-color: pink; ");//set the color of the second random jump square
+				//creating two random forget squares
+				Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the first forget square equals to the square of questions or the random jump squares
+				while(Forget1 == nodeRandomJump1 || Forget1 == nodeRandomJump2 || Forget1==node1Q ||Forget1==node2Q || Forget1==node3Q) {
+					//creating new forget square that is not equal to the questions squares and the jump squares
 					Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(Forget1 == nodeRandomJump1 || Forget1 == nodeRandomJump2 || Forget1==node1Q ||Forget1==node2Q || Forget1==node3Q) {
-						Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}		
-					Forget1.setStyle("-fx-background-color: lightblue; ");
+				}		
+				Forget1.setStyle("-fx-background-color: lightblue; ");//set the color of the first forget square
+				//check if the second forget square equals to the square of questions or the random jump squares or the first forget square
+				while(Forget1==Forget2 || Forget2==node1Q ||Forget2==node2Q || Forget2==node3Q || Forget2 == nodeRandomJump1 || Forget2 == nodeRandomJump2) {
+					//creating new forget square that is not equal to the questions squares and the jump squares or the first forget square
 					Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(Forget1==Forget2 || Forget2==node1Q ||Forget2==node2Q || Forget2==node3Q || Forget2 == nodeRandomJump1 || Forget2 == nodeRandomJump2) {
-						Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					Forget2.setStyle("-fx-background-color: orange; ");
-					
-					
-					levelsMoves();
-					displayLevel("LEVEL 3");
-					setTimer(timer3);
-					
 				}
-				if(points>=0 && finish==3) {
-					Location locFirst = new Location(0,0);
-					game.getKnight().setLocation(locFirst);
-					for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-						board.getChildren().get(node).setStyle("-fx-background-color: defult;");
-						board.getChildren().get(node).setStyle("-fx-border-color : black;");
-					}
-					for(int i = 0 ; i < 8 ; i++) {
-						for(int j = 0 ; j < 8 ; j ++) {
-							boardGame.getSquares()[i][j].setVisited(false);
-							boardGame.getSquares()[i][j].setNumVisits(0);
-						}		
-					}
-					fillNotVisitedArray(notVisited);
+				Forget2.setStyle("-fx-background-color: orange; ");//set the color of the second forget square
 					
-					points=0;
-					flag1=0;
-					flag2=0;
-					flag3=0;
-					totalSec=5;
-					speed=5;
 					
-					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
-					boardGame.getSquares()[0][0].setVisited(true);
-					points++;
-					notVisited.remove(boardGame.getSquares()[0][0]);
-					GridPane.setColumnIndex(imageK, 0);
-					GridPane.setRowIndex(imageK, 0);
-					pointsT.setText(String.valueOf(points));
-					game.getKing().setLocation(new Location(7,0));
-					GridPane.setColumnIndex(imageKing,7);
-					GridPane.setRowIndex(imageKing,0);
-					KingValidMoves=game.getKing().validMovesForKing(game.getKing());
-					node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				levelsMoves();
+				displayLevel("LEVEL 3");//show the level on the game screen
+				setTimer(timer3);//set the timer of the level
+					
+			}
+			if(points>=0 && finish==3) { //level 4
+				Location locFirst = new Location(0,0);//creating the first location
+				game.getKnight().setLocation(locFirst);//put the knight on the first location
+				//loop on the board squares
+				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+					//set the colors of the squares
+					board.getChildren().get(node).setStyle("-fx-background-color: defult;");
+					board.getChildren().get(node).setStyle("-fx-border-color : black;");
+				}
+				//loop on the squares
+				for(int i = 0 ; i < 8 ; i++) {
+					for(int j = 0 ; j < 8 ; j ++) {
+						//set the squares as not visited and th number of visit as 0
+						boardGame.getSquares()[i][j].setVisited(false);
+						boardGame.getSquares()[i][j].setNumVisits(0);
+					}		
+				}
+				fillNotVisitedArray(notVisited);//add the squares to the not visited squares array 
+					
+				points=0;//new points for this level
+				//Checkers for this level, starts withn 0
+				flag1=0;
+				flag2=0;
+				flag3=0;
+				totalSec=5;//time for this level
+				speed=5;//the speed of the king
+				//set the color of the first square as visited square, and set the square as a visited	
+				b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
+				boardGame.getSquares()[0][0].setVisited(true);
+				points++;//add a point for first place
+				notVisited.remove(boardGame.getSquares()[0][0]);//remove the first place from the not visited squares array
+				//set the knight on the board
+				GridPane.setColumnIndex(imageK, 0);
+				GridPane.setRowIndex(imageK, 0);
+				pointsT.setText(String.valueOf(points));//set the points of the level
+				//set the king on the board
+				game.getKing().setLocation(new Location(7,0));
+				GridPane.setColumnIndex(imageKing,7);
+				GridPane.setRowIndex(imageKing,0);
+				KingValidMoves=game.getKing().validMovesForKing(game.getKing());//save the moves that the king can do
+				//creating three random squares for questions
+				node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the second question square equal to the first question square
+				while(node1Q==node2Q ) {
+					//creating new question square that is not equal to the first question square 
 					node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(node1Q==node2Q ) {
-						node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					node2Q.setStyle("-fx-background-color: yellow; ");
+				}
+				node2Q.setStyle("-fx-background-color: yellow; ");//set the color of question 2, medium question
+				//check if the square of question 3 equals to the square of question 1 or 2
+				while(node2Q==node3Q ||node3Q==node1Q) {
+					//creating new random square for question 3 that is not equal to question 1 or 2 square
 					node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(node2Q==node3Q ||node3Q==node1Q) {
-						node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					node3Q.setStyle("-fx-background-color: red; ");
-					node1Q.setStyle("-fx-background-color: green; ");
-					
+				}
+				node3Q.setStyle("-fx-background-color: red; ");//set the color of question 3, hard question
+				node1Q.setStyle("-fx-background-color: green; ");//set the color of question 1, easy question
+				//creating 8 random block squares 
+				block1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the block square is on the knight or king place
+				while(block1==b00 || block1==b07) {
+					//creating new block square that is not equal to the king and knight squares
 					block1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					
-					while(block1==b00 || block1==b07) {
-						block1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					block1.setStyle("-fx-background-color: darkred; ");
+				}
+				block1.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the block square is on the knight or king place or questions squares or forget square
+				while(block1==block2 || block2 == node1Q  ||block2 == node2Q ||block2 == node3Q || block2==b00 || block2==b07 ) {
+					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block1==block2 || block2 == node1Q  ||block2 == node2Q ||block2 == node3Q || block2==b00 || block2==b07 ) {
-						block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					block2.setStyle("-fx-background-color: darkred; ");
+				}
+				block2.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the block square is on the knight or king place or questions squares or forget square
+				while(block3==block2  || block3 == block1 || block3 == node1Q  ||block3 == node2Q ||block3 == node3Q || block3==b00 || block3==b07) {
+					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block3==block2  || block3 == block1 || block3 == node1Q  ||block3 == node2Q ||block3 == node3Q || block3==b00 || block3==b07) {
-						block3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					block3.setStyle("-fx-background-color: darkred; ");
+				}
+				block3.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block4 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the block square is on the knight or king place or questions squares or forget square
+				while(block4==block1 || block4==block2 || block4==block3 || block4 == node1Q  ||block4 == node2Q ||block4 == node3Q || block4==b00 || block4==b07) {
+					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block4 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block4==block1 || block4==block2 || block4==block3 || block4 == node1Q  ||block4 == node2Q ||block4 == node3Q || block4==b00 || block4==b07) {
-						block4 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					block4.setStyle("-fx-background-color: darkred; ");
+				}
+				block4.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block5 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the block square is on the knight or king place or questions squares or forget square
+				while(block4==block5 || block5==block2 || block5==block3 || block5==block1 ||block5 == node1Q  ||block5 == node2Q ||block5 == node3Q || block5==b00 || block5==b07) {
+					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block5 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block4==block5 || block5==block2 || block5==block3 || block5==block1 ||block5 == node1Q  ||block5 == node2Q ||block5 == node3Q || block5==b00 || block5==b07) {
-						block5 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					block5.setStyle("-fx-background-color: darkred; ");
+				}
+				block5.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block6 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the block square is on the knight or king place or questions squares or forget square
+				while(block6==block5 || block6==block2 || block6==block3 || block6==block1 || block6==block4 ||block6 == node1Q  ||block6 == node2Q ||block6 == node3Q || block6==b00 || block6==b07) {
+					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block6 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block6==block5 || block6==block2 || block6==block3 || block6==block1 || block6==block4 ||block6 == node1Q  ||block6 == node2Q ||block6 == node3Q || block6==b00 || block6==b07) {
-						block6 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					block6.setStyle("-fx-background-color: darkred; ");
+				}
+				block6.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block7 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the block square is on the knight or king place or questions squares or forget square
+				while(block7==block5|| block7==block6 || block7==block4 || block7==block2 || block7==block3 || block7==block1 || block7 == node1Q  ||block7 == node2Q ||block7 == node3Q || block7==b00 || block7==b07) {
+					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block7 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block7==block5|| block7==block6 || block7==block4 || block7==block2 || block7==block3 || block7==block1 || block7 == node1Q  ||block7 == node2Q ||block7 == node3Q || block7==b00 || block7==b07) {
-						block7 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					block7.setStyle("-fx-background-color: darkred; ");
+				}
+				block7.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+				//check if the block square is on the knight or king place or questions squares or forget square
+				while(block8==block7|| block8==block6  || block5==block8|| block8==block4 || block8==block3|| block8==block2 || block8==block1 || block8 == node1Q  ||block8 == node2Q ||block8 == node3Q || block8==b00 || block8==b07) {
+					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					while(block8==block7|| block8==block6  || block5==block8|| block8==block4 || block8==block3|| block8==block2 || block8==block1 || block8 == node1Q  ||block8 == node2Q ||block8 == node3Q || block8==b00 || block8==b07) {
-						block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-					}
-					block8.setStyle("-fx-background-color: darkred; ");
-					levelsMoves();
-					displayLevel("LEVEL 4");
-					setTimer(timer4);
 				}
-				else if (finish==3 && points<15) {
-//					timer3.cancel();
-//					timer4.cancel();
-//					finishGame.setVisible(true);
-//					for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
-//						//check if the player is in the sysData
-//						if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
-//							game.setPlayer(SysData.getInstance().getPlayers().get(player));
-//							SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
-//						}
+				block8.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				levelsMoves();
+				displayLevel("LEVEL 4");//show level on the game screen
+				setTimer(timer4);//set the timer for this level
+			}
+			
+			else if (finish==3 && points<15) { //if the player lose in level 4
+//				timer3.cancel();
+//				timer4.cancel();
+//				finishGame.setVisible(true);
+//				for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+//					//check if the player is in the sysData
+//					if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
+//						game.setPlayer(SysData.getInstance().getPlayers().get(player));
+//						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
 //					}
-				}
-				if(points>=0 && finish==4) {
-					timer4.cancel();
-					finishGame.setVisible(true);
-					for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
-						//check if the player is in the sysData
-						if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
-							game.setPlayer(SysData.getInstance().getPlayers().get(player));
-							SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
-						}
+//				}
+			}
+			if(points>=0 && finish==4) {//if the player finish in level 4 with points more than 0
+				timer4.cancel();//stop timer
+				finishGame.setVisible(true);//show the finish game 
+				//loop on the players on the sysData
+				for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+					//check if the player is in the sysData
+					if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
+						game.setPlayer(SysData.getInstance().getPlayers().get(player));
+						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
 					}
 				}
 			}
 		}
+		
+}
