@@ -1,26 +1,37 @@
 package Control;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class gameStatusController {
+public class gameStatusController implements Initializable {
 	@FXML
 	private Label level;
 	@FXML
 	private Label points;
-	
+	@FXML
+	private ImageView cup;
+	static int check = 0;
+	public void cupVisiable(){
+		cup.setVisible(true);
+		
+	}
 	public void displayLevelLose(String level1){
 		level.setText("YOU LOST IN "+level1);
+		
 	}
-	public void displayLevelWon(String level1){
+	public void displayLevelWon(){
 		level.setText("YOU WON THE GAME");
 	}
 	public void displayPoints(int points1){
@@ -64,5 +75,12 @@ public class gameStatusController {
 		
 			stage.show();
 
+		}
+		@Override
+		public void initialize(URL arg0, ResourceBundle arg1) {
+			if(check==1) {
+				cup.setVisible(true);
+			}
+			
 		}
 }

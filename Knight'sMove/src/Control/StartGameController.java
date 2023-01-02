@@ -11,6 +11,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import Enum.GameStatus;
 import View.MainScreen;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
@@ -100,7 +101,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	int check=0;
 	int kingMoveLevel4 = 0;
 	static int stopTimer=1;
-	int doNothing=0;
 	Alert a = new Alert(AlertType.NONE);
 	//timer fields;
 	static long min,hr, sec,totalSec;
@@ -109,6 +109,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	//Board boardGame = new Board();
 	int finish=0;
 	int demandPoints=15;
+	int oneMin=60;
 	ArrayList<Squares>  forgetsSquares = new ArrayList<Squares>();
 	Location knightLoc = new Location();
 	Random rand;
@@ -150,7 +151,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //			
 //		}
 		finishGame.setVisible(false);
-		totalSec=60;
+		totalSec=oneMin;
 		points=1;
 		imageKing.setVisible(false);
 		fillNotVisitedArray(notVisited);
@@ -158,7 +159,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		game.getKnight().setLocation(locFirst);
 		b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
 		boardGame.getSquares()[0][0].setVisited(true);
-		points++;
 		notVisited.remove(boardGame.getSquares()[0][0]);
 		GridPane.setColumnIndex(imageK, 0);
 		GridPane.setRowIndex(imageK, 0);
@@ -379,7 +379,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
 				Parent root = loader.load();
 				gameStatusController status = loader.getController();
-				status.displayLevelWon(level.getText());
+				status.displayLevelWon();
 				status.displayPoints(game.getPoints());
 				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				Scene scene = new Scene(root);
@@ -584,6 +584,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setRowIndex(imageQ,locQueen.getY());
 									//check if the square that the queen moved to is the square that the knight is on it
 									if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
+										game.setGameStatus(GameStatus.LostInLevel1);
 										int total = game.getPoints()+points;
 										game.setPoints(total);
 										for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
@@ -628,13 +629,14 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										//check if the square that the queen moved to is the square that the knight is on it
 										if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
 											timer1.cancel(); //stop the timer
+											game.setGameStatus(GameStatus.LostInLevel1);
+											int total = game.getPoints()+points;
+											game.setPoints(total);
 											for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
 												//check if the player is on the sysData
 												if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name)) {
 													game.setPlayer(SysData.getInstance().getPlayers().get(player));
-													System.out.println(game);
 													SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the game history
-													//System.out.println(SysData.getInstance().getPlayers().get(player).getGamesHistory());
 												}
 											}
 											try {
@@ -786,6 +788,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									//check if the square that the queen moved to is the square that the knight is on it
 									if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
 										timer2.cancel(); //stop timer
+										game.setGameStatus(GameStatus.LostInLevel2);
 										int total = game.getPoints()+points;//save the level point in the total points score
 										game.setPoints(total);// save the score of level 1 and 2
 										for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
@@ -945,6 +948,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								if(check==1) {
 									timer3.cancel(); //stop timer
 									check=0; //set the check 0 - as not on the same square
+									game.setGameStatus(GameStatus.LostInLevel3);
 									int total = game.getPoints()+points; //add the point of the level to the points score
 									game.setPoints(total); //set the points score
 									//loop on the players of the sysData
@@ -995,14 +999,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										
 								 }
 								locKnight =loc; //put the knight in the location that the player chose
-								 //check if the array of the forget square is not contain the first place in the game
-								if(!forgetsSquares.contains(boardGame.getSquares()[0][0]) && flagtest==0) {
-									forgetsSquares.add(boardGame.getSquares()[0][0]);//add the first place to the forgets squares array
-									int visitsTime =boardGame.getSquares()[0][0].getNumVisits();//save the visits number of the first place
-									boardGame.getSquares()[0][0].setNumVisits(visitsTime+1);//set the number of visited for the first place, add 1 to the number 
-									flagtest++;
-									
-								}
 								//check if the square that the player chose is visited square
 								if(boardGame.getSquares()[i][j].isVisited() == true) {
 									points--;//lose one point 
@@ -1017,6 +1013,14 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									boardGame.getSquares()[i][j].setVisited(true); //sat the square as a visited square
 									notVisited.remove(boardGame.getSquares()[i][j]);//remove the square from the not visited squares array
 									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;"); //change the color of the square
+								}
+								 //check if the array of the forget square is not contain the first place in the game
+								if(!forgetsSquares.contains(boardGame.getSquares()[0][0]) && flagtest==0) {
+									forgetsSquares.add(boardGame.getSquares()[0][0]);//add the first place to the forgets squares array
+									int visitsTime =boardGame.getSquares()[0][0].getNumVisits();//save the visits number of the first place
+									boardGame.getSquares()[0][0].setNumVisits(visitsTime+1);//set the number of visited for the first place, add 1 to the number 
+									flagtest++;
+									
 								}
 								//check if the square that the player chose is a random jump square
 								if(arg0.getSource()==nodeRandomJump1 ||arg0.getSource()==nodeRandomJump2) {
@@ -1214,6 +1218,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									if(check==1) {
 										timer4.cancel(); //stop timer
 										check=0;//put the check 0 - as the knight and the king isn't on the same place
+										game.setGameStatus(GameStatus.LostInLevel4);
 										int total = game.getPoints()+points; //add the level points to the points score
 										game.setPoints(total); //set the point score
 										//loop on the players of the sysData
@@ -1353,7 +1358,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=60; //the time for this level
+				totalSec=oneMin; //the time for this level
 				//loop on the squares
 				for(int i = 0 ; i < 8 ; i++) {
 					for(int j = 0 ; j < 8 ; j ++) {
@@ -1441,9 +1446,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					
 					
 			}
-			else if (finish==1 && points<demandPoints) { //if the player lose in level 4
+			else if (finish==1 && points<demandPoints) { //if the player lose in level 1
 				timer1.cancel();
 				finishGame.setVisible(true);
+				game.setGameStatus(GameStatus.LostInLevel1);
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 					board.getChildren().get(node).setDisable(true);
 				
@@ -1459,6 +1465,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			if(points>=demandPoints && finish==2) { //level 3
 				int total = game.getPoints()+points;// add the points of the level to the points score
 				game.setPoints(total);//set the points score
+				
+				forgetsSquares.removeAll(forgetsSquares);
 				//loop on the square
 				for(int i = 0 ; i < 8 ; i++) {
 					for(int j = 0 ; j < 8 ; j ++) {
@@ -1496,7 +1504,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=60; //the time for this level
+				flagtest=0;
+				totalSec=oneMin; //the time for this level
 				speed=5; //the speed of the king
 				imageKing.setVisible(true);//show the king on the board
 				imageQ.setVisible(false);//hide the queen 
@@ -1554,9 +1563,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				setTimer(timer3);//set the timer of the level
 					
 			}
-			else if (finish==2 && points<demandPoints) { //if the player lose in level 4
+			else if (finish==2 && points<demandPoints) { //if the player lose in level 2
 				timer2.cancel();
 				finishGame.setVisible(true);
+				game.setGameStatus(GameStatus.LostInLevel2);
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 					board.getChildren().get(node).setDisable(true);
 				
@@ -1593,7 +1603,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=60;//time for this level
+				totalSec=oneMin;//time for this level
 				speed=5;//the speed of the king
 				//set the color of the first square as visited square, and set the square as a visited	
 				b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
@@ -1688,8 +1698,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				setTimer(timer4);//set the timer for this level
 			}
 			
-			else if (finish==3 && points<demandPoints) { //if the player lose in level 4
+			else if (finish==3 && points<demandPoints) { //if the player lose in level 3
 				timer3.cancel();
+				game.setGameStatus(GameStatus.LostInLevel3);
 				finishGame.setVisible(true);
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 					board.getChildren().get(node).setDisable(true);
@@ -1703,8 +1714,17 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					}
 				}
 			}
-			if(points>=demandPoints && finish==4) {//if the player finish in level 4 with points more than 0
+			if(points>=demandPoints && finish==4) {//if the player finish in level 4 with points more than 15
 				timer4.cancel();//stop timer
+				game.setGameStatus(GameStatus.WIN);
+				int total = game.getPoints()+points;
+				game.setPoints(total);
+				if(game.getPoints()>=200) {
+					game.setGameStatus(GameStatus.WinWithCup);
+					gameStatusController.check=1;
+
+				}
+				
 				finishGame.setVisible(true);//show the finish game button
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
 					board.getChildren().get(node).setDisable(true);
@@ -1718,6 +1738,26 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
 					}
 				}
+			}
+			else if(points<demandPoints && finish==4) {
+				timer4.cancel();//stop timer
+				int total = game.getPoints()+points;
+				game.setPoints(total);
+				game.setGameStatus(GameStatus.LostInLevel4);
+				finishGame.setVisible(true);//show the finish game button
+				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+					board.getChildren().get(node).setDisable(true);
+				
+				}
+				//loop on the players on the sysData
+				for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+					//check if the player is in the sysData
+					if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
+						game.setPlayer(SysData.getInstance().getPlayers().get(player));
+						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
+					}
+				}
+				
 			}
 		}
 		
