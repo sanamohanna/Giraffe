@@ -333,10 +333,18 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								kingMoveLevel4(totalSec);
 							}
 							while(stopTimer ==0) {
-								System.out.println();//the while did not work if it is empty
+								//System.out.println();
+								//the while did not work if it is empty
+								//sleep one second while stopTimer is 0
+								try {
+									Thread.sleep(1000);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 								//wait until the player click on start the game again or submit the question
 							}
-							
+							//make all buttons able again
 							for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {//for return the buttons on the board able after pause
 								board.getChildren().get(node).setDisable(false);
 							
@@ -1327,6 +1335,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		public void nextLevel() throws IOException {
 			//after finishing level 1, check the points if >= 0
 			if(points>=demandPoints && finish==1) {//level 2
+				int total = game.getPoints()+points;// add the points of the level to the points score
+				game.setPoints(total);//set the points score
 				//checkers for the level, start with 0 
 				flag1=0;
 				flag2=0;
