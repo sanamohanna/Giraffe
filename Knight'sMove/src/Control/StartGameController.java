@@ -150,8 +150,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //			
 //		}
 		finishGame.setVisible(false);
-		totalSec=60;
-		points=0;
+		totalSec=10;
+		points=100;
 		imageKing.setVisible(false);
 		fillNotVisitedArray(notVisited);
 		Location locFirst = new Location(0,0);
@@ -602,6 +602,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									}
 								}else { //check if the square that the player chose is a random jump square
 									if(arg0.getSource()==nodeRandomJump1 || arg0.getSource()==nodeRandomJump2 ||arg0.getSource()==nodeRandomJump3) {
+										a.setAlertType(AlertType.INFORMATION);
+										a.setContentText("you passed on a random jump square :)");
+										a.show();
 										//square that  will knight jump in the random jump from the squares that isn't visited
 										Squares sq= notVisited.get(rand.nextInt(notVisited.size())); 
 										Location loc0 = new Location(sq.getLocation().getX(),sq.getLocation().getY());// save location
@@ -695,8 +698,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							else {
 								//ColorChange(loc,validsPrevious,b00);
 								a.setAlertType(AlertType.ERROR);//if the user not enter data 
-								a.setContentText("invalid move try again");
-								a.show();	
+								a.setContentText("invalid move try again, you have to move two squares up/down \n and one left/rightor two squares left/right and one up/down");
+								a.show();		
 							}
 	
 						}
@@ -802,8 +805,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 
 									}
-									//check if the square that the square that the player chose to move is a forget square
+									//check if the square that the player chose to move is a forget square
 									if(arg0.getSource().equals(Forget1) || arg0.getSource().equals(Forget2) || arg0.getSource().equals(Forget3) ) {
+										a.setAlertType(AlertType.INFORMATION); 
+										a.setContentText("you passed on a forget square :)");
+										a.show();
 										//check if the array of the forget squares array contain squares, not 0
 										if(forgetsSquares.size()!=0) {
 											//check if the forget squares array is contain one square, first square
@@ -917,7 +923,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 								else {
 									a.setAlertType(AlertType.ERROR);//if the player chose square not valid to move on  
-									a.setContentText("invalid move try again");
+									a.setContentText("invalid move try again , you have to move two squares daigonally and one squares stright or one squares daigonally and two squares \nstright ");
 									a.show();	
 								}
 								
@@ -1014,6 +1020,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 								//check if the square that the player chose is a random jump square
 								if(arg0.getSource()==nodeRandomJump1 ||arg0.getSource()==nodeRandomJump2) {
+									a.setAlertType(AlertType.INFORMATION); 
+									a.setContentText("you passed on a random jump square :)");
+									a.show();
 									//square that  will knight jump in the random jump from the squares that isn't visited
 									Squares sq= notVisited.get(rand.nextInt(notVisited.size()));
 									Location loc2 = new Location(sq.getLocation().getX(),sq.getLocation().getY());//save the location 
@@ -1069,6 +1078,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 								//check if the square that the knight is on is a forget square
 								if(arg0.getSource().equals(Forget1) || arg0.getSource().equals(Forget2)) {
+									a.setAlertType(AlertType.INFORMATION); 
+									a.setContentText("you passed on a forget square :)");
+									a.show();
 									// check if the length of the forget square isn't 0
 									if(forgetsSquares.size()!=0) {
 										//check if the length of the forget squares is 1
@@ -1178,7 +1190,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							}
 							else { 
 								a.setAlertType(AlertType.ERROR);//if the player chose not valid square to move 
-								a.setContentText("invalid move try again");
+								a.setContentText("invalid move try again , you have to move two squares daigonally and one squares stright or one squares daigonally and two squares \nstright");
 								a.show();	
 							}
 							
@@ -1271,7 +1283,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							}
 							else {
 								a.setAlertType(AlertType.ERROR);//if the player chose a not valid square to move 
-								a.setContentText("invalid move try again");
+								a.setContentText("invalid move try again, you have to move two squares daigonally and one squares stright or one squares daigonally and two squares \nstright");
 								a.show();	
 							}
 						}
