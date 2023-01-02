@@ -6,6 +6,6 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ 
 	KnightMoveTest.class,
-	QueenMoveTestTest.class })
+	QueenMoveTest.class} )
 public class TestSuite {
 }
