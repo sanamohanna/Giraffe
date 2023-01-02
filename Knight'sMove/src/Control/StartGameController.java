@@ -1296,6 +1296,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			Scene scene = new Scene(root);
 			Image icon = new Image("/View/Images/pause.png"); 
 			stage.getIcons().add(icon);
+			stage.setAlwaysOnTop(true);
 			stage.setResizable(false);
 			scene.getStylesheets().add(getClass().getResource("/View/editQuestion.css").toExternalForm());
 			stage.setScene(scene);			
