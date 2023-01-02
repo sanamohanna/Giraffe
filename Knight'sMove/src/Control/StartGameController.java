@@ -353,7 +353,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		
 		public void checkifiWonOrLost(ActionEvent event) throws Exception {
 			System.out.println(points);
-			if(points>=2 ){
+			if(points>=2  && check!=1){
 				
 				FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
 				Parent root = loader.load();
