@@ -2,21 +2,20 @@ package Control;
 
 import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class pauseController {
-	long x ;
-	public long getX() {
-		return x;
-	}
-	public void setX(long x) {
-		this.x = x;
-	}
-	public void startTheGameAgain() throws IOException{
-		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/StartGame.fxml"));
-		StartGameController str = loader.getController();
-		StartGameController.totalSec=this.x;
+	
+	public void startTheGameAgain(ActionEvent event) throws IOException{
+		//StartGameController.stopTimer=1;
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		StartGameController.stopTimer=1;
+		stage.close();
+		
 	}
 }

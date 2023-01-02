@@ -28,6 +28,7 @@ import javafx.scene.control.ButtonBase;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -91,12 +92,15 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	private ImageView knight;
 	@FXML
 	private ImageView imageKing;
+	@FXML
+	private Button pauseB;
 	static Stage stage;
 	int speed=5;
 	int counter = 0;
 	int check=0;
 	int kingMoveLevel4 = 0;
 	static int stopTimer=1;
+	int doNothing=0;
 	Alert a = new Alert(AlertType.NONE);
 	//timer fields;
 	static long min,hr, sec,totalSec;
@@ -314,10 +318,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 
 		// method that start timer in one minute to every level in the game 
 		public void setTimer(Timer timer){
+			
 				TimerTask timerTask = new TimerTask() {
 					@Override
 					public void run(){	
-							
+
 							
 							convertTime();
 							if(finish == 2 ) {
@@ -327,9 +332,15 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								kingMoveLevel4(totalSec);
 							}
 							while(stopTimer ==0) {
-								System.out.println(stopTimer);
-								
+								System.out.println();//the while did not work if it is empty
+								//wait until the player click on start the game again or submit the question
 							}
+							
+							for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {//for return the buttons on the board able after pause
+								board.getChildren().get(node).setDisable(false);
+							
+							}
+							pauseB.setDisable(false);
 							// we added the points text just for checking we will change it when we finish the game
 							pointsT.setText("Points: " +String.valueOf(points));
 							
@@ -416,6 +427,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			Stage stage = new Stage(); 
 			Scene scene = new Scene(root);
 			stage.setAlwaysOnTop(true);
+			Image icon = new Image("/View/Images/redQ.png"); 
+			stage.getIcons().add(icon);
 			stage.setResizable(false);
 			scene.getStylesheets().add(getClass().getResource("/View/editQuestion.css").toExternalForm());
 			stage.setScene(scene);
@@ -427,6 +440,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			Stage stage = new Stage(); 
 			Scene scene = new Scene(root);
 			stage.setAlwaysOnTop(true);
+			Image icon = new Image("/View/Images/greenQ.png"); 
+			stage.getIcons().add(icon);
 			stage.setResizable(false);
 			scene.getStylesheets().add(getClass().getResource("/View/editQuestion.css").toExternalForm());
 			stage.setScene(scene);
@@ -438,6 +453,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			Stage stage = new Stage(); 
 			Scene scene = new Scene(root);
 			stage.setAlwaysOnTop(true);
+			Image icon = new Image("/View/Images/yellowQ.jpeg"); 
+			stage.getIcons().add(icon);
 			stage.setResizable(false);
 			scene.getStylesheets().add(getClass().getResource("/View/editQuestion.css").toExternalForm());
 			stage.setScene(scene);
@@ -1266,17 +1283,20 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		 * 
 		 * **/
 		public void pause(ActionEvent event) throws IOException {
-			//Parent root = FXMLLoader.load(getClass().getResource("/View/pause.fxml"));
-			//timer.cancel();
-			Stage stage = new Stage();
+			for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+				board.getChildren().get(node).setDisable(true);
+			
+			}
+			pauseB.setDisable(true);
+			stopTimer=0;
 			FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/pause.fxml"));
 			Parent root = loader.load();
+			Stage stage = new Stage();
 			Scene scene = new Scene(root);
-			//Parent root = loader.load();
-			pauseController pc = loader.getController();
-			pc.setX(totalSec);
+			Image icon = new Image("/View/Images/pause.png"); 
+			stage.getIcons().add(icon);
 			stage.setResizable(false);
-			scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/View/editQuestion.css").toExternalForm());
 			stage.setScene(scene);			
 			stage.show();
 		}

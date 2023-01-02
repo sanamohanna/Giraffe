@@ -11,7 +11,7 @@
    <children>
       <Button fx:id="sub" layoutX="191.0" layoutY="349.0" mnemonicParsing="false" onAction="#submit" text="submit" />
       <Text fx:id="context" layoutX="40.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="276.80340576171875" />
-      <Text fx:id="level" layoutX="286.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="level" layoutX="317.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
       <RadioButton fx:id="answer1" layoutX="40.0" layoutY="97.0" mnemonicParsing="false" text="RadioButton" />
       <RadioButton fx:id="answer2" layoutX="40.0" layoutY="146.0" mnemonicParsing="false" text="RadioButton" />
       <RadioButton fx:id="answer3" layoutX="40.0" layoutY="203.0" mnemonicParsing="false" text="RadioButton" />

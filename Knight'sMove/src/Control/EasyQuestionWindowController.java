@@ -123,7 +123,6 @@ public class EasyQuestionWindowController  implements Initializable{
 
 	    }
 		StartGameController.stopTimer=1;
-		System.out.println(StartGameController.stopTimer);
 		stage.close();
 		}catch (Exception e) {
 	   

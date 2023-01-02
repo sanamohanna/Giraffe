@@ -59,8 +59,8 @@ public class MediocreQuestionWindowController  implements Initializable{
 	    answer2.setToggleGroup(group);
 	    answer3.setToggleGroup(group);
 	    answer4.setToggleGroup(group);
-	    	level.setText("MEDIOCRE QUESTION");
-	    	level.setFill(Color.YELLOW);
+	    level.setText("MEDIOCRE QUESTION");
+	    	
 	}
 	  
 	

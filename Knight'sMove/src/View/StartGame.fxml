@@ -203,5 +203,24 @@
             <Font name="Berlin Sans FB Demi Bold" size="25.0" />
          </font>
       </Button>
+      <Button fx:id="pauseB" layoutX="19.0" layoutY="437.0" mnemonicParsing="false" onAction="#pause" prefHeight="32.0" prefWidth="40.0">
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/pause.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
    </children>
 </AnchorPane>
