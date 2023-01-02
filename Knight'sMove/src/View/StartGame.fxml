@@ -50,20 +50,6 @@
             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
          </font>
       </Text>
-      <Button layoutX="26.0" layoutY="436.0" mnemonicParsing="false" onAction="#pause" text="pause">
-         <font>
-            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-         </font>
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></Button>
       <ImageView fx:id="knight" fitHeight="35.0" fitWidth="31.0" layoutX="66.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/6808582.png" />
@@ -212,9 +198,9 @@
             <Image url="@Images/arrow4.png" />
          </image>
       </ImageView>
-      <Button fx:id="finishGame" layoutX="16.0" layoutY="140.0" mnemonicParsing="false" onAction="#checkifiWonOrLost" prefHeight="167.0" prefWidth="504.0" style="-fx-background-color: red; -fx-border-color: black;" text="check game details">
+      <Button fx:id="finishGame" layoutX="179.0" layoutY="213.0" mnemonicParsing="false" onAction="#checkifiWonOrLost" prefHeight="94.0" prefWidth="320.0" style="-fx-background-color: red; -fx-border-color: black;" text="check game details">
          <font>
-            <Font name="Berlin Sans FB Demi Bold" size="35.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="25.0" />
          </font>
       </Button>
    </children>

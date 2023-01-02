@@ -1447,7 +1447,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					flag1=0;
 					flag2=0;
 					flag3=0;
-					totalSec=60;
+					totalSec=5;
 					speed=5;
 					
 					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
