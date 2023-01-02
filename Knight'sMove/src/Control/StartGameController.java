@@ -150,8 +150,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //			
 //		}
 		finishGame.setVisible(false);
-		totalSec=10;
-		points=100;
+		totalSec=60;
+		points=1;
 		imageKing.setVisible(false);
 		fillNotVisitedArray(notVisited);
 		Location locFirst = new Location(0,0);
