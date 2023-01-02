@@ -108,6 +108,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	static String buttonId;
 	//Board boardGame = new Board();
 	int finish=0;
+	int demandPoints=15;
 	ArrayList<Squares>  forgetsSquares = new ArrayList<Squares>();
 	Location knightLoc = new Location();
 	Random rand;
@@ -365,7 +366,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			int total = game.getPoints() + points;
 			game.setPoints(total);
 			
-			if(points>=15  && check!=1){
+			if(points>=demandPoints  && check!=1){
 				
 				FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
 				Parent root = loader.load();
@@ -1324,7 +1325,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		 * **/
 		public void nextLevel() throws IOException {
 			//after finishing level 1, check the points if >= 0
-			if(points>=15 && finish==1) {//level 2
+			if(points>=demandPoints && finish==1) {//level 2
 				//checkers for the level, start with 0 
 				flag1=0;
 				flag2=0;
@@ -1417,7 +1418,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					
 					
 			}
-			else if (finish==1 && points<15) { //if the player lose in level 4
+			else if (finish==1 && points<demandPoints) { //if the player lose in level 4
 				timer1.cancel();
 				finishGame.setVisible(true);
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
@@ -1432,7 +1433,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					}
 				}
 			}
-			if(points>=15 && finish==2) { //level 3
+			if(points>=demandPoints && finish==2) { //level 3
 				int total = game.getPoints()+points;// add the points of the level to the points score
 				game.setPoints(total);//set the points score
 				//loop on the square
@@ -1530,7 +1531,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				setTimer(timer3);//set the timer of the level
 					
 			}
-			else if (finish==2 && points<15) { //if the player lose in level 4
+			else if (finish==2 && points<demandPoints) { //if the player lose in level 4
 				timer2.cancel();
 				finishGame.setVisible(true);
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
@@ -1545,7 +1546,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					}
 				}
 			}
-			if(points>=15 && finish==3) { //level 4
+			if(points>=demandPoints && finish==3) { //level 4
 				Location locFirst = new Location(0,0);//creating the first location
 				game.getKnight().setLocation(locFirst);//put the knight on the first location
 				//loop on the board squares
@@ -1664,7 +1665,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				setTimer(timer4);//set the timer for this level
 			}
 			
-			else if (finish==3 && points<15) { //if the player lose in level 4
+			else if (finish==3 && points<demandPoints) { //if the player lose in level 4
 				timer3.cancel();
 				finishGame.setVisible(true);
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
@@ -1679,7 +1680,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					}
 				}
 			}
-			if(points>=15 && finish==4) {//if the player finish in level 4 with points more than 0
+			if(points>=demandPoints && finish==4) {//if the player finish in level 4 with points more than 0
 				timer4.cancel();//stop timer
 				finishGame.setVisible(true);//show the finish game button
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
