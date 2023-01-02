@@ -144,7 +144,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //			
 //		}
 		finishGame.setVisible(false);
-		totalSec=5;
+		totalSec=60;
 		points=0;
 		game.setPoints(0);
 		imageKing.setVisible(false);
@@ -1283,12 +1283,12 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		 * **/
 		public void nextLevel() throws IOException {
 			//after finishing level 1, check the points if >= 0
-			if(points>=0 && finish==1) {//level 2
+			if(points>=15 && finish==1) {//level 2
 				//checkers for the level, start with 0 
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=5; //the time for this level
+				totalSec=60; //the time for this level
 				//loop on the squares
 				for(int i = 0 ; i < 8 ; i++) {
 					for(int j = 0 ; j < 8 ; j ++) {
@@ -1379,7 +1379,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			else if(points<15&& finish==1){ //if the player finish level 2 with less than 15 points , lose
 			//		timer2.cancel();
 			}
-			if(points>=0 && finish==2) { //level 3
+			if(points>=15 && finish==2) { //level 3
 				int total = game.getPoints()+points;// add the points of the level to the points score
 				game.setPoints(total);//set the points score
 				//loop on the square
@@ -1419,7 +1419,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=5; //the time for this level
+				totalSec=60; //the time for this level
 				speed=5; //the speed of the king
 				imageKing.setVisible(true);//show the king on the board
 				imageQ.setVisible(false);//hide the queen 
@@ -1477,7 +1477,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				setTimer(timer3);//set the timer of the level
 					
 			}
-			if(points>=0 && finish==3) { //level 4
+			if(points>=15 && finish==3) { //level 4
 				Location locFirst = new Location(0,0);//creating the first location
 				game.getKnight().setLocation(locFirst);//put the knight on the first location
 				//loop on the board squares
@@ -1501,7 +1501,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=5;//time for this level
+				totalSec=60;//time for this level
 				speed=5;//the speed of the king
 				//set the color of the first square as visited square, and set the square as a visited	
 				b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
@@ -1608,7 +1608,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //					}
 //				}
 			}
-			if(points>=0 && finish==4) {//if the player finish in level 4 with points more than 0
+			if(points>=15 && finish==4) {//if the player finish in level 4 with points more than 0
 				timer4.cancel();//stop timer
 				finishGame.setVisible(true);//show the finish game 
 				//loop on the players on the sysData
