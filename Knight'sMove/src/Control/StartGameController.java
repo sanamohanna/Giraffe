@@ -96,6 +96,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	int counter = 0;
 	int check=0;
 	int kingMoveLevel4 = 0;
+	static int stopTimer=1;
 	Alert a = new Alert(AlertType.NONE);
 	//timer fields;
 	static long min,hr, sec,totalSec;
@@ -246,7 +247,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	}
 	/**
 	 * 
-	 * method for the movement of the king in level 5
+	 * method for the movement of the king in level 3
 	 * 
 	 * **/
 	public void kingMoveLevel3(long totalSec){
@@ -317,7 +318,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		public void setTimer(Timer timer){
 				TimerTask timerTask = new TimerTask() {
 					@Override
-					public void run(){					
+					public void run(){	
+							
+							
 							convertTime();
 							if(finish == 2 ) {
 								kingMoveLevel3(totalSec);	
@@ -325,7 +328,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 							if(finish == 3) {
 								kingMoveLevel4(totalSec);
 							}
-							
+							while(stopTimer ==0) {
+								System.out.println(stopTimer);
+								
+							}
 							// we added the points text just for checking we will change it when we finish the game
 							pointsT.setText("Points: " +String.valueOf(points));
 							
@@ -491,6 +497,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								GridPane.setRowIndex(imageK,i );
 								//check if the square that the knight moved on is an easy question square
 								if(arg0.getSource()==node1Q && flag1==0) {
+									stopTimer=0;
 									try {
 										popEasy(); //show easy question
 									} catch (IOException e) {
@@ -501,6 +508,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 								//check if the square that the knight moved on is a medium question square
 								 if(arg0.getSource()==node2Q && flag2==0) {
+									 stopTimer=0;
 									flag2++;
 									try {
 										popMediocre();//show medium question
@@ -511,6 +519,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								 }
 								//check if the square that the knight moved on is a hard question square
 								 if(arg0.getSource()==node3Q && flag3==0) {
+									 stopTimer=0;
 										flag3++;
 										try {
 											popHard();//show hard question 
@@ -595,6 +604,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 										//check if the square that the knight moved on is a easy question square
 										if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
+											stopTimer=0;
 											try {
 												popEasy();//show easy question
 												flag1++;
@@ -603,6 +613,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 										}//check if the square that the knight moved on is a medium question square
 										else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) ) {
+											stopTimer=0;
 											try {										
 												popMediocre();//show medium question
 												flag2++;
@@ -611,6 +622,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 										}//check if the square that the knight moved on is a hard question square
 										else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
+											stopTimer=0;
 											try {									
 												popHard();//show hard question
 												flag3++;
@@ -679,6 +691,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setRowIndex(imageK,i );
 									//check if the square that the knight moved on is an easy question square
 									if(arg0.getSource()==node1Q && flag1==0) {
+										stopTimer=0;
 										try {
 											popEasy();//show easy question
 										} catch (IOException e) {
@@ -688,6 +701,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									}//check if the square that the knight moved on is a medium  question square
 									 if(arg0.getSource()==node2Q && flag2==0) {
 										flag2++;
+										stopTimer=0;
 										try {
 											popMediocre();// show medium question
 										} catch (IOException e) {
@@ -697,6 +711,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									 }//check if the square that the knight moved on is a hard question square
 									 if(arg0.getSource()==node3Q && flag3==0) {
 											flag3++;
+											stopTimer=0;
 											try {
 												popHard();//show hard question
 											} catch (IOException e) {
@@ -768,7 +783,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									if(arg0.getSource().equals(Forget1) || arg0.getSource().equals(Forget2) || arg0.getSource().equals(Forget3) ) {
 										//check if the array of the forget squares array contain squares, not 0
 										if(forgetsSquares.size()!=0) {
-											System.out.println(forgetsSquares.size());
 											//check if the forget squares array is contain one square, first square
 											if(forgetsSquares.size()==1) {
 												//check if the number of visit is 1, the player visit the square once
@@ -922,6 +936,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 								//check if the square that the knight moved on is a easy question square
 								if(arg0.getSource()==node1Q && flag1==0) {
+									stopTimer=0;
 									try {
 										popEasy(); //show easy question
 									} catch (IOException e) {
@@ -932,6 +947,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}//check if the square that the knight moved on is a medium question square
 								 if(arg0.getSource()==node2Q && flag2==0) {
 									flag2++;
+									stopTimer=0;
 									try {
 										popMediocre(); //show medium question
 									} catch (IOException e) {
@@ -939,7 +955,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									}
 								 }//check if the square that the knight moved on is a hard question square
 								 if(arg0.getSource()==node3Q && flag3==0) {
-										flag3++;
+									 stopTimer=0;	
+									 flag3++;
 										try {
 											popHard();//show hard question
 										} catch (IOException e) {
@@ -982,7 +999,9 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setRowIndex(imageK,sq.getLocation().getY() );
 									//check if the square that the knight moved on is a easy  question square
 									if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
+										stopTimer=0;
 										try {
+											
 											popEasy();//show easy question
 											flag1++;
 										} catch (IOException e) {
@@ -992,6 +1011,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										
 									}///check if the square that the knight moved on is a medium  question square
 									else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) ) {
+										stopTimer=0;
 										try {												
 											popMediocre();//show medium question
 											flag2++;
@@ -1002,6 +1022,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									
 									} //check if the square that the knight moved on is a hard  question square
 									else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
+										stopTimer=0;
 										try {									
 											popHard();//show hard question
 											flag3++;
@@ -1177,6 +1198,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 									}///check if the square that the knight moved on is an easy  question square
 									if(arg0.getSource()==node1Q && flag1==0) {
+										stopTimer=0;
 										try {
 											popEasy();//show easy question
 										} catch (IOException e) {
@@ -1186,7 +1208,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										
 									}///check if the square that the knight moved on is a medium  question square
 									 if(arg0.getSource()==node2Q && flag2==0) {
-										flag2++;
+										 stopTimer=0;
+										 flag2++;
 										try {
 											popMediocre();//show medium question 
 										} catch (IOException e) {
@@ -1195,7 +1218,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										
 									 }///check if the square that the knight moved on is a hard  question square
 									 if(arg0.getSource()==node3Q && flag3==0) {
-											flag3++;
+										 stopTimer=0;	
+										 flag3++;
 											try {
 												popHard();//show hard question
 											} catch (IOException e) {
@@ -1283,12 +1307,12 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		 * **/
 		public void nextLevel() throws IOException {
 			//after finishing level 1, check the points if >= 0
-			if(points>=15 && finish==1) {//level 2
+			if(points>=0 && finish==1) {//level 2
 				//checkers for the level, start with 0 
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=60; //the time for this level
+				totalSec=5; //the time for this level
 				//loop on the squares
 				for(int i = 0 ; i < 8 ; i++) {
 					for(int j = 0 ; j < 8 ; j ++) {
@@ -1379,7 +1403,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			else if(points<15&& finish==1){ //if the player finish level 2 with less than 15 points , lose
 			//		timer2.cancel();
 			}
-			if(points>=15 && finish==2) { //level 3
+			if(points>=0 && finish==2) { //level 3
 				int total = game.getPoints()+points;// add the points of the level to the points score
 				game.setPoints(total);//set the points score
 				//loop on the square
@@ -1419,7 +1443,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=60; //the time for this level
+				totalSec=5; //the time for this level
 				speed=5; //the speed of the king
 				imageKing.setVisible(true);//show the king on the board
 				imageQ.setVisible(false);//hide the queen 
@@ -1477,7 +1501,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				setTimer(timer3);//set the timer of the level
 					
 			}
-			if(points>=15 && finish==3) { //level 4
+			if(points>=0 && finish==3) { //level 4
 				Location locFirst = new Location(0,0);//creating the first location
 				game.getKnight().setLocation(locFirst);//put the knight on the first location
 				//loop on the board squares
@@ -1501,7 +1525,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=60;//time for this level
+				totalSec=30;//time for this level
 				speed=5;//the speed of the king
 				//set the color of the first square as visited square, and set the square as a visited	
 				b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");

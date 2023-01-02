@@ -77,7 +77,6 @@ public class HardQuestionWindowController implements Initializable{
 	public void submit(ActionEvent event) throws Exception {
 		Boolean selected = false;
 		Stage stage ;
-
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	
 		int trueanswer = 0 ;
@@ -130,6 +129,8 @@ public class HardQuestionWindowController implements Initializable{
 		if(selected == false) {
 			throw new Exception();
 		}
+		StartGameController.stopTimer=1;
+		System.out.println(StartGameController.stopTimer);
 	    stage.close();
 
 	}catch (Exception e) {
