@@ -35,7 +35,7 @@ public class MainScreen extends Application {
 	public void start(Stage primaryStage) throws IOException {
 
 		try {
-			stage=primaryStage;
+			
 			Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/View/mainScreen.css").toExternalForm());
@@ -44,6 +44,7 @@ public class MainScreen extends Application {
 			primaryStage.getIcons().add(icon);
 			primaryStage.setTitle("KNIGHT'S MOVE GAME");
 			primaryStage.setScene(scene);
+			stage=primaryStage;
 			primaryStage.show();
 		} catch (IOException e) {
 

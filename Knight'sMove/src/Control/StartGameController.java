@@ -54,6 +54,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	@FXML
 	private Button b70,b71,b72,b73,b74,b75,b76,b77;
 	@FXML
+	private Button finishGame;
+	@FXML
 	private Label label1;
 	@FXML
 	private Text text;
@@ -87,6 +89,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	private ImageView knight;
 	@FXML
 	private ImageView imageKing;
+	static Stage stage;
 	int speed=5;
 	int counter = 0;
 	int check=0;
@@ -138,7 +141,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //			}
 //			
 //		}
-		
+		finishGame.setVisible(false);
 		totalSec=10;
 		points=0;
 		game.setPoints(0);
@@ -204,16 +207,17 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	 *it will be open the lose screen with the lose status and the level and points
 	 * 
 	 * **/
-	public void gamestatusLose(ActionEvent event) throws Exception {
+	public void gamestatusLose() throws Exception {
 
 		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
 		Parent root = loader.load();
 		gameStatusController status = loader.getController();
 		//send the username to start game controller to display
-		status.displayLevel(level.getText());
+		status.displayLevelLose(level.getText());
 		//int total = game.getPoints()+points;
 		status.displayPoints(game.getPoints());
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Stage stage =new Stage(); 
+				//(Stage)((Node)event.getSource()).getScene().getWindow();
 		//Stage stage = new Stage();
 		Scene scene = new Scene(root);
 		//scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
@@ -221,50 +225,24 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		stage.setScene(scene);
 		stage.show();
 		}
-	public void gamestatusLose1() throws Exception {
-
-		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
-		Parent root = loader.load();
-		gameStatusController status = loader.getController();
-		//send the username to start game controller to display
-		status.displayLevel(level.getText());
-		//int total = game.getPoints()+points;
-		status.displayPoints(game.getPoints());
-
-		Stage stage = MainScreen.stage;
-		//Stage stage = new Stage();
-		Scene scene = new Scene(root);
-		//scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
-		stage.setResizable(false);
-		stage.setScene(scene);
-		stage.show();
-		}
-	
 	/**
 	 * 
-	 * a function that check the game status of lose 
-	 * it will be open the lose screen with the lose status and the level and points
+	 * method for 
 	 * 
 	 * **/
-//	public void gamestatuswon() throws Exception {
-//
-//		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
-//		Parent root = loader.load();
-//		gameStatusController status = loader.getController();
-//		//send the username to start game controller to display
-//		status.displayLevel("YOU WON");
-//		//int total = game.getPoints()+points;
-//		status.displayPoints(game.getPoints());
-//		Stage stage = Stage)((Node)event.getSource()).getScene().getWindow();
-//		//Stage stage = new Stage();
-//		Scene scene = new Scene(root);
-//		root.setStyle("-fx-background-color: green; ");
-//		//scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
-//		stage.setResizable(false);
-//		stage.setScene(scene);
-//		stage.show();
-//	}
-	
+	public Boolean checkifItIsBlockSquare(Location locKing){
+		if(locKing.getX()!=GridPane.getColumnIndex(block1) && locKing.getY()!=GridPane.getRowIndex(block1) 
+			&& locKing.getX()!=GridPane.getColumnIndex(block2) && locKing.getY()!=GridPane.getRowIndex(block2)
+			&& locKing.getX()!=GridPane.getColumnIndex(block3) && locKing.getY()!=GridPane.getRowIndex(block3)
+			&& locKing.getX()!=GridPane.getColumnIndex(block4) && locKing.getY()!=GridPane.getRowIndex(block4)
+			&& locKing.getX()!=GridPane.getColumnIndex(block5) && locKing.getY()!=GridPane.getRowIndex(block5)
+			&& locKing.getX()!=GridPane.getColumnIndex(block6) && locKing.getY()!=GridPane.getRowIndex(block6)
+			&& locKing.getX()!=GridPane.getColumnIndex(block7) && locKing.getY()!=GridPane.getRowIndex(block7)
+			&& locKing.getX()!=GridPane.getColumnIndex(block8) && locKing.getY()!=GridPane.getRowIndex(block8)) {
+			 return false;
+		}
+		return true;
+	}
 	/**
 	 * 
 	 * method for the movement of the king
@@ -287,15 +265,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			KingValidMoves=game.getKing().validMovesForKing(game.getKing());
 			GridPane.setColumnIndex(imageKing,locKing.getX());
 			GridPane.setRowIndex(imageKing,locKing.getY());
-//			if(game.getKing().getLocation().equals(game.getKnight().getLocation())) {
-//				timer3.cancel();
-//				try {
-//					gamestatusLose1();
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
+
 		}
 		if(game.getKing().getLocation().equals(game.getKnight().getLocation())) {
 			check=1;
@@ -311,54 +281,36 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	 * method for the movement of the king
 	 * 
 	 * **/
-	Location toRemove1 = new Location();
-	Location toRemove2 = new Location();
+	Location theardLoc = new Location();
+	Location secondLoc = new Location();
 	public void kingMoveLevel4(long totalSec){
-		kingMoveLevel4 = 0;
 		knightLoc=locKnight;
 		smallestDistance=11;
-		//change the array of the valid moves to new array with the valid moves to the new place
-		KingValidMoves=game.getKing().validMovesForKing(game.getKing());
-		KingValidMoves.remove(toRemove2);
 		if(totalSec%speed == 0) {
-			while(kingMoveLevel4==0) {
-				smallestDistance=11;
-				//KingValidMoves.remove(toRemove2);
-				for(int k =0;k<KingValidMoves.size();k++) {
-					
-					//check if the shortest distance between the king and knight is small than the smallest distance
-					if(game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k)) < smallestDistance ) {
-						smallestDistance=game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k));
-						locKing = KingValidMoves.get(k);
-					}
+			KingValidMoves=game.getKing().validMovesForKing(game.getKing());
+			for(int k =0;k<KingValidMoves.size();k++) {
+				//check if the shortest distance between the king and knight is small than the smallest distance
+				if(game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k)) < smallestDistance ) {
+					smallestDistance=game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k));
+					theardLoc=secondLoc;
+					secondLoc = locKing;
+					locKing = KingValidMoves.get(k);
 				}
-				//Squares kingLoc =boardGame.getSquares()[locKing.getY()][locKing.getX()];
-				if(locKing.getX()!=GridPane.getColumnIndex(block1) && locKing.getY()!=GridPane.getRowIndex(block1) 
-					&& locKing.getX()!=GridPane.getColumnIndex(block2) && locKing.getY()!=GridPane.getRowIndex(block2)
-					&& locKing.getX()!=GridPane.getColumnIndex(block3) && locKing.getY()!=GridPane.getRowIndex(block3)
-					&& locKing.getX()!=GridPane.getColumnIndex(block4) && locKing.getY()!=GridPane.getRowIndex(block4)
-					&& locKing.getX()!=GridPane.getColumnIndex(block5) && locKing.getY()!=GridPane.getRowIndex(block5)
-					&& locKing.getX()!=GridPane.getColumnIndex(block6) && locKing.getY()!=GridPane.getRowIndex(block6)
-					&& locKing.getX()!=GridPane.getColumnIndex(block7) && locKing.getY()!=GridPane.getRowIndex(block7)
-					&& locKing.getX()!=GridPane.getColumnIndex(block8) && locKing.getY()!=GridPane.getRowIndex(block8)) {
-					//move the king to the smallest distance
-					game.getKing().setLocation(locKing);
-					GridPane.setColumnIndex(imageKing,locKing.getX());
-					GridPane.setRowIndex(imageKing,locKing.getY());
-					kingMoveLevel4=1;
-						
-				}
-				else {
-					System.out.println("2");
-					KingValidMoves.remove(locKing);
-					System.out.println();
-				}
+			}
+			if(checkifItIsBlockSquare(locKing)==false) {
+				//move the king to the smallest distance
+				game.getKing().setLocation(locKing);
+				GridPane.setColumnIndex(imageKing,locKing.getX());
+				GridPane.setRowIndex(imageKing,locKing.getY());
 				
+			}else {
+				//מערך ממוין לפי smallestdistanceניקח האיבר השני 
 			}
 			
-			if(game.getKing().getLocation().equals(game.getKnight().getLocation())) {
-				check=1;
-			}
+
+		}
+		if(game.getKing().getLocation().equals(game.getKnight().getLocation())) {
+			check=1;
 		}
 		// let the king move accelerate
 		if(totalSec%10==0) {
@@ -366,12 +318,16 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			speed--;
 		}
 	}
+
 		// method that start timer in one minute to every level in the game 
 		public void setTimer(Timer timer){
 				TimerTask timerTask = new TimerTask() {
 					@Override
 					public void run(){					
 							convertTime();
+							if(totalSec==1) {
+								counter=1;
+							}
 							if(finish == 2 ) {
 								kingMoveLevel3(totalSec);	
 							}
@@ -398,7 +354,36 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			
 			}
 		
-
+		public void checkifiWonOrLost(ActionEvent event) throws Exception {
+			System.out.println(points);
+			if(points>=2 ){
+				
+				FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
+				Parent root = loader.load();
+				gameStatusController status = loader.getController();
+				status.displayLevelWon(level.getText());
+				status.displayPoints(game.getPoints());
+				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+				Scene scene = new Scene(root);
+				root.setStyle("-fx-background-color: green;");
+				stage.setResizable(false);
+				stage.setScene(scene);
+				stage.show();
+			}
+			else{
+				
+				FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
+				Parent root = loader.load();
+				gameStatusController status = loader.getController();
+				status.displayLevelLose(level.getText());
+				status.displayPoints(game.getPoints());
+				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+				Scene scene = new Scene(root);
+				stage.setResizable(false);
+				stage.setScene(scene);
+				stage.show();
+			}
+		}
 		//method that replace the totalsec to minutes and sec  
 		private  void convertTime() {
 			min = TimeUnit.SECONDS.toMinutes(totalSec);
@@ -488,6 +473,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		 * **/
 		@Override
 		public void handle(ActionEvent arg0) {
+			stage = (Stage) ((Node) arg0.getSource()).getScene().getWindow();
 			//save the valid moves of the knight in array list for each level
 			ArrayList<Location> validsMovesLevel1 =new ArrayList<Location>();
 			validsMovesLevel1 = game.getKnight().allValidMovesLevel1(game.getKnight());
@@ -571,7 +557,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 										timer1.cancel();//stop the timer
 										try {
-											gamestatusLose(arg0); //show game status lose screen
+											gamestatusLose(); //show game status lose screen
 										} catch (Exception e) {
 											e.printStackTrace();
 										}
@@ -611,7 +597,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												}
 											}
 											try {
-												gamestatusLose(arg0); //show game status lose screen
+												gamestatusLose(); //show game status lose screen
 											} catch (Exception e) {
 												e.printStackTrace();
 											}
@@ -781,7 +767,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 										}
 										try {
-											gamestatusLose(arg0); //show game status lose screen
+											gamestatusLose(); //show game status lose screen
 										} catch (Exception e) {
 											e.printStackTrace();
 										}
@@ -938,7 +924,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 									}
 									try {
-										gamestatusLose(arg0); // show game status lose screen
+										gamestatusLose(); // show game status lose screen
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -1194,7 +1180,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 										}
 										try {
-											gamestatusLose(arg0);//show game status lose screen
+											gamestatusLose();//show game status lose screen
 										} catch (Exception e) {
 											e.printStackTrace();
 										}
@@ -1406,7 +1392,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					flag1=0;
 					flag2=0;
 					flag3=0;
-					totalSec=30;
+					totalSec=5;
 					speed=5;
 					imageKing.setVisible(true);
 					imageQ.setVisible(false);
@@ -1470,7 +1456,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					flag1=0;
 					flag2=0;
 					flag3=0;
-					totalSec=6;
+					totalSec=20;
 					speed=5;
 					
 					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
@@ -1542,13 +1528,28 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					displayLevel("LEVEL 4");
 					setTimer(timer4);
 				}
-				if(points>=0 && finish==4) {
-//					try {
-//						gamestatuswon();
-//					} catch (Exception e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
+				else if (finish==3 && points<15) {
+//					timer3.cancel();
+//					timer4.cancel();
+//					finishGame.setVisible(true);
+//					for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+//						//check if the player is in the sysData
+//						if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
+//							game.setPlayer(SysData.getInstance().getPlayers().get(player));
+//							SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
+//						}
 //					}
+				}
+				if(points>=0 && finish==4) {
+					timer4.cancel();
+					finishGame.setVisible(true);
+					for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+						//check if the player is in the sysData
+						if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
+							game.setPlayer(SysData.getInstance().getPlayers().get(player));
+							SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
+						}
+					}
 				}
 			}
 		}

@@ -17,8 +17,11 @@ public class gameStatusController {
 	@FXML
 	private Label points;
 	
-	public void displayLevel(String level1){
+	public void displayLevelLose(String level1){
 		level.setText("YOU LOST IN "+level1);
+	}
+	public void displayLevelWon(String level1){
+		level.setText("YOU WON THE GAME");
 	}
 	public void displayPoints(int points1){
 		points.setText("WITH "+points1+" POINTS");
@@ -29,6 +32,7 @@ public class gameStatusController {
 		Parent root = loader.load();
 		StartGameController sgc1 = loader.getController();
 		sgc1.displayName(UserNameController.Name);
+		
 		//Parent root = FXMLLoader.load(getClass().getResource("/View/StartGame.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
