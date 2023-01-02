@@ -147,7 +147,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		finishGame.setVisible(false);
 		totalSec=60;
 		points=0;
-		game.setPoints(0);
 		imageKing.setVisible(false);
 		fillNotVisitedArray(notVisited);
 		Location locFirst = new Location(0,0);
@@ -155,7 +154,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
 		boardGame.getSquares()[0][0].setVisited(true);
 		points++;
-		game.setPoints(points);
 		notVisited.remove(boardGame.getSquares()[0][0]);
 		GridPane.setColumnIndex(imageK, 0);
 		GridPane.setRowIndex(imageK, 0);
@@ -352,8 +350,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 		
 		public void checkifiWonOrLost(ActionEvent event) throws Exception {
-			System.out.println(points);
-			if(points>=2  && check!=1){
+			
+			int total = game.getPoints() + points;
+			game.setPoints(total);
+			
+			if(points>=15  && check!=1){
 				
 				FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
 				Parent root = loader.load();
@@ -503,7 +504,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									} catch (IOException e) {
 										e.printStackTrace();
 									}
-									game.setPoints(points); //add question's points if the player answer is true
 									flag1++;
 								}
 								//check if the square that the knight moved on is a medium question square
@@ -515,7 +515,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									} catch (IOException e) {
 										e.printStackTrace();
 									}
-									game.setPoints(points);//add question's points if the player answer is tru
 								 }
 								//check if the square that the knight moved on is a hard question square
 								 if(arg0.getSource()==node3Q && flag3==0) {
@@ -526,8 +525,20 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										} catch (IOException e) {
 											e.printStackTrace();
 										}
-										game.setPoints(points);//add question's points if the player answer is tru
 								}
+								//check if the player chose to move on a square that is visited
+									if(boardGame.getSquares()[i][j].isVisited() == true) {
+										points--;//lose point
+										//count the number of visits for the square
+										boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);//set the number of visits for this square
+									}else { //if the square is not visited
+										points++;//win point
+										//count the number of visits for the square
+										boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);//set the number of visits for this square
+										boardGame.getSquares()[i][j].setVisited(true);//change the square to visited
+										notVisited.remove(boardGame.getSquares()[i][j]);//remove the square from not visited squares array
+										((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;"); //change the color of the square
+									}
 								//check if the square that the knight is moved on isn't a random jump square
 								if(!arg0.getSource().equals(nodeRandomJump1)&&!arg0.getSource().equals(nodeRandomJump2)&&!arg0.getSource().equals(nodeRandomJump3)) {
 									//creating array for queen valid moves and add all the squares that the queen can move to
@@ -547,7 +558,8 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setRowIndex(imageQ,locQueen.getY());
 									//check if the square that the queen moved to is the square that the knight is on it
 									if(game.getQueen().getLocation().equals(game.getKnight().getLocation())) {
-										
+										int total = game.getPoints()+points;
+										game.setPoints(total);
 										for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
 											//check if the player is in the sysData
 											if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
@@ -648,21 +660,6 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										
 									}
 									
-								}
-								//check if the player chose to move on a square that is visited
-								if(boardGame.getSquares()[i][j].isVisited() == true) {
-									points--;//lose point
-									game.setPoints(points);//set the points
-									//count the number of visits for the square
-									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);//set the number of visits for this square
-								}else { //if the square is not visited
-									points++;//win point
-									game.setPoints(points);//set points
-									//count the number of visits for the square
-									boardGame.getSquares()[i][j].setNumVisits(boardGame.getSquares()[i][j].getNumVisits()+1);//set the number of visits for this square
-									boardGame.getSquares()[i][j].setVisited(true);//change the square to visited
-									notVisited.remove(boardGame.getSquares()[i][j]);//remove the square from not visited squares array
-									((Button)arg0.getSource()).setStyle("-fx-background-color: grey;-fx-border-color : black;"); //change the color of the square
 								}
 								
 								
@@ -1307,12 +1304,12 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		 * **/
 		public void nextLevel() throws IOException {
 			//after finishing level 1, check the points if >= 0
-			if(points>=0 && finish==1) {//level 2
+			if(points>=15 && finish==1) {//level 2
 				//checkers for the level, start with 0 
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=5; //the time for this level
+				totalSec=60; //the time for this level
 				//loop on the squares
 				for(int i = 0 ; i < 8 ; i++) {
 					for(int j = 0 ; j < 8 ; j ++) {
@@ -1400,10 +1397,22 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					
 					
 			}
-			else if(points<15&& finish==1){ //if the player finish level 2 with less than 15 points , lose
-			//		timer2.cancel();
+			else if (finish==1 && points<15) { //if the player lose in level 4
+				timer1.cancel();
+				finishGame.setVisible(true);
+				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+					board.getChildren().get(node).setDisable(true);
+				
+				}
+				for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+					//check if the player is in the sysData
+					if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
+						game.setPlayer(SysData.getInstance().getPlayers().get(player));
+						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
+					}
+				}
 			}
-			if(points>=0 && finish==2) { //level 3
+			if(points>=15 && finish==2) { //level 3
 				int total = game.getPoints()+points;// add the points of the level to the points score
 				game.setPoints(total);//set the points score
 				//loop on the square
@@ -1443,7 +1452,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=5; //the time for this level
+				totalSec=60; //the time for this level
 				speed=5; //the speed of the king
 				imageKing.setVisible(true);//show the king on the board
 				imageQ.setVisible(false);//hide the queen 
@@ -1501,7 +1510,22 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				setTimer(timer3);//set the timer of the level
 					
 			}
-			if(points>=0 && finish==3) { //level 4
+			else if (finish==2 && points<15) { //if the player lose in level 4
+				timer2.cancel();
+				finishGame.setVisible(true);
+				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+					board.getChildren().get(node).setDisable(true);
+				
+				}
+				for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+					//check if the player is in the sysData
+					if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
+						game.setPlayer(SysData.getInstance().getPlayers().get(player));
+						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
+					}
+				}
+			}
+			if(points>=15 && finish==3) { //level 4
 				Location locFirst = new Location(0,0);//creating the first location
 				game.getKnight().setLocation(locFirst);//put the knight on the first location
 				//loop on the board squares
@@ -1525,7 +1549,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				flag1=0;
 				flag2=0;
 				flag3=0;
-				totalSec=30;//time for this level
+				totalSec=60;//time for this level
 				speed=5;//the speed of the king
 				//set the color of the first square as visited square, and set the square as a visited	
 				b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
@@ -1621,20 +1645,27 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 			
 			else if (finish==3 && points<15) { //if the player lose in level 4
-//				timer3.cancel();
-//				timer4.cancel();
-//				finishGame.setVisible(true);
-//				for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
-//					//check if the player is in the sysData
-//					if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
-//						game.setPlayer(SysData.getInstance().getPlayers().get(player));
-//						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
-//					}
-//				}
+				timer3.cancel();
+				finishGame.setVisible(true);
+				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+					board.getChildren().get(node).setDisable(true);
+				
+				}
+				for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
+					//check if the player is in the sysData
+					if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
+						game.setPlayer(SysData.getInstance().getPlayers().get(player));
+						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
+					}
+				}
 			}
 			if(points>=15 && finish==4) {//if the player finish in level 4 with points more than 0
 				timer4.cancel();//stop timer
-				finishGame.setVisible(true);//show the finish game 
+				finishGame.setVisible(true);//show the finish game button
+				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
+					board.getChildren().get(node).setDisable(true);
+				
+				}
 				//loop on the players on the sysData
 				for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
 					//check if the player is in the sysData
