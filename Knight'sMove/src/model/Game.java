@@ -200,7 +200,43 @@ public class Game {
 			return false;
 		return true;
 	}
-	
+	public double shortestDistance(Location loc1 ,Location loc2) {
+		if(loc1.getX()==loc2.getX()) {
+			if((loc2.getY()-loc1.getY())<0) {
+				return (loc2.getY()-loc1.getY())*-1;
+			}
+			else {
+				return loc2.getY()-loc1.getY();
+			}
+		}
+		else if(loc1.getY()==loc2.getY()) {
+			if((loc2.getX()-loc1.getX())<0) {
+				return (loc2.getX()-loc1.getX())*-1;
+			}
+			else {
+				return loc2.getX()-loc1.getX();
+			}
+		}
+		else {
+				double a ;
+				double b;
+				double c ;
+				if((loc1.getX()-loc2.getX())<0) {
+					a = (loc1.getX()-loc2.getX())*-1;
+				}
+				else {
+					a = (loc1.getX()-loc2.getX());
+				}
+				if((loc1.getY()-loc2.getY())<0) {
+					b = (loc1.getY()-loc2.getY())*-1;
+				}
+				else {
+					b = (loc1.getY()-loc2.getY());
+				}
+				c = a*a + b*b;
+				return Math.sqrt(c);
+		}
+	}
 	
 
 

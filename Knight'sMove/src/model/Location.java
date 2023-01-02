@@ -10,6 +10,7 @@ public class Location {
 
 	private Integer x ;
 	private Integer y ;
+	private double smallestDistance ;
 	//constructor
 	public Location(Integer x, Integer y) {
 		super();
@@ -20,11 +21,20 @@ public class Location {
 	public Location() {
 		super();
 	}
-
+	
 	// getters setters
+	
 	public Integer getX() {
 		return x;
 	}
+	public double getSmallestDistance() {
+		return smallestDistance;
+	}
+
+	public void setSmallestDistance(double smallestDistance) {
+		this.smallestDistance = smallestDistance;
+	}
+
 	public void setX(Integer x) {
 		this.x = x;
 	}

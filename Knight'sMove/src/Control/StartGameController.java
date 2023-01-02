@@ -3,6 +3,8 @@ package Control;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -142,7 +144,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 //			
 //		}
 		finishGame.setVisible(false);
-		totalSec=10;
+		totalSec=5;
 		points=0;
 		game.setPoints(0);
 		imageKing.setVisible(false);
@@ -207,7 +209,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	 *it will be open the lose screen with the lose status and the level and points
 	 * 
 	 * **/
-	public void gamestatusLose() throws Exception {
+	public void gamestatusLose(ActionEvent event) throws Exception {
 
 		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
 		Parent root = loader.load();
@@ -216,8 +218,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		status.displayLevelLose(level.getText());
 		//int total = game.getPoints()+points;
 		status.displayPoints(game.getPoints());
-		Stage stage =new Stage(); 
-				//(Stage)((Node)event.getSource()).getScene().getWindow();
+		Stage stage =(Stage)((Node)event.getSource()).getScene().getWindow();
 		//Stage stage = new Stage();
 		Scene scene = new Scene(root);
 		//scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
@@ -231,21 +232,21 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	 * 
 	 * **/
 	public Boolean checkifItIsBlockSquare(Location locKing){
-		if(locKing.getX()!=GridPane.getColumnIndex(block1) && locKing.getY()!=GridPane.getRowIndex(block1) 
-			&& locKing.getX()!=GridPane.getColumnIndex(block2) && locKing.getY()!=GridPane.getRowIndex(block2)
-			&& locKing.getX()!=GridPane.getColumnIndex(block3) && locKing.getY()!=GridPane.getRowIndex(block3)
-			&& locKing.getX()!=GridPane.getColumnIndex(block4) && locKing.getY()!=GridPane.getRowIndex(block4)
-			&& locKing.getX()!=GridPane.getColumnIndex(block5) && locKing.getY()!=GridPane.getRowIndex(block5)
-			&& locKing.getX()!=GridPane.getColumnIndex(block6) && locKing.getY()!=GridPane.getRowIndex(block6)
-			&& locKing.getX()!=GridPane.getColumnIndex(block7) && locKing.getY()!=GridPane.getRowIndex(block7)
-			&& locKing.getX()!=GridPane.getColumnIndex(block8) && locKing.getY()!=GridPane.getRowIndex(block8)) {
-			 return false;
+		if((locKing.getX()==GridPane.getColumnIndex(block1) && locKing.getY()==GridPane.getRowIndex(block1) )
+			|| (locKing.getX()==GridPane.getColumnIndex(block2) && locKing.getY()==GridPane.getRowIndex(block2))
+			|| (locKing.getX()==GridPane.getColumnIndex(block3) && locKing.getY()==GridPane.getRowIndex(block3))
+			|| (locKing.getX()==GridPane.getColumnIndex(block4) && locKing.getY()==GridPane.getRowIndex(block4))
+			|| (locKing.getX()==GridPane.getColumnIndex(block5) && locKing.getY()==GridPane.getRowIndex(block5))
+			|| (locKing.getX()==GridPane.getColumnIndex(block6) && locKing.getY()==GridPane.getRowIndex(block6))
+			|| (locKing.getX()==GridPane.getColumnIndex(block7) && locKing.getY()==GridPane.getRowIndex(block7))
+			|| (locKing.getX()==GridPane.getColumnIndex(block8) && locKing.getY()==GridPane.getRowIndex(block8))) {
+			 return true;
 		}
-		return true;
+		return false;
 	}
 	/**
 	 * 
-	 * method for the movement of the king
+	 * method for the movement of the king in level 5
 	 * 
 	 * **/
 	public void kingMoveLevel3(long totalSec){
@@ -278,36 +279,29 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	}
 	/**
 	 * 
-	 * method for the movement of the king
+	 * method for the movement of the king in level 4
 	 * 
 	 * **/
-	Location theardLoc = new Location();
-	Location secondLoc = new Location();
+	
 	public void kingMoveLevel4(long totalSec){
 		knightLoc=locKnight;
-		smallestDistance=11;
+		counter=0;
 		if(totalSec%speed == 0) {
 			KingValidMoves=game.getKing().validMovesForKing(game.getKing());
 			for(int k =0;k<KingValidMoves.size();k++) {
-				//check if the shortest distance between the king and knight is small than the smallest distance
-				if(game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k)) < smallestDistance ) {
-					smallestDistance=game.getKing().shortestDistance(knightLoc, KingValidMoves.get(k));
-					theardLoc=secondLoc;
-					secondLoc = locKing;
-					locKing = KingValidMoves.get(k);
+				KingValidMoves.get(k).setSmallestDistance(game.shortestDistance(knightLoc, KingValidMoves.get(k)));
+			}
+			Collections.sort(KingValidMoves, Comparator.comparing(Location::getSmallestDistance));
+			for(int i=0 ; i<KingValidMoves.size()&&counter==0;i++) {
+				if(checkifItIsBlockSquare(KingValidMoves.get(i))==false) {
+					System.out.println("entered");
+					game.getKing().setLocation(KingValidMoves.get(i));
+					GridPane.setColumnIndex(imageKing,KingValidMoves.get(i).getX());
+					GridPane.setRowIndex(imageKing,KingValidMoves.get(i).getY());
+					counter=1;
 				}
 			}
-			if(checkifItIsBlockSquare(locKing)==false) {
-				//move the king to the smallest distance
-				game.getKing().setLocation(locKing);
-				GridPane.setColumnIndex(imageKing,locKing.getX());
-				GridPane.setRowIndex(imageKing,locKing.getY());
-				
-			}else {
-				//מערך ממוין לפי smallestdistanceניקח האיבר השני 
-			}
 			
-
 		}
 		if(game.getKing().getLocation().equals(game.getKnight().getLocation())) {
 			check=1;
@@ -325,14 +319,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					@Override
 					public void run(){					
 							convertTime();
-							if(totalSec==1) {
-								counter=1;
-							}
 							if(finish == 2 ) {
 								kingMoveLevel3(totalSec);	
 							}
 							if(finish == 3) {
-								kingMoveLevel3(totalSec);
+								kingMoveLevel4(totalSec);
 							}
 							
 							// we added the points text just for checking we will change it when we finish the game
@@ -557,7 +548,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 										timer1.cancel();//stop the timer
 										try {
-											gamestatusLose(); //show game status lose screen
+											gamestatusLose(arg0); //show game status lose screen
 										} catch (Exception e) {
 											e.printStackTrace();
 										}
@@ -597,7 +588,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 												}
 											}
 											try {
-												gamestatusLose(); //show game status lose screen
+												gamestatusLose(arg0); //show game status lose screen
 											} catch (Exception e) {
 												e.printStackTrace();
 											}
@@ -767,7 +758,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 										}
 										try {
-											gamestatusLose(); //show game status lose screen
+											gamestatusLose(arg0); //show game status lose screen
 										} catch (Exception e) {
 											e.printStackTrace();
 										}
@@ -924,7 +915,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 									}
 									try {
-										gamestatusLose(); // show game status lose screen
+										gamestatusLose(arg0); // show game status lose screen
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -1180,7 +1171,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 										}
 										try {
-											gamestatusLose();//show game status lose screen
+											gamestatusLose(arg0);//show game status lose screen
 										} catch (Exception e) {
 											e.printStackTrace();
 										}
@@ -1456,7 +1447,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					flag1=0;
 					flag2=0;
 					flag3=0;
-					totalSec=20;
+					totalSec=60;
 					speed=5;
 					
 					b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
