@@ -23,28 +23,25 @@ public class gameStatusController implements Initializable {
 	@FXML
 	private ImageView cup;
 	static int check = 0;
-	public void cupVisiable(){
-		cup.setVisible(true);
-		
-	}
+	//display the lose level 
 	public void displayLevelLose(String level1){
-		level.setText("YOU LOST IN "+level1);
-		
+		level.setText("YOU LOST IN "+level1);	
 	}
+	//display the winning message
 	public void displayLevelWon(){
 		level.setText("YOU WON THE GAME");
 	}
+	//display the total points
 	public void displayPoints(int points1){
 		points.setText("WITH "+points1+" POINTS");
 	}
+	// method to start the start game screen again after winning or losing
 	public void letsPlayAgain(ActionEvent event) throws IOException {
-		//StartGameController.points=0;
 		FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/StartGame.fxml"));
 		Parent root = loader.load();
 		StartGameController sgc1 = loader.getController();
+		// display the player on the start game screen 
 		sgc1.displayName(UserNameController.Name);
-		
-		//Parent root = FXMLLoader.load(getClass().getResource("/View/StartGame.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		stage.setResizable(false);

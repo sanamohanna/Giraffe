@@ -27,7 +27,6 @@ public class EasyQuestionWindowController  implements Initializable{
 	private Text level;
 	@FXML
 	private RadioButton answer1,answer2,answer3,answer4;
-	
 	@FXML
 	private Button sub;
 	@FXML 
@@ -58,11 +57,10 @@ public class EasyQuestionWindowController  implements Initializable{
 	    answer2.setToggleGroup(group);
 	    answer3.setToggleGroup(group);
 	    answer4.setToggleGroup(group);
-
-	    	level.setText("EASY QUESTION");
-	    	level.setFill(Color.GREEN);
+	    level.setText("EASY QUESTION");
+	    level.setFill(Color.GREEN);
 	}
-	
+	//submit the answer
 	public void submit(ActionEvent event) throws Exception {
 		Boolean selected = false;
 		Stage stage ;

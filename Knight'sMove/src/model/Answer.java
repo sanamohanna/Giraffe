@@ -5,7 +5,7 @@ public class Answer {
 	private String answerContext;
 	private boolean isTrue;
 
-	// costructor
+	// constructor
 	public Answer(int id, String answerContext, boolean isTrue) {
 		super();
 		this.id = id;

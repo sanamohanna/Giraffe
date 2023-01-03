@@ -16,8 +16,10 @@ import javafx.stage.Stage;
 public class UserNameForGameHistoryController {
 	@FXML
 	private TextField userName;
+	//user name for displaying on the screen
 	static String Name;
-	 Alert a = new Alert(AlertType.NONE);
+	
+	Alert a = new Alert(AlertType.NONE);
 	
 	
 	// button to return us to the main screen
@@ -34,12 +36,11 @@ public class UserNameForGameHistoryController {
 		public void seeHistory(ActionEvent event) throws IOException {
 			try {
 				Name =userName.getText();
+				//check if the player entered a user name 
 				if(userName.getText().isEmpty() || userName.getText() == " ") {
 					throw new Exception();
 				}
-				
 				Parent root = FXMLLoader.load(getClass().getResource("/View/gamesHistory.fxml"));
-
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				Scene scene = new Scene(root);
 				scene.getStylesheets().add(getClass().getResource("/View/gameHistory.css").toExternalForm());
@@ -50,7 +51,8 @@ public class UserNameForGameHistoryController {
 			}catch (Exception e) { //if the user not enter data 
 				a.setAlertType(AlertType.ERROR);
 				a.setContentText("please enter all data!");
-				a.show();		}
+				a.show();	
+			}
 			
 			
 			

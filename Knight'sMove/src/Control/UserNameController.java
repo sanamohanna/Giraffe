@@ -1,13 +1,6 @@
 package Control;
 
 import java.io.IOException;
-//import java.util.Timer;
-//import java.util.TimerTask;
-//import java.util.concurrent.TimeUnit;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +19,7 @@ public class UserNameController {
 	TextField nameTextField;
 	@FXML
 	TextField newUser;
+	//name for displaying on start game controller
 	static String Name;
     Alert a = new Alert(AlertType.NONE);
     //button that open startGame screen to to play
@@ -33,12 +27,14 @@ public class UserNameController {
 		Boolean flag = false;
 		//check if the user entered a user name 
 		try {
+			//check if the field is empty
 			if(nameTextField.getText().isEmpty()) {
 				throw new Exception();
 			}
 		String UserName =nameTextField.getText();
 		Name=UserName;
 		Player player = new Player(UserName);
+		// check if the player don't has an account
 		if(!SysData.getInstance().getPlayers().contains(player)) {
 			flag = true;
 			throw new Exception();
@@ -61,7 +57,7 @@ public class UserNameController {
 	
 		}catch (Exception e) {
 			if(flag == true) {
-				a.setAlertType(AlertType.ERROR);//if the user not enter data 
+				a.setAlertType(AlertType.ERROR);// if the player don't have an account 
 				a.setContentText("You Need To Sign Up!");
 				a.show();
 			}else {
@@ -83,6 +79,7 @@ public class UserNameController {
 		stage.show();
 
 	}
+	//button to take us to the signup screen
 	public void SignUpButton(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/SignUp.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -93,6 +90,7 @@ public class UserNameController {
 	
 		stage.show();
 	}
+	// button to return us to the main screen
 	public void signUp_backButton(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/StartGame.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -104,6 +102,7 @@ public class UserNameController {
 		stage.show();
 
 	}
+	//button that open startGame screen to to play after signing up
 	public void SignUp(ActionEvent event) throws Exception {
 		Boolean flag = false ;
 
@@ -115,6 +114,7 @@ public class UserNameController {
 		String newUserName =newUser.getText();
 		Name=newUserName;
 		Player NewPlayer = new Player(newUserName);
+		// check if the game already has this player
 		if(!SysData.getInstance().getPlayers().contains(NewPlayer)) {
 	    SysData.getInstance().getPlayers().add(NewPlayer);
 		}
@@ -139,7 +139,7 @@ public class UserNameController {
 	
 		}catch (Exception e) {
 			if(flag == true) {
-				a.setAlertType(AlertType.ERROR);//if the user not enter data 
+				a.setAlertType(AlertType.ERROR);//if the user already exist!
 				a.setContentText("This User Name is already exist!");
 				a.show();
 			}else {
