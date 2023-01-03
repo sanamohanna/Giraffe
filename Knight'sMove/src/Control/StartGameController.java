@@ -143,60 +143,63 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	 * 
 	 * **/
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-//		for(int i = 0 ; i < 8 ; i++) {
-//			for(int j = 0 ; j < 8 ; j ++) {
-//				boardGame.getSquares()[i][j].setVisited(false);;
-//			}
-//			
-//		}
-		finishGame.setVisible(false);
-		totalSec=oneMin;
-		points=1;
-		imageKing.setVisible(false);
-		fillNotVisitedArray(notVisited);
-		Location locFirst = new Location(0,0);
-		game.getKnight().setLocation(locFirst);
-		b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");
-		boardGame.getSquares()[0][0].setVisited(true);
-		notVisited.remove(boardGame.getSquares()[0][0]);
+	public void initialize(URL arg0, ResourceBundle arg1) {//level 1
+		finishGame.setVisible(false);//hide finish game button
+		totalSec=oneMin;//set the timer with one minute
+		points=1;//add the point of the first square visit -> b[0][0]
+		imageKing.setVisible(false);//hide king on board
+		fillNotVisitedArray(notVisited);//add the squares to not visited squares array
+		Location locFirst = new Location(0,0);//save first location
+		game.getKnight().setLocation(locFirst);//put the game on first location
+		b00.setStyle("-fx-background-color: grey;-fx-border-color : black;");//set the color of first location
+		boardGame.getSquares()[0][0].setVisited(true);//set the first place as visited
+		notVisited.remove(boardGame.getSquares()[0][0]);//remove the first place from not visited squares array
+		//set knight on board
 		GridPane.setColumnIndex(imageK, 0);
 		GridPane.setRowIndex(imageK, 0);
 		rand = new Random();
+		//creating three random squares for questions
 		node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-		while(node1Q==node2Q ) {
+		node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		while(node1Q==node2Q ) { // check if the first question square equal to second question
+			//creating new random question 2 that is not equal to question 1
 			node2Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		}
-		node2Q.setStyle("-fx-background-color: yellow; ");
-		node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
-		while(node2Q==node3Q ||node3Q==node1Q) {
+		node2Q.setStyle("-fx-background-color: yellow; ");//set question 2 color, medium question
+		while(node2Q==node3Q ||node3Q==node1Q) {// check if the third question square equal to second question or first question
+			//creating new random question 2 that is not equal to questions
 			node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		}
-		node3Q.setStyle("-fx-background-color: red; ");
+		node3Q.setStyle("-fx-background-color: darkred; ");//set the color of question 3 square, hard question
+		node1Q.setStyle("-fx-background-color: green; ");//set the color of first question square, easy question
+		//creating three random jump squares
 		nodeRandomJump1=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		nodeRandomJump2=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		nodeRandomJump3=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		// check if the jump 1 square equal to questions square
 		while(node3Q==nodeRandomJump1 ||node1Q==nodeRandomJump1||node2Q==nodeRandomJump1 ) {
+			//creating new jump square not equals to questions
 			nodeRandomJump1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		}
-		nodeRandomJump1.setStyle("-fx-background-color: blue; ");
-		nodeRandomJump2=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		// check if the jump 1 square equal to questions square or jump 1 squares
 		while(nodeRandomJump1==nodeRandomJump2 ||node3Q==nodeRandomJump2 ||node2Q==nodeRandomJump2 ||node1Q==nodeRandomJump2 ) {
+			//creating new jump square not equals to questions and jump 1 square
 			nodeRandomJump2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));	
 		}
-		nodeRandomJump2.setStyle("-fx-background-color: pink; ");
-		nodeRandomJump3=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
+		// check if the jump 1 square equal to questions square or jump squares
 		while(nodeRandomJump2==nodeRandomJump3 ||nodeRandomJump1==nodeRandomJump3 ||node2Q==nodeRandomJump3
 				||node1Q==nodeRandomJump3 ||node3Q==nodeRandomJump3) {
+			//creating new jump square not equals to questions or jump squares
 			nodeRandomJump3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		}
-		nodeRandomJump3.setStyle("-fx-background-color: purple; ");
+		// check if the question 1 square equal to questions square or jump squares
 		while(node1Q== node2Q||node1Q== node3Q||node1Q== nodeRandomJump3||node1Q==nodeRandomJump2 ||node1Q==nodeRandomJump1 ) {
+			//creating new jump square not equals to questions
 			node1Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 		}
-		node1Q.setStyle("-fx-background-color: green; ");
-		setTimer(timer1);
-		displayLevel("LEVEL 1");
-	//	pointsT.setText(String.valueOf(points));
+		setTimer(timer1); //start timer
+		displayLevel("LEVEL 1"); //show level 1
 		try {
 			levelsMoves();
 		} catch (IOException e) {
@@ -220,19 +223,16 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		gameStatusController status = loader.getController();
 		//send the username to start game controller to display
 		status.displayLevelLose(level.getText());
-		//int total = game.getPoints()+points;
 		status.displayPoints(game.getPoints());
 		Stage stage =(Stage)((Node)event.getSource()).getScene().getWindow();
-		//Stage stage = new Stage();
 		Scene scene = new Scene(root);
-		//scene.getStylesheets().add(getClass().getResource("/View/StartGame.css").toExternalForm());
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
 		}
 	/**
 	 * 
-	 * method for 
+	 * method for check if the square that the knight or king moved to in a block square in level 4
 	 * 
 	 * **/
 	public Boolean checkifItIsBlockSquare(Location locKing){
@@ -289,26 +289,28 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	
 	public void kingMoveLevel4(long totalSec){
 		knightLoc=locKnight;
-		counter=0;
+		counter=0; //counter for check if the king moved to a not block square
 		if(totalSec%speed == 0) {
 			KingValidMoves=game.getKing().validMovesForKing(game.getKing());
+			//loop for setting the smallest distance for all king valid moves
 			for(int k =0;k<KingValidMoves.size();k++) {
 				KingValidMoves.get(k).setSmallestDistance(game.shortestDistance(knightLoc, KingValidMoves.get(k)));
-			}
+			}//sort king valid moves array list from the smallest distance to the biggest
 			Collections.sort(KingValidMoves, Comparator.comparing(Location::getSmallestDistance));
+			//loop to check if the first valid move is not block square
 			for(int i=0 ; i<KingValidMoves.size()&&counter==0;i++) {
 				if(checkifItIsBlockSquare(KingValidMoves.get(i))==false) {
-					System.out.println("entered");
+					//set king location 
 					game.getKing().setLocation(KingValidMoves.get(i));
 					GridPane.setColumnIndex(imageKing,KingValidMoves.get(i).getX());
 					GridPane.setRowIndex(imageKing,KingValidMoves.get(i).getY());
-					counter=1;
+					counter=1;//move the king
 				}
 			}
 			
-		}
+		}//check if the king and the knight is in the same square, the king kill the knight
 		if(game.getKing().getLocation().equals(game.getKnight().getLocation())) {
-			check=1;
+			check=1; //checker for lose, if the king kill the knight
 		}
 		// let the king move accelerate
 		if(totalSec%10==0) {
@@ -317,63 +319,60 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		}
 	}
 
-		// method that start timer in one minute to every level in the game 
-		public void setTimer(Timer timer){
-			
-				TimerTask timerTask = new TimerTask() {
-					@Override
-					public void run(){	
-
-							
-							convertTime();
-							if(finish == 2 ) {
-								kingMoveLevel3(totalSec);	
-							}
-							if(finish == 3) {
-								kingMoveLevel4(totalSec);
-							}
-							while(stopTimer ==0) {
-								//System.out.println();
-								//the while did not work if it is empty
-								//sleep one second while stopTimer is 0
-								try {
-									Thread.sleep(1000);
-								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-								//wait until the player click on start the game again or submit the question
-							}
-							//make all buttons able again
-							for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {//for return the buttons on the board able after pause
-								board.getChildren().get(node).setDisable(false);
-							
-							}
-							pauseB.setDisable(false);
-							// we added the points text just for checking we will change it when we finish the game
-							pointsT.setText("Points: " +String.valueOf(points));
-							
-							if(totalSec<=0) {	
-								text.setText("00:00");
-								finish +=1;
-								try {
-									nextLevel();
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
-								timer.cancel();
-							}
-					}
-				};   
-				timer.schedule(timerTask,0,1000);
-			
+	// method that start timer in one minute to every level in the game 
+	public void setTimer(Timer timer){
+		TimerTask timerTask = new TimerTask() {
+		@Override
+		public void run(){	
+			convertTime();
+			if(finish == 2 ) {
+				kingMoveLevel3(totalSec);	
 			}
-		
-		public void checkifiWonOrLost(ActionEvent event) throws Exception {
+			if(finish == 3) {
+				kingMoveLevel4(totalSec);
+			}
+			while(stopTimer ==0) {
+				//the while did not work if it is empty
+				//sleep one second while stopTimer is 0
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+						e.printStackTrace();
+				}
+				//wait until the player click on start the game again or submit the question
+			}
+			//make all buttons able again
+			for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {//for return the buttons on the board able after pause
+				board.getChildren().get(node).setDisable(false);
+			}
+			pauseB.setDisable(false);
+			// we added the points text just for checking we will change it when we finish the game
+			pointsT.setText("Points: " +String.valueOf(points));
+			if(totalSec<=0) {	
+				text.setText("00:00");
+				finish +=1; //add 1 if the player finish the level
+				try {
+					nextLevel();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				timer.cancel();//stop timer
+			}
+		}
+		};   
+		timer.schedule(timerTask,0,1000);
 			
-			int total = game.getPoints() + points;
-			game.setPoints(total);
+	}
+	/**
+	 * 
+	 * method that check if the player win or lose when the timer is end in each level
+	 * 
+	 * **/	
+	public void checkifiWonOrLost(ActionEvent event) throws Exception {
 			
+			int total = game.getPoints() + points;//add the level point to the points score
+			game.setPoints(total);//set the points score
+			//check if the player win the whole game, win in all the levels
 			if(points>=demandPoints  && check!=1){
 				
 				FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
@@ -388,7 +387,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				stage.setScene(scene);
 				stage.show();
 			}
-			else{
+			else{//check if the player lose when the time is up in each level
 				
 				FXMLLoader loader =  new FXMLLoader(getClass().getResource("/View/gameStatus.fxml"));
 				Parent root = loader.load();
@@ -528,7 +527,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								GridPane.setRowIndex(imageK,i );
 								//check if the square that the knight moved on is an easy question square
 								if(arg0.getSource()==node1Q && flag1==0) {
-									stopTimer=0;
+									stopTimer=0;//stop the timer until submit the answer
 									try {
 										popEasy(); //show easy question
 									} catch (IOException e) {
@@ -538,7 +537,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 								//check if the square that the knight moved on is a medium question square
 								 if(arg0.getSource()==node2Q && flag2==0) {
-									 stopTimer=0;
+									 stopTimer=0;//stop the timer until submit the answer
 									flag2++;
 									try {
 										popMediocre();//show medium question
@@ -548,7 +547,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								 }
 								//check if the square that the knight moved on is a hard question square
 								 if(arg0.getSource()==node3Q && flag3==0) {
-									 stopTimer=0;
+									 stopTimer=0;//stop the timer until submit the answer
 										flag3++;
 										try {
 											popHard();//show hard question 
@@ -651,7 +650,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 										//check if the square that the knight moved on is a easy question square
 										if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
-											stopTimer=0;
+											stopTimer=0;//stop the timer until submit the answer
 											try {
 												popEasy();//show easy question
 												flag1++;
@@ -660,7 +659,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 										}//check if the square that the knight moved on is a medium question square
 										else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) ) {
-											stopTimer=0;
+											stopTimer=0;//stop the timer until submit the answer
 											try {										
 												popMediocre();//show medium question
 												flag2++;
@@ -669,7 +668,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 											}
 										}//check if the square that the knight moved on is a hard question square
 										else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
-											stopTimer=0;
+											stopTimer=0;//stop the timer until submit the answer
 											try {									
 												popHard();//show hard question
 												flag3++;
@@ -703,7 +702,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						}
 							else {
 								//ColorChange(loc,validsPrevious,b00);
-								a.setAlertType(AlertType.ERROR);//if the user not enter data 
+								a.setAlertType(AlertType.ERROR);//if the move isn't valid 
 								a.setContentText("invalid move try again, you have to move two squares up/down \n and one left/rightor two squares left/right and one up/down");
 								a.show();		
 							}
@@ -723,7 +722,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setRowIndex(imageK,i );
 									//check if the square that the knight moved on is an easy question square
 									if(arg0.getSource()==node1Q && flag1==0) {
-										stopTimer=0;
+										stopTimer=0;//stop the timer until submit the answer
 										try {
 											popEasy();//show easy question
 										} catch (IOException e) {
@@ -733,7 +732,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									}//check if the square that the knight moved on is a medium  question square
 									 if(arg0.getSource()==node2Q && flag2==0) {
 										flag2++;
-										stopTimer=0;
+										stopTimer=0;//stop the timer until submit the answer
 										try {
 											popMediocre();// show medium question
 										} catch (IOException e) {
@@ -743,7 +742,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									 }//check if the square that the knight moved on is a hard question square
 									 if(arg0.getSource()==node3Q && flag3==0) {
 											flag3++;
-											stopTimer=0;
+											stopTimer=0;//stop the timer until submit the answer
 											try {
 												popHard();//show hard question
 											} catch (IOException e) {
@@ -973,7 +972,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}
 								//check if the square that the knight moved on is a easy question square
 								if(arg0.getSource()==node1Q && flag1==0) {
-									stopTimer=0;
+									stopTimer=0;//stop the timer until submit the answer
 									try {
 										popEasy(); //show easy question
 									} catch (IOException e) {
@@ -984,7 +983,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 								}//check if the square that the knight moved on is a medium question square
 								 if(arg0.getSource()==node2Q && flag2==0) {
 									flag2++;
-									stopTimer=0;
+									stopTimer=0;//stop the timer until submit the answer
 									try {
 										popMediocre(); //show medium question
 									} catch (IOException e) {
@@ -992,7 +991,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									}
 								 }//check if the square that the knight moved on is a hard question square
 								 if(arg0.getSource()==node3Q && flag3==0) {
-									 stopTimer=0;	
+									 stopTimer=0;//stop the timer until submit the answer	
 									 flag3++;
 										try {
 											popHard();//show hard question
@@ -1039,7 +1038,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									GridPane.setRowIndex(imageK,sq.getLocation().getY() );
 									//check if the square that the knight moved on is a easy  question square
 									if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node1Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node1Q)) {
-										stopTimer=0;
+										stopTimer=0;//stop the timer until submit the answer
 										try {
 											
 											popEasy();//show easy question
@@ -1051,7 +1050,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										
 									}///check if the square that the knight moved on is a medium  question square
 									else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node2Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node2Q) ) {
-										stopTimer=0;
+										stopTimer=0;//stop the timer until submit the answer
 										try {												
 											popMediocre();//show medium question
 											flag2++;
@@ -1062,7 +1061,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 									
 									} //check if the square that the knight moved on is a hard  question square
 									else if(GridPane.getColumnIndex(imageK)==GridPane.getColumnIndex(node3Q) &&GridPane.getRowIndex(imageK)==GridPane.getRowIndex(node3Q)) {
-										stopTimer=0;
+										stopTimer=0;//stop the timer until submit the answer
 										try {									
 											popHard();//show hard question
 											flag3++;
@@ -1242,7 +1241,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										}
 									}///check if the square that the knight moved on is an easy  question square
 									if(arg0.getSource()==node1Q && flag1==0) {
-										stopTimer=0;
+										stopTimer=0;//stop the timer until submit the answer
 										try {
 											popEasy();//show easy question
 										} catch (IOException e) {
@@ -1252,7 +1251,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										
 									}///check if the square that the knight moved on is a medium  question square
 									 if(arg0.getSource()==node2Q && flag2==0) {
-										 stopTimer=0;
+										 stopTimer=0;//stop the timer until submit the answer
 										 flag2++;
 										try {
 											popMediocre();//show medium question 
@@ -1262,7 +1261,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 										
 									 }///check if the square that the knight moved on is a hard  question square
 									 if(arg0.getSource()==node3Q && flag3==0) {
-										 stopTimer=0;	
+										 stopTimer=0;//stop the timer until submit the answer	
 										 flag3++;
 											try {
 												popHard();//show hard question
@@ -1419,7 +1418,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					//creating new random square for question 3 that is not equal to question 1 or 2 square 
 					node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				node3Q.setStyle("-fx-background-color: red; "); //set the color of question 3 square, hard question
+				node3Q.setStyle("-fx-background-color: darkred; "); //set the color of question 3 square, hard question
 				node1Q.setStyle("-fx-background-color: green; ");//set the color of question 1 square, easy question
 				//creating three random forget squares
 				Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
@@ -1430,20 +1429,17 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					//creating new random forget square that is not equal to the questions squares
 					Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				Forget1.setStyle("-fx-background-color: lightblue; ");//set the color of the forget square
 				//check if the forget square equals to the square of question 1 or 2 or 3 or to forget 1 square
 				while(Forget1==Forget2 || Forget2==node1Q ||Forget2==node2Q || Forget2==node3Q) {
 					//creating new random forget square that is not equal to the questions squares or forget square
 					Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				Forget2.setStyle("-fx-background-color: orange; ");//set the color of the forget square
 				//check if the forget square equals to the square of question 1 or 2 or 3
 				while(Forget2==Forget3 || Forget1==Forget3 || Forget3==node1Q ||Forget3==node2Q || Forget3==node3Q) {
 					//creating new random forget square that is not equal to the questions squares or forget squares
 					Forget3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				Forget3.setStyle("-fx-background-color: orange; ");//set the color of forget square
-					
+				
 				levelsMoves();
 				setTimer(timer2); //set the timer of the level 2
 				displayLevel("LEVEL 2");//show the level
@@ -1475,7 +1471,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 				//loop on the square
 				for(int i = 0 ; i < 8 ; i++) {
 					for(int j = 0 ; j < 8 ; j ++) {
-						//set the squares as not visited and the vist number as 0
+						//set the squares as not visited and the visit number as 0
 						boardGame.getSquares()[i][j].setVisited(false);;
 						boardGame.getSquares()[i][j].setNumVisits(0);
 					}
@@ -1529,7 +1525,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					//creating new random square for question 3 that is not equal to question 1 or 2 square 
 					node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				node3Q.setStyle("-fx-background-color: red; "); //set the color of question 3, hard question
+				node3Q.setStyle("-fx-background-color: darkred; "); //set the color of question 3, hard question
 				node1Q.setStyle("-fx-background-color: green; ");//set the color of question 1, easy question
 				//creating two random jump squares
 				nodeRandomJump1=board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
@@ -1539,13 +1535,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					//creating new jump square that is not equal to the questions squares
 					nodeRandomJump1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				nodeRandomJump1.setStyle("-fx-background-color: blue; ");//set the color of the random jump
 				//check if the first jump square equals to the square of questions or the first random jump square
 				while(nodeRandomJump1==nodeRandomJump2 ||node3Q==nodeRandomJump2 ||node2Q==nodeRandomJump2 ||node1Q==nodeRandomJump2 ) {
 					//creating new jump square that is not equal to the questions squares and the first jump square
 					nodeRandomJump2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));	
 				}
-				nodeRandomJump2.setStyle("-fx-background-color: pink; ");//set the color of the second random jump square
 				//creating two random forget squares
 				Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
@@ -1554,13 +1548,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					//creating new forget square that is not equal to the questions squares and the jump squares
 					Forget1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}		
-				Forget1.setStyle("-fx-background-color: lightblue; ");//set the color of the first forget square
 				//check if the second forget square equals to the square of questions or the random jump squares or the first forget square
 				while(Forget1==Forget2 || Forget2==node1Q ||Forget2==node2Q || Forget2==node3Q || Forget2 == nodeRandomJump1 || Forget2 == nodeRandomJump2) {
 					//creating new forget square that is not equal to the questions squares and the jump squares or the first forget square
 					Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				Forget2.setStyle("-fx-background-color: orange; ");//set the color of the second forget square	
 				levelsMoves();
 				displayLevel("LEVEL 3");//show the level on the game screen
 				setTimer(timer3);//set the timer of the level
@@ -1640,7 +1632,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					//creating new random square for question 3 that is not equal to question 1 or 2 square
 					node3Q = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				node3Q.setStyle("-fx-background-color: red; ");//set the color of question 3, hard question
+				node3Q.setStyle("-fx-background-color: darkred; ");//set the color of question 3, hard question
 				node1Q.setStyle("-fx-background-color: green; ");//set the color of question 1, easy question
 				//creating 8 random block squares 
 				block1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
@@ -1649,56 +1641,56 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					//creating new block square that is not equal to the king and knight squares
 					block1 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				block1.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block1.setStyle("-fx-background-color: red; ");//set the color of forget square
 				block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				//check if the block square is on the knight or king place or questions squares or forget square
 				while(block1==block2 || block2 == node1Q  ||block2 == node2Q ||block2 == node3Q || block2==b00 || block2==b07 ) {
 					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				block2.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block2.setStyle("-fx-background-color: red; ");//set the color of forget square
 				block3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				//check if the block square is on the knight or king place or questions squares or forget square
 				while(block3==block2  || block3 == block1 || block3 == node1Q  ||block3 == node2Q ||block3 == node3Q || block3==b00 || block3==b07) {
 					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block3 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				block3.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block3.setStyle("-fx-background-color: red; ");//set the color of forget square
 				block4 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				//check if the block square is on the knight or king place or questions squares or forget square
 				while(block4==block1 || block4==block2 || block4==block3 || block4 == node1Q  ||block4 == node2Q ||block4 == node3Q || block4==b00 || block4==b07) {
 					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block4 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				block4.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block4.setStyle("-fx-background-color: red; ");//set the color of forget square
 				block5 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				//check if the block square is on the knight or king place or questions squares or forget square
 				while(block4==block5 || block5==block2 || block5==block3 || block5==block1 ||block5 == node1Q  ||block5 == node2Q ||block5 == node3Q || block5==b00 || block5==b07) {
 					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block5 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				block5.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block5.setStyle("-fx-background-color: red; ");//set the color of forget square
 				block6 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				//check if the block square is on the knight or king place or questions squares or forget square
 				while(block6==block5 || block6==block2 || block6==block3 || block6==block1 || block6==block4 ||block6 == node1Q  ||block6 == node2Q ||block6 == node3Q || block6==b00 || block6==b07) {
 					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block6 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				block6.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block6.setStyle("-fx-background-color: red; ");//set the color of forget square
 				block7 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				//check if the block square is on the knight or king place or questions squares or forget square
 				while(block7==block5|| block7==block6 || block7==block4 || block7==block2 || block7==block3 || block7==block1 || block7 == node1Q  ||block7 == node2Q ||block7 == node3Q || block7==b00 || block7==b07) {
 					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block7 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				block7.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block7.setStyle("-fx-background-color: red; ");//set the color of forget square
 				block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				//check if the block square is on the knight or king place or questions squares or forget square
 				while(block8==block7|| block8==block6  || block5==block8|| block8==block4 || block8==block3|| block8==block2 || block8==block1 || block8 == node1Q  ||block8 == node2Q ||block8 == node3Q || block8==b00 || block8==b07) {
 					//creating new block square that is not equal to the king and knight squares and question squares and forget squares
 					block8 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				block8.setStyle("-fx-background-color: darkred; ");//set the color of forget square
+				block8.setStyle("-fx-background-color: red; ");//set the color of forget square
 				levelsMoves();
 				displayLevel("LEVEL 4");//show level on the game screen
 				setTimer(timer4);//set the timer for this level
