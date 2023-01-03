@@ -480,7 +480,11 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			stage.show();
 		}
 		
-		
+		/**
+		 * 
+		 * method that set for the board buttons handle method in each level
+		 * 
+		 * **/
 		public void levelsMoves() throws IOException {
 		
 			for(int node = 0 ; node < board.getChildren().size()-3 ; node++) {
@@ -1350,7 +1354,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 		 * 
 		 * **/
 		public void nextLevel() throws IOException {
-			//after finishing level 1, check the points if >= 0
+			//after finishing level 1, check the points if >= 15, if the player win level 1
 			if(points>=demandPoints && finish==1) {//level 2
 				int total = game.getPoints()+points;// add the points of the level to the points score
 				game.setPoints(total);//set the points score
@@ -1447,13 +1451,14 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					
 			}
 			else if (finish==1 && points<demandPoints) { //if the player lose in level 1
-				timer1.cancel();
-				finishGame.setVisible(true);
-				game.setGameStatus(GameStatus.LostInLevel1);
+				timer1.cancel(); //stop timer
+				finishGame.setVisible(true); //show finish game button
+				game.setGameStatus(GameStatus.LostInLevel1); //set the game status as a lose
+				//loop on the board squares
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-					board.getChildren().get(node).setDisable(true);
+					board.getChildren().get(node).setDisable(true);//display all the squares on oard
 				
-				}
+				}//loop on players on sysData
 				for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
 					//check if the player is in the sysData
 					if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
@@ -1461,12 +1466,12 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
 					}
 				}
-			}
+			}//after finishing level 2, check the points if >= 15, if the player win level 2
 			if(points>=demandPoints && finish==2) { //level 3
 				int total = game.getPoints()+points;// add the points of the level to the points score
 				game.setPoints(total);//set the points score
 				
-				forgetsSquares.removeAll(forgetsSquares);
+				forgetsSquares.removeAll(forgetsSquares);//remove all squares from forget squares array 
 				//loop on the square
 				for(int i = 0 ; i < 8 ; i++) {
 					for(int j = 0 ; j < 8 ; j ++) {
@@ -1555,22 +1560,21 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 					//creating new forget square that is not equal to the questions squares and the jump squares or the first forget square
 					Forget2 = board.getChildren().get(rand.nextInt(board.getChildren().size()-3));
 				}
-				Forget2.setStyle("-fx-background-color: orange; ");//set the color of the second forget square
-					
-					
+				Forget2.setStyle("-fx-background-color: orange; ");//set the color of the second forget square	
 				levelsMoves();
 				displayLevel("LEVEL 3");//show the level on the game screen
 				setTimer(timer3);//set the timer of the level
 					
 			}
 			else if (finish==2 && points<demandPoints) { //if the player lose in level 2
-				timer2.cancel();
-				finishGame.setVisible(true);
-				game.setGameStatus(GameStatus.LostInLevel2);
+				timer2.cancel();//stop timer
+				finishGame.setVisible(true);//show finish game button
+				game.setGameStatus(GameStatus.LostInLevel2);//set game status as lose
+				//loop on board squares
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-					board.getChildren().get(node).setDisable(true);
+					board.getChildren().get(node).setDisable(true);//display squares
 				
-				}
+				}//loop on players on sysDatat
 				for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
 					//check if the player is in the sysData
 					if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
@@ -1578,8 +1582,10 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
 					}
 				}
-			}
+			}//after finishing level 3, check the points if >= 15, if the player win level 3
 			if(points>=demandPoints && finish==3) { //level 4
+				int total = game.getPoints()+points;//add level 3 points to total points
+				game.setPoints(total);//set games total point
 				Location locFirst = new Location(0,0);//creating the first location
 				game.getKnight().setLocation(locFirst);//put the knight on the first location
 				//loop on the board squares
@@ -1699,13 +1705,14 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 			}
 			
 			else if (finish==3 && points<demandPoints) { //if the player lose in level 3
-				timer3.cancel();
-				game.setGameStatus(GameStatus.LostInLevel3);
-				finishGame.setVisible(true);
+				timer3.cancel();//stop timer
+				game.setGameStatus(GameStatus.LostInLevel3);//set game status as lose
+				finishGame.setVisible(true);//show finish game button
+				//loop on board squares
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-					board.getChildren().get(node).setDisable(true);
+					board.getChildren().get(node).setDisable(true);//display squares
 				
-				}
+				}//loop on players on sysData
 				for(int player = 0 ; player<SysData.getInstance().getPlayers().size();player++) {
 					//check if the player is in the sysData
 					if(SysData.getInstance().getPlayers().get(player).getNickname().equals(UserNameController.Name) ){
@@ -1713,21 +1720,22 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
 					}
 				}
-			}
-			if(points>=demandPoints && finish==4) {//if the player finish in level 4 with points more than 15
+			}//after finishing level 4, check the points if >= 15, if the player win level 4
+			if(points>=demandPoints && finish==4) {
 				timer4.cancel();//stop timer
-				game.setGameStatus(GameStatus.WIN);
-				int total = game.getPoints()+points;
-				game.setPoints(total);
-				if(game.getPoints()>=200) {
-					game.setGameStatus(GameStatus.WinWithCup);
-					gameStatusController.check=1;
+				game.setGameStatus(GameStatus.WIN);//set game status as win
+				int total = game.getPoints()+points;//add level points to points score
+				game.setPoints(total);//set the points score
+				if(game.getPoints()>=200) { //check if the points score more than 200, check if the player wins
+					game.setGameStatus(GameStatus.WinWithCup); //set game status as win with the cup of winning
+					gameStatusController.check=1;//checker if the player win the game
 
 				}
 				
 				finishGame.setVisible(true);//show the finish game button
+				//loop on the board squares
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-					board.getChildren().get(node).setDisable(true);
+					board.getChildren().get(node).setDisable(true);//display squares
 				
 				}
 				//loop on the players on the sysData
@@ -1738,15 +1746,16 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 						SysData.getInstance().getPlayers().get(player).getGamesHistory().add(game);//add the game to the games history for the player
 					}
 				}
-			}
+			}//if the points if >= 15, if the player lose in level 4
 			else if(points<demandPoints && finish==4) {
 				timer4.cancel();//stop timer
-				int total = game.getPoints()+points;
-				game.setPoints(total);
-				game.setGameStatus(GameStatus.LostInLevel4);
+				int total = game.getPoints()+points; //add the level points to the points score
+				game.setPoints(total); //set game points score
+				game.setGameStatus(GameStatus.LostInLevel4); //set game status as lose
 				finishGame.setVisible(true);//show the finish game button
+				//loop on board squares
 				for(int node = 0 ; node < board.getChildren().size()-2 ; node++) {
-					board.getChildren().get(node).setDisable(true);
+					board.getChildren().get(node).setDisable(true);//display squares
 				
 				}
 				//loop on the players on the sysData
