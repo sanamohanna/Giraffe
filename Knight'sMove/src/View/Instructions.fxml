@@ -12,7 +12,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<ScrollPane prefHeight="590.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.InstructionsController">
+
+<ScrollPane prefHeight="574.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.InstructionsController">
    <content>
       <AnchorPane prefHeight="2276.0" prefWidth="958.0" styleClass="root" stylesheets="@Instructions.css">
       	<children>
@@ -165,7 +166,7 @@
                   <Font name="Arial Narrow Bold" size="15.0" />
                </font>
             </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="305.0" layoutX="57.0" layoutY="862.0" stroke="BLACK" strokeType="INSIDE" width="75.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="313.0" layoutX="57.0" layoutY="862.0" stroke="BLACK" strokeType="INSIDE" width="75.0">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -207,22 +208,22 @@
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="100.0" layoutX="132.0" layoutY="869.0" stroke="BLACK" strokeType="INSIDE" width="542.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="111.0" layoutX="130.0" layoutY="1057.0" stroke="BLACK" strokeType="INSIDE" width="542.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="89.0" layoutX="131.0" layoutY="968.0" stroke="BLACK" strokeType="INSIDE" width="542.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="101.0" layoutX="132.0" layoutY="869.0" stroke="BLACK" strokeType="INSIDE" width="580.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="118.0" layoutX="131.0" layoutY="1057.0" stroke="BLACK" strokeType="INSIDE" width="579.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="89.0" layoutX="131.0" layoutY="968.0" stroke="BLACK" strokeType="INSIDE" width="581.0" />
             <Text layoutX="143.0" layoutY="892.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move straight or diagonally all over the squares and has the ability to pass through walls" wrappingWidth="126.04962158203125">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Text>
-            <Text layoutX="446.0" layoutY="912.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share ">
+            <Text layoutX="468.0" layoutY="911.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share ">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Text>
-            <Text layoutX="147.0" layoutY="1078.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move one square straight and one square diagnolly or one square diagnolly and one square straight." wrappingWidth="118.04962158203125">
+            <Text layoutX="133.0" layoutY="1066.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" can move in “L-shape”-two squares in any direction vertically followed by one square horizontally, or two squares in any direction horizontally followed by one square vertically" wrappingWidth="165.2496337890625">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="130.0" layoutY="838.0" stroke="BLACK" strokeType="INSIDE" width="545.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="33.0" layoutX="130.0" layoutY="838.0" stroke="BLACK" strokeType="INSIDE" width="582.0">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -254,34 +255,34 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text layoutX="326.0" layoutY="859.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 2">
+            <Text layoutX="350.0" layoutY="858.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text layoutX="451.0" layoutY="859.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 3">
+            <Text layoutX="480.0" layoutY="857.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 3">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text layoutX="566.0" layoutY="911.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share ">
+            <Text layoutX="612.0" layoutY="911.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share ">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Text>
-            <Text layoutX="291.0" layoutY="1078.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move two squares straight and one diagonally or two diagonally and one square" wrappingWidth="110.800048828125">
+            <Text layoutX="331.0" layoutY="1074.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move two squares straight and one diagonally or two diagonally and one straight square" wrappingWidth="110.800048828125">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Text>
-            <Text layoutX="293.0" layoutY="892.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move straight or diagonally all over the squares and has the ability to pass through walls" wrappingWidth="126.27166748046875">
+            <Text layoutX="323.0" layoutY="895.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move straight or diagonally all over the squares and has the ability to pass through walls" wrappingWidth="126.27166748046875">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Text>
-            <Text layoutX="583.0" layoutY="830.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 4">
+            <Text layoutX="622.0" layoutY="858.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 4">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text layoutX="436.0" layoutY="981.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move one square straight or one square diagonally at constant speed" wrappingWidth="101.37500000000006">
+            <Text layoutX="457.0" layoutY="981.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move one square straight or one square diagonally at constant speed" wrappingWidth="101.37500000000006">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Text>
@@ -289,17 +290,17 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Text>
-            <Text layoutX="293.0" layoutY="1008.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share ">
+            <Text layoutX="346.0" layoutY="1015.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doesn't share ">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Text>
-            <Text layoutX="557.0" layoutY="981.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move one square straight or one square diagonally at constant speed" wrappingWidth="110.27166748046875">
+            <Text layoutX="597.0" layoutY="981.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move one square straight or one square diagonally at constant speed" wrappingWidth="110.27166748046875">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Text>
-            <Line endX="-3.199981689453125" endY="-17.0" layoutX="278.0" layoutY="886.0" startX="-3.199981689453125" startY="282.0" />
-            <Line endX="117.60009765625" endY="317.0" layoutX="419.0" layoutY="851.0" startX="117.60003662109375" startY="18.0" />
-            <Line endX="-39.999969482421875" endY="321.0" layoutX="465.0" layoutY="847.0" startX="-39.999969482421875" startY="22.0" />
+            <Line endX="-3.199981689453125" endY="-14.0" layoutX="309.0" layoutY="883.0" startX="-3.199981689453125" startY="291.9998779296875" />
+            <Line endX="117.60003662109375" endY="323.9998779296875" layoutX="449.0" layoutY="851.0" startX="117.60003662109375" startY="18.0" />
+            <Line endX="-39.999969482421875" endY="316.9998779296875" layoutX="492.0" layoutY="857.0" startX="-39.999969482421875" startY="11.0" />
             <Text layoutX="36.0" layoutY="1208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Questions">
                <font>
                   <Font name="Arial Rounded MT Bold" size="15.0" />
@@ -433,6 +434,16 @@
             </Text>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f70f0fc6" height="59.0" layoutX="114.0" layoutY="258.0" stroke="#cfcfcf" strokeType="INSIDE" width="490.0" />
             <Text layoutX="119.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="knight's visit Visited Square  =&gt; will LOSE 1 points" wrappingWidth="364.6441650390625">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="457.0" layoutY="1105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move in any direction he want " wrappingWidth="110.800048828125">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="587.0" layoutY="1105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can move in any direction he want " wrappingWidth="110.800048828125">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
