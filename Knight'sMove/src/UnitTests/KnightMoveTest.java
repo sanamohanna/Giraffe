@@ -22,6 +22,8 @@ public class KnightMoveTest {
 	}
 
 	@Test
+	//id:9
+	//check the case that the input is not legal for level1Move method
 	public void level1KnightMoveRRDTest() {
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			knight.level1Move(Directions.LEFT, Directions.RIGHT, Directions.DOWN, "0", "0");
@@ -31,6 +33,8 @@ public class KnightMoveTest {
 	}
 
 	@Test
+	//id:10
+	//check if the update location is right in case the input is legal for level1Move method 
 	public void level1KnightMoveRRUTest() {
 		Location actualLocation = knight.level1Move(Directions.RIGHT, Directions.RIGHT, Directions.UP, "0", "1");
 		Location expectedLocation = new Location(2, 0);
@@ -38,6 +42,8 @@ public class KnightMoveTest {
 	}
 
 	@Test
+	//id:11
+	//check if the update location is right in case the input is legal for level2Move method 
 	public void level2KnightMoveRRD_RTest() {
 		Location actualLocation = knight.level2Move(Directions.RIGHT, Directions.RIGHT, Directions.DOWN_RIGHT, "0",
 				"0");
@@ -47,7 +53,7 @@ public class KnightMoveTest {
 
 	@Test
 	//id:1
-	
+	//check the specific case that the knight go up of the board ,if the return location is right for method level2Move
 	public void level2KnightMoveRRU_RTest() {
 		Location actualLocation = knight.level2Move(Directions.RIGHT, Directions.RIGHT, Directions.UP_RIGHT, "0", "0");
 		Location expectedLocation = new Location(3, 7);
@@ -55,6 +61,8 @@ public class KnightMoveTest {
 	}
 
 	@Test
+	//id:12
+	//check if the return arraylist of method allValidMovesLevel1 contain all the options
 	public void knightAllValidMoveLevel1Test() {
 		/*
 		 * 0,3 (up up right) 0,1 (up up left ) 1,0 (left left up) 1,4 (right right up)

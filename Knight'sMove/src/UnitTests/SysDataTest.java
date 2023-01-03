@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class SysDataTest {
     private SysData sysData;
     private Question question;
-
+ // "setup" method
     @Before
     public void setUp() {
         sysData = SysData.getInstance();
@@ -22,12 +22,16 @@ public class SysDataTest {
        question = new Question(1,"Is Singlton consider as a disign pattern?",answers,DifficultyLevel.EASY,"SAFA");
     }
     @Test
+    //id:15
+    //check generation of two instance if they equal
     public void testGetInstance() {
         SysData instance1 = SysData.getInstance();
         SysData instance2 = SysData.getInstance();
         assertSame(instance1, instance2);
     }
     @Test
+    //id:16
+    //check adding question in sysData
     public void addQuestionTest() {
         sysData.addQuestion(question);
         ArrayList<Question> questions = sysData.getQuestions();
@@ -35,6 +39,7 @@ public class SysDataTest {
     }
 
     @After
+ // reset the arraylist 
     public void tearDown() {
         sysData.setQuestions(new ArrayList<>());
     }
