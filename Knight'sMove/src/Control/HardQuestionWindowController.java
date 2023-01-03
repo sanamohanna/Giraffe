@@ -1,28 +1,19 @@
 package Control;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.EventObject;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import Enum.DifficultyLevel;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -39,17 +30,18 @@ public class HardQuestionWindowController implements Initializable{
 	
 	@FXML
 	private Button sub;
+	//warning "you have to select question"
 	@FXML 
 	private Label warningBT;
 	Question ques;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+
 		ArrayList<Question> HardQuestions = new ArrayList<Question>();
 		SysData.getInstance().LoadQuestions();
 		for(int i = 0 ; i<SysData.getInstance().getQuestions().size(); i++){
+			// filling hard questions 
 			if(SysData.getInstance().getQuestions().get(i).getDifficultyLevel() == DifficultyLevel.HARD) {
 				HardQuestions.add(SysData.getInstance().getQuestions().get(i));
 			}
@@ -73,70 +65,77 @@ public class HardQuestionWindowController implements Initializable{
 	    level.setFill(Color.RED);
 	
 	}
-	
+	//submit the answer
 	public void submit(ActionEvent event) throws Exception {
 		Boolean selected = false;
 		Stage stage ;
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	
 		int trueanswer = 0 ;
+		//get what the user selected
 		for(int i =0 ; i< ques.getAnswers().size();i++) {
 			if(ques.getAnswers().get(i).isTrue()) {
 				trueanswer= i;
 			}
 		}
 		try {
-		if(answer1.isSelected()) {
-			selected = true;
-			if(answer1.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
-					StartGameController.points+=3;
-			    
+			//check the user selected answer1
+			if(answer1.isSelected()) {
+				selected = true;
+				if(answer1.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
+						StartGameController.points+=3;
+				    
+				}
+				else {
+						StartGameController.points-=3;
+				}
+				
 			}
-			else {
-					StartGameController.points-=3;
+			//check the user selected answer2
+			else if(answer2.isSelected()) {
+				selected = true;
+				if(answer2.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
+						StartGameController.points+=3;
+	
+				}
+				else {
+						StartGameController.points-=3;
+				
+				}
 			}
-			
-		}
-		else if(answer2.isSelected()) {
-			selected = true;
-			if(answer2.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
-					StartGameController.points+=3;
+			//check the user selected answer3
+			if(answer3.isSelected()) {
+				selected = true;
+				if(answer3.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
+						StartGameController.points+=3;
+				}
+				else {
+						StartGameController.points-=3;
+				}
+			}
+			//check the user selected answer4
+			if(answer4.isSelected()) {
+				selected = true;
+				if(answer4.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
+						StartGameController.points+=3;
+				}
+				else {
+						StartGameController.points-=3;
+				}
+			}
+			// you have to select answer first
+			if(selected == false) {
+				throw new Exception();
+			}
+			// start the timer again after submit 
+			StartGameController.stopTimer=1;
+			System.out.println(StartGameController.stopTimer);
+		    stage.close();
 
-			}
-			else {
-					StartGameController.points-=3;
+		}catch (Exception e) {
 			
-			}
-		}
-		if(answer3.isSelected()) {
-			selected = true;
-			if(answer3.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
-					StartGameController.points+=3;
-			}
-			else {
-					StartGameController.points-=3;
-		}
-		}
-		if(answer4.isSelected()) {
-			selected = true;
-			if(answer4.getText().equals(ques.getAnswers().get(trueanswer).getAnswerContext())) {
-					StartGameController.points+=3;
-			}
-			else {
-					StartGameController.points-=3;
-		}
-		}
-		if(selected == false) {
-			throw new Exception();
-		}
-		StartGameController.stopTimer=1;
-		System.out.println(StartGameController.stopTimer);
-	    stage.close();
-
-	}catch (Exception e) {
-	   
 			warningBT.setVisible(true);
-	}
+		}
 		
 	}
 	
