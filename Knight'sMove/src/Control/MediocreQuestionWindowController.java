@@ -85,7 +85,7 @@ public class MediocreQuestionWindowController  implements Initializable{
 				    	StartGameController.points+=2;	 
 				}
 				else{
-					StartGameController.points-=2;
+					StartGameController.points-=3;
 		
 				    }			
 			}
@@ -98,7 +98,7 @@ public class MediocreQuestionWindowController  implements Initializable{
 	
 				}
 				else {
-				    	StartGameController.points-=2;	
+				    	StartGameController.points-=3;	
 				    	
 				}
 			}
@@ -109,7 +109,7 @@ public class MediocreQuestionWindowController  implements Initializable{
 				    	StartGameController.points+=2;	
 				}
 				else {
-				    	StartGameController.points-=2;	
+				    	StartGameController.points-=3;	
 				    	
 				}
 			}
@@ -122,7 +122,7 @@ public class MediocreQuestionWindowController  implements Initializable{
 				}
 				else {
 					
-				    	StartGameController.points-=2;	
+				    	StartGameController.points-=3;	
 				    
 				}
 			}

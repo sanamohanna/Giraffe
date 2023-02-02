@@ -108,7 +108,7 @@ public class StartGameController implements Initializable,EventHandler<ActionEve
 	static String buttonId;
 	//Board boardGame = new Board();
 	int finish=0;
-	int demandPoints=15;
+	int demandPoints=2;
 	int oneMin=60;
 	ArrayList<Squares>  forgetsSquares = new ArrayList<Squares>();
 	Location knightLoc = new Location();

@@ -1,18 +1,6 @@
 {
   "questions": [
     {
-      "question": "Agile processes is :",
-      "answers": [
-        "1. never use formal inspection or peer review processes",
-        "2.always use formal inspection or peer review processes",
-        "3. rarely use formal inspection or peer review processes ",
-        "4. all answers is uncorrect"
-      ],
-      "correct_ans": "3",
-      "level": "1",
-      "team": "animal"
-    },
-    {
       "question": "Many agile methods argue that: ",
       "answers": [
         "1. The customers would always press the developers about the time",
@@ -60,30 +48,30 @@
       "level": "2",
       "team": "animal"
     },
-  {
-    "question": " In direct Reviews",
-    "answers": [
-      "1. Identify risks.",
-      "2. locate deviadions from conventions",
-      "3. product uproval.",
-      "4. record Errors"
-    ],
-    "correct_ans": "4",
-    "level": "2",
-    "team": "animal"
-  },
-  {
-    "question": "which one is NOT a  objectives type of review?",
-    "answers": [
-      "1. Finding and fixing code problems ",
-      "2. Checking the systematicity of code before entering it into the system ",
-      "3. Criticizing the programmer who wrote the code",
-      "4. Testing the coding ability of other programmers"
-    ],
-    "correct_ans": "1",
-    "level": "3",
-    "team": "animal"
-  },
+    {
+      "question": " In direct Reviews",
+      "answers": [
+        "1. Identify risks.",
+        "2. locate deviadions from conventions",
+        "3. product uproval.",
+        "4. record Errors"
+      ],
+      "correct_ans": "4",
+      "level": "2",
+      "team": "animal"
+    },
+    {
+      "question": "which one is NOT a  objectives type of review?",
+      "answers": [
+        "1. Finding and fixing code problems ",
+        "2. Checking the systematicity of code before entering it into the system ",
+        "3. Criticizing the programmer who wrote the code",
+        "4. Testing the coding ability of other programmers"
+      ],
+      "correct_ans": "1",
+      "level": "3",
+      "team": "animal"
+    },
     {
       "question": "Black Box tests is :",
       "answers": [
@@ -133,11 +121,11 @@
       "team": "animal"
     },
     {
-      "question": "what is a Maintenance?",
+      "question": "what is a Maintenance ?",
       "answers": [
         "to make efficient of the Development testing to make the system more effective",
         "it is that with the finish of project we need to to make sure that all the system data is complate and correct ",
-        " it's to ensure the continuous and efficient operation of the system ",
+        " it\u0027s to ensure the continuous and efficient operation of the system ",
         "4. all answers is uncorrect"
       ],
       "correct_ans": "3",
@@ -159,10 +147,10 @@
     {
       "question": "what is an Architectural Patterns? ",
       "answers": [
-        "it's the process of determining a software system’s architecture ",
-        "it's an approach to software development",
-        "it's a part of junit test",
-        "it's a set of architectural design decisions that are applicable to a recurring design problem"
+        "it\u0027s the process of determining a software system’s architecture ",
+        "it\u0027s an approach to software development",
+        "it\u0027s a part of junit test",
+        "it\u0027s a set of architectural design decisions that are applicable to a recurring design problem"
       ],
       "correct_ans": "4",
       "level": "1",
@@ -179,9 +167,6 @@
       "correct_ans": "4",
       "level": "2",
       "team": "animal"
-
-
     }
-   ]
+  ]
 }
-

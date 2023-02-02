@@ -87,7 +87,7 @@ public class HardQuestionWindowController implements Initializable{
 				    
 				}
 				else {
-						StartGameController.points-=3;
+						StartGameController.points-=4;
 				}
 				
 			}
@@ -99,7 +99,7 @@ public class HardQuestionWindowController implements Initializable{
 	
 				}
 				else {
-						StartGameController.points-=3;
+						StartGameController.points-=4;
 				
 				}
 			}
@@ -110,7 +110,7 @@ public class HardQuestionWindowController implements Initializable{
 						StartGameController.points+=3;
 				}
 				else {
-						StartGameController.points-=3;
+						StartGameController.points-=4;
 				}
 			}
 			//check the user selected answer4
@@ -120,7 +120,7 @@ public class HardQuestionWindowController implements Initializable{
 						StartGameController.points+=3;
 				}
 				else {
-						StartGameController.points-=3;
+						StartGameController.points-=4;
 				}
 			}
 			// you have to select answer first

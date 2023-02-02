@@ -83,7 +83,7 @@ public class EasyQuestionWindowController  implements Initializable{
 				    	StartGameController.points+=1;	
 				}
 				else {
-				    	StartGameController.points-=1;
+				    	StartGameController.points-=2;
 				}
 				
 			}
@@ -95,7 +95,7 @@ public class EasyQuestionWindowController  implements Initializable{
 				    	StartGameController.points+=1;	
 				}
 				else {
-				    	StartGameController.points-=1;	
+				    	StartGameController.points-=2;	
 				}
 			}
 			//check the user selected answer3
@@ -107,7 +107,7 @@ public class EasyQuestionWindowController  implements Initializable{
 				}
 				else {
 					
-				    	StartGameController.points-=1;	
+				    	StartGameController.points-=2;	
 				}
 			}
 			//check the user selected answer4
@@ -118,7 +118,7 @@ public class EasyQuestionWindowController  implements Initializable{
 				    	StartGameController.points+=1;	
 				}
 				else {
-				    	StartGameController.points-=1;	
+				    	StartGameController.points-=2;	
 				}
 				// you have to select answer first
 				if(selected == false) {
